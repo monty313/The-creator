@@ -1,0 +1,31 @@
+{
+  "law_id": "A33",
+  "name": "GOAL_RELATIVE_COURT_LAW",
+  "status": "PERMANENT",
+  "promoted": "2026-08-07",
+  "loop": "scoreboard -> goal_check -> generate_goal_axes_issues -> rank -> court -> ledger -> loop",
+  "tiers": ["full_court", "summary_court"],
+  "full_court_triggers": [
+    "production_path",
+    "brain",
+    "a13",
+    "dual_conversion",
+    "risk_envelope",
+    "senses_drive_brain",
+    "promote_gates"
+  ],
+  "severity_order": ["S0", "S1", "S2", "S3", "S4", "S5"],
+  "retention_paths": {
+    "ledger": "evidence_court/ledger/EVIDENCE_LEDGER.jsonl",
+    "scoreboard": "evidence_court/ledger/SCOREBOARD_HISTORY.jsonl",
+    "counsel_cache": "evidence_court/ledger/COUNSEL_CACHE.jsonl",
+    "precedents": "evidence_court/precedents/"
+  },
+  "required_issue_fields": [
+    "issue_id",
+    "goal_axes",
+    "blocks_metric",
+    "severity",
+    "status"
+  ]
+}

@@ -20,6 +20,11 @@
 **PERMANENT Law A30:** Creator whole-project checklist → Court each item; then Mark + KAG checklist → Court each item.  
 → `schedules/SCHEDULE.md` · `CREATOR_GOAL_CHECKLIST.md` · pin `tests/test_full_project_checklist_law.py`
 
+
+**PERMANENT Law A31:** Goal is north star of every Court action — `GOAL_LAW.md`  
+**PERMANENT Law A32:** Emergent senses (sight/feel/taste/hearing) drive brain — `EMERGENT_SENSES_LAW.md`  
+**PERMANENT Law A33:** Court keeps going, generates goal-relative issues, retains ledger — `GOAL_RELATIVE_COURT_LAW.md`  
+
 **PERMANENT Law A14:** Meta-policy **must be trained** (permanent meta-learning — not optional “practice”).  
 → `META_POLICY_TRAIN_LAW.md` · `python -m evidence_court.meta_rl.cli meta-train`
 

@@ -440,5 +440,25 @@ Human order: Monty — **overrules the Judge**. Not optional. Not “may.”
 - Unbounded training loops  
 - Frictionless results as production-ready  
 - Final-boss consistent random-target 100d clears (CASE-0003 still open)  
-- Full scalping decision clock / path that **lands** 8–400 trades/day (A13 **must** is law; **implementation still open under Court**)  
- 
+- Full scalping decision clock / path that **lands** 8–400 trades/day (A13 **must** is law; **implementation still open under Court**)
+
+## PERMANENT — Law A31 (2026-08-07) — Goal is north star (Monty)
+
+**Status: PERMANENT.**  
+Every Court case/issue must map to goal axes. Mission: one bot, any target×risk at inference, no retrain after final policy, breach 0, scalping 8–400/day, senses drive brain.  
+**Canonical:** `GOAL_LAW.md` · pin `GOAL_LAW.json` · test `tests/test_goal_law.py` · auto-load `.grok/rules/00_goal_law.md`
+
+## PERMANENT — Law A32 (2026-08-07) — Emergent senses full stack (Monty)
+
+**Status: PERMANENT.**  
+Sight / Feel / Taste / Hearing on every official MARK set with explicit fail modes. Production rule: pack into state and train brain — not probe-only.  
+**Canonical:** `EMERGENT_SENSES_LAW.md` · pin `EMERGENT_SENSES_LAW.json` · docket `SENSES_CASE_DOCKET.md` · test `tests/test_emergent_senses_law.py` · auto-load `.grok/rules/00_emergent_senses.md`  
+**Series:** CASE-0031 → 0032 → 0033 → 0034
+
+## PERMANENT — Law A33 (2026-08-07) — Goal-relative Court process (Monty)
+
+**Status: PERMANENT.**  
+Court never stops until final boss. Generates new issues from measured G-* gaps. Tiered Full vs Summary Court. Evidence ledger + scoreboard history + counsel cache + precedent cards.  
+**Canonical:** `GOAL_RELATIVE_COURT_LAW.md` · pin `GOAL_RELATIVE_COURT_LAW.json` · test `tests/test_goal_relative_court_law.py` · auto-load `.grok/rules/00_goal_relative_court.md`  
+**Retention:** `ledger/EVIDENCE_LEDGER.jsonl` · `ledger/SCOREBOARD_HISTORY.jsonl` · `ledger/COUNSEL_CACHE.jsonl` · `precedents/`
+

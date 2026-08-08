@@ -115,6 +115,23 @@ AI: [AGENTS.md](AGENTS.md) (**GOAL** + §0) · [references/doctrine/00_LID_OFF_T
 
 ---
 
+
+
+---
+
+## Court binding (A31 / A32 / A33)
+
+The Evidence Court exists **only** to achieve this GOAL. Permanent Court laws:
+
+| Law | Meaning |
+|-----|---------|
+| **A31** | Every issue/case maps to goal axes; freestyle without goal map is out of Court |
+| **A32** | Emergent senses sight/feel/taste/hearing on every official set — **drive the brain**, not probe-only |
+| **A33** | Court keeps running, generates new goal-relative issues from measurements, retains evidence ledger |
+
+Canonical: `evidence_court/GOAL_LAW.md` · `EMERGENT_SENSES_LAW.md` · `GOAL_RELATIVE_COURT_LAW.md`  
+Live queue: `evidence_court/ISSUE_DOCKET.md`
+
 ## Out of scope (unless Monty asks)
 
 New UIs, random indicators, parallel frameworks, long essays without a `prove_it` gate,  
