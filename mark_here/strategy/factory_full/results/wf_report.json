@@ -1,0 +1,8862 @@
+{
+ "GV013_L0": {
+  "ladder": [
+   "1m",
+   "15m",
+   "30m"
+  ],
+  "symbols": {
+   "EURUSD": {
+    "pre_days": 1401,
+    "folds": [
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -2592.5,
+      "tune_tr": 1678,
+      "test_net": -714.8
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -2824.1,
+      "tune_tr": 1706,
+      "test_net": -673.7
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -2958.1,
+      "tune_tr": 1724,
+      "test_net": -693.4
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -2644.3,
+      "tune_tr": 1699,
+      "test_net": -996.4
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -3078.3,
+      "tune_tr": 1717,
+      "test_net": -870.5
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       -1
+      ],
+      "tune_net": -3230.0,
+      "tune_tr": 2340,
+      "test_net": -822.3
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       -1
+      ],
+      "tune_net": -3185.1,
+      "tune_tr": 2337,
+      "test_net": -569.1
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -3099.6,
+      "tune_tr": 1731,
+      "test_net": -468.9
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -2572.1,
+      "tune_tr": 1709,
+      "test_net": -754.6
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -2456.2,
+      "tune_tr": 1704,
+      "test_net": -294.6
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -1999.3,
+      "tune_tr": 1676,
+      "test_net": -660.8
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -2178.9,
+      "tune_tr": 1662,
+      "test_net": -535.9
+     },
+     {
+      "cfg": [
+       "MID",
+       3,
+       1
+      ],
+      "tune_net": -2208.6,
+      "tune_tr": 1760,
+      "test_net": -1107.5
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -2583.0,
+      "tune_tr": 1659,
+      "test_net": -1061.7
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -3350.1,
+      "tune_tr": 1688,
+      "test_net": -1038.9
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       -1
+      ],
+      "tune_net": -3568.3,
+      "tune_tr": 2309,
+      "test_net": -685.0
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       -1
+      ],
+      "tune_net": -3564.2,
+      "tune_tr": 2330,
+      "test_net": -821.7
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       -1
+      ],
+      "tune_net": -3409.3,
+      "tune_tr": 2348,
+      "test_net": -642.2
+     }
+    ],
+    "wf": {
+     "days": 1134,
+     "total": -13412.0,
+     "mean": -11.83,
+     "green_pct": 30.9,
+     "zero_pct": 0.0,
+     "worst": -195.4,
+     "best": 166.3,
+     "maxdd": -13445.7,
+     "tr_per_day": 7.48,
+     "mean_over_absworst": -0.0605
+    },
+    "final_cfg": [
+     "MID",
+     4,
+     1
+    ],
+    "final_pre_net": -15822.8,
+    "final_pre_tr": 9404,
+    "oos30": {
+     "days": 30,
+     "total": -156.8,
+     "mean": -5.23,
+     "green_pct": 46.7,
+     "zero_pct": 0.0,
+     "worst": -49.5,
+     "best": 37.9,
+     "maxdd": -228.9,
+     "tr_per_day": 6.67,
+     "mean_over_absworst": -0.1056
+    },
+    "oos30_dates": [
+     "2026-06-08",
+     "2026-07-17"
+    ],
+    "trades": {
+     "n": 9604,
+     "wr": 27.8,
+     "avg_win": 9.59,
+     "avg_loss": -5.99,
+     "med_btp_bars": 4,
+     "p75_btp_bars": 11,
+     "never_profit_pct": 25.5,
+     "med_hold_bars": 47,
+     "censored": 0,
+     "total_pips": -15979.6
+    },
+    "sizing": {
+     "scale_pct_per_pip": 0.02047,
+     "implied_mean_daily_pct_pre": -0.231,
+     "implied_mean_daily_pct_oos30": -0.107,
+     "oos30_worst_pct": -1.01
+    }
+   },
+   "GBPUSD": {
+    "pre_days": 1401,
+    "folds": [
+     {
+      "cfg": [
+       "MID",
+       3,
+       1
+      ],
+      "tune_net": -3524.9,
+      "tune_tr": 1814,
+      "test_net": -1309.1
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -3978.6,
+      "tune_tr": 1707,
+      "test_net": -623.2
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -3373.7,
+      "tune_tr": 1706,
+      "test_net": -668.9
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -3424.0,
+      "tune_tr": 1722,
+      "test_net": -933.8
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -3456.1,
+      "tune_tr": 1725,
+      "test_net": -1772.4
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       -1
+      ],
+      "tune_net": -3673.4,
+      "tune_tr": 2386,
+      "test_net": -937.1
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       -1
+      ],
+      "tune_net": -3908.3,
+      "tune_tr": 2365,
+      "test_net": -431.3
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       -1
+      ],
+      "tune_net": -3454.5,
+      "tune_tr": 2377,
+      "test_net": -1074.6
+     },
+     {
+      "cfg": [
+       "MID",
+       3,
+       1
+      ],
+      "tune_net": -3487.7,
+      "tune_tr": 1834,
+      "test_net": -508.6
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -2364.3,
+      "tune_tr": 1666,
+      "test_net": -451.4
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -1954.0,
+      "tune_tr": 1663,
+      "test_net": -828.0
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -2519.5,
+      "tune_tr": 1656,
+      "test_net": -644.3
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -2387.7,
+      "tune_tr": 1617,
+      "test_net": -750.3
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -2674.0,
+      "tune_tr": 1628,
+      "test_net": -1325.6
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -3548.2,
+      "tune_tr": 1661,
+      "test_net": -1407.8
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -4128.0,
+      "tune_tr": 1675,
+      "test_net": -923.0
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -4406.7,
+      "tune_tr": 1699,
+      "test_net": -676.0
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -4332.4,
+      "tune_tr": 1697,
+      "test_net": -820.1
+     }
+    ],
+    "wf": {
+     "days": 1134,
+     "total": -16085.5,
+     "mean": -14.18,
+     "green_pct": 31.0,
+     "zero_pct": 0.0,
+     "worst": -188.6,
+     "best": 251.4,
+     "maxdd": -16130.3,
+     "tr_per_day": 7.17,
+     "mean_over_absworst": -0.0752
+    },
+    "final_cfg": [
+     "MID",
+     4,
+     1
+    ],
+    "final_pre_net": -19136.6,
+    "final_pre_tr": 9360,
+    "oos30": {
+     "days": 30,
+     "total": -327.1,
+     "mean": -10.9,
+     "green_pct": 26.7,
+     "zero_pct": 0.0,
+     "worst": -57.0,
+     "best": 117.3,
+     "maxdd": -457.7,
+     "tr_per_day": 6.7,
+     "mean_over_absworst": -0.1913
+    },
+    "oos30_dates": [
+     "2026-06-08",
+     "2026-07-17"
+    ],
+    "trades": {
+     "n": 9561,
+     "wr": 28.7,
+     "avg_win": 12.43,
+     "avg_loss": -7.85,
+     "med_btp_bars": 4,
+     "p75_btp_bars": 11,
+     "never_profit_pct": 25.4,
+     "med_hold_bars": 50,
+     "censored": 0,
+     "total_pips": -19463.7
+    },
+    "sizing": {
+     "scale_pct_per_pip": 0.02121,
+     "implied_mean_daily_pct_pre": -0.29,
+     "implied_mean_daily_pct_oos30": -0.231,
+     "oos30_worst_pct": -1.21
+    }
+   },
+   "XAUUSD": {
+    "pre_days": 1471,
+    "folds": [
+     {
+      "cfg": [
+       "MID",
+       3,
+       -1
+      ],
+      "tune_net": -5516.4,
+      "tune_tr": 2483,
+      "test_net": -611.8
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       -2
+      ],
+      "tune_net": -5012.2,
+      "tune_tr": 2812,
+      "test_net": -559.8
+     },
+     {
+      "cfg": [
+       "MID",
+       3,
+       -5
+      ],
+      "tune_net": -4274.0,
+      "tune_tr": 2940,
+      "test_net": -1161.4
+     },
+     {
+      "cfg": [
+       "MID",
+       3,
+       -1
+      ],
+      "tune_net": -3540.4,
+      "tune_tr": 2551,
+      "test_net": -2120.9
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -2266.9,
+      "tune_tr": 1581,
+      "test_net": -377.0
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -1792.8,
+      "tune_tr": 1583,
+      "test_net": -1310.6
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -3332.2,
+      "tune_tr": 1598,
+      "test_net": 327.5
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -2357.5,
+      "tune_tr": 1589,
+      "test_net": -1363.8
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -2723.9,
+      "tune_tr": 1588,
+      "test_net": -902.0
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -3248.9,
+      "tune_tr": 1602,
+      "test_net": -605.7
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -2544.0,
+      "tune_tr": 1565,
+      "test_net": 468.3
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -2403.2,
+      "tune_tr": 1542,
+      "test_net": -999.8
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -2039.2,
+      "tune_tr": 1551,
+      "test_net": -1727.6
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -2864.8,
+      "tune_tr": 1547,
+      "test_net": -345.3
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -2604.4,
+      "tune_tr": 1568,
+      "test_net": -906.2
+     },
+     {
+      "cfg": [
+       "MID",
+       2,
+       1
+      ],
+      "tune_net": -3820.0,
+      "tune_tr": 1865,
+      "test_net": -243.4
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -2331.5,
+      "tune_tr": 1559,
+      "test_net": -238.0
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -841.9,
+      "tune_tr": 1551,
+      "test_net": 2603.4
+     },
+     {
+      "cfg": [
+       "MID",
+       2,
+       1
+      ],
+      "tune_net": 4068.4,
+      "tune_tr": 1789,
+      "test_net": 69.4
+     }
+    ],
+    "wf": {
+     "days": 1197,
+     "total": -10004.7,
+     "mean": -8.36,
+     "green_pct": 41.9,
+     "zero_pct": 0.0,
+     "worst": -1130.7,
+     "best": 3464.4,
+     "maxdd": -15434.9,
+     "tr_per_day": 7.33,
+     "mean_over_absworst": -0.0074
+    },
+    "final_cfg": [
+     "MID",
+     4,
+     1
+    ],
+    "final_pre_net": -15530.4,
+    "final_pre_tr": 9136,
+    "oos30": {
+     "days": 30,
+     "total": 622.3,
+     "mean": 20.74,
+     "green_pct": 60.0,
+     "zero_pct": 0.0,
+     "worst": -1163.3,
+     "best": 1294.6,
+     "maxdd": -1177.9,
+     "tr_per_day": 5.73,
+     "mean_over_absworst": 0.0178
+    },
+    "oos30_dates": [
+     "2026-06-08",
+     "2026-07-17"
+    ],
+    "trades": {
+     "n": 9308,
+     "wr": 32.0,
+     "avg_win": 58.99,
+     "avg_loss": -30.16,
+     "med_btp_bars": 2,
+     "p75_btp_bars": 6,
+     "never_profit_pct": 18.4,
+     "med_hold_bars": 48,
+     "censored": 0,
+     "total_pips": -14908.1
+    },
+    "sizing": {
+     "scale_pct_per_pip": 0.00343,
+     "implied_mean_daily_pct_pre": -0.036,
+     "implied_mean_daily_pct_oos30": 0.071,
+     "oos30_worst_pct": -4.0
+    }
+   },
+   "US500": {
+    "pre_days": 1449,
+    "folds": [
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -973.2,
+      "tune_tr": 1526,
+      "test_net": -310.6
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -1040.2,
+      "tune_tr": 1530,
+      "test_net": -77.8
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -892.6,
+      "tune_tr": 1551,
+      "test_net": -161.9
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -768.5,
+      "tune_tr": 1539,
+      "test_net": -248.0
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -798.3,
+      "tune_tr": 1538,
+      "test_net": -531.2
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -1018.9,
+      "tune_tr": 1573,
+      "test_net": -349.7
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -1290.8,
+      "tune_tr": 1549,
+      "test_net": -38.4
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -1167.3,
+      "tune_tr": 1541,
+      "test_net": -364.5
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -1283.8,
+      "tune_tr": 1544,
+      "test_net": -591.1
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -1343.7,
+      "tune_tr": 1543,
+      "test_net": -407.8
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -1401.8,
+      "tune_tr": 1563,
+      "test_net": -212.7
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -1576.1,
+      "tune_tr": 1574,
+      "test_net": -174.7
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -1386.4,
+      "tune_tr": 1570,
+      "test_net": -436.2
+     },
+     {
+      "cfg": [
+       "MID",
+       3,
+       1
+      ],
+      "tune_net": -1213.4,
+      "tune_tr": 1644,
+      "test_net": -376.0
+     },
+     {
+      "cfg": [
+       "MID",
+       2,
+       1
+      ],
+      "tune_net": -1124.3,
+      "tune_tr": 1633,
+      "test_net": -422.0
+     },
+     {
+      "cfg": [
+       "MID",
+       2,
+       1
+      ],
+      "tune_net": -1290.1,
+      "tune_tr": 1633,
+      "test_net": -560.9
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -1615.4,
+      "tune_tr": 1449,
+      "test_net": -264.7
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -1443.9,
+      "tune_tr": 1480,
+      "test_net": -536.7
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -1649.0,
+      "tune_tr": 1581,
+      "test_net": -404.3
+     }
+    ],
+    "wf": {
+     "days": 1197,
+     "total": -6469.3,
+     "mean": -5.4,
+     "green_pct": 36.6,
+     "zero_pct": 0.0,
+     "worst": -339.9,
+     "best": 224.4,
+     "maxdd": -6651.0,
+     "tr_per_day": 6.21,
+     "mean_over_absworst": -0.0159
+    },
+    "final_cfg": [
+     "MID",
+     4,
+     1
+    ],
+    "final_pre_net": -7262.7,
+    "final_pre_tr": 8815,
+    "oos30": {
+     "days": 30,
+     "total": -254.4,
+     "mean": -8.48,
+     "green_pct": 33.3,
+     "zero_pct": 0.0,
+     "worst": -76.1,
+     "best": 58.5,
+     "maxdd": -372.2,
+     "tr_per_day": 6.43,
+     "mean_over_absworst": -0.1114
+    },
+    "oos30_dates": [
+     "2026-06-08",
+     "2026-07-17"
+    ],
+    "trades": {
+     "n": 9008,
+     "wr": 29.8,
+     "avg_win": 9.94,
+     "avg_loss": -5.4,
+     "med_btp_bars": 4,
+     "p75_btp_bars": 11,
+     "never_profit_pct": 26.1,
+     "med_hold_bars": 51,
+     "censored": 0,
+     "total_pips": -7517.1
+    },
+    "sizing": {
+     "scale_pct_per_pip": 0.01106,
+     "implied_mean_daily_pct_pre": -0.055,
+     "implied_mean_daily_pct_oos30": -0.094,
+     "oos30_worst_pct": -0.84
+    }
+   }
+  }
+ },
+ "GV013_L1": {
+  "ladder": [
+   "5m",
+   "30m",
+   "1h"
+  ],
+  "symbols": {
+   "EURUSD": {
+    "pre_days": 1400,
+    "folds": [
+     {
+      "cfg": [
+       "MID",
+       3,
+       1
+      ],
+      "tune_net": -726.9,
+      "tune_tr": 948,
+      "test_net": -327.9
+     },
+     {
+      "cfg": [
+       "MID",
+       3,
+       1
+      ],
+      "tune_net": -812.1,
+      "tune_tr": 934,
+      "test_net": -351.6
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -954.5,
+      "tune_tr": 900,
+      "test_net": -765.2
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -1259.0,
+      "tune_tr": 901,
+      "test_net": -997.8
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       -1
+      ],
+      "tune_net": -1265.6,
+      "tune_tr": 1122,
+      "test_net": 203.0
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       -1
+      ],
+      "tune_net": -849.6,
+      "tune_tr": 1137,
+      "test_net": -75.2
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       -1
+      ],
+      "tune_net": -712.1,
+      "tune_tr": 1104,
+      "test_net": -427.2
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       -1
+      ],
+      "tune_net": -474.7,
+      "tune_tr": 1104,
+      "test_net": -505.1
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       -1
+      ],
+      "tune_net": -804.5,
+      "tune_tr": 1109,
+      "test_net": -387.3
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -1191.6,
+      "tune_tr": 888,
+      "test_net": -240.1
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -1163.1,
+      "tune_tr": 895,
+      "test_net": -387.1
+     },
+     {
+      "cfg": [
+       "MID",
+       1,
+       1
+      ],
+      "tune_net": -1233.4,
+      "tune_tr": 1111,
+      "test_net": -294.9
+     },
+     {
+      "cfg": [
+       "MID",
+       1,
+       1
+      ],
+      "tune_net": -1148.4,
+      "tune_tr": 1096,
+      "test_net": -692.5
+     },
+     {
+      "cfg": [
+       "MID",
+       1,
+       1
+      ],
+      "tune_net": -1498.0,
+      "tune_tr": 1134,
+      "test_net": -604.8
+     },
+     {
+      "cfg": [
+       "MID",
+       3,
+       -1
+      ],
+      "tune_net": -1787.0,
+      "tune_tr": 1329,
+      "test_net": -407.6
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       -1
+      ],
+      "tune_net": -1738.4,
+      "tune_tr": 1133,
+      "test_net": -349.4
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       -1
+      ],
+      "tune_net": -1669.1,
+      "tune_tr": 1146,
+      "test_net": -530.0
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       -1
+      ],
+      "tune_net": -1414.0,
+      "tune_tr": 1139,
+      "test_net": -391.9
+     }
+    ],
+    "wf": {
+     "days": 1134,
+     "total": -7532.6,
+     "mean": -6.64,
+     "green_pct": 36.5,
+     "zero_pct": 0.0,
+     "worst": -141.2,
+     "best": 123.4,
+     "maxdd": -7565.5,
+     "tr_per_day": 4.26,
+     "mean_over_absworst": -0.047
+    },
+    "final_cfg": [
+     "MID",
+     4,
+     -1
+    ],
+    "final_pre_net": -7201.3,
+    "final_pre_tr": 6282,
+    "oos30": {
+     "days": 30,
+     "total": -317.2,
+     "mean": -10.57,
+     "green_pct": 23.3,
+     "zero_pct": 0.0,
+     "worst": -52.7,
+     "best": 37.7,
+     "maxdd": -327.2,
+     "tr_per_day": 4.43,
+     "mean_over_absworst": -0.2006
+    },
+    "oos30_dates": [
+     "2026-06-08",
+     "2026-07-17"
+    ],
+    "trades": {
+     "n": 6415,
+     "wr": 42.0,
+     "avg_win": 9.44,
+     "avg_loss": -8.86,
+     "med_btp_bars": 2,
+     "p75_btp_bars": 5,
+     "never_profit_pct": 25.3,
+     "med_hold_bars": 17,
+     "censored": 0,
+     "total_pips": -7518.5
+    },
+    "sizing": {
+     "scale_pct_per_pip": 0.0283,
+     "implied_mean_daily_pct_pre": -0.146,
+     "implied_mean_daily_pct_oos30": -0.299,
+     "oos30_worst_pct": -1.49
+    }
+   },
+   "GBPUSD": {
+    "pre_days": 1401,
+    "folds": [
+     {
+      "cfg": [
+       "MID",
+       4,
+       -1
+      ],
+      "tune_net": -1079.3,
+      "tune_tr": 1132,
+      "test_net": -187.6
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       -1
+      ],
+      "tune_net": -1346.8,
+      "tune_tr": 1161,
+      "test_net": -397.3
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       -1
+      ],
+      "tune_net": -1243.4,
+      "tune_tr": 1135,
+      "test_net": -498.7
+     },
+     {
+      "cfg": [
+       "MID",
+       3,
+       -1
+      ],
+      "tune_net": -1030.5,
+      "tune_tr": 1328,
+      "test_net": 199.3
+     },
+     {
+      "cfg": [
+       "MID",
+       3,
+       -1
+      ],
+      "tune_net": -418.1,
+      "tune_tr": 1345,
+      "test_net": -458.0
+     },
+     {
+      "cfg": [
+       "MID",
+       3,
+       -1
+      ],
+      "tune_net": -676.5,
+      "tune_tr": 1330,
+      "test_net": -359.4
+     },
+     {
+      "cfg": [
+       "MID",
+       3,
+       -1
+      ],
+      "tune_net": -683.6,
+      "tune_tr": 1320,
+      "test_net": -440.5
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       -1
+      ],
+      "tune_net": -681.8,
+      "tune_tr": 1098,
+      "test_net": -862.1
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -1387.3,
+      "tune_tr": 890,
+      "test_net": -591.9
+     },
+     {
+      "cfg": [
+       "MID",
+       1,
+       1
+      ],
+      "tune_net": -1530.4,
+      "tune_tr": 1097,
+      "test_net": -271.2
+     },
+     {
+      "cfg": [
+       "MID",
+       1,
+       1
+      ],
+      "tune_net": -1294.7,
+      "tune_tr": 1090,
+      "test_net": -463.8
+     },
+     {
+      "cfg": [
+       "MID",
+       1,
+       1
+      ],
+      "tune_net": -1663.3,
+      "tune_tr": 1085,
+      "test_net": -347.9
+     },
+     {
+      "cfg": [
+       "MID",
+       3,
+       1
+      ],
+      "tune_net": -1419.6,
+      "tune_tr": 910,
+      "test_net": -470.1
+     },
+     {
+      "cfg": [
+       "MID",
+       2,
+       1
+      ],
+      "tune_net": -1337.6,
+      "tune_tr": 968,
+      "test_net": -479.6
+     },
+     {
+      "cfg": [
+       "MID",
+       3,
+       1
+      ],
+      "tune_net": -1554.7,
+      "tune_tr": 907,
+      "test_net": -857.8
+     },
+     {
+      "cfg": [
+       "MID",
+       3,
+       1
+      ],
+      "tune_net": -1898.2,
+      "tune_tr": 912,
+      "test_net": -767.6
+     },
+     {
+      "cfg": [
+       "MID",
+       2,
+       1
+      ],
+      "tune_net": -2282.3,
+      "tune_tr": 995,
+      "test_net": -476.8
+     },
+     {
+      "cfg": [
+       "MID",
+       2,
+       1
+      ],
+      "tune_net": -2395.2,
+      "tune_tr": 1012,
+      "test_net": -279.9
+     }
+    ],
+    "wf": {
+     "days": 1134,
+     "total": -8010.7,
+     "mean": -7.06,
+     "green_pct": 38.0,
+     "zero_pct": 0.3,
+     "worst": -189.9,
+     "best": 188.1,
+     "maxdd": -8180.4,
+     "tr_per_day": 4.35,
+     "mean_over_absworst": -0.0372
+    },
+    "final_cfg": [
+     "MID",
+     4,
+     -1
+    ],
+    "final_pre_net": -8759.6,
+    "final_pre_tr": 6168,
+    "oos30": {
+     "days": 30,
+     "total": -349.0,
+     "mean": -11.63,
+     "green_pct": 33.3,
+     "zero_pct": 0.0,
+     "worst": -76.6,
+     "best": 60.1,
+     "maxdd": -525.4,
+     "tr_per_day": 4.1,
+     "mean_over_absworst": -0.1519
+    },
+    "oos30_dates": [
+     "2026-06-08",
+     "2026-07-17"
+    ],
+    "trades": {
+     "n": 6291,
+     "wr": 42.6,
+     "avg_win": 12.21,
+     "avg_loss": -11.57,
+     "med_btp_bars": 2,
+     "p75_btp_bars": 5,
+     "never_profit_pct": 25.1,
+     "med_hold_bars": 17,
+     "censored": 0,
+     "total_pips": -9108.7
+    },
+    "sizing": {
+     "scale_pct_per_pip": 0.02106,
+     "implied_mean_daily_pct_pre": -0.132,
+     "implied_mean_daily_pct_oos30": -0.245,
+     "oos30_worst_pct": -1.61
+    }
+   },
+   "XAUUSD": {
+    "pre_days": 1470,
+    "folds": [
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -2821.3,
+      "tune_tr": 859,
+      "test_net": -1019.7
+     },
+     {
+      "cfg": [
+       "MID",
+       1,
+       -3
+      ],
+      "tune_net": -3045.2,
+      "tune_tr": 1537,
+      "test_net": 220.5
+     },
+     {
+      "cfg": [
+       "MID",
+       1,
+       1
+      ],
+      "tune_net": -997.3,
+      "tune_tr": 1105,
+      "test_net": -889.5
+     },
+     {
+      "cfg": [
+       "MID",
+       1,
+       -3
+      ],
+      "tune_net": -1505.6,
+      "tune_tr": 1562,
+      "test_net": -1285.9
+     },
+     {
+      "cfg": [
+       "MID",
+       1,
+       -3
+      ],
+      "tune_net": -1660.2,
+      "tune_tr": 1541,
+      "test_net": -812.0
+     },
+     {
+      "cfg": [
+       "MID",
+       1,
+       -1
+      ],
+      "tune_net": -1824.0,
+      "tune_tr": 1464,
+      "test_net": -549.8
+     },
+     {
+      "cfg": [
+       "LTF",
+       4,
+       -2
+      ],
+      "tune_net": -2120.8,
+      "tune_tr": 1876,
+      "test_net": -778.2
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -356.2,
+      "tune_tr": 867,
+      "test_net": -957.7
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": 478.4,
+      "tune_tr": 850,
+      "test_net": -256.2
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": 774.5,
+      "tune_tr": 859,
+      "test_net": -126.6
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": 131.2,
+      "tune_tr": 855,
+      "test_net": -81.6
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -1422.1,
+      "tune_tr": 863,
+      "test_net": 299.6
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -164.9,
+      "tune_tr": 854,
+      "test_net": -1193.4
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -1102.0,
+      "tune_tr": 857,
+      "test_net": 850.6
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -124.7,
+      "tune_tr": 856,
+      "test_net": -1462.9
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -1506.0,
+      "tune_tr": 857,
+      "test_net": -1150.9
+     },
+     {
+      "cfg": [
+       "LTF",
+       3,
+       1
+      ],
+      "tune_net": -2521.7,
+      "tune_tr": 1597,
+      "test_net": 839.2
+     },
+     {
+      "cfg": [
+       "LTF",
+       3,
+       1
+      ],
+      "tune_net": -286.8,
+      "tune_tr": 1591,
+      "test_net": 898.7
+     },
+     {
+      "cfg": [
+       "MID",
+       2,
+       -2
+      ],
+      "tune_net": 3263.4,
+      "tune_tr": 1493,
+      "test_net": 1182.6
+     }
+    ],
+    "wf": {
+     "days": 1197,
+     "total": -6273.1,
+     "mean": -5.24,
+     "green_pct": 41.1,
+     "zero_pct": 0.2,
+     "worst": -713.2,
+     "best": 1354.4,
+     "maxdd": -9995.7,
+     "tr_per_day": 4.62,
+     "mean_over_absworst": -0.0073
+    },
+    "final_cfg": [
+     "MID",
+     4,
+     1
+    ],
+    "final_pre_net": -5122.3,
+    "final_pre_tr": 5017,
+    "oos30": {
+     "days": 30,
+     "total": 371.9,
+     "mean": 12.4,
+     "green_pct": 46.7,
+     "zero_pct": 0.0,
+     "worst": -687.4,
+     "best": 679.5,
+     "maxdd": -730.3,
+     "tr_per_day": 2.83,
+     "mean_over_absworst": 0.018
+    },
+    "oos30_dates": [
+     "2026-06-08",
+     "2026-07-17"
+    ],
+    "trades": {
+     "n": 5102,
+     "wr": 32.5,
+     "avg_win": 83.55,
+     "avg_loss": -41.53,
+     "med_btp_bars": 1,
+     "p75_btp_bars": 3,
+     "never_profit_pct": 20.1,
+     "med_hold_bars": 18,
+     "censored": 0,
+     "total_pips": -4750.4
+    },
+    "sizing": {
+     "scale_pct_per_pip": 0.0029,
+     "implied_mean_daily_pct_pre": -0.01,
+     "implied_mean_daily_pct_oos30": 0.036,
+     "oos30_worst_pct": -1.99
+    }
+   },
+   "US500": {
+    "pre_days": 1449,
+    "folds": [
+     {
+      "cfg": [
+       "MID",
+       3,
+       1
+      ],
+      "tune_net": -193.8,
+      "tune_tr": 881,
+      "test_net": -85.1
+     },
+     {
+      "cfg": [
+       "MID",
+       3,
+       1
+      ],
+      "tune_net": -359.3,
+      "tune_tr": 882,
+      "test_net": -166.7
+     },
+     {
+      "cfg": [
+       "MID",
+       3,
+       1
+      ],
+      "tune_net": -435.9,
+      "tune_tr": 902,
+      "test_net": -149.5
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -131.7,
+      "tune_tr": 854,
+      "test_net": -345.9
+     },
+     {
+      "cfg": [
+       "MID",
+       3,
+       -1
+      ],
+      "tune_net": -498.9,
+      "tune_tr": 1311,
+      "test_net": -291.4
+     },
+     {
+      "cfg": [
+       "MID",
+       1,
+       -5
+      ],
+      "tune_net": -560.7,
+      "tune_tr": 1570,
+      "test_net": -292.0
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -379.9,
+      "tune_tr": 839,
+      "test_net": 212.4
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -210.3,
+      "tune_tr": 840,
+      "test_net": -198.8
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -63.2,
+      "tune_tr": 848,
+      "test_net": -206.9
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -77.7,
+      "tune_tr": 855,
+      "test_net": -120.3
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -313.6,
+      "tune_tr": 861,
+      "test_net": -111.0
+     },
+     {
+      "cfg": [
+       "MID",
+       3,
+       -1
+      ],
+      "tune_net": -567.2,
+      "tune_tr": 1266,
+      "test_net": -79.2
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -397.0,
+      "tune_tr": 847,
+      "test_net": -269.4
+     },
+     {
+      "cfg": [
+       "MID",
+       2,
+       1
+      ],
+      "tune_net": -405.6,
+      "tune_tr": 955,
+      "test_net": 44.2
+     },
+     {
+      "cfg": [
+       "MID",
+       2,
+       1
+      ],
+      "tune_net": -296.3,
+      "tune_tr": 865,
+      "test_net": -144.9
+     },
+     {
+      "cfg": [
+       "MID",
+       3,
+       1
+      ],
+      "tune_net": -250.9,
+      "tune_tr": 819,
+      "test_net": -493.4
+     },
+     {
+      "cfg": [
+       "MID",
+       2,
+       1
+      ],
+      "tune_net": -522.4,
+      "tune_tr": 876,
+      "test_net": 49.1
+     },
+     {
+      "cfg": [
+       "MID",
+       2,
+       1
+      ],
+      "tune_net": -308.6,
+      "tune_tr": 889,
+      "test_net": -355.4
+     },
+     {
+      "cfg": [
+       "MID",
+       2,
+       1
+      ],
+      "tune_net": -708.2,
+      "tune_tr": 976,
+      "test_net": -138.5
+     }
+    ],
+    "wf": {
+     "days": 1197,
+     "total": -3142.8,
+     "mean": -2.63,
+     "green_pct": 40.2,
+     "zero_pct": 0.5,
+     "worst": -286.7,
+     "best": 247.5,
+     "maxdd": -3334.1,
+     "tr_per_day": 3.79,
+     "mean_over_absworst": -0.0092
+    },
+    "final_cfg": [
+     "MID",
+     4,
+     1
+    ],
+    "final_pre_net": -2563.0,
+    "final_pre_tr": 4810,
+    "oos30": {
+     "days": 30,
+     "total": -219.5,
+     "mean": -7.32,
+     "green_pct": 40.0,
+     "zero_pct": 0.0,
+     "worst": -160.2,
+     "best": 123.9,
+     "maxdd": -410.0,
+     "tr_per_day": 3.67,
+     "mean_over_absworst": -0.0457
+    },
+    "oos30_dates": [
+     "2026-06-08",
+     "2026-07-17"
+    ],
+    "trades": {
+     "n": 4920,
+     "wr": 33.3,
+     "avg_win": 14.36,
+     "avg_loss": -8.01,
+     "med_btp_bars": 2,
+     "p75_btp_bars": 4,
+     "never_profit_pct": 24.7,
+     "med_hold_bars": 20,
+     "censored": 0,
+     "total_pips": -2782.5
+    },
+    "sizing": {
+     "scale_pct_per_pip": 0.01397,
+     "implied_mean_daily_pct_pre": -0.025,
+     "implied_mean_daily_pct_oos30": -0.102,
+     "oos30_worst_pct": -2.24
+    }
+   }
+  }
+ },
+ "GV013_L2": {
+  "ladder": [
+   "15m",
+   "1h",
+   "4h"
+  ],
+  "symbols": {
+   "EURUSD": {
+    "pre_days": 1398,
+    "folds": [
+     {
+      "cfg": [
+       "MID",
+       2,
+       1
+      ],
+      "tune_net": -326.9,
+      "tune_tr": 320,
+      "test_net": 79.4
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -116.2,
+      "tune_tr": 282,
+      "test_net": 89.6
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -46.5,
+      "tune_tr": 286,
+      "test_net": -80.4
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": 17.4,
+      "tune_tr": 272,
+      "test_net": -115.9
+     },
+     {
+      "cfg": [
+       "MID",
+       1,
+       -3
+      ],
+      "tune_net": 4.1,
+      "tune_tr": 506,
+      "test_net": -78.2
+     },
+     {
+      "cfg": [
+       "MID",
+       1,
+       -3
+      ],
+      "tune_net": 26.9,
+      "tune_tr": 490,
+      "test_net": -77.8
+     },
+     {
+      "cfg": [
+       "MID",
+       1,
+       -3
+      ],
+      "tune_net": 40.1,
+      "tune_tr": 500,
+      "test_net": -96.4
+     },
+     {
+      "cfg": [
+       "MID",
+       3,
+       -1
+      ],
+      "tune_net": 50.3,
+      "tune_tr": 418,
+      "test_net": -24.7
+     },
+     {
+      "cfg": [
+       "MID",
+       3,
+       -1
+      ],
+      "tune_net": 97.7,
+      "tune_tr": 393,
+      "test_net": -140.4
+     },
+     {
+      "cfg": [
+       "MID",
+       3,
+       -1
+      ],
+      "tune_net": -97.7,
+      "tune_tr": 396,
+      "test_net": -2.9
+     },
+     {
+      "cfg": [
+       "MID",
+       2,
+       1
+      ],
+      "tune_net": -8.3,
+      "tune_tr": 307,
+      "test_net": -185.6
+     },
+     {
+      "cfg": [
+       "MID",
+       2,
+       1
+      ],
+      "tune_net": -154.5,
+      "tune_tr": 293,
+      "test_net": -241.9
+     },
+     {
+      "cfg": [
+       "MID",
+       3,
+       -1
+      ],
+      "tune_net": -390.2,
+      "tune_tr": 391,
+      "test_net": -387.1
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       -2
+      ],
+      "tune_net": -405.9,
+      "tune_tr": 439,
+      "test_net": -434.0
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       -1
+      ],
+      "tune_net": -554.8,
+      "tune_tr": 346,
+      "test_net": -248.5
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       -1
+      ],
+      "tune_net": -623.6,
+      "tune_tr": 358,
+      "test_net": 92.5
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       -1
+      ],
+      "tune_net": -387.0,
+      "tune_tr": 363,
+      "test_net": 229.4
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       -1
+      ],
+      "tune_net": 168.5,
+      "tune_tr": 373,
+      "test_net": -218.5
+     }
+    ],
+    "wf": {
+     "days": 1134,
+     "total": -1841.4,
+     "mean": -1.62,
+     "green_pct": 32.0,
+     "zero_pct": 20.9,
+     "worst": -162.9,
+     "best": 149.3,
+     "maxdd": -2393.4,
+     "tr_per_day": 1.51,
+     "mean_over_absworst": -0.01
+    },
+    "final_cfg": [
+     "MID",
+     4,
+     -1
+    ],
+    "final_pre_net": -1749.2,
+    "final_pre_tr": 1977,
+    "oos30": {
+     "days": 30,
+     "total": -12.3,
+     "mean": -0.41,
+     "green_pct": 23.3,
+     "zero_pct": 23.3,
+     "worst": -31.1,
+     "best": 45.3,
+     "maxdd": -68.7,
+     "tr_per_day": 1.33,
+     "mean_over_absworst": -0.0132
+    },
+    "oos30_dates": [
+     "2026-06-08",
+     "2026-07-17"
+    ],
+    "trades": {
+     "n": 2017,
+     "wr": 43.5,
+     "avg_win": 14.12,
+     "avg_loss": -12.43,
+     "med_btp_bars": 2,
+     "p75_btp_bars": 3,
+     "never_profit_pct": 26.4,
+     "med_hold_bars": 11,
+     "censored": 0,
+     "total_pips": -1761.5
+    },
+    "sizing": {
+     "scale_pct_per_pip": 0.02133,
+     "implied_mean_daily_pct_pre": -0.027,
+     "implied_mean_daily_pct_oos30": -0.009,
+     "oos30_worst_pct": -0.66
+    }
+   },
+   "GBPUSD": {
+    "pre_days": 1398,
+    "folds": [
+     {
+      "cfg": [
+       "MID",
+       2,
+       -2
+      ],
+      "tune_net": -327.4,
+      "tune_tr": 524,
+      "test_net": -302.0
+     },
+     {
+      "cfg": [
+       "MID",
+       1,
+       1
+      ],
+      "tune_net": -337.3,
+      "tune_tr": 358,
+      "test_net": -52.7
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       -1
+      ],
+      "tune_net": -128.7,
+      "tune_tr": 363,
+      "test_net": 12.9
+     },
+     {
+      "cfg": [
+       "MID",
+       1,
+       -2
+      ],
+      "tune_net": -65.7,
+      "tune_tr": 507,
+      "test_net": -64.2
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       -2
+      ],
+      "tune_net": 338.0,
+      "tune_tr": 483,
+      "test_net": -106.1
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       -2
+      ],
+      "tune_net": 628.3,
+      "tune_tr": 444,
+      "test_net": -336.2
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       -2
+      ],
+      "tune_net": 199.1,
+      "tune_tr": 430,
+      "test_net": -315.1
+     },
+     {
+      "cfg": [
+       "MID",
+       2,
+       1
+      ],
+      "tune_net": -50.0,
+      "tune_tr": 304,
+      "test_net": -142.0
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       -1
+      ],
+      "tune_net": -231.6,
+      "tune_tr": 331,
+      "test_net": -186.4
+     },
+     {
+      "cfg": [
+       "MID",
+       1,
+       1
+      ],
+      "tune_net": -284.8,
+      "tune_tr": 337,
+      "test_net": -123.1
+     },
+     {
+      "cfg": [
+       "MID",
+       1,
+       1
+      ],
+      "tune_net": -296.7,
+      "tune_tr": 334,
+      "test_net": -61.0
+     },
+     {
+      "cfg": [
+       "MID",
+       1,
+       1
+      ],
+      "tune_net": -183.3,
+      "tune_tr": 312,
+      "test_net": -1.9
+     },
+     {
+      "cfg": [
+       "MID",
+       3,
+       1
+      ],
+      "tune_net": -162.9,
+      "tune_tr": 276,
+      "test_net": -394.7
+     },
+     {
+      "cfg": [
+       "MID",
+       1,
+       1
+      ],
+      "tune_net": -438.0,
+      "tune_tr": 334,
+      "test_net": -412.9
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       -1
+      ],
+      "tune_net": -449.3,
+      "tune_tr": 352,
+      "test_net": -451.9
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       -1
+      ],
+      "tune_net": -794.6,
+      "tune_tr": 365,
+      "test_net": -176.0
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       -1
+      ],
+      "tune_net": -1050.1,
+      "tune_tr": 379,
+      "test_net": -192.9
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       -1
+      ],
+      "tune_net": -855.9,
+      "tune_tr": 383,
+      "test_net": -269.3
+     }
+    ],
+    "wf": {
+     "days": 1134,
+     "total": -3575.2,
+     "mean": -3.15,
+     "green_pct": 29.9,
+     "zero_pct": 21.0,
+     "worst": -175.5,
+     "best": 200.3,
+     "maxdd": -3691.6,
+     "tr_per_day": 1.53,
+     "mean_over_absworst": -0.018
+    },
+    "final_cfg": [
+     "MID",
+     4,
+     -1
+    ],
+    "final_pre_net": -2835.5,
+    "final_pre_tr": 1966,
+    "oos30": {
+     "days": 30,
+     "total": 125.4,
+     "mean": 4.18,
+     "green_pct": 33.3,
+     "zero_pct": 20.0,
+     "worst": -46.6,
+     "best": 112.7,
+     "maxdd": -94.1,
+     "tr_per_day": 1.13,
+     "mean_over_absworst": 0.0897
+    },
+    "oos30_dates": [
+     "2026-06-08",
+     "2026-07-17"
+    ],
+    "trades": {
+     "n": 2000,
+     "wr": 44.1,
+     "avg_win": 16.92,
+     "avg_loss": -15.77,
+     "med_btp_bars": 2,
+     "p75_btp_bars": 3,
+     "never_profit_pct": 26.5,
+     "med_hold_bars": 10,
+     "censored": 0,
+     "total_pips": -2710.1
+    },
+    "sizing": {
+     "scale_pct_per_pip": 0.02265,
+     "implied_mean_daily_pct_pre": -0.046,
+     "implied_mean_daily_pct_oos30": 0.095,
+     "oos30_worst_pct": -1.06
+    }
+   },
+   "XAUUSD": {
+    "pre_days": 1468,
+    "folds": [
+     {
+      "cfg": [
+       "MID",
+       3,
+       -1
+      ],
+      "tune_net": 848.7,
+      "tune_tr": 360,
+      "test_net": 60.4
+     },
+     {
+      "cfg": [
+       "MID",
+       3,
+       -1
+      ],
+      "tune_net": 464.2,
+      "tune_tr": 370,
+      "test_net": 197.7
+     },
+     {
+      "cfg": [
+       "MID",
+       3,
+       1
+      ],
+      "tune_net": 316.8,
+      "tune_tr": 257,
+      "test_net": 6.1
+     },
+     {
+      "cfg": [
+       "MID",
+       3,
+       -1
+      ],
+      "tune_net": 1065.1,
+      "tune_tr": 368,
+      "test_net": -225.5
+     },
+     {
+      "cfg": [
+       "MID",
+       3,
+       -1
+      ],
+      "tune_net": 368.6,
+      "tune_tr": 389,
+      "test_net": 382.6
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       -1
+      ],
+      "tune_net": 853.5,
+      "tune_tr": 335,
+      "test_net": 342.1
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       -1
+      ],
+      "tune_net": 569.6,
+      "tune_tr": 317,
+      "test_net": -282.5
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       -1
+      ],
+      "tune_net": 269.0,
+      "tune_tr": 296,
+      "test_net": -622.4
+     },
+     {
+      "cfg": [
+       "LTF",
+       4,
+       1
+      ],
+      "tune_net": 80.0,
+      "tune_tr": 351,
+      "test_net": -20.2
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       -1
+      ],
+      "tune_net": -22.8,
+      "tune_tr": 305,
+      "test_net": -214.7
+     },
+     {
+      "cfg": [
+       "MID",
+       2,
+       1
+      ],
+      "tune_net": -336.5,
+      "tune_tr": 282,
+      "test_net": -697.2
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       -2
+      ],
+      "tune_net": 88.0,
+      "tune_tr": 426,
+      "test_net": 460.0
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       -2
+      ],
+      "tune_net": 1144.5,
+      "tune_tr": 440,
+      "test_net": -146.5
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       -2
+      ],
+      "tune_net": 721.7,
+      "tune_tr": 430,
+      "test_net": 770.1
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       -2
+      ],
+      "tune_net": 1667.8,
+      "tune_tr": 429,
+      "test_net": -123.0
+     },
+     {
+      "cfg": [
+       "MID",
+       3,
+       -1
+      ],
+      "tune_net": 1371.3,
+      "tune_tr": 391,
+      "test_net": 746.9
+     },
+     {
+      "cfg": [
+       "MID",
+       3,
+       -1
+      ],
+      "tune_net": 1941.5,
+      "tune_tr": 387,
+      "test_net": 816.5
+     },
+     {
+      "cfg": [
+       "MID",
+       3,
+       -1
+      ],
+      "tune_net": 2947.3,
+      "tune_tr": 387,
+      "test_net": 1061.9
+     },
+     {
+      "cfg": [
+       "MID",
+       3,
+       -1
+      ],
+      "tune_net": 3834.4,
+      "tune_tr": 397,
+      "test_net": -1508.0
+     }
+    ],
+    "wf": {
+     "days": 1197,
+     "total": 1004.3,
+     "mean": 0.84,
+     "green_pct": 34.8,
+     "zero_pct": 23.6,
+     "worst": -2023.7,
+     "best": 1359.7,
+     "maxdd": -3734.2,
+     "tr_per_day": 1.48,
+     "mean_over_absworst": 0.0004
+    },
+    "final_cfg": [
+     "MID",
+     3,
+     -1
+    ],
+    "final_pre_net": 2611.9,
+    "final_pre_tr": 2195,
+    "oos30": {
+     "days": 30,
+     "total": 1966.6,
+     "mean": 65.55,
+     "green_pct": 36.7,
+     "zero_pct": 33.3,
+     "worst": -584.3,
+     "best": 808.7,
+     "maxdd": -648.7,
+     "tr_per_day": 1.67,
+     "mean_over_absworst": 0.1122
+    },
+    "oos30_dates": [
+     "2026-06-08",
+     "2026-07-17"
+    ],
+    "trades": {
+     "n": 2245,
+     "wr": 52.5,
+     "avg_win": 60.17,
+     "avg_loss": -62.13,
+     "med_btp_bars": 1,
+     "p75_btp_bars": 2,
+     "never_profit_pct": 23.3,
+     "med_hold_bars": 7,
+     "censored": 0,
+     "total_pips": 4578.6
+    },
+    "sizing": {
+     "scale_pct_per_pip": 0.00198,
+     "implied_mean_daily_pct_pre": 0.004,
+     "implied_mean_daily_pct_oos30": 0.13,
+     "oos30_worst_pct": -1.15
+    }
+   },
+   "US500": {
+    "pre_days": 1446,
+    "folds": [
+     {
+      "cfg": [
+       "LTF",
+       2,
+       -4
+      ],
+      "tune_net": -246.0,
+      "tune_tr": 544,
+      "test_net": -133.9
+     },
+     {
+      "cfg": [
+       "MID",
+       1,
+       1
+      ],
+      "tune_net": -266.5,
+      "tune_tr": 345,
+      "test_net": -201.0
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       -1
+      ],
+      "tune_net": -72.5,
+      "tune_tr": 363,
+      "test_net": -139.2
+     },
+     {
+      "cfg": [
+       "MID",
+       1,
+       -2
+      ],
+      "tune_net": -51.7,
+      "tune_tr": 500,
+      "test_net": 21.6
+     },
+     {
+      "cfg": [
+       "MID",
+       1,
+       -1
+      ],
+      "tune_net": 96.9,
+      "tune_tr": 510,
+      "test_net": -200.5
+     },
+     {
+      "cfg": [
+       "MID",
+       3,
+       -1
+      ],
+      "tune_net": 92.9,
+      "tune_tr": 451,
+      "test_net": -209.3
+     },
+     {
+      "cfg": [
+       "MID",
+       2,
+       1
+      ],
+      "tune_net": -64.9,
+      "tune_tr": 314,
+      "test_net": -160.5
+     },
+     {
+      "cfg": [
+       "MID",
+       2,
+       1
+      ],
+      "tune_net": -167.0,
+      "tune_tr": 313,
+      "test_net": -121.2
+     },
+     {
+      "cfg": [
+       "LTF",
+       4,
+       -1
+      ],
+      "tune_net": -328.6,
+      "tune_tr": 588,
+      "test_net": -118.0
+     },
+     {
+      "cfg": [
+       "LTF",
+       3,
+       -1
+      ],
+      "tune_net": -343.0,
+      "tune_tr": 563,
+      "test_net": -78.7
+     },
+     {
+      "cfg": [
+       "LTF",
+       3,
+       1
+      ],
+      "tune_net": -311.6,
+      "tune_tr": 416,
+      "test_net": -189.5
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -227.9,
+      "tune_tr": 269,
+      "test_net": 32.0
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -162.8,
+      "tune_tr": 266,
+      "test_net": -79.5
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -18.6,
+      "tune_tr": 261,
+      "test_net": 104.9
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": 149.9,
+      "tune_tr": 246,
+      "test_net": 299.7
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": 357.1,
+      "tune_tr": 236,
+      "test_net": -500.0
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -174.9,
+      "tune_tr": 247,
+      "test_net": -42.6
+     },
+     {
+      "cfg": [
+       "MID",
+       2,
+       1
+      ],
+      "tune_net": -129.6,
+      "tune_tr": 273,
+      "test_net": 15.3
+     }
+    ],
+    "wf": {
+     "days": 1134,
+     "total": -1700.3,
+     "mean": -1.5,
+     "green_pct": 27.8,
+     "zero_pct": 25.4,
+     "worst": -183.9,
+     "best": 190.1,
+     "maxdd": -1795.6,
+     "tr_per_day": 1.46,
+     "mean_over_absworst": -0.0082
+    },
+    "final_cfg": [
+     "MID",
+     2,
+     1
+    ],
+    "final_pre_net": -1622.3,
+    "final_pre_tr": 1738,
+    "oos30": {
+     "days": 30,
+     "total": 105.6,
+     "mean": 3.52,
+     "green_pct": 30.0,
+     "zero_pct": 33.3,
+     "worst": -61.1,
+     "best": 135.3,
+     "maxdd": -144.4,
+     "tr_per_day": 1.17,
+     "mean_over_absworst": 0.0576
+    },
+    "oos30_dates": [
+     "2026-06-08",
+     "2026-07-17"
+    ],
+    "trades": {
+     "n": 1773,
+     "wr": 32.3,
+     "avg_win": 14.25,
+     "avg_loss": -8.05,
+     "med_btp_bars": 1,
+     "p75_btp_bars": 3,
+     "never_profit_pct": 30.5,
+     "med_hold_bars": 7,
+     "censored": 0,
+     "total_pips": -1516.7
+    },
+    "sizing": {
+     "scale_pct_per_pip": 0.04345,
+     "implied_mean_daily_pct_pre": -0.049,
+     "implied_mean_daily_pct_oos30": 0.153,
+     "oos30_worst_pct": -2.66
+    }
+   }
+  }
+ },
+ "GV013_L3": {
+  "ladder": [
+   "30m",
+   "4h",
+   "1d"
+  ],
+  "symbols": {
+   "EURUSD": {
+    "pre_days": 1380,
+    "folds": [
+     {
+      "cfg": [
+       "MID",
+       3,
+       -1
+      ],
+      "tune_net": 159.5,
+      "tune_tr": 96,
+      "test_net": 89.0
+     },
+     {
+      "cfg": [
+       "MID",
+       3,
+       1
+      ],
+      "tune_net": 241.1,
+      "tune_tr": 54,
+      "test_net": 61.6
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": 314.6,
+      "tune_tr": 48,
+      "test_net": -56.6
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": 372.9,
+      "tune_tr": 44,
+      "test_net": -91.8
+     },
+     {
+      "cfg": [
+       "MID",
+       3,
+       1
+      ],
+      "tune_net": 305.9,
+      "tune_tr": 51,
+      "test_net": -66.7
+     },
+     {
+      "cfg": [
+       "MID",
+       3,
+       1
+      ],
+      "tune_net": 27.0,
+      "tune_tr": 64,
+      "test_net": -78.6
+     },
+     {
+      "cfg": [
+       "LTF",
+       1,
+       -4
+      ],
+      "tune_net": -30.7,
+      "tune_tr": 186,
+      "test_net": -32.0
+     },
+     {
+      "cfg": [
+       "MID",
+       3,
+       1
+      ],
+      "tune_net": 15.8,
+      "tune_tr": 74,
+      "test_net": 276.5
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       -2
+      ],
+      "tune_net": 256.1,
+      "tune_tr": 131,
+      "test_net": -1.5
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       -2
+      ],
+      "tune_net": 294.6,
+      "tune_tr": 121,
+      "test_net": 24.0
+     },
+     {
+      "cfg": [
+       "MID",
+       3,
+       1
+      ],
+      "tune_net": 261.6,
+      "tune_tr": 73,
+      "test_net": -28.5
+     },
+     {
+      "cfg": [
+       "MID",
+       1,
+       1
+      ],
+      "tune_net": 259.6,
+      "tune_tr": 82,
+      "test_net": -107.8
+     },
+     {
+      "cfg": [
+       "MID",
+       1,
+       1
+      ],
+      "tune_net": -63.2,
+      "tune_tr": 80,
+      "test_net": -58.4
+     },
+     {
+      "cfg": [
+       "LTF",
+       4,
+       -5
+      ],
+      "tune_net": -85.7,
+      "tune_tr": 156,
+      "test_net": 46.4
+     },
+     {
+      "cfg": [
+       "LTF",
+       2,
+       -5
+      ],
+      "tune_net": -65.1,
+      "tune_tr": 147,
+      "test_net": -149.7
+     },
+     {
+      "cfg": [
+       "LTF",
+       1,
+       -1
+      ],
+      "tune_net": -137.1,
+      "tune_tr": 156,
+      "test_net": -6.2
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -22.5,
+      "tune_tr": 64,
+      "test_net": 203.1
+     }
+    ],
+    "wf": {
+     "days": 1071,
+     "total": 22.6,
+     "mean": 0.02,
+     "green_pct": 10.6,
+     "zero_pct": 73.6,
+     "worst": -93.7,
+     "best": 195.2,
+     "maxdd": -541.8,
+     "tr_per_day": 0.38,
+     "mean_over_absworst": 0.0002
+    },
+    "final_cfg": [
+     "MID",
+     3,
+     1
+    ],
+    "final_pre_net": 478.4,
+    "final_pre_tr": 361,
+    "oos30": {
+     "days": 30,
+     "total": 63.3,
+     "mean": 2.11,
+     "green_pct": 6.7,
+     "zero_pct": 73.3,
+     "worst": -26.2,
+     "best": 98.6,
+     "maxdd": -47.5,
+     "tr_per_day": 0.27,
+     "mean_over_absworst": 0.0805
+    },
+    "oos30_dates": [
+     "2026-06-08",
+     "2026-07-17"
+    ],
+    "trades": {
+     "n": 369,
+     "wr": 39.0,
+     "avg_win": 35.1,
+     "avg_loss": -20.05,
+     "med_btp_bars": 2,
+     "p75_btp_bars": 4,
+     "never_profit_pct": 17.3,
+     "med_hold_bars": 24,
+     "censored": 0,
+     "total_pips": 541.7
+    },
+    "sizing": {
+     "scale_pct_per_pip": 0.02853,
+     "implied_mean_daily_pct_pre": 0.01,
+     "implied_mean_daily_pct_oos30": 0.06,
+     "oos30_worst_pct": -0.75
+    }
+   },
+   "GBPUSD": {
+    "pre_days": 1380,
+    "folds": [
+     {
+      "cfg": [
+       "MID",
+       4,
+       -4
+      ],
+      "tune_net": 470.7,
+      "tune_tr": 121,
+      "test_net": 47.7
+     },
+     {
+      "cfg": [
+       "MID",
+       1,
+       -3
+      ],
+      "tune_net": 287.7,
+      "tune_tr": 109,
+      "test_net": 16.0
+     },
+     {
+      "cfg": [
+       "MID",
+       1,
+       -3
+      ],
+      "tune_net": 342.7,
+      "tune_tr": 103,
+      "test_net": 9.0
+     },
+     {
+      "cfg": [
+       "MID",
+       1,
+       1
+      ],
+      "tune_net": 719.9,
+      "tune_tr": 76,
+      "test_net": -431.0
+     },
+     {
+      "cfg": [
+       "MID",
+       1,
+       1
+      ],
+      "tune_net": 295.0,
+      "tune_tr": 74,
+      "test_net": -229.1
+     },
+     {
+      "cfg": [
+       "MID",
+       1,
+       1
+      ],
+      "tune_net": 111.0,
+      "tune_tr": 78,
+      "test_net": -69.4
+     },
+     {
+      "cfg": [
+       "MID",
+       1,
+       1
+      ],
+      "tune_net": 192.4,
+      "tune_tr": 74,
+      "test_net": -157.2
+     },
+     {
+      "cfg": [
+       "LTF",
+       4,
+       1
+      ],
+      "tune_net": -80.0,
+      "tune_tr": 126,
+      "test_net": 143.2
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": 179.6,
+      "tune_tr": 59,
+      "test_net": -268.7
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": 185.5,
+      "tune_tr": 58,
+      "test_net": 99.6
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": 316.9,
+      "tune_tr": 57,
+      "test_net": -70.0
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       -2
+      ],
+      "tune_net": 144.9,
+      "tune_tr": 100,
+      "test_net": -96.1
+     },
+     {
+      "cfg": [
+       "MID",
+       1,
+       -4
+      ],
+      "tune_net": -6.2,
+      "tune_tr": 107,
+      "test_net": -96.2
+     },
+     {
+      "cfg": [
+       "MID",
+       2,
+       1
+      ],
+      "tune_net": 61.9,
+      "tune_tr": 72,
+      "test_net": -320.5
+     },
+     {
+      "cfg": [
+       "LTF",
+       2,
+       -3
+      ],
+      "tune_net": -139.1,
+      "tune_tr": 145,
+      "test_net": -25.9
+     },
+     {
+      "cfg": [
+       "LTF",
+       1,
+       -1
+      ],
+      "tune_net": -151.4,
+      "tune_tr": 148,
+      "test_net": -105.2
+     },
+     {
+      "cfg": [
+       "LTF",
+       3,
+       -3
+      ],
+      "tune_net": -58.3,
+      "tune_tr": 157,
+      "test_net": -52.0
+     }
+    ],
+    "wf": {
+     "days": 1071,
+     "total": -1605.7,
+     "mean": -1.5,
+     "green_pct": 9.1,
+     "zero_pct": 73.4,
+     "worst": -177.7,
+     "best": 148.5,
+     "maxdd": -1780.4,
+     "tr_per_day": 0.37,
+     "mean_over_absworst": -0.0084
+    },
+    "final_cfg": [
+     "MID",
+     4,
+     -5
+    ],
+    "final_pre_net": -215.8,
+    "final_pre_tr": 586,
+    "oos30": {
+     "days": 30,
+     "total": -29.3,
+     "mean": -0.98,
+     "green_pct": 3.3,
+     "zero_pct": 80.0,
+     "worst": -19.9,
+     "best": 28.0,
+     "maxdd": -57.3,
+     "tr_per_day": 0.2,
+     "mean_over_absworst": -0.0491
+    },
+    "oos30_dates": [
+     "2026-06-08",
+     "2026-07-17"
+    ],
+    "trades": {
+     "n": 592,
+     "wr": 48.1,
+     "avg_win": 17.71,
+     "avg_loss": -17.24,
+     "med_btp_bars": 1,
+     "p75_btp_bars": 3,
+     "never_profit_pct": 26.2,
+     "med_hold_bars": 6,
+     "censored": 0,
+     "total_pips": -245.1
+    },
+    "sizing": {
+     "scale_pct_per_pip": 0.0252,
+     "implied_mean_daily_pct_pre": -0.004,
+     "implied_mean_daily_pct_oos30": -0.025,
+     "oos30_worst_pct": -0.5
+    }
+   },
+   "XAUUSD": {
+    "pre_days": 1450,
+    "folds": [
+     {
+      "cfg": [
+       "MID",
+       1,
+       1
+      ],
+      "tune_net": 1350.2,
+      "tune_tr": 59,
+      "test_net": -78.1
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       -1
+      ],
+      "tune_net": 1226.0,
+      "tune_tr": 65,
+      "test_net": -105.4
+     },
+     {
+      "cfg": [
+       "MID",
+       1,
+       -1
+      ],
+      "tune_net": 918.5,
+      "tune_tr": 86,
+      "test_net": 155.8
+     },
+     {
+      "cfg": [
+       "MID",
+       1,
+       -1
+      ],
+      "tune_net": 872.4,
+      "tune_tr": 100,
+      "test_net": 81.1
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       -5
+      ],
+      "tune_net": 739.1,
+      "tune_tr": 117,
+      "test_net": -228.6
+     },
+     {
+      "cfg": [
+       "MID",
+       3,
+       -5
+      ],
+      "tune_net": 781.3,
+      "tune_tr": 108,
+      "test_net": 70.5
+     },
+     {
+      "cfg": [
+       "MID",
+       3,
+       -5
+      ],
+      "tune_net": 692.6,
+      "tune_tr": 125,
+      "test_net": 230.7
+     },
+     {
+      "cfg": [
+       "MID",
+       3,
+       -5
+      ],
+      "tune_net": 923.0,
+      "tune_tr": 120,
+      "test_net": -15.9
+     },
+     {
+      "cfg": [
+       "MID",
+       3,
+       -5
+      ],
+      "tune_net": 412.1,
+      "tune_tr": 117,
+      "test_net": -207.0
+     },
+     {
+      "cfg": [
+       "MID",
+       2,
+       -2
+      ],
+      "tune_net": 596.5,
+      "tune_tr": 130,
+      "test_net": -114.0
+     },
+     {
+      "cfg": [
+       "MID",
+       1,
+       1
+      ],
+      "tune_net": 295.9,
+      "tune_tr": 71,
+      "test_net": -327.5
+     },
+     {
+      "cfg": [
+       "LTF",
+       2,
+       -3
+      ],
+      "tune_net": 226.7,
+      "tune_tr": 124,
+      "test_net": -367.0
+     },
+     {
+      "cfg": [
+       "LTF",
+       4,
+       -4
+      ],
+      "tune_net": -20.0,
+      "tune_tr": 106,
+      "test_net": 97.7
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       -2
+      ],
+      "tune_net": 328.5,
+      "tune_tr": 81,
+      "test_net": -438.9
+     },
+     {
+      "cfg": [
+       "MID",
+       1,
+       -1
+      ],
+      "tune_net": 308.8,
+      "tune_tr": 84,
+      "test_net": -3396.9
+     },
+     {
+      "cfg": [
+       "LTF",
+       4,
+       -4
+      ],
+      "tune_net": 324.3,
+      "tune_tr": 140,
+      "test_net": 22.5
+     },
+     {
+      "cfg": [
+       "LTF",
+       4,
+       -4
+      ],
+      "tune_net": 384.6,
+      "tune_tr": 154,
+      "test_net": -155.7
+     },
+     {
+      "cfg": [
+       "MID",
+       1,
+       -4
+      ],
+      "tune_net": 776.2,
+      "tune_tr": 113,
+      "test_net": 541.7
+     },
+     {
+      "cfg": [
+       "MID",
+       1,
+       -4
+      ],
+      "tune_net": 1485.4,
+      "tune_tr": 112,
+      "test_net": 1823.2
+     }
+    ],
+    "wf": {
+     "days": 1197,
+     "total": -2411.9,
+     "mean": -2.01,
+     "green_pct": 14.4,
+     "zero_pct": 71.0,
+     "worst": -1569.9,
+     "best": 1647.4,
+     "maxdd": -5673.1,
+     "tr_per_day": 0.43,
+     "mean_over_absworst": -0.0013
+    },
+    "final_cfg": [
+     "MID",
+     4,
+     -2
+    ],
+    "final_pre_net": 3445.1,
+    "final_pre_tr": 582,
+    "oos30": {
+     "days": 30,
+     "total": 211.4,
+     "mean": 7.05,
+     "green_pct": 10.0,
+     "zero_pct": 80.0,
+     "worst": -438.8,
+     "best": 337.3,
+     "maxdd": -582.5,
+     "tr_per_day": 0.23,
+     "mean_over_absworst": 0.0161
+    },
+    "oos30_dates": [
+     "2026-06-08",
+     "2026-07-17"
+    ],
+    "trades": {
+     "n": 589,
+     "wr": 53.5,
+     "avg_win": 71.06,
+     "avg_loss": -68.35,
+     "med_btp_bars": 1,
+     "p75_btp_bars": 2,
+     "never_profit_pct": 21.2,
+     "med_hold_bars": 6,
+     "censored": 0,
+     "total_pips": 3656.5
+    },
+    "sizing": {
+     "scale_pct_per_pip": 0.00793,
+     "implied_mean_daily_pct_pre": 0.019,
+     "implied_mean_daily_pct_oos30": 0.056,
+     "oos30_worst_pct": -3.48
+    }
+   },
+   "US500": {
+    "pre_days": 1429,
+    "folds": [
+     {
+      "cfg": [
+       "LTF",
+       2,
+       1
+      ],
+      "tune_net": -122.6,
+      "tune_tr": 146,
+      "test_net": -33.5
+     },
+     {
+      "cfg": [
+       "MID",
+       3,
+       -1
+      ],
+      "tune_net": -119.8,
+      "tune_tr": 99,
+      "test_net": -48.1
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       -2
+      ],
+      "tune_net": 166.6,
+      "tune_tr": 131,
+      "test_net": 93.0
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       -2
+      ],
+      "tune_net": 263.6,
+      "tune_tr": 127,
+      "test_net": -36.6
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       -2
+      ],
+      "tune_net": 192.3,
+      "tune_tr": 120,
+      "test_net": -397.4
+     },
+     {
+      "cfg": [
+       "LTF",
+       2,
+       -4
+      ],
+      "tune_net": -21.2,
+      "tune_tr": 173,
+      "test_net": -103.2
+     },
+     {
+      "cfg": [
+       "MID",
+       1,
+       -4
+      ],
+      "tune_net": 24.8,
+      "tune_tr": 127,
+      "test_net": -5.0
+     },
+     {
+      "cfg": [
+       "MID",
+       1,
+       -4
+      ],
+      "tune_net": -77.4,
+      "tune_tr": 114,
+      "test_net": -37.2
+     },
+     {
+      "cfg": [
+       "MID",
+       1,
+       -4
+      ],
+      "tune_net": -105.5,
+      "tune_tr": 107,
+      "test_net": -34.2
+     },
+     {
+      "cfg": [
+       "MID",
+       1,
+       -5
+      ],
+      "tune_net": -27.1,
+      "tune_tr": 96,
+      "test_net": -121.9
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       -2
+      ],
+      "tune_net": -71.5,
+      "tune_tr": 95,
+      "test_net": -70.1
+     },
+     {
+      "cfg": [
+       "MID",
+       1,
+       1
+      ],
+      "tune_net": -116.3,
+      "tune_tr": 78,
+      "test_net": 45.0
+     },
+     {
+      "cfg": [
+       "MID",
+       1,
+       1
+      ],
+      "tune_net": -18.8,
+      "tune_tr": 84,
+      "test_net": -33.6
+     },
+     {
+      "cfg": [
+       "MID",
+       1,
+       1
+      ],
+      "tune_net": -75.8,
+      "tune_tr": 83,
+      "test_net": -31.0
+     },
+     {
+      "cfg": [
+       "MID",
+       1,
+       1
+      ],
+      "tune_net": -1.4,
+      "tune_tr": 76,
+      "test_net": -86.1
+     },
+     {
+      "cfg": [
+       "MID",
+       1,
+       -2
+      ],
+      "tune_net": 148.6,
+      "tune_tr": 105,
+      "test_net": -82.1
+     },
+     {
+      "cfg": [
+       "MID",
+       1,
+       -2
+      ],
+      "tune_net": 175.7,
+      "tune_tr": 96,
+      "test_net": -547.9
+     },
+     {
+      "cfg": [
+       "LTF",
+       3,
+       -1
+      ],
+      "tune_net": -72.1,
+      "tune_tr": 142,
+      "test_net": -143.9
+     }
+    ],
+    "wf": {
+     "days": 1134,
+     "total": -1673.8,
+     "mean": -1.48,
+     "green_pct": 11.8,
+     "zero_pct": 71.1,
+     "worst": -196.0,
+     "best": 267.7,
+     "maxdd": -1770.9,
+     "tr_per_day": 0.42,
+     "mean_over_absworst": -0.0075
+    },
+    "final_cfg": [
+     "LTF",
+     2,
+     1
+    ],
+    "final_pre_net": -785.2,
+    "final_pre_tr": 710,
+    "oos30": {
+     "days": 30,
+     "total": -99.0,
+     "mean": -3.3,
+     "green_pct": 0.0,
+     "zero_pct": 63.3,
+     "worst": -19.6,
+     "best": 0.0,
+     "maxdd": -79.4,
+     "tr_per_day": 0.5,
+     "mean_over_absworst": -0.1684
+    },
+    "oos30_dates": [
+     "2026-06-08",
+     "2026-07-17"
+    ],
+    "trades": {
+     "n": 725,
+     "wr": 26.9,
+     "avg_win": 8.4,
+     "avg_loss": -4.76,
+     "med_btp_bars": 1,
+     "p75_btp_bars": 2,
+     "never_profit_pct": 46.8,
+     "med_hold_bars": 1,
+     "censored": 0,
+     "total_pips": -884.2
+    },
+    "sizing": {
+     "scale_pct_per_pip": 0.07326,
+     "implied_mean_daily_pct_pre": -0.04,
+     "implied_mean_daily_pct_oos30": -0.242,
+     "oos30_worst_pct": -1.44
+    }
+   }
+  }
+ },
+ "GV013_L4": {
+  "ladder": [
+   "1h",
+   "1d",
+   "1w"
+  ],
+  "symbols": {
+   "EURUSD": {
+    "pre_days": 1294,
+    "folds": [
+     {
+      "cfg": [
+       "LTF",
+       2,
+       -3
+      ],
+      "tune_net": 70.0,
+      "tune_tr": 29,
+      "test_net": -19.2
+     },
+     {
+      "cfg": [
+       "LTF",
+       1,
+       -3
+      ],
+      "tune_net": 72.4,
+      "tune_tr": 31,
+      "test_net": -90.0
+     },
+     {
+      "cfg": [
+       "LTF",
+       1,
+       -2
+      ],
+      "tune_net": 73.2,
+      "tune_tr": 45,
+      "test_net": 4.8
+     },
+     {
+      "cfg": [
+       "LTF",
+       1,
+       -2
+      ],
+      "tune_net": 78.0,
+      "tune_tr": 77,
+      "test_net": -8.9
+     },
+     {
+      "cfg": [
+       "LTF",
+       1,
+       -2
+      ],
+      "tune_net": 53.3,
+      "tune_tr": 78,
+      "test_net": 0.1
+     },
+     {
+      "cfg": [
+       "LTF",
+       1,
+       -2
+      ],
+      "tune_net": 35.0,
+      "tune_tr": 93,
+      "test_net": -43.5
+     },
+     {
+      "cfg": [
+       "LTF",
+       1,
+       -1
+      ],
+      "tune_net": 62.2,
+      "tune_tr": 83,
+      "test_net": -12.7
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       -5
+      ],
+      "tune_net": 180.4,
+      "tune_tr": 32,
+      "test_net": -155.9
+     },
+     {
+      "cfg": [
+       "MID",
+       1,
+       -3
+      ],
+      "tune_net": 248.1,
+      "tune_tr": 33,
+      "test_net": 62.8
+     },
+     {
+      "cfg": [
+       "LTF",
+       1,
+       -1
+      ],
+      "tune_net": 71.9,
+      "tune_tr": 50,
+      "test_net": -13.3
+     },
+     {
+      "cfg": [
+       "MID",
+       3,
+       -4
+      ],
+      "tune_net": 248.5,
+      "tune_tr": 30,
+      "test_net": 24.7
+     },
+     {
+      "cfg": [
+       "MID",
+       1,
+       -3
+      ],
+      "tune_net": 401.5,
+      "tune_tr": 31,
+      "test_net": 254.3
+     },
+     {
+      "cfg": [
+       "MID",
+       1,
+       -3
+      ],
+      "tune_net": 694.9,
+      "tune_tr": 30,
+      "test_net": 84.3
+     },
+     {
+      "cfg": [
+       "MID",
+       1,
+       -3
+      ],
+      "tune_net": 716.4,
+      "tune_tr": 28,
+      "test_net": -68.6
+     },
+     {
+      "cfg": [
+       "LTF",
+       2,
+       1
+      ],
+      "tune_net": 176.1,
+      "tune_tr": 32,
+      "test_net": 11.6
+     },
+     {
+      "cfg": [
+       "LTF",
+       2,
+       1
+      ],
+      "tune_net": 134.5,
+      "tune_tr": 30,
+      "test_net": 0.7
+     }
+    ],
+    "wf": {
+     "days": 1008,
+     "total": 31.3,
+     "mean": 0.03,
+     "green_pct": 5.8,
+     "zero_pct": 88.1,
+     "worst": -162.8,
+     "best": 109.0,
+     "maxdd": -368.7,
+     "tr_per_day": 0.19,
+     "mean_over_absworst": 0.0002
+    },
+    "final_cfg": [
+     "MID",
+     2,
+     -4
+    ],
+    "final_pre_net": 769.8,
+    "final_pre_tr": 135,
+    "oos30": {
+     "days": 30,
+     "total": 18.1,
+     "mean": 0.6,
+     "green_pct": 10.0,
+     "zero_pct": 83.3,
+     "worst": -40.5,
+     "best": 40.8,
+     "maxdd": -40.5,
+     "tr_per_day": 0.17,
+     "mean_over_absworst": 0.0149
+    },
+    "oos30_dates": [
+     "2026-06-08",
+     "2026-07-17"
+    ],
+    "trades": {
+     "n": 140,
+     "wr": 56.4,
+     "avg_win": 37.09,
+     "avg_loss": -35.12,
+     "med_btp_bars": 2,
+     "p75_btp_bars": 4,
+     "never_profit_pct": 9.3,
+     "med_hold_bars": 22,
+     "censored": 0,
+     "total_pips": 787.9
+    },
+    "sizing": {
+     "scale_pct_per_pip": 0.02237,
+     "implied_mean_daily_pct_pre": 0.013,
+     "implied_mean_daily_pct_oos30": 0.013,
+     "oos30_worst_pct": -0.91
+    }
+   },
+   "GBPUSD": {
+    "pre_days": 1294,
+    "folds": [
+     {
+      "cfg": [
+       "MID",
+       1,
+       -3
+      ],
+      "tune_net": 326.6,
+      "tune_tr": 25,
+      "test_net": 237.4
+     },
+     {
+      "cfg": [
+       "MID",
+       1,
+       -1
+      ],
+      "tune_net": 854.1,
+      "tune_tr": 30,
+      "test_net": -41.9
+     },
+     {
+      "cfg": [
+       "MID",
+       3,
+       -3
+      ],
+      "tune_net": 997.9,
+      "tune_tr": 37,
+      "test_net": -171.8
+     },
+     {
+      "cfg": [
+       "MID",
+       1,
+       -2
+      ],
+      "tune_net": 1020.5,
+      "tune_tr": 44,
+      "test_net": 85.0
+     },
+     {
+      "cfg": [
+       "MID",
+       1,
+       -2
+      ],
+      "tune_net": 974.1,
+      "tune_tr": 44,
+      "test_net": 239.4
+     },
+     {
+      "cfg": [
+       "MID",
+       1,
+       -2
+      ],
+      "tune_net": 976.1,
+      "tune_tr": 44,
+      "test_net": 76.6
+     },
+     {
+      "cfg": [
+       "MID",
+       1,
+       -2
+      ],
+      "tune_net": 580.3,
+      "tune_tr": 41,
+      "test_net": -67.7
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       -2
+      ],
+      "tune_net": 339.6,
+      "tune_tr": 28,
+      "test_net": 121.5
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       -4
+      ],
+      "tune_net": 424.1,
+      "tune_tr": 26,
+      "test_net": 43.1
+     },
+     {
+      "cfg": [
+       "LTF",
+       3,
+       1
+      ],
+      "tune_net": 79.3,
+      "tune_tr": 29,
+      "test_net": 67.8
+     },
+     {
+      "cfg": [
+       "LTF",
+       3,
+       1
+      ],
+      "tune_net": 180.0,
+      "tune_tr": 33,
+      "test_net": 51.3
+     },
+     {
+      "cfg": [
+       "LTF",
+       4,
+       1
+      ],
+      "tune_net": 300.7,
+      "tune_tr": 39,
+      "test_net": -48.7
+     },
+     {
+      "cfg": [
+       "LTF",
+       4,
+       1
+      ],
+      "tune_net": 209.5,
+      "tune_tr": 43,
+      "test_net": -8.4
+     },
+     {
+      "cfg": [
+       "LTF",
+       4,
+       1
+      ],
+      "tune_net": 147.5,
+      "tune_tr": 38,
+      "test_net": -203.6
+     },
+     {
+      "cfg": [
+       "LTF",
+       3,
+       -4
+      ],
+      "tune_net": 60.8,
+      "tune_tr": 37,
+      "test_net": -24.4
+     },
+     {
+      "cfg": [
+       "LTF",
+       1,
+       -4
+      ],
+      "tune_net": 41.1,
+      "tune_tr": 41,
+      "test_net": -9.4
+     }
+    ],
+    "wf": {
+     "days": 1008,
+     "total": 346.1,
+     "mean": 0.34,
+     "green_pct": 5.9,
+     "zero_pct": 87.8,
+     "worst": -598.7,
+     "best": 442.4,
+     "maxdd": -673.6,
+     "tr_per_day": 0.15,
+     "mean_over_absworst": 0.0006
+    },
+    "final_cfg": [
+     "MID",
+     1,
+     -2
+    ],
+    "final_pre_net": 1017.1,
+    "final_pre_tr": 148,
+    "oos30": {
+     "days": 30,
+     "total": -23.0,
+     "mean": -0.77,
+     "green_pct": 3.3,
+     "zero_pct": 90.0,
+     "worst": -20.1,
+     "best": 4.1,
+     "maxdd": -23.0,
+     "tr_per_day": 0.1,
+     "mean_over_absworst": -0.0381
+    },
+    "oos30_dates": [
+     "2026-06-08",
+     "2026-07-17"
+    ],
+    "trades": {
+     "n": 151,
+     "wr": 55.6,
+     "avg_win": 45.7,
+     "avg_loss": -42.46,
+     "med_btp_bars": 1,
+     "p75_btp_bars": 3,
+     "never_profit_pct": 13.2,
+     "med_hold_bars": 22,
+     "censored": 0,
+     "total_pips": 994.1
+    },
+    "sizing": {
+     "scale_pct_per_pip": 0.01182,
+     "implied_mean_daily_pct_pre": 0.009,
+     "implied_mean_daily_pct_oos30": -0.009,
+     "oos30_worst_pct": -0.24
+    }
+   },
+   "XAUUSD": {
+    "pre_days": 1365,
+    "folds": [
+     {
+      "cfg": [
+       "MID",
+       1,
+       -2
+      ],
+      "tune_net": 434.8,
+      "tune_tr": 25,
+      "test_net": 437.5
+     },
+     {
+      "cfg": [
+       "MID",
+       1,
+       -2
+      ],
+      "tune_net": 626.2,
+      "tune_tr": 26,
+      "test_net": 35.5
+     },
+     {
+      "cfg": [
+       "MID",
+       1,
+       -1
+      ],
+      "tune_net": 915.7,
+      "tune_tr": 31,
+      "test_net": 308.6
+     },
+     {
+      "cfg": [
+       "MID",
+       1,
+       -1
+      ],
+      "tune_net": 1229.4,
+      "tune_tr": 32,
+      "test_net": -281.6
+     },
+     {
+      "cfg": [
+       "MID",
+       1,
+       -2
+      ],
+      "tune_net": 982.6,
+      "tune_tr": 41,
+      "test_net": -785.3
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       -2
+      ],
+      "tune_net": 279.6,
+      "tune_tr": 30,
+      "test_net": -352.6
+     },
+     {
+      "cfg": [
+       "LTF",
+       4,
+       -1
+      ],
+      "tune_net": -55.7,
+      "tune_tr": 50,
+      "test_net": -111.6
+     },
+     {
+      "cfg": [
+       "LTF",
+       4,
+       -5
+      ],
+      "tune_net": -318.5,
+      "tune_tr": 61,
+      "test_net": 360.6
+     },
+     {
+      "cfg": [
+       "LTF",
+       2,
+       -5
+      ],
+      "tune_net": 249.9,
+      "tune_tr": 41,
+      "test_net": 223.3
+     },
+     {
+      "cfg": [
+       "LTF",
+       2,
+       -5
+      ],
+      "tune_net": 473.2,
+      "tune_tr": 58,
+      "test_net": -212.0
+     },
+     {
+      "cfg": [
+       "LTF",
+       4,
+       -1
+      ],
+      "tune_net": 816.0,
+      "tune_tr": 52,
+      "test_net": -238.1
+     },
+     {
+      "cfg": [
+       "LTF",
+       4,
+       -1
+      ],
+      "tune_net": 689.5,
+      "tune_tr": 40,
+      "test_net": -35.7
+     },
+     {
+      "cfg": [
+       "LTF",
+       4,
+       -1
+      ],
+      "tune_net": 268.8,
+      "tune_tr": 41,
+      "test_net": -61.9
+     },
+     {
+      "cfg": [
+       "LTF",
+       4,
+       -1
+      ],
+      "tune_net": -21.1,
+      "tune_tr": 34,
+      "test_net": -180.7
+     },
+     {
+      "cfg": [
+       "LTF",
+       3,
+       -3
+      ],
+      "tune_net": 327.0,
+      "tune_tr": 47,
+      "test_net": 400.8
+     },
+     {
+      "cfg": [
+       "LTF",
+       3,
+       -3
+      ],
+      "tune_net": 944.5,
+      "tune_tr": 57,
+      "test_net": 467.7
+     },
+     {
+      "cfg": [
+       "LTF",
+       1,
+       -2
+      ],
+      "tune_net": 1428.9,
+      "tune_tr": 63,
+      "test_net": 18.8
+     }
+    ],
+    "wf": {
+     "days": 1071,
+     "total": -6.7,
+     "mean": -0.01,
+     "green_pct": 6.3,
+     "zero_pct": 88.0,
+     "worst": -1427.8,
+     "best": 735.3,
+     "maxdd": -1960.6,
+     "tr_per_day": 0.18,
+     "mean_over_absworst": -0.0
+    },
+    "final_cfg": [
+     "LTF",
+     1,
+     -4
+    ],
+    "final_pre_net": 3981.9,
+    "final_pre_tr": 296,
+    "oos30": {
+     "days": 30,
+     "total": 581.9,
+     "mean": 19.4,
+     "green_pct": 10.0,
+     "zero_pct": 86.7,
+     "worst": -69.0,
+     "best": 373.8,
+     "maxdd": -69.0,
+     "tr_per_day": 0.2,
+     "mean_over_absworst": 0.2811
+    },
+    "oos30_dates": [
+     "2026-06-08",
+     "2026-07-17"
+    ],
+    "trades": {
+     "n": 302,
+     "wr": 58.3,
+     "avg_win": 55.3,
+     "avg_loss": -41.03,
+     "med_btp_bars": 1,
+     "p75_btp_bars": 2,
+     "never_profit_pct": 30.1,
+     "med_hold_bars": 1,
+     "censored": 0,
+     "total_pips": 4563.8
+    },
+    "sizing": {
+     "scale_pct_per_pip": 0.00977,
+     "implied_mean_daily_pct_pre": 0.029,
+     "implied_mean_daily_pct_oos30": 0.19,
+     "oos30_worst_pct": -0.67
+    }
+   },
+   "US500": {
+    "pre_days": 1345,
+    "folds": [
+     {
+      "cfg": [
+       "MID",
+       1,
+       -1
+      ],
+      "tune_net": 5.2,
+      "tune_tr": 34,
+      "test_net": -227.1
+     },
+     {
+      "cfg": [
+       "LTF",
+       2,
+       -2
+      ],
+      "tune_net": 25.5,
+      "tune_tr": 52,
+      "test_net": 106.9
+     },
+     {
+      "cfg": [
+       "MID",
+       1,
+       -1
+      ],
+      "tune_net": 232.1,
+      "tune_tr": 30,
+      "test_net": -115.5
+     },
+     {
+      "cfg": [
+       "LTF",
+       2,
+       -2
+      ],
+      "tune_net": 195.8,
+      "tune_tr": 49,
+      "test_net": -21.1
+     },
+     {
+      "cfg": [
+       "LTF",
+       2,
+       -2
+      ],
+      "tune_net": 220.5,
+      "tune_tr": 43,
+      "test_net": -36.3
+     },
+     {
+      "cfg": [
+       "LTF",
+       1,
+       -1
+      ],
+      "tune_net": 177.9,
+      "tune_tr": 47,
+      "test_net": -36.1
+     },
+     {
+      "cfg": [
+       "MID",
+       2,
+       -2
+      ],
+      "tune_net": 137.5,
+      "tune_tr": 28,
+      "test_net": 27.1
+     },
+     {
+      "cfg": [
+       "MID",
+       1,
+       -3
+      ],
+      "tune_net": 151.7,
+      "tune_tr": 26,
+      "test_net": 10.4
+     },
+     {
+      "cfg": [
+       "MID",
+       1,
+       -3
+      ],
+      "tune_net": 167.3,
+      "tune_tr": 35,
+      "test_net": -41.1
+     },
+     {
+      "cfg": [
+       "MID",
+       1,
+       -3
+      ],
+      "tune_net": 91.5,
+      "tune_tr": 37,
+      "test_net": 21.2
+     },
+     {
+      "cfg": [
+       "LTF",
+       4,
+       -2
+      ],
+      "tune_net": 30.7,
+      "tune_tr": 49,
+      "test_net": 31.5
+     },
+     {
+      "cfg": [
+       "LTF",
+       3,
+       1
+      ],
+      "tune_net": 107.6,
+      "tune_tr": 48,
+      "test_net": 9.2
+     },
+     {
+      "cfg": [
+       "LTF",
+       3,
+       1
+      ],
+      "tune_net": 83.8,
+      "tune_tr": 41,
+      "test_net": -77.3
+     },
+     {
+      "cfg": [
+       "LTF",
+       3,
+       1
+      ],
+      "tune_net": 19.2,
+      "tune_tr": 41,
+      "test_net": 8.0
+     },
+     {
+      "cfg": [
+       "LTF",
+       4,
+       1
+      ],
+      "tune_net": 311.6,
+      "tune_tr": 35,
+      "test_net": -65.1
+     },
+     {
+      "cfg": [
+       "LTF",
+       4,
+       -2
+      ],
+      "tune_net": 163.9,
+      "tune_tr": 36,
+      "test_net": 0.0
+     },
+     {
+      "cfg": [
+       "LTF",
+       4,
+       -2
+      ],
+      "tune_net": 156.5,
+      "tune_tr": 30,
+      "test_net": -58.3
+     }
+    ],
+    "wf": {
+     "days": 1071,
+     "total": -463.6,
+     "mean": -0.43,
+     "green_pct": 4.2,
+     "zero_pct": 89.2,
+     "worst": -285.0,
+     "best": 101.6,
+     "maxdd": -648.4,
+     "tr_per_day": 0.16,
+     "mean_over_absworst": -0.0015
+    },
+    "final_cfg": [
+     "LTF",
+     4,
+     1
+    ],
+    "final_pre_net": 271.0,
+    "final_pre_tr": 227,
+    "oos30": {
+     "days": 30,
+     "total": 0.0,
+     "mean": 0.0,
+     "green_pct": 0.0,
+     "zero_pct": 100.0,
+     "worst": 0.0,
+     "best": 0.0,
+     "maxdd": 0.0,
+     "tr_per_day": 0.0,
+     "mean_over_absworst": null
+    },
+    "oos30_dates": [
+     "2026-06-08",
+     "2026-07-17"
+    ],
+    "trades": {
+     "n": 227,
+     "wr": 25.6,
+     "avg_win": 23.44,
+     "avg_loss": -6.44,
+     "med_btp_bars": 1,
+     "p75_btp_bars": 2,
+     "never_profit_pct": 47.1,
+     "med_hold_bars": 2,
+     "censored": 0,
+     "total_pips": 271.0
+    },
+    "sizing": {
+     "scale_pct_per_pip": 0.07663,
+     "implied_mean_daily_pct_pre": 0.015,
+     "implied_mean_daily_pct_oos30": 0.0,
+     "oos30_worst_pct": 0.0
+    }
+   }
+  }
+ },
+ "GV014_L0": {
+  "ladder": [
+   "1m",
+   "15m",
+   "30m"
+  ],
+  "symbols": {
+   "EURUSD": {
+    "pre_days": 1397,
+    "folds": [
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -1432.6,
+      "tune_tr": 946,
+      "test_net": 97.0
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -1021.0,
+      "tune_tr": 894,
+      "test_net": -398.7
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -1219.6,
+      "tune_tr": 912,
+      "test_net": -514.6
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -1362.6,
+      "tune_tr": 934,
+      "test_net": -494.1
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -1310.4,
+      "tune_tr": 915,
+      "test_net": -147.3
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -1554.7,
+      "tune_tr": 935,
+      "test_net": -305.6
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -1461.6,
+      "tune_tr": 913,
+      "test_net": -261.9
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -1208.9,
+      "tune_tr": 872,
+      "test_net": -373.5
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -1088.3,
+      "tune_tr": 893,
+      "test_net": -435.7
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -1376.7,
+      "tune_tr": 871,
+      "test_net": -134.2
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -1205.3,
+      "tune_tr": 887,
+      "test_net": -167.6
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -1111.0,
+      "tune_tr": 890,
+      "test_net": -586.4
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -1323.9,
+      "tune_tr": 931,
+      "test_net": -211.5
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -1099.7,
+      "tune_tr": 920,
+      "test_net": -148.3
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -1113.8,
+      "tune_tr": 911,
+      "test_net": -488.0
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -1434.2,
+      "tune_tr": 923,
+      "test_net": -346.4
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -1194.2,
+      "tune_tr": 897,
+      "test_net": -65.1
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -1047.8,
+      "tune_tr": 936,
+      "test_net": -560.9
+     }
+    ],
+    "wf": {
+     "days": 1134,
+     "total": -5542.8,
+     "mean": -4.89,
+     "green_pct": 26.0,
+     "zero_pct": 14.7,
+     "worst": -146.9,
+     "best": 140.2,
+     "maxdd": -5640.9,
+     "tr_per_day": 3.65,
+     "mean_over_absworst": -0.0333
+    },
+    "final_cfg": [
+     "MID",
+     4,
+     1
+    ],
+    "final_pre_net": -7067.9,
+    "final_pre_tr": 5122,
+    "oos30": {
+     "days": 30,
+     "total": -73.6,
+     "mean": -2.45,
+     "green_pct": 23.3,
+     "zero_pct": 16.7,
+     "worst": -22.4,
+     "best": 53.4,
+     "maxdd": -115.5,
+     "tr_per_day": 3.33,
+     "mean_over_absworst": -0.1095
+    },
+    "oos30_dates": [
+     "2026-06-08",
+     "2026-07-17"
+    ],
+    "trades": {
+     "n": 5222,
+     "wr": 26.8,
+     "avg_win": 10.57,
+     "avg_loss": -5.75,
+     "med_btp_bars": 3,
+     "p75_btp_bars": 9,
+     "never_profit_pct": 28.3,
+     "med_hold_bars": 41,
+     "censored": 0,
+     "total_pips": -7141.5
+    },
+    "sizing": {
+     "scale_pct_per_pip": 0.02723,
+     "implied_mean_daily_pct_pre": -0.138,
+     "implied_mean_daily_pct_oos30": -0.067,
+     "oos30_worst_pct": -0.61
+    }
+   },
+   "GBPUSD": {
+    "pre_days": 1397,
+    "folds": [
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -2253.7,
+      "tune_tr": 984,
+      "test_net": -469.0
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -2132.0,
+      "tune_tr": 951,
+      "test_net": 62.5
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -1664.7,
+      "tune_tr": 997,
+      "test_net": -104.5
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -1075.2,
+      "tune_tr": 978,
+      "test_net": -189.0
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -700.0,
+      "tune_tr": 969,
+      "test_net": -505.7
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -736.7,
+      "tune_tr": 937,
+      "test_net": -228.6
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -1027.8,
+      "tune_tr": 884,
+      "test_net": -220.0
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -1143.3,
+      "tune_tr": 872,
+      "test_net": -490.6
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -1444.9,
+      "tune_tr": 906,
+      "test_net": -297.4
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -1236.6,
+      "tune_tr": 897,
+      "test_net": -332.2
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -1340.2,
+      "tune_tr": 916,
+      "test_net": -405.8
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -1526.0,
+      "tune_tr": 914,
+      "test_net": -435.1
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -1470.5,
+      "tune_tr": 908,
+      "test_net": -380.8
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -1553.9,
+      "tune_tr": 934,
+      "test_net": -802.0
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -2023.7,
+      "tune_tr": 950,
+      "test_net": -866.9
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -2484.8,
+      "tune_tr": 980,
+      "test_net": -369.0
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -2418.7,
+      "tune_tr": 961,
+      "test_net": -119.0
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -2156.9,
+      "tune_tr": 934,
+      "test_net": -862.3
+     }
+    ],
+    "wf": {
+     "days": 1134,
+     "total": -7015.4,
+     "mean": -6.19,
+     "green_pct": 27.1,
+     "zero_pct": 13.9,
+     "worst": -169.6,
+     "best": 217.0,
+     "maxdd": -7023.7,
+     "tr_per_day": 3.69,
+     "mean_over_absworst": -0.0365
+    },
+    "final_cfg": [
+     "MID",
+     4,
+     1
+    ],
+    "final_pre_net": -9322.9,
+    "final_pre_tr": 5209,
+    "oos30": {
+     "days": 30,
+     "total": 123.9,
+     "mean": 4.13,
+     "green_pct": 33.3,
+     "zero_pct": 13.3,
+     "worst": -34.4,
+     "best": 114.2,
+     "maxdd": -69.5,
+     "tr_per_day": 2.57,
+     "mean_over_absworst": 0.1201
+    },
+    "oos30_dates": [
+     "2026-06-08",
+     "2026-07-17"
+    ],
+    "trades": {
+     "n": 5286,
+     "wr": 27.4,
+     "avg_win": 13.7,
+     "avg_loss": -7.58,
+     "med_btp_bars": 3,
+     "p75_btp_bars": 8,
+     "never_profit_pct": 28.5,
+     "med_hold_bars": 41,
+     "censored": 0,
+     "total_pips": -9199.0
+    },
+    "sizing": {
+     "scale_pct_per_pip": 0.02358,
+     "implied_mean_daily_pct_pre": -0.157,
+     "implied_mean_daily_pct_oos30": 0.097,
+     "oos30_worst_pct": -0.81
+    }
+   },
+   "XAUUSD": {
+    "pre_days": 1467,
+    "folds": [
+     {
+      "cfg": [
+       "MID",
+       4,
+       -1
+      ],
+      "tune_net": -2973.2,
+      "tune_tr": 1295,
+      "test_net": -1484.8
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -3137.3,
+      "tune_tr": 876,
+      "test_net": -5.8
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -1324.7,
+      "tune_tr": 897,
+      "test_net": -192.9
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -1558.0,
+      "tune_tr": 884,
+      "test_net": -1072.9
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -2181.2,
+      "tune_tr": 927,
+      "test_net": -433.8
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       -1
+      ],
+      "tune_net": -1554.1,
+      "tune_tr": 1428,
+      "test_net": -530.2
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -2077.4,
+      "tune_tr": 919,
+      "test_net": 122.4
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -1762.1,
+      "tune_tr": 890,
+      "test_net": -837.4
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -1526.6,
+      "tune_tr": 852,
+      "test_net": 212.9
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -879.9,
+      "tune_tr": 878,
+      "test_net": 113.0
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -389.1,
+      "tune_tr": 830,
+      "test_net": 113.9
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -397.6,
+      "tune_tr": 889,
+      "test_net": -691.3
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -251.5,
+      "tune_tr": 880,
+      "test_net": -631.4
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -1095.8,
+      "tune_tr": 873,
+      "test_net": 187.7
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -1021.1,
+      "tune_tr": 921,
+      "test_net": 884.4
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -250.6,
+      "tune_tr": 927,
+      "test_net": -1821.9
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -1381.2,
+      "tune_tr": 947,
+      "test_net": -496.0
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -1245.8,
+      "tune_tr": 984,
+      "test_net": -175.9
+     },
+     {
+      "cfg": [
+       "MID",
+       2,
+       1
+      ],
+      "tune_net": 480.5,
+      "tune_tr": 1248,
+      "test_net": 4144.1
+     }
+    ],
+    "wf": {
+     "days": 1197,
+     "total": -2595.9,
+     "mean": -2.17,
+     "green_pct": 31.7,
+     "zero_pct": 17.1,
+     "worst": -811.3,
+     "best": 1449.8,
+     "maxdd": -8663.2,
+     "tr_per_day": 3.82,
+     "mean_over_absworst": -0.0027
+    },
+    "final_cfg": [
+     "MID",
+     4,
+     1
+    ],
+    "final_pre_net": -2665.3,
+    "final_pre_tr": 5242,
+    "oos30": {
+     "days": 30,
+     "total": 357.7,
+     "mean": 11.92,
+     "green_pct": 36.7,
+     "zero_pct": 26.7,
+     "worst": -1106.5,
+     "best": 642.7,
+     "maxdd": -1286.2,
+     "tr_per_day": 3.17,
+     "mean_over_absworst": 0.0108
+    },
+    "oos30_dates": [
+     "2026-06-08",
+     "2026-07-17"
+    ],
+    "trades": {
+     "n": 5337,
+     "wr": 31.4,
+     "avg_win": 61.14,
+     "avg_loss": -28.6,
+     "med_btp_bars": 2,
+     "p75_btp_bars": 5,
+     "never_profit_pct": 19.1,
+     "med_hold_bars": 41,
+     "censored": 0,
+     "total_pips": -2307.6
+    },
+    "sizing": {
+     "scale_pct_per_pip": 0.0041,
+     "implied_mean_daily_pct_pre": -0.007,
+     "implied_mean_daily_pct_oos30": 0.049,
+     "oos30_worst_pct": -4.54
+    }
+   },
+   "US500": {
+    "pre_days": 1445,
+    "folds": [
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -1106.9,
+      "tune_tr": 977,
+      "test_net": -206.4
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -915.4,
+      "tune_tr": 983,
+      "test_net": -75.4
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -647.6,
+      "tune_tr": 979,
+      "test_net": -279.2
+     },
+     {
+      "cfg": [
+       "MID",
+       3,
+       1
+      ],
+      "tune_net": -662.5,
+      "tune_tr": 1113,
+      "test_net": -46.6
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -499.3,
+      "tune_tr": 957,
+      "test_net": -240.3
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -533.2,
+      "tune_tr": 945,
+      "test_net": -189.4
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -647.2,
+      "tune_tr": 915,
+      "test_net": -157.4
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -525.4,
+      "tune_tr": 886,
+      "test_net": -141.9
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -729.0,
+      "tune_tr": 879,
+      "test_net": -114.6
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -603.3,
+      "tune_tr": 886,
+      "test_net": -267.6
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -681.5,
+      "tune_tr": 963,
+      "test_net": -88.3
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -612.4,
+      "tune_tr": 957,
+      "test_net": -24.6
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -495.1,
+      "tune_tr": 980,
+      "test_net": -340.3
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -720.8,
+      "tune_tr": 936,
+      "test_net": 14.3
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -438.9,
+      "tune_tr": 811,
+      "test_net": -223.4
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -574.0,
+      "tune_tr": 860,
+      "test_net": -293.1
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -842.5,
+      "tune_tr": 843,
+      "test_net": -415.6
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -917.8,
+      "tune_tr": 892,
+      "test_net": -277.3
+     }
+    ],
+    "wf": {
+     "days": 1134,
+     "total": -3367.1,
+     "mean": -2.97,
+     "green_pct": 28.6,
+     "zero_pct": 15.8,
+     "worst": -127.1,
+     "best": 120.3,
+     "maxdd": -3451.3,
+     "tr_per_day": 3.66,
+     "mean_over_absworst": -0.0234
+    },
+    "final_cfg": [
+     "MID",
+     4,
+     1
+    ],
+    "final_pre_net": -4469.4,
+    "final_pre_tr": 5337,
+    "oos30": {
+     "days": 30,
+     "total": -142.8,
+     "mean": -4.76,
+     "green_pct": 36.7,
+     "zero_pct": 10.0,
+     "worst": -76.6,
+     "best": 61.0,
+     "maxdd": -231.9,
+     "tr_per_day": 3.6,
+     "mean_over_absworst": -0.0621
+    },
+    "oos30_dates": [
+     "2026-06-08",
+     "2026-07-17"
+    ],
+    "trades": {
+     "n": 5445,
+     "wr": 28.7,
+     "avg_win": 9.59,
+     "avg_loss": -5.05,
+     "med_btp_bars": 3,
+     "p75_btp_bars": 8,
+     "never_profit_pct": 29.3,
+     "med_hold_bars": 41,
+     "censored": 0,
+     "total_pips": -4612.2
+    },
+    "sizing": {
+     "scale_pct_per_pip": 0.03147,
+     "implied_mean_daily_pct_pre": -0.097,
+     "implied_mean_daily_pct_oos30": -0.15,
+     "oos30_worst_pct": -2.41
+    }
+   }
+  }
+ },
+ "GV014_L1": {
+  "ladder": [
+   "5m",
+   "30m",
+   "1h"
+  ],
+  "symbols": {
+   "EURUSD": {
+    "pre_days": 1393,
+    "folds": [
+     {
+      "cfg": [
+       "MID",
+       4,
+       -1
+      ],
+      "tune_net": -334.8,
+      "tune_tr": 634,
+      "test_net": -44.0
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       -1
+      ],
+      "tune_net": -241.0,
+      "tune_tr": 573,
+      "test_net": 178.1
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       -1
+      ],
+      "tune_net": -61.4,
+      "tune_tr": 605,
+      "test_net": -377.2
+     },
+     {
+      "cfg": [
+       "MID",
+       3,
+       -1
+      ],
+      "tune_net": -241.7,
+      "tune_tr": 729,
+      "test_net": -73.7
+     },
+     {
+      "cfg": [
+       "MID",
+       3,
+       -1
+      ],
+      "tune_net": -181.5,
+      "tune_tr": 680,
+      "test_net": -212.3
+     },
+     {
+      "cfg": [
+       "MID",
+       3,
+       -1
+      ],
+      "tune_net": -392.4,
+      "tune_tr": 719,
+      "test_net": 30.4
+     },
+     {
+      "cfg": [
+       "MID",
+       1,
+       -5
+      ],
+      "tune_net": -319.7,
+      "tune_tr": 865,
+      "test_net": -163.3
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       -1
+      ],
+      "tune_net": -369.0,
+      "tune_tr": 563,
+      "test_net": -86.4
+     },
+     {
+      "cfg": [
+       "MID",
+       3,
+       1
+      ],
+      "tune_net": -317.8,
+      "tune_tr": 456,
+      "test_net": -107.1
+     },
+     {
+      "cfg": [
+       "MID",
+       3,
+       1
+      ],
+      "tune_net": -192.9,
+      "tune_tr": 432,
+      "test_net": -147.3
+     },
+     {
+      "cfg": [
+       "MID",
+       3,
+       1
+      ],
+      "tune_net": -335.2,
+      "tune_tr": 457,
+      "test_net": -218.1
+     },
+     {
+      "cfg": [
+       "MID",
+       3,
+       1
+      ],
+      "tune_net": -512.8,
+      "tune_tr": 457,
+      "test_net": -432.1
+     },
+     {
+      "cfg": [
+       "MID",
+       1,
+       1
+      ],
+      "tune_net": -830.4,
+      "tune_tr": 640,
+      "test_net": -147.5
+     },
+     {
+      "cfg": [
+       "MID",
+       1,
+       -1
+      ],
+      "tune_net": -805.0,
+      "tune_tr": 813,
+      "test_net": -293.1
+     },
+     {
+      "cfg": [
+       "MID",
+       3,
+       -1
+      ],
+      "tune_net": -643.3,
+      "tune_tr": 711,
+      "test_net": -379.0
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -720.0,
+      "tune_tr": 415,
+      "test_net": -60.1
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -338.2,
+      "tune_tr": 363,
+      "test_net": 151.8
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -189.8,
+      "tune_tr": 369,
+      "test_net": -90.1
+     }
+    ],
+    "wf": {
+     "days": 1134,
+     "total": -2471.1,
+     "mean": -2.18,
+     "green_pct": 23.1,
+     "zero_pct": 31.4,
+     "worst": -113.6,
+     "best": 105.1,
+     "maxdd": -2771.3,
+     "tr_per_day": 2.29,
+     "mean_over_absworst": -0.0192
+    },
+    "final_cfg": [
+     "MID",
+     4,
+     1
+    ],
+    "final_pre_net": -2571.2,
+    "final_pre_tr": 2268,
+    "oos30": {
+     "days": 30,
+     "total": -126.7,
+     "mean": -4.22,
+     "green_pct": 16.7,
+     "zero_pct": 40.0,
+     "worst": -34.8,
+     "best": 15.6,
+     "maxdd": -114.5,
+     "tr_per_day": 1.33,
+     "mean_over_absworst": -0.1213
+    },
+    "oos30_dates": [
+     "2026-06-08",
+     "2026-07-17"
+    ],
+    "trades": {
+     "n": 2308,
+     "wr": 29.7,
+     "avg_win": 13.48,
+     "avg_loss": -7.36,
+     "med_btp_bars": 2,
+     "p75_btp_bars": 4,
+     "never_profit_pct": 28.2,
+     "med_hold_bars": 15,
+     "censored": 0,
+     "total_pips": -2697.9
+    },
+    "sizing": {
+     "scale_pct_per_pip": 0.05517,
+     "implied_mean_daily_pct_pre": -0.102,
+     "implied_mean_daily_pct_oos30": -0.233,
+     "oos30_worst_pct": -1.92
+    }
+   },
+   "GBPUSD": {
+    "pre_days": 1393,
+    "folds": [
+     {
+      "cfg": [
+       "MID",
+       4,
+       -1
+      ],
+      "tune_net": -442.1,
+      "tune_tr": 614,
+      "test_net": -146.2
+     },
+     {
+      "cfg": [
+       "MID",
+       3,
+       -1
+      ],
+      "tune_net": -283.9,
+      "tune_tr": 687,
+      "test_net": 194.2
+     },
+     {
+      "cfg": [
+       "MID",
+       1,
+       -1
+      ],
+      "tune_net": 171.6,
+      "tune_tr": 841,
+      "test_net": 102.2
+     },
+     {
+      "cfg": [
+       "MID",
+       3,
+       -1
+      ],
+      "tune_net": 314.5,
+      "tune_tr": 789,
+      "test_net": -71.6
+     },
+     {
+      "cfg": [
+       "MID",
+       1,
+       -1
+      ],
+      "tune_net": 252.8,
+      "tune_tr": 833,
+      "test_net": -144.4
+     },
+     {
+      "cfg": [
+       "MID",
+       1,
+       -1
+      ],
+      "tune_net": 240.3,
+      "tune_tr": 828,
+      "test_net": -241.4
+     },
+     {
+      "cfg": [
+       "MID",
+       3,
+       -1
+      ],
+      "tune_net": -260.9,
+      "tune_tr": 686,
+      "test_net": -45.0
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       -1
+      ],
+      "tune_net": -210.8,
+      "tune_tr": 533,
+      "test_net": -504.4
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -618.9,
+      "tune_tr": 403,
+      "test_net": -45.1
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -331.0,
+      "tune_tr": 387,
+      "test_net": -377.3
+     },
+     {
+      "cfg": [
+       "MID",
+       2,
+       1
+      ],
+      "tune_net": -529.7,
+      "tune_tr": 497,
+      "test_net": 31.0
+     },
+     {
+      "cfg": [
+       "MID",
+       2,
+       1
+      ],
+      "tune_net": -604.4,
+      "tune_tr": 523,
+      "test_net": -300.6
+     },
+     {
+      "cfg": [
+       "MID",
+       2,
+       1
+      ],
+      "tune_net": -588.9,
+      "tune_tr": 526,
+      "test_net": -253.1
+     },
+     {
+      "cfg": [
+       "MID",
+       2,
+       1
+      ],
+      "tune_net": -836.6,
+      "tune_tr": 560,
+      "test_net": -279.5
+     },
+     {
+      "cfg": [
+       "MID",
+       3,
+       1
+      ],
+      "tune_net": -740.4,
+      "tune_tr": 501,
+      "test_net": -458.7
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -1067.0,
+      "tune_tr": 452,
+      "test_net": -161.7
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -952.7,
+      "tune_tr": 426,
+      "test_net": -207.3
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -991.4,
+      "tune_tr": 409,
+      "test_net": -378.3
+     }
+    ],
+    "wf": {
+     "days": 1134,
+     "total": -3287.2,
+     "mean": -2.9,
+     "green_pct": 24.6,
+     "zero_pct": 29.5,
+     "worst": -146.4,
+     "best": 401.1,
+     "maxdd": -3567.8,
+     "tr_per_day": 2.31,
+     "mean_over_absworst": -0.0198
+    },
+    "final_cfg": [
+     "MID",
+     3,
+     1
+    ],
+    "final_pre_net": -3879.2,
+    "final_pre_tr": 2563,
+    "oos30": {
+     "days": 30,
+     "total": -49.5,
+     "mean": -1.65,
+     "green_pct": 20.0,
+     "zero_pct": 36.7,
+     "worst": -44.8,
+     "best": 104.4,
+     "maxdd": -186.6,
+     "tr_per_day": 1.37,
+     "mean_over_absworst": -0.0368
+    },
+    "oos30_dates": [
+     "2026-06-08",
+     "2026-07-17"
+    ],
+    "trades": {
+     "n": 2604,
+     "wr": 28.6,
+     "avg_win": 16.17,
+     "avg_loss": -8.61,
+     "med_btp_bars": 2,
+     "p75_btp_bars": 3,
+     "never_profit_pct": 31.3,
+     "med_hold_bars": 11,
+     "censored": 0,
+     "total_pips": -3928.7
+    },
+    "sizing": {
+     "scale_pct_per_pip": 0.02733,
+     "implied_mean_daily_pct_pre": -0.076,
+     "implied_mean_daily_pct_oos30": -0.045,
+     "oos30_worst_pct": -1.22
+    }
+   },
+   "XAUUSD": {
+    "pre_days": 1462,
+    "folds": [
+     {
+      "cfg": [
+       "MID",
+       2,
+       -3
+      ],
+      "tune_net": -859.3,
+      "tune_tr": 743,
+      "test_net": -232.7
+     },
+     {
+      "cfg": [
+       "MID",
+       1,
+       -4
+      ],
+      "tune_net": -629.4,
+      "tune_tr": 778,
+      "test_net": -810.7
+     },
+     {
+      "cfg": [
+       "MID",
+       1,
+       -2
+      ],
+      "tune_net": -408.6,
+      "tune_tr": 819,
+      "test_net": 315.6
+     },
+     {
+      "cfg": [
+       "MID",
+       1,
+       -2
+      ],
+      "tune_net": -369.2,
+      "tune_tr": 816,
+      "test_net": 45.1
+     },
+     {
+      "cfg": [
+       "MID",
+       1,
+       -2
+      ],
+      "tune_net": 195.7,
+      "tune_tr": 914,
+      "test_net": -272.4
+     },
+     {
+      "cfg": [
+       "MID",
+       1,
+       -2
+      ],
+      "tune_net": 215.7,
+      "tune_tr": 893,
+      "test_net": -507.9
+     },
+     {
+      "cfg": [
+       "MID",
+       1,
+       -1
+      ],
+      "tune_net": -414.9,
+      "tune_tr": 838,
+      "test_net": -491.9
+     },
+     {
+      "cfg": [
+       "MID",
+       1,
+       -1
+      ],
+      "tune_net": -1044.8,
+      "tune_tr": 802,
+      "test_net": -830.2
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -748.5,
+      "tune_tr": 398,
+      "test_net": 1131.4
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": 1123.1,
+      "tune_tr": 426,
+      "test_net": -372.4
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": 382.5,
+      "tune_tr": 406,
+      "test_net": 631.2
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": 946.3,
+      "tune_tr": 429,
+      "test_net": 191.0
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": 1581.3,
+      "tune_tr": 408,
+      "test_net": -573.6
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -123.7,
+      "tune_tr": 421,
+      "test_net": 232.8
+     },
+     {
+      "cfg": [
+       "MID",
+       3,
+       1
+      ],
+      "tune_net": 597.8,
+      "tune_tr": 459,
+      "test_net": 876.8
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": 958.8,
+      "tune_tr": 434,
+      "test_net": -1445.1
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -677.3,
+      "tune_tr": 436,
+      "test_net": 1424.4
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       -1
+      ],
+      "tune_net": 1900.2,
+      "tune_tr": 663,
+      "test_net": 1879.2
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": 4631.3,
+      "tune_tr": 424,
+      "test_net": 5147.7
+     }
+    ],
+    "wf": {
+     "days": 1197,
+     "total": 6338.4,
+     "mean": 5.3,
+     "green_pct": 28.5,
+     "zero_pct": 32.3,
+     "worst": -773.6,
+     "best": 1639.7,
+     "maxdd": -2882.8,
+     "tr_per_day": 2.44,
+     "mean_over_absworst": 0.0068
+    },
+    "final_cfg": [
+     "MID",
+     4,
+     1
+    ],
+    "final_pre_net": 7334.7,
+    "final_pre_tr": 2382,
+    "oos30": {
+     "days": 30,
+     "total": 968.4,
+     "mean": 32.28,
+     "green_pct": 23.3,
+     "zero_pct": 43.3,
+     "worst": -213.7,
+     "best": 604.5,
+     "maxdd": -334.8,
+     "tr_per_day": 1.03,
+     "mean_over_absworst": 0.1511
+    },
+    "oos30_dates": [
+     "2026-06-08",
+     "2026-07-17"
+    ],
+    "trades": {
+     "n": 2413,
+     "wr": 32.6,
+     "avg_win": 80.78,
+     "avg_loss": -33.92,
+     "med_btp_bars": 1,
+     "p75_btp_bars": 3,
+     "never_profit_pct": 22.7,
+     "med_hold_bars": 15,
+     "censored": 0,
+     "total_pips": 8303.1
+    },
+    "sizing": {
+     "scale_pct_per_pip": 0.00581,
+     "implied_mean_daily_pct_pre": 0.029,
+     "implied_mean_daily_pct_oos30": 0.187,
+     "oos30_worst_pct": -1.24
+    }
+   },
+   "US500": {
+    "pre_days": 1441,
+    "folds": [
+     {
+      "cfg": [
+       "MID",
+       3,
+       1
+      ],
+      "tune_net": -491.6,
+      "tune_tr": 516,
+      "test_net": -104.8
+     },
+     {
+      "cfg": [
+       "MID",
+       3,
+       1
+      ],
+      "tune_net": -523.2,
+      "tune_tr": 522,
+      "test_net": -187.2
+     },
+     {
+      "cfg": [
+       "MID",
+       3,
+       1
+      ],
+      "tune_net": -466.2,
+      "tune_tr": 519,
+      "test_net": -31.0
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -291.5,
+      "tune_tr": 473,
+      "test_net": 23.9
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -213.1,
+      "tune_tr": 441,
+      "test_net": -318.1
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -371.5,
+      "tune_tr": 423,
+      "test_net": -304.9
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       -4
+      ],
+      "tune_net": -470.9,
+      "tune_tr": 873,
+      "test_net": -157.5
+     },
+     {
+      "cfg": [
+       "MID",
+       1,
+       -3
+      ],
+      "tune_net": -547.3,
+      "tune_tr": 820,
+      "test_net": -128.0
+     },
+     {
+      "cfg": [
+       "MID",
+       1,
+       -3
+      ],
+      "tune_net": -611.3,
+      "tune_tr": 868,
+      "test_net": -337.1
+     },
+     {
+      "cfg": [
+       "MID",
+       1,
+       1
+      ],
+      "tune_net": -617.2,
+      "tune_tr": 584,
+      "test_net": -124.0
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -405.7,
+      "tune_tr": 434,
+      "test_net": -103.5
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -342.5,
+      "tune_tr": 440,
+      "test_net": 14.7
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -324.1,
+      "tune_tr": 442,
+      "test_net": -124.8
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -230.3,
+      "tune_tr": 443,
+      "test_net": -87.1
+     },
+     {
+      "cfg": [
+       "MID",
+       2,
+       1
+      ],
+      "tune_net": -209.5,
+      "tune_tr": 482,
+      "test_net": -147.0
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": 197.6,
+      "tune_tr": 405,
+      "test_net": -361.5
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -178.6,
+      "tune_tr": 400,
+      "test_net": -288.6
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -342.4,
+      "tune_tr": 405,
+      "test_net": -57.6
+     }
+    ],
+    "wf": {
+     "days": 1134,
+     "total": -2824.2,
+     "mean": -2.49,
+     "green_pct": 22.9,
+     "zero_pct": 30.9,
+     "worst": -282.7,
+     "best": 135.4,
+     "maxdd": -2845.7,
+     "tr_per_day": 2.1,
+     "mean_over_absworst": -0.0088
+    },
+    "final_cfg": [
+     "MID",
+     4,
+     1
+    ],
+    "final_pre_net": -2400.5,
+    "final_pre_tr": 2477,
+    "oos30": {
+     "days": 30,
+     "total": -125.1,
+     "mean": -4.17,
+     "green_pct": 13.3,
+     "zero_pct": 23.3,
+     "worst": -61.5,
+     "best": 120.9,
+     "maxdd": -246.0,
+     "tr_per_day": 1.63,
+     "mean_over_absworst": -0.0678
+    },
+    "oos30_dates": [
+     "2026-06-08",
+     "2026-07-17"
+    ],
+    "trades": {
+     "n": 2526,
+     "wr": 28.7,
+     "avg_win": 13.34,
+     "avg_loss": -6.76,
+     "med_btp_bars": 2,
+     "p75_btp_bars": 4,
+     "never_profit_pct": 30.0,
+     "med_hold_bars": 15,
+     "censored": 0,
+     "total_pips": -2525.6
+    },
+    "sizing": {
+     "scale_pct_per_pip": 0.01415,
+     "implied_mean_daily_pct_pre": -0.024,
+     "implied_mean_daily_pct_oos30": -0.059,
+     "oos30_worst_pct": -0.87
+    }
+   }
+  }
+ },
+ "GV014_L2": {
+  "ladder": [
+   "15m",
+   "1h",
+   "4h"
+  ],
+  "symbols": {
+   "EURUSD": {
+    "pre_days": 1368,
+    "folds": [
+     {
+      "cfg": [
+       "LTF",
+       2,
+       -5
+      ],
+      "tune_net": 79.3,
+      "tune_tr": 315,
+      "test_net": -117.4
+     },
+     {
+      "cfg": [
+       "LTF",
+       1,
+       -4
+      ],
+      "tune_net": 41.0,
+      "tune_tr": 314,
+      "test_net": -168.7
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": 9.6,
+      "tune_tr": 143,
+      "test_net": -110.2
+     },
+     {
+      "cfg": [
+       "MID",
+       2,
+       -4
+      ],
+      "tune_net": 4.1,
+      "tune_tr": 256,
+      "test_net": -139.0
+     },
+     {
+      "cfg": [
+       "MID",
+       2,
+       -4
+      ],
+      "tune_net": -138.6,
+      "tune_tr": 294,
+      "test_net": -36.4
+     },
+     {
+      "cfg": [
+       "MID",
+       1,
+       -3
+      ],
+      "tune_net": -107.8,
+      "tune_tr": 270,
+      "test_net": -112.6
+     },
+     {
+      "cfg": [
+       "MID",
+       1,
+       -1
+      ],
+      "tune_net": 196.2,
+      "tune_tr": 278,
+      "test_net": -25.0
+     },
+     {
+      "cfg": [
+       "MID",
+       1,
+       -1
+      ],
+      "tune_net": 43.4,
+      "tune_tr": 283,
+      "test_net": -82.6
+     },
+     {
+      "cfg": [
+       "MID",
+       3,
+       1
+      ],
+      "tune_net": 139.9,
+      "tune_tr": 152,
+      "test_net": -119.7
+     },
+     {
+      "cfg": [
+       "MID",
+       3,
+       1
+      ],
+      "tune_net": 23.9,
+      "tune_tr": 149,
+      "test_net": -78.0
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       -1
+      ],
+      "tune_net": -42.9,
+      "tune_tr": 170,
+      "test_net": -109.9
+     },
+     {
+      "cfg": [
+       "LTF",
+       3,
+       -4
+      ],
+      "tune_net": -134.4,
+      "tune_tr": 224,
+      "test_net": 11.5
+     },
+     {
+      "cfg": [
+       "LTF",
+       2,
+       -4
+      ],
+      "tune_net": -125.5,
+      "tune_tr": 257,
+      "test_net": -135.6
+     },
+     {
+      "cfg": [
+       "MID",
+       2,
+       1
+      ],
+      "tune_net": -92.0,
+      "tune_tr": 184,
+      "test_net": -92.6
+     },
+     {
+      "cfg": [
+       "MID",
+       2,
+       1
+      ],
+      "tune_net": -95.9,
+      "tune_tr": 186,
+      "test_net": -285.0
+     },
+     {
+      "cfg": [
+       "LTF",
+       3,
+       -5
+      ],
+      "tune_net": -189.2,
+      "tune_tr": 256,
+      "test_net": -128.8
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -215.4,
+      "tune_tr": 135,
+      "test_net": 0.7
+     }
+    ],
+    "wf": {
+     "days": 1071,
+     "total": -1729.1,
+     "mean": -1.61,
+     "green_pct": 11.7,
+     "zero_pct": 64.7,
+     "worst": -142.8,
+     "best": 137.7,
+     "maxdd": -1777.4,
+     "tr_per_day": 0.91,
+     "mean_over_absworst": -0.0113
+    },
+    "final_cfg": [
+     "MID",
+     4,
+     1
+    ],
+    "final_pre_net": -1048.8,
+    "final_pre_tr": 798,
+    "oos30": {
+     "days": 30,
+     "total": 18.7,
+     "mean": 0.62,
+     "green_pct": 6.7,
+     "zero_pct": 73.3,
+     "worst": -28.8,
+     "best": 63.2,
+     "maxdd": -41.2,
+     "tr_per_day": 0.47,
+     "mean_over_absworst": 0.0217
+    },
+    "oos30_dates": [
+     "2026-06-08",
+     "2026-07-17"
+    ],
+    "trades": {
+     "n": 812,
+     "wr": 29.8,
+     "avg_win": 17.49,
+     "avg_loss": -9.23,
+     "med_btp_bars": 1,
+     "p75_btp_bars": 2,
+     "never_profit_pct": 31.4,
+     "med_hold_bars": 8,
+     "censored": 0,
+     "total_pips": -1030.0
+    },
+    "sizing": {
+     "scale_pct_per_pip": 0.0294,
+     "implied_mean_daily_pct_pre": -0.023,
+     "implied_mean_daily_pct_oos30": 0.018,
+     "oos30_worst_pct": -0.85
+    }
+   },
+   "GBPUSD": {
+    "pre_days": 1368,
+    "folds": [
+     {
+      "cfg": [
+       "MID",
+       1,
+       -1
+      ],
+      "tune_net": 184.3,
+      "tune_tr": 207,
+      "test_net": -108.2
+     },
+     {
+      "cfg": [
+       "MID",
+       1,
+       -1
+      ],
+      "tune_net": 54.4,
+      "tune_tr": 261,
+      "test_net": 303.9
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": 200.1,
+      "tune_tr": 143,
+      "test_net": 331.4
+     },
+     {
+      "cfg": [
+       "MID",
+       1,
+       -2
+      ],
+      "tune_net": 539.2,
+      "tune_tr": 302,
+      "test_net": -217.0
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       -1
+      ],
+      "tune_net": 510.0,
+      "tune_tr": 225,
+      "test_net": -9.8
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       -1
+      ],
+      "tune_net": 656.3,
+      "tune_tr": 192,
+      "test_net": 54.9
+     },
+     {
+      "cfg": [
+       "MID",
+       2,
+       -2
+      ],
+      "tune_net": 438.0,
+      "tune_tr": 272,
+      "test_net": 32.7
+     },
+     {
+      "cfg": [
+       "MID",
+       3,
+       -2
+      ],
+      "tune_net": 250.9,
+      "tune_tr": 295,
+      "test_net": 99.6
+     },
+     {
+      "cfg": [
+       "MID",
+       3,
+       -2
+      ],
+      "tune_net": 137.6,
+      "tune_tr": 288,
+      "test_net": -183.0
+     },
+     {
+      "cfg": [
+       "MID",
+       3,
+       -2
+      ],
+      "tune_net": 29.5,
+      "tune_tr": 272,
+      "test_net": -74.7
+     },
+     {
+      "cfg": [
+       "MID",
+       3,
+       -2
+      ],
+      "tune_net": -105.7,
+      "tune_tr": 259,
+      "test_net": -6.3
+     },
+     {
+      "cfg": [
+       "LTF",
+       1,
+       -4
+      ],
+      "tune_net": -130.3,
+      "tune_tr": 266,
+      "test_net": -21.0
+     },
+     {
+      "cfg": [
+       "LTF",
+       1,
+       -4
+      ],
+      "tune_net": -230.7,
+      "tune_tr": 286,
+      "test_net": -121.7
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": 123.5,
+      "tune_tr": 147,
+      "test_net": -165.0
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -83.3,
+      "tune_tr": 160,
+      "test_net": -297.9
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       -1
+      ],
+      "tune_net": -224.9,
+      "tune_tr": 214,
+      "test_net": 40.4
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       -1
+      ],
+      "tune_net": -150.7,
+      "tune_tr": 214,
+      "test_net": 32.5
+     }
+    ],
+    "wf": {
+     "days": 1071,
+     "total": -309.3,
+     "mean": -0.29,
+     "green_pct": 16.8,
+     "zero_pct": 61.4,
+     "worst": -229.3,
+     "best": 387.5,
+     "maxdd": -1189.4,
+     "tr_per_day": 0.95,
+     "mean_over_absworst": -0.0013
+    },
+    "final_cfg": [
+     "MID",
+     4,
+     -1
+    ],
+    "final_pre_net": -147.1,
+    "final_pre_tr": 1117,
+    "oos30": {
+     "days": 30,
+     "total": -36.5,
+     "mean": -1.22,
+     "green_pct": 10.0,
+     "zero_pct": 80.0,
+     "worst": -65.3,
+     "best": 22.6,
+     "maxdd": -73.4,
+     "tr_per_day": 0.5,
+     "mean_over_absworst": -0.0186
+    },
+    "oos30_dates": [
+     "2026-06-08",
+     "2026-07-17"
+    ],
+    "trades": {
+     "n": 1132,
+     "wr": 48.3,
+     "avg_win": 14.22,
+     "avg_loss": -13.61,
+     "med_btp_bars": 1,
+     "p75_btp_bars": 3,
+     "never_profit_pct": 25.7,
+     "med_hold_bars": 7,
+     "censored": 0,
+     "total_pips": -183.7
+    },
+    "sizing": {
+     "scale_pct_per_pip": 0.03921,
+     "implied_mean_daily_pct_pre": -0.004,
+     "implied_mean_daily_pct_oos30": -0.048,
+     "oos30_worst_pct": -2.56
+    }
+   },
+   "XAUUSD": {
+    "pre_days": 1438,
+    "folds": [
+     {
+      "cfg": [
+       "MID",
+       4,
+       -1
+      ],
+      "tune_net": 1003.0,
+      "tune_tr": 153,
+      "test_net": -242.9
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       -1
+      ],
+      "tune_net": 802.5,
+      "tune_tr": 155,
+      "test_net": 191.7
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       -1
+      ],
+      "tune_net": 728.1,
+      "tune_tr": 155,
+      "test_net": 95.0
+     },
+     {
+      "cfg": [
+       "MID",
+       1,
+       -4
+      ],
+      "tune_net": 859.6,
+      "tune_tr": 233,
+      "test_net": -193.5
+     },
+     {
+      "cfg": [
+       "MID",
+       1,
+       -1
+      ],
+      "tune_net": 756.5,
+      "tune_tr": 241,
+      "test_net": -116.3
+     },
+     {
+      "cfg": [
+       "MID",
+       1,
+       -1
+      ],
+      "tune_net": 822.3,
+      "tune_tr": 279,
+      "test_net": -605.9
+     },
+     {
+      "cfg": [
+       "LTF",
+       4,
+       -5
+      ],
+      "tune_net": 237.2,
+      "tune_tr": 337,
+      "test_net": -468.7
+     },
+     {
+      "cfg": [
+       "LTF",
+       2,
+       -3
+      ],
+      "tune_net": -73.5,
+      "tune_tr": 311,
+      "test_net": -264.7
+     },
+     {
+      "cfg": [
+       "LTF",
+       3,
+       -1
+      ],
+      "tune_net": -401.9,
+      "tune_tr": 352,
+      "test_net": -154.0
+     },
+     {
+      "cfg": [
+       "MID",
+       3,
+       1
+      ],
+      "tune_net": -32.1,
+      "tune_tr": 169,
+      "test_net": 121.5
+     },
+     {
+      "cfg": [
+       "MID",
+       1,
+       -3
+      ],
+      "tune_net": 416.3,
+      "tune_tr": 287,
+      "test_net": -1281.6
+     },
+     {
+      "cfg": [
+       "MID",
+       3,
+       1
+      ],
+      "tune_net": 618.4,
+      "tune_tr": 151,
+      "test_net": -92.6
+     },
+     {
+      "cfg": [
+       "MID",
+       3,
+       1
+      ],
+      "tune_net": 487.8,
+      "tune_tr": 167,
+      "test_net": -222.6
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": 283.4,
+      "tune_tr": 152,
+      "test_net": -647.6
+     },
+     {
+      "cfg": [
+       "LTF",
+       2,
+       -4
+      ],
+      "tune_net": 1567.7,
+      "tune_tr": 358,
+      "test_net": 843.3
+     },
+     {
+      "cfg": [
+       "LTF",
+       2,
+       -4
+      ],
+      "tune_net": 2944.2,
+      "tune_tr": 362,
+      "test_net": 478.5
+     },
+     {
+      "cfg": [
+       "MID",
+       3,
+       -1
+      ],
+      "tune_net": 3593.5,
+      "tune_tr": 278,
+      "test_net": 419.3
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       -2
+      ],
+      "tune_net": 6076.4,
+      "tune_tr": 344,
+      "test_net": 4411.7
+     }
+    ],
+    "wf": {
+     "days": 1134,
+     "total": 2270.7,
+     "mean": 2.0,
+     "green_pct": 16.9,
+     "zero_pct": 61.2,
+     "worst": -703.8,
+     "best": 1511.2,
+     "maxdd": -4336.8,
+     "tr_per_day": 1.02,
+     "mean_over_absworst": 0.0028
+    },
+    "final_cfg": [
+     "MID",
+     4,
+     -2
+    ],
+    "final_pre_net": 9163.2,
+    "final_pre_tr": 1440,
+    "oos30": {
+     "days": 30,
+     "total": -1479.9,
+     "mean": -49.33,
+     "green_pct": 16.7,
+     "zero_pct": 53.3,
+     "worst": -1034.4,
+     "best": 654.2,
+     "maxdd": -2175.1,
+     "tr_per_day": 1.23,
+     "mean_over_absworst": -0.0477
+    },
+    "oos30_dates": [
+     "2026-06-08",
+     "2026-07-17"
+    ],
+    "trades": {
+     "n": 1477,
+     "wr": 55.4,
+     "avg_win": 46.95,
+     "avg_loss": -46.61,
+     "med_btp_bars": 1,
+     "p75_btp_bars": 2,
+     "never_profit_pct": 22.5,
+     "med_hold_bars": 5,
+     "censored": 0,
+     "total_pips": 7683.3
+    },
+    "sizing": {
+     "scale_pct_per_pip": 0.00568,
+     "implied_mean_daily_pct_pre": 0.036,
+     "implied_mean_daily_pct_oos30": -0.28,
+     "oos30_worst_pct": -5.88
+    }
+   },
+   "US500": {
+    "pre_days": 1416,
+    "folds": [
+     {
+      "cfg": [
+       "MID",
+       1,
+       -3
+      ],
+      "tune_net": -232.2,
+      "tune_tr": 388,
+      "test_net": -121.4
+     },
+     {
+      "cfg": [
+       "MID",
+       1,
+       -3
+      ],
+      "tune_net": -246.2,
+      "tune_tr": 380,
+      "test_net": -114.6
+     },
+     {
+      "cfg": [
+       "MID",
+       2,
+       1
+      ],
+      "tune_net": -177.0,
+      "tune_tr": 230,
+      "test_net": -27.1
+     },
+     {
+      "cfg": [
+       "MID",
+       1,
+       -1
+      ],
+      "tune_net": -73.5,
+      "tune_tr": 281,
+      "test_net": -44.3
+     },
+     {
+      "cfg": [
+       "MID",
+       1,
+       -1
+      ],
+      "tune_net": -85.8,
+      "tune_tr": 269,
+      "test_net": -267.0
+     },
+     {
+      "cfg": [
+       "LTF",
+       1,
+       -2
+      ],
+      "tune_net": -62.3,
+      "tune_tr": 280,
+      "test_net": -21.1
+     },
+     {
+      "cfg": [
+       "LTF",
+       3,
+       -2
+      ],
+      "tune_net": -60.0,
+      "tune_tr": 252,
+      "test_net": -123.3
+     },
+     {
+      "cfg": [
+       "LTF",
+       1,
+       -1
+      ],
+      "tune_net": -241.0,
+      "tune_tr": 272,
+      "test_net": 17.9
+     },
+     {
+      "cfg": [
+       "LTF",
+       1,
+       -1
+      ],
+      "tune_net": -150.8,
+      "tune_tr": 252,
+      "test_net": -128.1
+     },
+     {
+      "cfg": [
+       "MID",
+       1,
+       -1
+      ],
+      "tune_net": 91.8,
+      "tune_tr": 270,
+      "test_net": -91.5
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -3.6,
+      "tune_tr": 185,
+      "test_net": -40.3
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -13.1,
+      "tune_tr": 175,
+      "test_net": 65.3
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -7.5,
+      "tune_tr": 184,
+      "test_net": -33.5
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": 42.4,
+      "tune_tr": 161,
+      "test_net": -156.2
+     },
+     {
+      "cfg": [
+       "LTF",
+       3,
+       1
+      ],
+      "tune_net": -25.9,
+      "tune_tr": 269,
+      "test_net": -230.0
+     },
+     {
+      "cfg": [
+       "MID",
+       3,
+       1
+      ],
+      "tune_net": 152.7,
+      "tune_tr": 174,
+      "test_net": -18.1
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       -1
+      ],
+      "tune_net": 87.6,
+      "tune_tr": 260,
+      "test_net": -118.4
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       -1
+      ],
+      "tune_net": 75.6,
+      "tune_tr": 249,
+      "test_net": -217.3
+     }
+    ],
+    "wf": {
+     "days": 1134,
+     "total": -1669.1,
+     "mean": -1.47,
+     "green_pct": 14.3,
+     "zero_pct": 59.9,
+     "worst": -156.1,
+     "best": 120.1,
+     "maxdd": -1718.2,
+     "tr_per_day": 0.99,
+     "mean_over_absworst": -0.0094
+    },
+    "final_cfg": [
+     "MID",
+     4,
+     1
+    ],
+    "final_pre_net": -971.5,
+    "final_pre_tr": 975,
+    "oos30": {
+     "days": 30,
+     "total": -105.1,
+     "mean": -3.5,
+     "green_pct": 6.7,
+     "zero_pct": 70.0,
+     "worst": -37.8,
+     "best": 6.5,
+     "maxdd": -105.1,
+     "tr_per_day": 0.47,
+     "mean_over_absworst": -0.0927
+    },
+    "oos30_dates": [
+     "2026-06-08",
+     "2026-07-17"
+    ],
+    "trades": {
+     "n": 989,
+     "wr": 28.8,
+     "avg_win": 15.42,
+     "avg_loss": -7.77,
+     "med_btp_bars": 1,
+     "p75_btp_bars": 3,
+     "never_profit_pct": 30.1,
+     "med_hold_bars": 8,
+     "censored": 0,
+     "total_pips": -1076.6
+    },
+    "sizing": {
+     "scale_pct_per_pip": 0.04141,
+     "implied_mean_daily_pct_pre": -0.028,
+     "implied_mean_daily_pct_oos30": -0.145,
+     "oos30_worst_pct": -1.57
+    }
+   }
+  }
+ },
+ "GV014_L3": {
+  "ladder": [
+   "30m",
+   "4h",
+   "1d"
+  ],
+  "symbols": {
+   "EURUSD": {
+    "pre_days": 1202,
+    "folds": [
+     {
+      "cfg": [
+       "MID",
+       4,
+       -4
+      ],
+      "tune_net": 401.9,
+      "tune_tr": 150,
+      "test_net": -80.5
+     },
+     {
+      "cfg": [
+       "MID",
+       2,
+       -3
+      ],
+      "tune_net": 244.1,
+      "tune_tr": 122,
+      "test_net": 58.3
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       -5
+      ],
+      "tune_net": 304.2,
+      "tune_tr": 118,
+      "test_net": -17.4
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       -4
+      ],
+      "tune_net": 228.5,
+      "tune_tr": 86,
+      "test_net": -28.1
+     },
+     {
+      "cfg": [
+       "MID",
+       3,
+       1
+      ],
+      "tune_net": 120.6,
+      "tune_tr": 34,
+      "test_net": 79.3
+     },
+     {
+      "cfg": [
+       "MID",
+       3,
+       1
+      ],
+      "tune_net": 222.7,
+      "tune_tr": 39,
+      "test_net": 10.7
+     },
+     {
+      "cfg": [
+       "MID",
+       3,
+       1
+      ],
+      "tune_net": 199.7,
+      "tune_tr": 29,
+      "test_net": -12.0
+     },
+     {
+      "cfg": [
+       "MID",
+       1,
+       1
+      ],
+      "tune_net": 124.9,
+      "tune_tr": 32,
+      "test_net": 62.4
+     },
+     {
+      "cfg": [
+       "MID",
+       2,
+       1
+      ],
+      "tune_net": 178.0,
+      "tune_tr": 25,
+      "test_net": -117.9
+     },
+     {
+      "cfg": [
+       "MID",
+       1,
+       -5
+      ],
+      "tune_net": 10.6,
+      "tune_tr": 58,
+      "test_net": -60.6
+     },
+     {
+      "cfg": [
+       "MID",
+       2,
+       1
+      ],
+      "tune_net": 12.4,
+      "tune_tr": 38,
+      "test_net": -142.6
+     },
+     {
+      "cfg": [
+       "MID",
+       2,
+       1
+      ],
+      "tune_net": -124.3,
+      "tune_tr": 47,
+      "test_net": 103.1
+     },
+     {
+      "cfg": [
+       "MID",
+       1,
+       -1
+      ],
+      "tune_net": -20.8,
+      "tune_tr": 79,
+      "test_net": -148.1
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": 92.2,
+      "tune_tr": 31,
+      "test_net": 100.8
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": 207.6,
+      "tune_tr": 27,
+      "test_net": -110.3
+     }
+    ],
+    "wf": {
+     "days": 945,
+     "total": -303.1,
+     "mean": -0.32,
+     "green_pct": 4.9,
+     "zero_pct": 87.6,
+     "worst": -80.5,
+     "best": 144.2,
+     "maxdd": -386.7,
+     "tr_per_day": 0.18,
+     "mean_over_absworst": -0.004
+    },
+    "final_cfg": [
+     "MID",
+     4,
+     1
+    ],
+    "final_pre_net": 166.1,
+    "final_pre_tr": 160,
+    "oos30": {
+     "days": 30,
+     "total": -1.1,
+     "mean": -0.04,
+     "green_pct": 10.0,
+     "zero_pct": 76.7,
+     "worst": -56.8,
+     "best": 66.7,
+     "maxdd": -56.8,
+     "tr_per_day": 0.23,
+     "mean_over_absworst": -0.0006
+    },
+    "oos30_dates": [
+     "2026-06-08",
+     "2026-07-17"
+    ],
+    "trades": {
+     "n": 167,
+     "wr": 35.3,
+     "avg_win": 49.58,
+     "avg_loss": -25.56,
+     "med_btp_bars": 2,
+     "p75_btp_bars": 3,
+     "never_profit_pct": 19.2,
+     "med_hold_bars": 20,
+     "censored": 0,
+     "total_pips": 165.0
+    },
+    "sizing": {
+     "scale_pct_per_pip": 0.02122,
+     "implied_mean_daily_pct_pre": 0.003,
+     "implied_mean_daily_pct_oos30": -0.001,
+     "oos30_worst_pct": -1.21
+    }
+   },
+   "GBPUSD": {
+    "pre_days": 1202,
+    "folds": [
+     {
+      "cfg": [
+       "MID",
+       4,
+       -2
+      ],
+      "tune_net": 710.5,
+      "tune_tr": 133,
+      "test_net": 0.0
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       -2
+      ],
+      "tune_net": 890.4,
+      "tune_tr": 103,
+      "test_net": 82.2
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       -2
+      ],
+      "tune_net": 935.7,
+      "tune_tr": 89,
+      "test_net": -199.7
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": 777.5,
+      "tune_tr": 40,
+      "test_net": 205.7
+     },
+     {
+      "cfg": [
+       "MID",
+       3,
+       1
+      ],
+      "tune_net": 286.9,
+      "tune_tr": 27,
+      "test_net": -126.7
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": 189.3,
+      "tune_tr": 29,
+      "test_net": 23.8
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": 232.4,
+      "tune_tr": 26,
+      "test_net": -54.9
+     },
+     {
+      "cfg": [
+       "LTF",
+       4,
+       -5
+      ],
+      "tune_net": 56.8,
+      "tune_tr": 44,
+      "test_net": 19.4
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": 3.1,
+      "tune_tr": 26,
+      "test_net": -16.3
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": 111.1,
+      "tune_tr": 30,
+      "test_net": -346.6
+     },
+     {
+      "cfg": [
+       "LTF",
+       2,
+       -3
+      ],
+      "tune_net": -28.5,
+      "tune_tr": 95,
+      "test_net": -49.8
+     },
+     {
+      "cfg": [
+       "LTF",
+       3,
+       -2
+      ],
+      "tune_net": -36.9,
+      "tune_tr": 128,
+      "test_net": -148.1
+     },
+     {
+      "cfg": [
+       "LTF",
+       3,
+       -2
+      ],
+      "tune_net": -221.8,
+      "tune_tr": 104,
+      "test_net": 34.5
+     },
+     {
+      "cfg": [
+       "LTF",
+       1,
+       1
+      ],
+      "tune_net": -209.3,
+      "tune_tr": 83,
+      "test_net": -9.6
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       1
+      ],
+      "tune_net": -48.4,
+      "tune_tr": 30,
+      "test_net": -175.3
+     }
+    ],
+    "wf": {
+     "days": 945,
+     "total": -761.3,
+     "mean": -0.81,
+     "green_pct": 4.3,
+     "zero_pct": 88.7,
+     "worst": -132.7,
+     "best": 132.9,
+     "maxdd": -860.8,
+     "tr_per_day": 0.23,
+     "mean_over_absworst": -0.0061
+    },
+    "final_cfg": [
+     "MID",
+     4,
+     1
+    ],
+    "final_pre_net": -30.5,
+    "final_pre_tr": 183,
+    "oos30": {
+     "days": 30,
+     "total": -11.5,
+     "mean": -0.38,
+     "green_pct": 3.3,
+     "zero_pct": 93.3,
+     "worst": -26.7,
+     "best": 15.2,
+     "maxdd": -26.7,
+     "tr_per_day": 0.07,
+     "mean_over_absworst": -0.0144
+    },
+    "oos30_dates": [
+     "2026-06-08",
+     "2026-07-17"
+    ],
+    "trades": {
+     "n": 185,
+     "wr": 31.4,
+     "avg_win": 55.06,
+     "avg_loss": -25.48,
+     "med_btp_bars": 2,
+     "p75_btp_bars": 3,
+     "never_profit_pct": 25.9,
+     "med_hold_bars": 18,
+     "censored": 0,
+     "total_pips": -42.0
+    },
+    "sizing": {
+     "scale_pct_per_pip": 0.02864,
+     "implied_mean_daily_pct_pre": -0.001,
+     "implied_mean_daily_pct_oos30": -0.011,
+     "oos30_worst_pct": -0.76
+    }
+   },
+   "XAUUSD": {
+    "pre_days": 1272,
+    "folds": [
+     {
+      "cfg": [
+       "LTF",
+       4,
+       1
+      ],
+      "tune_net": 928.7,
+      "tune_tr": 51,
+      "test_net": -268.8
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       -4
+      ],
+      "tune_net": 897.9,
+      "tune_tr": 82,
+      "test_net": -102.2
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       -4
+      ],
+      "tune_net": 809.5,
+      "tune_tr": 92,
+      "test_net": -314.9
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       -4
+      ],
+      "tune_net": 674.3,
+      "tune_tr": 93,
+      "test_net": 161.5
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       -4
+      ],
+      "tune_net": 680.7,
+      "tune_tr": 110,
+      "test_net": 0.0
+     },
+     {
+      "cfg": [
+       "LTF",
+       2,
+       1
+      ],
+      "tune_net": -183.3,
+      "tune_tr": 80,
+      "test_net": 72.6
+     },
+     {
+      "cfg": [
+       "LTF",
+       2,
+       1
+      ],
+      "tune_net": -54.5,
+      "tune_tr": 100,
+      "test_net": 297.4
+     },
+     {
+      "cfg": [
+       "MID",
+       1,
+       1
+      ],
+      "tune_net": 1622.3,
+      "tune_tr": 44,
+      "test_net": 290.7
+     },
+     {
+      "cfg": [
+       "MID",
+       1,
+       -2
+      ],
+      "tune_net": 1724.1,
+      "tune_tr": 103,
+      "test_net": 502.6
+     },
+     {
+      "cfg": [
+       "MID",
+       1,
+       -2
+      ],
+      "tune_net": 2226.8,
+      "tune_tr": 132,
+      "test_net": 944.2
+     },
+     {
+      "cfg": [
+       "MID",
+       1,
+       -2
+      ],
+      "tune_net": 3265.0,
+      "tune_tr": 150,
+      "test_net": 968.2
+     },
+     {
+      "cfg": [
+       "MID",
+       1,
+       -2
+      ],
+      "tune_net": 3408.6,
+      "tune_tr": 171,
+      "test_net": 428.8
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       -1
+      ],
+      "tune_net": 3803.5,
+      "tune_tr": 96,
+      "test_net": -1123.9
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       -1
+      ],
+      "tune_net": 2666.7,
+      "tune_tr": 85,
+      "test_net": 4276.7
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       -1
+      ],
+      "tune_net": 5327.6,
+      "tune_tr": 103,
+      "test_net": 5040.4
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       -1
+      ],
+      "tune_net": 9551.7,
+      "tune_tr": 112,
+      "test_net": -2141.2
+     }
+    ],
+    "wf": {
+     "days": 1008,
+     "total": 9032.0,
+     "mean": 8.96,
+     "green_pct": 12.8,
+     "zero_pct": 75.5,
+     "worst": -1698.5,
+     "best": 1343.7,
+     "maxdd": -2302.5,
+     "tr_per_day": 0.45,
+     "mean_over_absworst": 0.0053
+    },
+    "final_cfg": [
+     "MID",
+     3,
+     1
+    ],
+    "final_pre_net": 11134.7,
+    "final_pre_tr": 243,
+    "oos30": {
+     "days": 30,
+     "total": -1491.7,
+     "mean": -49.72,
+     "green_pct": 0.0,
+     "zero_pct": 86.7,
+     "worst": -467.5,
+     "best": 0.0,
+     "maxdd": -1491.7,
+     "tr_per_day": 0.2,
+     "mean_over_absworst": -0.1064
+    },
+    "oos30_dates": [
+     "2026-06-08",
+     "2026-07-17"
+    ],
+    "trades": {
+     "n": 249,
+     "wr": 37.3,
+     "avg_win": 265.24,
+     "avg_loss": -96.31,
+     "med_btp_bars": 1,
+     "p75_btp_bars": 2,
+     "never_profit_pct": 18.1,
+     "med_hold_bars": 17,
+     "censored": 0,
+     "total_pips": 9643.1
+    },
+    "sizing": {
+     "scale_pct_per_pip": 0.00497,
+     "implied_mean_daily_pct_pre": 0.044,
+     "implied_mean_daily_pct_oos30": -0.247,
+     "oos30_worst_pct": -2.32
+    }
+   },
+   "US500": {
+    "pre_days": 1251,
+    "folds": [
+     {
+      "cfg": [
+       "MID",
+       2,
+       -4
+      ],
+      "tune_net": 99.8,
+      "tune_tr": 163,
+      "test_net": 96.0
+     },
+     {
+      "cfg": [
+       "LTF",
+       2,
+       -2
+      ],
+      "tune_net": 366.3,
+      "tune_tr": 129,
+      "test_net": -70.6
+     },
+     {
+      "cfg": [
+       "LTF",
+       1,
+       -5
+      ],
+      "tune_net": 317.6,
+      "tune_tr": 139,
+      "test_net": -30.1
+     },
+     {
+      "cfg": [
+       "LTF",
+       2,
+       -2
+      ],
+      "tune_net": 382.3,
+      "tune_tr": 131,
+      "test_net": -95.5
+     },
+     {
+      "cfg": [
+       "LTF",
+       2,
+       -4
+      ],
+      "tune_net": 233.4,
+      "tune_tr": 118,
+      "test_net": 33.8
+     },
+     {
+      "cfg": [
+       "MID",
+       1,
+       -2
+      ],
+      "tune_net": 121.6,
+      "tune_tr": 126,
+      "test_net": -5.8
+     },
+     {
+      "cfg": [
+       "LTF",
+       2,
+       -3
+      ],
+      "tune_net": 80.9,
+      "tune_tr": 113,
+      "test_net": -112.8
+     },
+     {
+      "cfg": [
+       "MID",
+       1,
+       -1
+      ],
+      "tune_net": 99.9,
+      "tune_tr": 137,
+      "test_net": -53.9
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       -1
+      ],
+      "tune_net": 81.5,
+      "tune_tr": 108,
+      "test_net": -90.2
+     },
+     {
+      "cfg": [
+       "LTF",
+       1,
+       1
+      ],
+      "tune_net": -128.5,
+      "tune_tr": 189,
+      "test_net": -61.2
+     },
+     {
+      "cfg": [
+       "LTF",
+       1,
+       1
+      ],
+      "tune_net": -181.5,
+      "tune_tr": 213,
+      "test_net": -13.5
+     },
+     {
+      "cfg": [
+       "LTF",
+       1,
+       1
+      ],
+      "tune_net": -115.0,
+      "tune_tr": 161,
+      "test_net": -86.2
+     },
+     {
+      "cfg": [
+       "MID",
+       3,
+       1
+      ],
+      "tune_net": 375.3,
+      "tune_tr": 68,
+      "test_net": 44.2
+     },
+     {
+      "cfg": [
+       "MID",
+       1,
+       -5
+      ],
+      "tune_net": 526.6,
+      "tune_tr": 114,
+      "test_net": 74.9
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       -1
+      ],
+      "tune_net": 599.7,
+      "tune_tr": 73,
+      "test_net": -33.4
+     }
+    ],
+    "wf": {
+     "days": 945,
+     "total": -404.3,
+     "mean": -0.43,
+     "green_pct": 9.5,
+     "zero_pct": 76.5,
+     "worst": -95.3,
+     "best": 75.3,
+     "maxdd": -644.4,
+     "tr_per_day": 0.5,
+     "mean_over_absworst": -0.0045
+    },
+    "final_cfg": [
+     "MID",
+     1,
+     -4
+    ],
+    "final_pre_net": 634.3,
+    "final_pre_tr": 685,
+    "oos30": {
+     "days": 30,
+     "total": 11.0,
+     "mean": 0.37,
+     "green_pct": 6.7,
+     "zero_pct": 90.0,
+     "worst": -0.1,
+     "best": 8.7,
+     "maxdd": -0.1,
+     "tr_per_day": 0.23,
+     "mean_over_absworst": 3.6667
+    },
+    "oos30_dates": [
+     "2026-06-08",
+     "2026-07-17"
+    ],
+    "trades": {
+     "n": 692,
+     "wr": 50.1,
+     "avg_win": 10.26,
+     "avg_loss": -8.45,
+     "med_btp_bars": 1,
+     "p75_btp_bars": 3,
+     "never_profit_pct": 28.9,
+     "med_hold_bars": 5,
+     "censored": 0,
+     "total_pips": 645.3
+    },
+    "sizing": {
+     "scale_pct_per_pip": 0.02288,
+     "implied_mean_daily_pct_pre": 0.012,
+     "implied_mean_daily_pct_oos30": 0.008,
+     "oos30_worst_pct": -0.0
+    }
+   }
+  }
+ },
+ "GV014_L4": {
+  "ladder": [
+   "1h",
+   "1d",
+   "1w"
+  ],
+  "symbols": {
+   "EURUSD": {
+    "pre_days": 406,
+    "folds": [
+     {
+      "cfg": [
+       "MID",
+       4,
+       -5
+      ],
+      "tune_net": 32.3,
+      "tune_tr": 33,
+      "test_net": 112.1
+     },
+     {
+      "cfg": [
+       "MID",
+       4,
+       -5
+      ],
+      "tune_net": 36.6,
+      "tune_tr": 33,
+      "test_net": -30.8
+     }
+    ],
+    "wf": {
+     "days": 126,
+     "total": 81.3,
+     "mean": 0.64,
+     "green_pct": 1.6,
+     "zero_pct": 94.4,
+     "worst": -40.0,
+     "best": 157.9,
+     "maxdd": -70.8,
+     "tr_per_day": 0.06,
+     "mean_over_absworst": 0.0161
+    },
+    "final_cfg": [
+     "MID",
+     4,
+     -5
+    ],
+    "final_pre_net": 113.5,
+    "final_pre_tr": 40,
+    "oos30": {
+     "days": 30,
+     "total": 0.0,
+     "mean": 0.0,
+     "green_pct": 0.0,
+     "zero_pct": 100.0,
+     "worst": 0.0,
+     "best": 0.0,
+     "maxdd": 0.0,
+     "tr_per_day": 0.0,
+     "mean_over_absworst": null
+    },
+    "oos30_dates": [
+     "2026-06-08",
+     "2026-07-17"
+    ],
+    "trades": {
+     "n": 40,
+     "wr": 42.5,
+     "avg_win": 44.08,
+     "avg_loss": -27.65,
+     "med_btp_bars": 3,
+     "p75_btp_bars": 5,
+     "never_profit_pct": 25.0,
+     "med_hold_bars": 18,
+     "censored": 0,
+     "total_pips": 113.5
+    },
+    "sizing": {
+     "scale_pct_per_pip": 0.04618,
+     "implied_mean_daily_pct_pre": 0.013,
+     "implied_mean_daily_pct_oos30": 0.0,
+     "oos30_worst_pct": 0.0
+    }
+   },
+   "GBPUSD": {
+    "pre_days": 406,
+    "folds": [
+     {
+      "cfg": [
+       "LTF",
+       3,
+       -5
+      ],
+      "tune_net": 94.7,
+      "tune_tr": 31,
+      "test_net": 35.3
+     },
+     {
+      "cfg": [
+       "LTF",
+       3,
+       -5
+      ],
+      "tune_net": 130.0,
+      "tune_tr": 38,
+      "test_net": 0.0
+     }
+    ],
+    "wf": {
+     "days": 126,
+     "total": 35.3,
+     "mean": 0.28,
+     "green_pct": 2.4,
+     "zero_pct": 96.8,
+     "worst": -3.8,
+     "best": 33.7,
+     "maxdd": -3.8,
+     "tr_per_day": 0.06,
+     "mean_over_absworst": 0.0737
+    },
+    "final_cfg": [
+     "LTF",
+     3,
+     -5
+    ],
+    "final_pre_net": 59.1,
+    "final_pre_tr": 40,
+    "oos30": {
+     "days": 30,
+     "total": 0.0,
+     "mean": 0.0,
+     "green_pct": 0.0,
+     "zero_pct": 100.0,
+     "worst": 0.0,
+     "best": 0.0,
+     "maxdd": 0.0,
+     "tr_per_day": 0.0,
+     "mean_over_absworst": null
+    },
+    "oos30_dates": [
+     "2026-06-08",
+     "2026-07-17"
+    ],
+    "trades": {
+     "n": 40,
+     "wr": 57.5,
+     "avg_win": 14.9,
+     "avg_loss": -16.69,
+     "med_btp_bars": 1,
+     "p75_btp_bars": 3,
+     "never_profit_pct": 37.5,
+     "med_hold_bars": 2,
+     "censored": 0,
+     "total_pips": 59.1
+    },
+    "sizing": {
+     "scale_pct_per_pip": 0.04305,
+     "implied_mean_daily_pct_pre": 0.006,
+     "implied_mean_daily_pct_oos30": 0.0,
+     "oos30_worst_pct": 0.0
+    }
+   },
+   "XAUUSD": {
+    "pre_days": 484,
+    "folds": [
+     {
+      "cfg": [
+       "MID",
+       2,
+       -3
+      ],
+      "tune_net": 3816.3,
+      "tune_tr": 68,
+      "test_net": 3393.6
+     },
+     {
+      "cfg": [
+       "MID",
+       3,
+       -3
+      ],
+      "tune_net": 6066.9,
+      "tune_tr": 67,
+      "test_net": -1124.4
+     },
+     {
+      "cfg": [
+       "MID",
+       1,
+       1
+      ],
+      "tune_net": 6775.3,
+      "tune_tr": 41,
+      "test_net": 7298.6
+     }
+    ],
+    "wf": {
+     "days": 189,
+     "total": 9567.8,
+     "mean": 50.62,
+     "green_pct": 16.9,
+     "zero_pct": 75.1,
+     "worst": -3613.0,
+     "best": 7125.6,
+     "maxdd": -4355.7,
+     "tr_per_day": 0.25,
+     "mean_over_absworst": 0.014
+    },
+    "final_cfg": [
+     "MID",
+     1,
+     1
+    ],
+    "final_pre_net": 15327.3,
+    "final_pre_tr": 62,
+    "oos30": {
+     "days": 30,
+     "total": 0.0,
+     "mean": 0.0,
+     "green_pct": 0.0,
+     "zero_pct": 100.0,
+     "worst": 0.0,
+     "best": 0.0,
+     "maxdd": 0.0,
+     "tr_per_day": 0.0,
+     "mean_over_absworst": null
+    },
+    "oos30_dates": [
+     "2026-06-08",
+     "2026-07-17"
+    ],
+    "trades": {
+     "n": 62,
+     "wr": 48.4,
+     "avg_win": 802.36,
+     "avg_loss": -273.23,
+     "med_btp_bars": 1,
+     "p75_btp_bars": 3,
+     "never_profit_pct": 8.1,
+     "med_hold_bars": 40,
+     "censored": 0,
+     "total_pips": 15327.3
+    },
+    "sizing": {
+     "scale_pct_per_pip": 0.00177,
+     "implied_mean_daily_pct_pre": 0.056,
+     "implied_mean_daily_pct_oos30": 0.0,
+     "oos30_worst_pct": 0.0
+    }
+   },
+   "US500": {
+    "pre_days": 463,
+    "folds": [
+     {
+      "cfg": [
+       "LTF",
+       4,
+       1
+      ],
+      "tune_net": -124.4,
+      "tune_tr": 78,
+      "test_net": -62.8
+     },
+     {
+      "cfg": [
+       "MID",
+       1,
+       -1
+      ],
+      "tune_net": 243.1,
+      "tune_tr": 42,
+      "test_net": -130.0
+     },
+     {
+      "cfg": [
+       "MID",
+       1,
+       -1
+      ],
+      "tune_net": 149.3,
+      "tune_tr": 36,
+      "test_net": 133.1
+     }
+    ],
+    "wf": {
+     "days": 189,
+     "total": -59.7,
+     "mean": -0.32,
+     "green_pct": 12.7,
+     "zero_pct": 75.7,
+     "worst": -131.3,
+     "best": 85.3,
+     "maxdd": -248.8,
+     "tr_per_day": 0.33,
+     "mean_over_absworst": -0.0024
+    },
+    "final_cfg": [
+     "MID",
+     3,
+     -1
+    ],
+    "final_pre_net": 297.0,
+    "final_pre_tr": 72,
+    "oos30": {
+     "days": 30,
+     "total": -330.4,
+     "mean": -11.01,
+     "green_pct": 3.3,
+     "zero_pct": 86.7,
+     "worst": -169.9,
+     "best": 12.8,
+     "maxdd": -330.4,
+     "tr_per_day": 0.13,
+     "mean_over_absworst": -0.0648
+    },
+    "oos30_dates": [
+     "2026-06-08",
+     "2026-07-17"
+    ],
+    "trades": {
+     "n": 76,
+     "wr": 61.8,
+     "avg_win": 33.78,
+     "avg_loss": -55.9,
+     "med_btp_bars": 2,
+     "p75_btp_bars": 4,
+     "never_profit_pct": 10.5,
+     "med_hold_bars": 42,
+     "censored": 1,
+     "total_pips": -33.4
+    },
+    "sizing": {
+     "scale_pct_per_pip": 0.0306,
+     "implied_mean_daily_pct_pre": 0.02,
+     "implied_mean_daily_pct_oos30": -0.337,
+     "oos30_worst_pct": -5.2
+    }
+   }
+  }
+ }
+}

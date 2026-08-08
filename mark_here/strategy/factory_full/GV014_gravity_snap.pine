@@ -1,0 +1,66 @@
+//@version=5
+// GV-014-v2 "Gravity Snap" — gapped multi-timeframe Bollinger strategy (Strategy Factory evidence build)
+// DEFAULTS = the one surviving unit: chart on XAUUSD 5m, gravity on 30m + 1h, exit SMA(4) shift+1 on 30m.
+// To watch the LOSING fast version: put chart on 1m and set gravity TFs to 15 and 30.
+//
+// COSTS: set via slippage below (ticks per side). Suggested: XAUUSD=7, EURUSD/GBPUSD=5, US500=2.
+// You can also change it without editing code: Strategy Properties -> Slippage.
+// No repainting: all higher-TF values use the LAST COMPLETED bar ([1] + lookahead_on idiom);
+// entries/exits are decided on closed bars and filled at the next bar open — same as the Python engine.
+
+strategy("GV-014 Gravity Snap (gapped MTF)", overlay=true,
+     initial_capital=100000, default_qty_type=strategy.fixed, default_qty_value=1,
+     slippage=7, calc_on_every_tick=false, process_orders_on_close=false)
+
+gravTF1 = input.timeframe("30", "Mid gravity TF")
+gravTF2 = input.timeframe("60", "High gravity TF")
+exitTF  = input.timeframe("30", "Exit TF")
+exitLen   = input.int(4, "Exit SMA period", minval=1, maxval=10)
+exitShift = input.int(1, "Exit SMA shift (+)", minval=0, maxval=5)
+showZones = input.bool(true, "Shade gravity regimes")
+
+// ---- Bollinger helper (population stdev, matches MT5/engine) ----
+f_bands() =>
+    u200 = ta.sma(close, 200) + ta.stdev(close, 200)
+    l200 = ta.sma(close, 200) - ta.stdev(close, 200)
+    u20  = ta.sma(close, 20)  + ta.stdev(close, 20)
+    l20  = ta.sma(close, 20)  - ta.stdev(close, 20)
+    [close[1], u200[1], l200[1], u20[1], l20[1]]   // [1] = last COMPLETED bar only
+
+[mC, mU200, mL200, mU20, mL20] = request.security(syminfo.tickerid, gravTF1, f_bands(), lookahead=barmerge.lookahead_on)
+[hC, hU200, hL200, hU20, hL20] = request.security(syminfo.tickerid, gravTF2, f_bands(), lookahead=barmerge.lookahead_on)
+
+// ---- Gravity: price beyond BOTH bands on BOTH upper timeframes ----
+gravUp = mC > mU200 and mC > mU20 and hC > hU200 and hC > hU20
+gravDn = mC < mL200 and mC < mL20 and hC < hL200 and hC < hL20
+
+// ---- LTF trigger: snap back inside the 20-band (chart timeframe) ----
+ltfU20 = ta.sma(close, 20) + ta.stdev(close, 20)
+ltfL20 = ta.sma(close, 20) - ta.stdev(close, 20)
+trigLong  = ta.crossunder(close, ltfU20)
+trigShort = ta.crossover(close, ltfL20)
+
+// ---- Exit: shifted SMA on exit TF (close vs SMA from `shift` bars back) ----
+f_exit() =>
+    s = ta.sma(close, exitLen)
+    [close[1], s[1 + exitShift]]
+[eC, eSMA] = request.security(syminfo.tickerid, exitTF, f_exit(), lookahead=barmerge.lookahead_on)
+exitLong  = eC < eSMA
+exitShort = eC > eSMA
+
+// ---- Orders: enter only when flat (engine takes no reverses) ----
+if gravUp and trigLong and strategy.position_size == 0
+    strategy.entry("L", strategy.long)
+if gravDn and trigShort and strategy.position_size == 0
+    strategy.entry("S", strategy.short)
+if strategy.position_size > 0 and exitLong
+    strategy.close("L")
+if strategy.position_size < 0 and exitShort
+    strategy.close("S")
+
+// ---- Visuals ----
+plot(ltfU20, "LTF upper 20-band", color=color.new(color.teal, 40))
+plot(ltfL20, "LTF lower 20-band", color=color.new(color.teal, 40))
+bgcolor(showZones and gravUp ? color.new(color.green, 88) : showZones and gravDn ? color.new(color.red, 88) : na)
+plotshape(gravUp and trigLong and strategy.position_size == 0, style=shape.triangleup, location=location.belowbar, color=color.green, size=size.small, title="Long entry")
+plotshape(gravDn and trigShort and strategy.position_size == 0, style=shape.triangledown, location=location.abovebar, color=color.red, size=size.small, title="Short entry")

@@ -1,0 +1,37 @@
+# WHAT: data sources + audit thresholds (Phase 3).
+# CHANGE LOG:
+# - 2026-07-25  multi-symbol + spread cost notes — WHY: train all broker assets; gold/US30 typically razor-thin spread, no txn fees.
+#
+# SYMBOLS (ONE brain, many markets):
+#   Bootcamp + expansion — bot may open trades on ANY of these when data is present.
+#   Put one M1 CSV per symbol in m1_csv_dir (or Drive Camillion_data on Colab).
+#
+# SPREAD / FEES (broker-typical; verify on your account):
+#   XAUUSD  — typically razor-thin spread; no transaction fees (commission often 0)
+#   US30    — typically razor-thin spread; no transaction fees
+#   EURUSD  — normal FX spread (wider than gold indices in relative cost terms)
+#   GBPUSD  — normal FX spread
+#   Brain sees obs::spread_rel (spread vs recent median) so it can stand down when spread is hostile.
+#
+# CACHE (plain English — read this before you panic about crashes):
+#   A "cache" is a SAVED SHORTCUT of pre-built features so training does not rebuild from CSV every time.
+#   If you turn signal slots ON, add symbols, or change the feature engine, DELETE the old shortcuts
+#   or the bot mixes OLD columns with a NEW brain → shape errors (e.g. 6820 vs 1820).
+#   Clear these once after any feature/symbol change:
+#     artifacts/gpu_cache_*.npz
+#     artifacts/symbol_cache/*
+#   Then rebuild. Do not delete PROVEN checkpoint .pt files in models/ when clearing caches.
+#
+# CURRICULUM CSVs (in-repo): data/raw/*.csv  (cookiecutter raw layer)
+
+m1_csv_dir: ../data              # Fable5_Foundation/data on Monty's machine; on Colab → Drive folder with 4 CSVs
+symbols:
+  bootcamp: XAUUSD
+  expansion: [EURUSD, GBPUSD, US30]
+  # All four are first-class for SIGON multi-symbol train (not gold-only).
+audit: {max_gap_minutes_flag: 120, spread_spike_flag_mult: 8}
+synthetic_fallback: true         # ADR-0010: used overnight until the zip lands
+point_size: 0.01                 # gold default; per-symbol table in training/gpu_data.py
+contract_size: 100.0             # gold oz per 1.0 lot (0.01 lot = 1 unit)
+broker_tz: Europe/Athens         # FTMO-style EET/EEST assumption — VERIFY on real data (audit S2)
+convert_to_day_tz: true          # convert stamps to goals.day_boundary_tz before day-split

@@ -1,0 +1,225 @@
+{
+  "generated_at": "2026-08-07T11:42:00.365774+00:00",
+  "scope": "scalping_only",
+  "rule": "Highest dual score = best sharpe_ratio AND profit together (both must win).",
+  "best": {
+    "strategy_id": "shifted_envelope_breakout__shifted_envelope_breakout__m2926",
+    "name": "Gym elite shifted_envelope_breakout__m2926",
+    "agent_id": "scalping_crown_gate",
+    "sharpe_ratio": 9.4432,
+    "profit": 1028.92,
+    "dual_score": 19.021975447773098,
+    "date": "2026-08-04",
+    "ts": "2026-08-04T00:58:36.762199+00:00"
+  },
+  "top": [
+    {
+      "rank": 1,
+      "strategy_id": "shifted_envelope_breakout__shifted_envelope_breakout__m2926",
+      "name": "Gym elite shifted_envelope_breakout__m2926",
+      "agent_id": "scalping_crown_gate",
+      "sharpe_ratio": 9.4432,
+      "profit": 1028.92,
+      "dual_score": 19.021975447773098,
+      "date": "2026-08-04"
+    },
+    {
+      "rank": 2,
+      "strategy_id": "shifted_envelope_breakout__m2565",
+      "name": "Shifted price envelope breakout mutant 1807 mutant 9077 mutant 3628 mutant 4514 mutant 2565",
+      "agent_id": "scalping_crown_gate",
+      "sharpe_ratio": 8.6661,
+      "profit": 1274.72,
+      "dual_score": 18.450430093663602,
+      "date": "2026-08-04"
+    },
+    {
+      "rank": 3,
+      "strategy_id": "open_anywhere__m4238",
+      "name": "Gym elite shifted_envelope_breakout__shifted_envelope_breakout__m7770 mutant 4238",
+      "agent_id": "scalping_crown_gate",
+      "sharpe_ratio": 8.6661,
+      "profit": 1274.72,
+      "dual_score": 18.450430093663602,
+      "date": "2026-08-04"
+    },
+    {
+      "rank": 4,
+      "strategy_id": "shifted_envelope_breakout__m7807",
+      "name": "Gym elite shifted_envelope_breakout__shifted_envelope_breakout__m3458 mutant 7807",
+      "agent_id": "scalping_crown_gate",
+      "sharpe_ratio": 8.6661,
+      "profit": 1274.72,
+      "dual_score": 18.450430093663602,
+      "date": "2026-08-04"
+    },
+    {
+      "rank": 5,
+      "strategy_id": "shifted_envelope_breakout__m5667",
+      "name": "Shifted price envelope breakout mutant 3550 mutant 2926 mutant 5667",
+      "agent_id": "scalping_crown_gate",
+      "sharpe_ratio": 8.5491,
+      "profit": 1129.16,
+      "dual_score": 17.633539555757945,
+      "date": "2026-08-04"
+    },
+    {
+      "rank": 6,
+      "strategy_id": "shifted_envelope_breakout__m5523",
+      "name": "Gym elite shifted_envelope_breakout__m1590 mutant 5523",
+      "agent_id": "scalping_crown_gate",
+      "sharpe_ratio": 8.4646,
+      "profit": 1023.78,
+      "dual_score": 17.029252774990056,
+      "date": "2026-08-03"
+    },
+    {
+      "rank": 7,
+      "strategy_id": "shifted_envelope_breakout__shifted_envelope_breakout__m3458",
+      "name": "Gym elite shifted_envelope_breakout__m3458",
+      "agent_id": "scalping_crown_gate",
+      "sharpe_ratio": 8.4646,
+      "profit": 1023.78,
+      "dual_score": 17.029252774990056,
+      "date": "2026-08-03"
+    },
+    {
+      "rank": 8,
+      "strategy_id": "shifted_envelope_breakout__shifted_envelope_breakout__m2926",
+      "name": "Gym elite shifted_envelope_breakout__m2926",
+      "agent_id": "scalping_crown_gate",
+      "sharpe_ratio": 8.5066,
+      "profit": 997.02,
+      "dual_score": 17.00051570915271,
+      "date": "2026-08-04"
+    },
+    {
+      "rank": 9,
+      "strategy_id": "shifted_envelope_breakout__shifted_envelope_breakout__m7770",
+      "name": "Gym elite shifted_envelope_breakout__m7770",
+      "agent_id": "scalping_crown_gate",
+      "sharpe_ratio": 8.1291,
+      "profit": 1180.38,
+      "dual_score": 16.960984628842688,
+      "date": "2026-08-03"
+    },
+    {
+      "rank": 10,
+      "strategy_id": "shifted_envelope_breakout__m8061",
+      "name": "Shifted price envelope breakout mutant 3550 mutant 2926 mutant 8061",
+      "agent_id": "scalping_crown_gate",
+      "sharpe_ratio": 8.1291,
+      "profit": 1180.38,
+      "dual_score": 16.960984628842688,
+      "date": "2026-08-03"
+    },
+    {
+      "rank": 11,
+      "strategy_id": "shifted_envelope_breakout__m2926",
+      "name": "Shifted price envelope breakout mutant 3550 mutant 2926",
+      "agent_id": "scalping_crown_gate",
+      "sharpe_ratio": 8.2563,
+      "profit": 1028.31,
+      "dual_score": 16.62865229867472,
+      "date": "2026-08-03"
+    },
+    {
+      "rank": 12,
+      "strategy_id": "shifted_envelope_breakout__m7770",
+      "name": "Shifted price envelope breakout mutant 3550 mutant 2926 mutant 7770",
+      "agent_id": "scalping_crown_gate",
+      "sharpe_ratio": 7.87,
+      "profit": 1186.13,
+      "dual_score": 16.441185168750003,
+      "date": "2026-08-03"
+    },
+    {
+      "rank": 13,
+      "strategy_id": "shifted_envelope_breakout__m1733",
+      "name": "Gym elite shifted_envelope_breakout__shifted_envelope_breakout__m7770 mutant 1733",
+      "agent_id": "scalping_crown_gate",
+      "sharpe_ratio": 7.8949,
+      "profit": 1160.43,
+      "dual_score": 16.399543380729394,
+      "date": "2026-08-04"
+    },
+    {
+      "rank": 14,
+      "strategy_id": "shifted_envelope_breakout__m4682",
+      "name": "Gym elite shifted_envelope_breakout__m7770 mutant 4682",
+      "agent_id": "scalping_crown_gate",
+      "sharpe_ratio": 7.8949,
+      "profit": 1160.43,
+      "dual_score": 16.399543380729394,
+      "date": "2026-08-04"
+    },
+    {
+      "rank": 15,
+      "strategy_id": "shifted_envelope_breakout__m5567",
+      "name": "Gym elite shifted_envelope_breakout__m5306 mutant 5567",
+      "agent_id": "scalping_crown_gate",
+      "sharpe_ratio": 7.9204,
+      "profit": 1122.81,
+      "dual_score": 16.313072011213688,
+      "date": "2026-08-03"
+    },
+    {
+      "rank": 16,
+      "strategy_id": "shifted_envelope_breakout__m4299",
+      "name": "Gym elite shifted_envelope_breakout__m2565 mutant 4299",
+      "agent_id": "scalping_crown_gate",
+      "sharpe_ratio": 7.9825,
+      "profit": 1084.01,
+      "dual_score": 16.293543807973972,
+      "date": "2026-08-04"
+    },
+    {
+      "rank": 17,
+      "strategy_id": "shifted_envelope_breakout__m3688",
+      "name": "Shifted price envelope breakout mutant 1807 mutant 9077 mutant 3628 mutant 4514 mutant 3688",
+      "agent_id": "scalping_crown_gate",
+      "sharpe_ratio": 7.8964,
+      "profit": 1118.62,
+      "dual_score": 16.24801431052196,
+      "date": "2026-08-03"
+    },
+    {
+      "rank": 18,
+      "strategy_id": "shifted_envelope_breakout__m3130",
+      "name": "Invented Shifted price envelope breakout 8742 mutant 3130",
+      "agent_id": "scalping_crown_gate",
+      "sharpe_ratio": 7.8859,
+      "profit": 1066.79,
+      "dual_score": 16.03089334022563,
+      "date": "2026-08-04"
+    },
+    {
+      "rank": 19,
+      "strategy_id": "shifted_envelope_breakout",
+      "name": "Shifted price envelope breakout mutant 1807 mutant 9077 mutant 3628 mutant 4514",
+      "agent_id": "scalping_crown_gate",
+      "sharpe_ratio": 7.7453,
+      "profit": 1088.53,
+      "dual_score": 15.826176051526078,
+      "date": "2026-08-04"
+    },
+    {
+      "rank": 20,
+      "strategy_id": "open_anywhere__m9474",
+      "name": "Gym elite shifted_envelope_breakout__m3688 mutant 9474",
+      "agent_id": "scalping_crown_gate",
+      "sharpe_ratio": 7.6793,
+      "profit": 1048.82,
+      "dual_score": 15.543818063383274,
+      "date": "2026-08-03"
+    }
+  ],
+  "submission_count": 3815,
+  "proven_count": 3814,
+  "never_erase": true,
+  "paths": {
+    "alpha_making_md": "data/knowledge/trading/ALPHA_MAKING.md",
+    "submissions_jsonl": "data/knowledge/trading/ALPHA_MAKING_SUBMISSIONS_CANONICAL.jsonl",
+    "mark_notes": "data/knowledge/trading/ALPHA_MAKING_MARK_NOTES.md"
+  }
+}

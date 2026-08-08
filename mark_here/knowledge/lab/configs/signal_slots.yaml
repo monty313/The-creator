@@ -1,0 +1,110 @@
+# 500 signal slots. +1 buy | -1 sell | 0 empty. RL may ignore.
+# ... 76-79 smma_rsi | 80-83 agree | 84-86 dvmr | 87-89 mv profit | 90-92 bb_rsi_sma sets | 93-499 free
+# CHANGE LOG:
+# - 2026-07-30  slots 90-92 bb_rsi_sma sets A/B/C (5m+30m/1h, 15m+1h/4h, 30m+4h/1d)
+# - 2026-07-30  slots 87-89 momentum vector profit-tuned (30m+4h US30 winners)
+# - 2026-07-29  slots 84-86 dvmr pack (champ 1h+1d, 30m+4h v2, pulse)
+# - 2026-07-29  slot 84 dvmr_champ_1h_1d (highest EURUSD return DVMR research)
+# - 2026-07-25  slots 80-83 agree composites (≥70% tests)
+# - 2026-07-25  slots 76-79 smma_rsi >60% only (15m+4h, Set C)
+# - 2026-07-25  slots 67-75 rsi2_ema | 64-66 stoch_ema | 56-63 stoch_mtf
+
+n_slots: 500
+
+filled:
+  0: {name: mo_bread_and_butter_pull_set1, enabled: true, kind: pull_set1, family: momentum_one}
+  1: {name: mo_continuation_set1, enabled: true, kind: cont_set1, family: momentum_one}
+  2: {name: mo_bread_and_butter_pull_set2, enabled: true, kind: pull_set2, family: momentum_one}
+  3: {name: mo_continuation_set2, enabled: true, kind: cont_set2, family: momentum_one}
+  4: {name: mo_pull_set3, enabled: true, kind: pull_set3, family: momentum_one}
+  5: {name: mo_continuation_set3, enabled: true, kind: cont_set3, family: momentum_one}
+  6: {name: mo_rev_set1, enabled: true, kind: rev_set1, family: momentum_one}
+  7: {name: mo_rev_set2, enabled: true, kind: rev_set2, family: momentum_one}
+  8: {name: mo_rev_set3, enabled: true, kind: rev_set3, family: momentum_one}
+  10: {name: cam_gravity_30m_4h, enabled: true, kind: cam_gravity_30m_4h, family: camillion, fidelity: proxy}
+  11: {name: cam_regime_pulse_trend_5m_30m, enabled: true, kind: cam_regime_pulse_trend_5m_30m, family: camillion, fidelity: proxy}
+  12: {name: cam_regime_pulse_pullback_5m_30m, enabled: true, kind: cam_regime_pulse_pullback_5m_30m, family: camillion, fidelity: proxy}
+  13: {name: cam_regime_pulse_trend_30m_4h, enabled: true, kind: cam_regime_pulse_trend_30m_4h, family: camillion, fidelity: proxy}
+  14: {name: cam_regime_pulse_pullback_30m_4h, enabled: true, kind: cam_regime_pulse_pullback_30m_4h, family: camillion, fidelity: proxy}
+  15: {name: cam_cci_surge_trend_5m_30m, enabled: true, kind: cam_cci_surge_trend_5m_30m, family: camillion, fidelity: proxy}
+  16: {name: cam_cci_surge_pullback_5m_30m, enabled: true, kind: cam_cci_surge_pullback_5m_30m, family: camillion, fidelity: proxy}
+  17: {name: cam_cci_surge_trend_30m_4h, enabled: true, kind: cam_cci_surge_trend_30m_4h, family: camillion, fidelity: proxy}
+  18: {name: cam_cci_surge_pullback_30m_4h, enabled: true, kind: cam_cci_surge_pullback_30m_4h, family: camillion, fidelity: proxy}
+  19: {name: cam_sma_stack_trend_5m_30m, enabled: true, kind: cam_sma_stack_trend_5m_30m, family: camillion, fidelity: proxy}
+  20: {name: cam_sma_stack_pullback_5m_30m, enabled: true, kind: cam_sma_stack_pullback_5m_30m, family: camillion, fidelity: proxy}
+  21: {name: cam_sma_stack_trend_30m_4h, enabled: true, kind: cam_sma_stack_trend_30m_4h, family: camillion, fidelity: proxy}
+  22: {name: cam_sma_stack_pullback_30m_4h, enabled: true, kind: cam_sma_stack_pullback_30m_4h, family: camillion, fidelity: proxy}
+  23: {name: cam_sma_reversion_rally_5m_30m, enabled: true, kind: cam_sma_reversion_rally_5m_30m, family: camillion, fidelity: proxy}
+  24: {name: cam_sma_reversion_rally_30m_4h, enabled: true, kind: cam_sma_reversion_rally_30m_4h, family: camillion, fidelity: proxy}
+  25: {name: cam_orb_ny_breakout_indices, enabled: false, kind: cam_orb_ny_breakout, family: camillion, fidelity: stub}
+  26: {name: cam_adx_di_align_5m_30m, enabled: true, kind: cam_adx_di_align_5m_30m, family: camillion, fidelity: weak_proxy}
+  27: {name: cam_adx_di_align_30m_4h, enabled: true, kind: cam_adx_di_align_30m_4h, family: camillion, fidelity: weak_proxy}
+  28: {name: dt_ftmo_alpha, enabled: true, kind: dt_ftmo_alpha, family: decision_tree, fidelity: proxy}
+  29: {name: s11_cci, enabled: true, kind: s11_cci, family: decision_tree, fidelity: proxy}
+  30: {name: s11_pull, enabled: true, kind: s11_pull, family: decision_tree, fidelity: proxy}
+  31: {name: s11_m15, enabled: true, kind: s11_m15, family: decision_tree, fidelity: proxy}
+  32: {name: phase_cci_align, enabled: true, kind: phase_cci_align, family: rl_trading_live, fidelity: proxy}
+  33: {name: phase_hilo_trend, enabled: true, kind: phase_hilo_trend, family: rl_trading_live, fidelity: proxy}
+  34: {name: phase_bb_mid, enabled: true, kind: phase_bb_mid, family: rl_trading_live, fidelity: proxy}
+  35: {name: phase_sma_stack, enabled: true, kind: phase_sma_stack, family: rl_trading_live, fidelity: proxy}
+  36: {name: phase_atr_expand, enabled: true, kind: phase_atr_expand, family: rl_trading_live, fidelity: proxy}
+  37: {name: sma_mtf_A_mid, enabled: true, kind: sma_mtf_A_mid, family: sma_mtf, fidelity: native}
+  38: {name: sma_mtf_B_mid, enabled: true, kind: sma_mtf_B_mid, family: sma_mtf, fidelity: native}
+  39: {name: sma_mtf_C_mid, enabled: true, kind: sma_mtf_C_mid, family: sma_mtf, fidelity: native}
+  40: {name: sma_mtf_A_outer, enabled: true, kind: sma_mtf_A_outer, family: sma_mtf, fidelity: native}
+  41: {name: sma_mtf_B_outer, enabled: true, kind: sma_mtf_B_outer, family: sma_mtf, fidelity: native}
+  42: {name: sma_mtf_C_outer, enabled: true, kind: sma_mtf_C_outer, family: sma_mtf, fidelity: native}
+  43: {name: sma_mtf_agree_mid, enabled: true, kind: sma_mtf_agree_mid, family: sma_mtf, fidelity: native}
+  44: {name: sma_mtf_agree_outer, enabled: true, kind: sma_mtf_agree_outer, family: sma_mtf, fidelity: native}
+  45: {name: rsi_mtf_A_momentum, enabled: true, kind: rsi_mtf_A_momentum, family: rsi_mtf, fidelity: native}
+  46: {name: rsi_mtf_A_pullback, enabled: true, kind: rsi_mtf_A_pullback, family: rsi_mtf, fidelity: native}
+  47: {name: rsi_mtf_A_combined, enabled: true, kind: rsi_mtf_A_combined, family: rsi_mtf, fidelity: native}
+  48: {name: rsi_mtf_B_momentum, enabled: true, kind: rsi_mtf_B_momentum, family: rsi_mtf, fidelity: native}
+  49: {name: rsi_mtf_B_pullback, enabled: true, kind: rsi_mtf_B_pullback, family: rsi_mtf, fidelity: native}
+  50: {name: rsi_mtf_B_combined, enabled: true, kind: rsi_mtf_B_combined, family: rsi_mtf, fidelity: native}
+  51: {name: rsi_mtf_C_momentum, enabled: true, kind: rsi_mtf_C_momentum, family: rsi_mtf, fidelity: native}
+  52: {name: rsi_mtf_C_pullback, enabled: true, kind: rsi_mtf_C_pullback, family: rsi_mtf, fidelity: native}
+  53: {name: rsi_mtf_C_combined, enabled: true, kind: rsi_mtf_C_combined, family: rsi_mtf, fidelity: native}
+  54: {name: rsi_mtf_agree, enabled: true, kind: rsi_mtf_agree, family: rsi_mtf, fidelity: native}
+  55: {name: rsi_mtf_any, enabled: true, kind: rsi_mtf_any, family: rsi_mtf, fidelity: native}
+  56: {name: stoch_mtf_A_momentum, enabled: true, kind: stoch_mtf_A_momentum, family: stoch_mtf, fidelity: native}
+  57: {name: stoch_mtf_A_pullback, enabled: true, kind: stoch_mtf_A_pullback, family: stoch_mtf, fidelity: native}
+  58: {name: stoch_mtf_A_combined, enabled: true, kind: stoch_mtf_A_combined, family: stoch_mtf, fidelity: native}
+  59: {name: stoch_mtf_B_momentum, enabled: true, kind: stoch_mtf_B_momentum, family: stoch_mtf, fidelity: native}
+  60: {name: stoch_mtf_B_pullback, enabled: true, kind: stoch_mtf_B_pullback, family: stoch_mtf, fidelity: native}
+  61: {name: stoch_mtf_B_combined, enabled: true, kind: stoch_mtf_B_combined, family: stoch_mtf, fidelity: native}
+  62: {name: stoch_mtf_C_momentum, enabled: true, kind: stoch_mtf_C_momentum, family: stoch_mtf, fidelity: native}
+  63: {name: stoch_mtf_agree, enabled: true, kind: stoch_mtf_agree, family: stoch_mtf, fidelity: native}
+  64: {name: stoch_ema_A, enabled: true, kind: stoch_ema_A, family: stoch_ema, fidelity: native}
+  65: {name: stoch_ema_B, enabled: true, kind: stoch_ema_B, family: stoch_ema, fidelity: native}
+  66: {name: stoch_ema_C, enabled: true, kind: stoch_ema_C, family: stoch_ema, fidelity: native}
+  67: {name: rsi2_ema_1m_15m, enabled: true, kind: rsi2_ema_1m_15m, family: rsi2_ema, fidelity: native}
+  68: {name: rsi2_ema_1m_30m, enabled: true, kind: rsi2_ema_1m_30m, family: rsi2_ema, fidelity: native}
+  69: {name: rsi2_ema_5m_1h, enabled: true, kind: rsi2_ema_5m_1h, family: rsi2_ema, fidelity: native}
+  70: {name: rsi2_ema_5m_4h, enabled: true, kind: rsi2_ema_5m_4h, family: rsi2_ema, fidelity: native}
+  71: {name: rsi2_ema_15m_4h, enabled: true, kind: rsi2_ema_15m_4h, family: rsi2_ema, fidelity: native}
+  72: {name: rsi2_ema_15m_1d, enabled: true, kind: rsi2_ema_15m_1d, family: rsi2_ema, fidelity: native}
+  73: {name: rsi2_ema_A, enabled: true, kind: rsi2_ema_A, family: rsi2_ema, fidelity: native}
+  74: {name: rsi2_ema_B, enabled: true, kind: rsi2_ema_B, family: rsi2_ema, fidelity: native}
+  75: {name: rsi2_ema_C, enabled: true, kind: rsi2_ema_C, family: rsi2_ema, fidelity: native}
+  76: {name: smma_rsi_15m_4h_V0, enabled: true, kind: smma_rsi_15m_4h_V0, family: smma_rsi, fidelity: native}
+  77: {name: smma_rsi_15m_4h_V1, enabled: true, kind: smma_rsi_15m_4h_V1, family: smma_rsi, fidelity: native}
+  78: {name: smma_rsi_C_V0, enabled: true, kind: smma_rsi_C_V0, family: smma_rsi, fidelity: native}
+  79: {name: smma_rsi_C_V1, enabled: true, kind: smma_rsi_C_V1, family: smma_rsi, fidelity: native}
+  80: {name: agree_seA_r2A, enabled: true, kind: agree_seA_r2A, family: agree, fidelity: native, note: "seA∩r2A ~75%@10"}
+  81: {name: agree_seB_r2B_epB, enabled: true, kind: agree_seB_r2B_epB, family: agree, fidelity: native, note: "2of seB+r2B+epB ~70-72%"}
+  82: {name: agree_2of_top4, enabled: true, kind: agree_2of_top4, family: agree, fidelity: native, note: "2of seA+r2A+seB+smaC ~76/71%"}
+  83: {name: agree_seA_r2A_atr, enabled: true, kind: agree_seA_r2A_atr, family: agree, fidelity: native, note: "seA∩r2A+ATR ~78-81%"}
+  # DVMR champion — highest return recipe from multi-TF research (EURUSD ~+18.8% IS)
+  # base=1h HTF=1d n=5 m=15 thr=0.50 sticky hard-style. Needs new train if obs slots were OFF.
+  84: {name: dvmr_champ_1h_1d, enabled: true, kind: dvmr_champ_1h_1d, family: dvmr, fidelity: native, note: "1h+1d n5/m15 thr0.50 sticky; best DVMR return ~+18.8%"}
+  85: {name: dvmr_30m_4h_v2, enabled: true, kind: dvmr_30m_4h_v2, family: dvmr, fidelity: native, note: "30m+4h n5/m20 thr0.50 sticky; strong EURUSD runner-up"}
+  86: {name: dvmr_champ_1h_1d_pulse, enabled: true, kind: dvmr_champ_1h_1d_pulse, family: dvmr, fidelity: native, note: "same as 84 but entry-bar pulse only"}
+  # Momentum Vector M — US30 profit recipes (30m+4h long). SL/TP noted from backtest only.
+  87: {name: mv_best_quality_30m_4h_long, enabled: true, kind: mv_best_quality_30m_4h_long, family: momentum_vector, fidelity: native, note: "BEST QUALITY: thr35 hm25 long SL2 TP4; US30 +99.7% PF1.23 Sh0.97"}
+  88: {name: mv_strong3_30m_4h_long, enabled: true, kind: mv_strong3_30m_4h_long, family: momentum_vector, fidelity: native, note: "STRONG#3: thr35 hm25 long SL1.5 TP3.5; +97.4% PF1.21 (same entries as 87)"}
+  89: {name: mv_strong4_30m_4h_long, enabled: true, kind: mv_strong4_30m_4h_long, family: momentum_vector, fidelity: native, note: "STRONG#4: thr25 hm12 long SL2 TP4; US30 +81.3% PF1.12 Sh0.71"}
+  # BB / RSI-BB / SMA multi-set agents (HTF price BB100/0.5/sh2; LTF RSI5 + BB on RSI 10/1/sh5)
+  90: {name: bb_rsi_sma_A, enabled: true, kind: bb_rsi_sma_A, family: bb_rsi_sma, fidelity: native, note: "Set A: 5m + 30m/1h pulse (HTF BB100/0.5; LTF RSI5+BB on RSI)"}
+  91: {name: bb_rsi_sma_B, enabled: true, kind: bb_rsi_sma_B, family: bb_rsi_sma, fidelity: native, note: "Set B: 15m + 1h/4h pulse"}
+  92: {name: bb_rsi_sma_C, enabled: true, kind: bb_rsi_sma_C, family: bb_rsi_sma, fidelity: native, note: "Set C: 30m + 4h/1d pulse"}

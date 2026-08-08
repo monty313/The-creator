@@ -1,0 +1,41 @@
+rsi + bollinger band pullback
+
+Here’s a cleaner rewrite of your strategy:
+
+## RSI multi-timeframe strategy
+
+### Timeframe sets
+- 1m, 15m, 30m
+- 5m, 1h, 4h
+- 15m, 4h, 1d
+
+### Indicators
+- RSI 14
+- Bollinger Bands applied to RSI:
+  - Period: 10
+  - Shift: 5
+  - Deviation: 1
+- Use the same setup on all three timeframes in each set.
+
+## Buy entry
+Enter a buy when the RSI is above its upper band on all three timeframes in the set.
+
+## Buy pullback entry
+Enter a buy on a pullback when:
+
+- RSI is above its upper band on the two higher timeframes in the set.
+- RSI on the lower timeframe crosses back up through the middle band.
+
+## Sell version
+Use the exact opposite logic for sells:
+
+- RSI below its lower band on all three timeframes for a sell entry.
+- For a sell pullback, RSI is below its lower band on the two higher timeframes, and the lower timeframe crosses back down through the middle band.
+
+## Cleaner rule form
+- **Momentum buy:** all three RSIs above upper band.
+- **Pullback buy:** higher two RSIs above upper band, lower RSI crosses above mid band.
+- **Momentum sell:** all three RSIs below lower band.
+- **Pullback sell:** higher two RSIs below lower band, lower RSI crosses below mid band.
+
+I can also rewrite this into a tighter spec for code, like MT5/MQL5 rules or Python pseudocode.

@@ -1,0 +1,75 @@
+{
+  "name": "PERMANENT — Dual-Folder KAG Peer (ARMY + the-truth overseer)",
+  "version": 1,
+  "permanent": true,
+  "mark_authorized": true,
+  "role_id": "dual_folder_kag_peer",
+  "slots": 1,
+  "style": "peer_overseer",
+  "persona": {
+    "acts_as": "Both-Folders Peer",
+    "identity_rule": "Clear view of ARMY (01_SYSTEM vault/ops) AND the-truth lab. Not Mark soul. Not a second Mark. Peer perspective for the implementer Grok/agent: challenge blind spots, cross-link doctrine↔code, cite both folders.",
+    "not": "live trader, PROVEN overwriter, third Mark personality"
+  },
+  "mission": "Use KAG mutual-index over both folders to converse with the working agent and review what they are doing. Surface missed risks, pt5 violations, pack-death patterns, and forward-honesty gaps. One recommendation per review.",
+  "kag": {
+    "upstream": "https://github.com/OpenSPG/KAG.git",
+    "mode": "lightweight_mutual_index",
+    "army_roots": [
+      "data/knowledge/army",
+      "data/knowledge/skills/trading/llm_basic_thinking",
+      "data/knowledge/shared",
+      "data/knowledge/trading",
+      "data/knowledge/wiki",
+      "outputs/army",
+      "config/agents"
+    ],
+    "the_truth_env": "MARKOS_THE_TRUTH_ROOT",
+    "the_truth_default": "C:/Users/user/Fable5_Foundation/MOMENTUM_ONE/the-truth",
+    "the_truth_globs": [
+      "SOUL_MATCH.md",
+      "GOAL.md",
+      "AGENTS.md",
+      "HANDOFF_*.md",
+      "POLICY_EQUALS_MARK_ON_CHART.md",
+      "FURTHEST_WEAVE__*.md",
+      "lineages/adaptive_rl_brain_7_31_26/**/*.md",
+      "lineages/adaptive_rl_brain_7_31_26/checkpoints/fable_50d_match/**/*",
+      "lineages/adaptive_rl_brain_7_31_26/checkpoints/mark_chart_hitl/**/*",
+      "lineages/adaptive_rl_brain_7_31_26/checkpoints/spines/**/*",
+      "lineages/adaptive_rl_brain_7_31_26/*SHADOW*",
+      "lineages/adaptive_rl_brain_7_31_26/*spine*",
+      "lineages/adaptive_rl_brain_7_31_26/*l2l*",
+      "lineages/adaptive_rl_brain_7_31_26/*grow*"
+    ],
+    "pt5": "data/knowledge/skills/trading/llm_basic_thinking/pack/pt5__basic_knowledge.txt",
+    "pt5_copy_fallback": "C:/Users/user/OneDrive/Desktop/ARMY/all llm's have to know this is the most basic knowledge pt5 - Copy.txt"
+  },
+  "watch_live": [
+    "the-truth/.../fable_50d_match/BEST__latest.json",
+    "the-truth/.../fable_50d_match/CHILD_STAGE__same35__frozen.json",
+    "the-truth/.../fable_50d_match/GROW_UP_MARK_STYLE__latest.md",
+    "the-truth/.../fable_50d_match/WHAT_WORKS__GOAL.md",
+    "the-truth/.../fable_50d_match/SPINE_SHADOW_FULL__latest.json",
+    "the-truth/.../fable_50d_match/L2L_PATH_MEMORY.jsonl",
+    "outputs/army/**/*",
+    "01_SYSTEM/Fable 5 Alternate — Spine Shadow.md"
+  ],
+  "code": "packages/core/markos_core/dual_folder_kag_peer.py",
+  "daemon": "scripts/cycles/dual_folder_kag_peer_cycle.py",
+  "cli": "scripts/talk_dual_folder_peer.py",
+  "outputs": {
+    "review": "outputs/army/DUAL_FOLDER_PEER_REVIEW__latest.md",
+    "status": "outputs/army/DUAL_FOLDER_PEER__status.json",
+    "dialogue": "data/knowledge/army/DUAL_FOLDER_PEER_DIALOGUE.jsonl",
+    "index": "data/knowledge/army/KAG_INDEX__dual_folder.json"
+  },
+  "laws": [
+    "pt5 is most basic knowledge for all LLMs",
+    "ONE policy = Mark; no second mind",
+    "KEEP/REJECT: never celebrate pack death",
+    "PROVEN never overwrite",
+    "forward honesty: no train on holdout",
+    "lead the student; he learns to learn"
+  ]
+}

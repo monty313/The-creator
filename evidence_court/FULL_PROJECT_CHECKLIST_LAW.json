@@ -1,0 +1,38 @@
+{
+  "law_id": "A30",
+  "name": "FULL_PROJECT_CHECKLIST_LAW",
+  "status": "PERMANENT",
+  "promoted_date": "2026-08-07",
+  "human_order": "Monty — Creator full-project checklist then Court each item; then Mark full-project+KAG checklist then Court each item",
+  "immutable": true,
+  "phases": [
+    {
+      "id": 1,
+      "owner": "Creator",
+      "scope": "entire_project_internet_systems",
+      "checklist_file": "evidence_court/schedules/CREATOR_GOAL_CHECKLIST.md",
+      "gate_to_next": "all_items_terminal_ruling"
+    },
+    {
+      "id": 2,
+      "owner": "Mark",
+      "scope": "entire_project_plus_kag_knowledge",
+      "checklist_file": "evidence_court/schedules/MARK_GOAL_CHECKLIST.md",
+      "starts_when": "phase_1_complete"
+    }
+  ],
+  "each_item_requires": [
+    "A10_openings_counters",
+    "A15_counsel",
+    "critic_optimist",
+    "judge_irac",
+    "measurement_or_explicit_waive"
+  ],
+  "forbidden": [
+    "skip_court_on_checklist_item",
+    "start_mark_phase_before_creator_complete",
+    "claim_goal_done_with_open_checklist_items"
+  ],
+  "master_schedule": "evidence_court/schedules/SCHEDULE.md",
+  "test_pin": "evidence_court/tests/test_full_project_checklist_law.py"
+}

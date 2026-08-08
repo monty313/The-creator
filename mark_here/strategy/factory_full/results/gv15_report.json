@@ -1,0 +1,650 @@
+{
+ "EURUSD_L0": {
+  "ladder": [
+   "5m",
+   "30m",
+   "1h"
+  ],
+  "n_trades": 9423,
+  "wr": 20.5,
+  "net_pips": -14848.2,
+  "avg_win": 15.87,
+  "avg_loss": -6.06,
+  "longs_net": -7166.7,
+  "shorts_net": -7681.5,
+  "med_btp": 2,
+  "never_profit_pct": 38.3,
+  "med_hold_bars": 10,
+  "full": {
+   "days": 1431,
+   "total": -14848.2,
+   "mean": -10.38,
+   "green_pct": 31.7,
+   "worst": -184.6,
+   "best": 205.7,
+   "maxdd": -14892.5,
+   "m_over_w": -0.0562,
+   "tr_per_day": 6.58
+  },
+  "pre": {
+   "days": 1401,
+   "total": -14492.1,
+   "mean": -10.34,
+   "green_pct": 31.8,
+   "worst": -184.6,
+   "best": 205.7,
+   "maxdd": -14551.2,
+   "m_over_w": -0.056,
+   "tr_per_day": null
+  },
+  "last30": {
+   "days": 30,
+   "total": -356.1,
+   "mean": -11.87,
+   "green_pct": 26.7,
+   "worst": -49.6,
+   "best": 28.7,
+   "maxdd": -396.0,
+   "m_over_w": -0.2393,
+   "tr_per_day": null
+  },
+  "sizing": {
+   "implied_mean_daily_pct_pre": -0.224,
+   "implied_mean_daily_pct_last30": -0.257
+  }
+ },
+ "EURUSD_L1": {
+  "ladder": [
+   "15m",
+   "1h",
+   "4h"
+  ],
+  "n_trades": 2951,
+  "wr": 23.2,
+  "net_pips": -4261.4,
+  "avg_win": 26.81,
+  "avg_loss": -10.0,
+  "longs_net": -1576.1,
+  "shorts_net": -2685.2,
+  "med_btp": 1,
+  "never_profit_pct": 33.2,
+  "med_hold_bars": 11,
+  "full": {
+   "days": 1430,
+   "total": -4261.4,
+   "mean": -2.98,
+   "green_pct": 29.9,
+   "worst": -181.6,
+   "best": 300.9,
+   "maxdd": -4351.9,
+   "m_over_w": -0.0164,
+   "tr_per_day": 2.06
+  },
+  "pre": {
+   "days": 1400,
+   "total": -4118.5,
+   "mean": -2.94,
+   "green_pct": 30.1,
+   "worst": -181.6,
+   "best": 300.9,
+   "maxdd": -4213.1,
+   "m_over_w": -0.0162,
+   "tr_per_day": null
+  },
+  "last30": {
+   "days": 30,
+   "total": -142.9,
+   "mean": -4.76,
+   "green_pct": 23.3,
+   "worst": -41.3,
+   "best": 63.4,
+   "maxdd": -206.2,
+   "m_over_w": -0.1153,
+   "tr_per_day": null
+  },
+  "sizing": {
+   "implied_mean_daily_pct_pre": -0.065,
+   "implied_mean_daily_pct_last30": -0.105
+  }
+ },
+ "EURUSD_L2": {
+  "ladder": [
+   "30m",
+   "4h",
+   "1d"
+  ],
+  "n_trades": 1493,
+  "wr": 23.1,
+  "net_pips": -2717.1,
+  "avg_win": 38.88,
+  "avg_loss": -14.05,
+  "longs_net": -835.2,
+  "shorts_net": -1881.9,
+  "med_btp": 1,
+  "never_profit_pct": 31.1,
+  "med_hold_bars": 10,
+  "full": {
+   "days": 1429,
+   "total": -2717.1,
+   "mean": -1.9,
+   "green_pct": 20.1,
+   "worst": -147.8,
+   "best": 308.4,
+   "maxdd": -2824.3,
+   "m_over_w": -0.0129,
+   "tr_per_day": 1.04
+  },
+  "pre": {
+   "days": 1399,
+   "total": -2631.2,
+   "mean": -1.88,
+   "green_pct": 20.1,
+   "worst": -147.8,
+   "best": 308.4,
+   "maxdd": -2742.2,
+   "m_over_w": -0.0127,
+   "tr_per_day": null
+  },
+  "last30": {
+   "days": 30,
+   "total": -85.9,
+   "mean": -2.86,
+   "green_pct": 20.0,
+   "worst": -40.7,
+   "best": 35.6,
+   "maxdd": -87.1,
+   "m_over_w": -0.0704,
+   "tr_per_day": null
+  },
+  "sizing": {
+   "implied_mean_daily_pct_pre": -0.051,
+   "implied_mean_daily_pct_last30": -0.078
+  }
+ },
+ "GBPUSD_L0": {
+  "ladder": [
+   "5m",
+   "30m",
+   "1h"
+  ],
+  "n_trades": 9655,
+  "wr": 19.6,
+  "net_pips": -24187.3,
+  "avg_win": 20.21,
+  "avg_loss": -8.03,
+  "longs_net": -11916.6,
+  "shorts_net": -12270.7,
+  "med_btp": 2,
+  "never_profit_pct": 39.8,
+  "med_hold_bars": 10,
+  "full": {
+   "days": 1431,
+   "total": -24187.3,
+   "mean": -16.9,
+   "green_pct": 30.2,
+   "worst": -196.4,
+   "best": 346.0,
+   "maxdd": -24269.2,
+   "m_over_w": -0.0861,
+   "tr_per_day": 6.75
+  },
+  "pre": {
+   "days": 1401,
+   "total": -23921.6,
+   "mean": -17.07,
+   "green_pct": 30.2,
+   "worst": -196.4,
+   "best": 346.0,
+   "maxdd": -23925.8,
+   "m_over_w": -0.0869,
+   "tr_per_day": null
+  },
+  "last30": {
+   "days": 30,
+   "total": -265.7,
+   "mean": -8.86,
+   "green_pct": 30.0,
+   "worst": -60.3,
+   "best": 115.0,
+   "maxdd": -353.8,
+   "m_over_w": -0.1468,
+   "tr_per_day": null
+  },
+  "sizing": {
+   "implied_mean_daily_pct_pre": -0.348,
+   "implied_mean_daily_pct_last30": -0.18
+  }
+ },
+ "GBPUSD_L1": {
+  "ladder": [
+   "15m",
+   "1h",
+   "4h"
+  ],
+  "n_trades": 3056,
+  "wr": 22.1,
+  "net_pips": -6970.7,
+  "avg_win": 34.91,
+  "avg_loss": -12.82,
+  "longs_net": -3722.0,
+  "shorts_net": -3248.6,
+  "med_btp": 1,
+  "never_profit_pct": 33.2,
+  "med_hold_bars": 10,
+  "full": {
+   "days": 1430,
+   "total": -6970.7,
+   "mean": -4.87,
+   "green_pct": 29.5,
+   "worst": -183.7,
+   "best": 503.2,
+   "maxdd": -7107.8,
+   "m_over_w": -0.0265,
+   "tr_per_day": 2.14
+  },
+  "pre": {
+   "days": 1400,
+   "total": -6886.1,
+   "mean": -4.92,
+   "green_pct": 29.4,
+   "worst": -183.7,
+   "best": 503.2,
+   "maxdd": -6929.0,
+   "m_over_w": -0.0268,
+   "tr_per_day": null
+  },
+  "last30": {
+   "days": 30,
+   "total": -84.5,
+   "mean": -2.82,
+   "green_pct": 33.3,
+   "worst": -83.7,
+   "best": 102.2,
+   "maxdd": -232.1,
+   "m_over_w": -0.0337,
+   "tr_per_day": null
+  },
+  "sizing": {
+   "implied_mean_daily_pct_pre": -0.107,
+   "implied_mean_daily_pct_last30": -0.061
+  }
+ },
+ "GBPUSD_L2": {
+  "ladder": [
+   "30m",
+   "4h",
+   "1d"
+  ],
+  "n_trades": 1537,
+  "wr": 22.8,
+  "net_pips": -3113.2,
+  "avg_win": 50.26,
+  "avg_loss": -17.5,
+  "longs_net": -1534.6,
+  "shorts_net": -1578.6,
+  "med_btp": 1,
+  "never_profit_pct": 31.1,
+  "med_hold_bars": 9,
+  "full": {
+   "days": 1429,
+   "total": -3113.2,
+   "mean": -2.18,
+   "green_pct": 20.1,
+   "worst": -187.4,
+   "best": 478.7,
+   "maxdd": -3277.0,
+   "m_over_w": -0.0116,
+   "tr_per_day": 1.08
+  },
+  "pre": {
+   "days": 1399,
+   "total": -2996.4,
+   "mean": -2.14,
+   "green_pct": 20.1,
+   "worst": -187.4,
+   "best": 478.7,
+   "maxdd": -3112.2,
+   "m_over_w": -0.0114,
+   "tr_per_day": null
+  },
+  "last30": {
+   "days": 30,
+   "total": -116.8,
+   "mean": -3.89,
+   "green_pct": 20.0,
+   "worst": -53.3,
+   "best": 93.1,
+   "maxdd": -163.3,
+   "m_over_w": -0.0731,
+   "tr_per_day": null
+  },
+  "sizing": {
+   "implied_mean_daily_pct_pre": -0.046,
+   "implied_mean_daily_pct_last30": -0.083
+  }
+ },
+ "XAUUSD_L0": {
+  "ladder": [
+   "5m",
+   "30m",
+   "1h"
+  ],
+  "n_trades": 9176,
+  "wr": 22.9,
+  "net_pips": -1418.1,
+  "avg_win": 93.0,
+  "avg_loss": -27.89,
+  "longs_net": 6681.1,
+  "shorts_net": -8099.2,
+  "med_btp": 1,
+  "never_profit_pct": 29.8,
+  "med_hold_bars": 11,
+  "full": {
+   "days": 1501,
+   "total": -1418.1,
+   "mean": -0.94,
+   "green_pct": 39.4,
+   "worst": -1797.4,
+   "best": 3728.6,
+   "maxdd": -13826.1,
+   "m_over_w": -0.0005,
+   "tr_per_day": 6.11
+  },
+  "pre": {
+   "days": 1471,
+   "total": -2858.5,
+   "mean": -1.94,
+   "green_pct": 39.2,
+   "worst": -1797.4,
+   "best": 3728.6,
+   "maxdd": -13826.1,
+   "m_over_w": -0.0011,
+   "tr_per_day": null
+  },
+  "last30": {
+   "days": 30,
+   "total": 1440.4,
+   "mean": 48.01,
+   "green_pct": 50.0,
+   "worst": -485.2,
+   "best": 838.0,
+   "maxdd": -2616.2,
+   "m_over_w": 0.099,
+   "tr_per_day": null
+  },
+  "sizing": {
+   "implied_mean_daily_pct_pre": -0.004,
+   "implied_mean_daily_pct_last30": 0.107
+  }
+ },
+ "XAUUSD_L1": {
+  "ladder": [
+   "15m",
+   "1h",
+   "4h"
+  ],
+  "n_trades": 2845,
+  "wr": 26.0,
+  "net_pips": 22601.2,
+  "avg_win": 168.06,
+  "avg_loss": -48.34,
+  "longs_net": 16436.9,
+  "shorts_net": 6164.3,
+  "med_btp": 1,
+  "never_profit_pct": 29.0,
+  "med_hold_bars": 12,
+  "full": {
+   "days": 1500,
+   "total": 22601.2,
+   "mean": 15.07,
+   "green_pct": 33.3,
+   "worst": -836.5,
+   "best": 4854.5,
+   "maxdd": -4032.7,
+   "m_over_w": 0.018,
+   "tr_per_day": 1.9
+  },
+  "pre": {
+   "days": 1470,
+   "total": 20234.3,
+   "mean": 13.76,
+   "green_pct": 33.3,
+   "worst": -836.5,
+   "best": 4854.5,
+   "maxdd": -4032.7,
+   "m_over_w": 0.0165,
+   "tr_per_day": null
+  },
+  "last30": {
+   "days": 30,
+   "total": 2366.9,
+   "mean": 78.9,
+   "green_pct": 33.3,
+   "worst": -634.6,
+   "best": 1274.6,
+   "maxdd": -1022.5,
+   "m_over_w": 0.1243,
+   "tr_per_day": null
+  },
+  "sizing": {
+   "implied_mean_daily_pct_pre": 0.066,
+   "implied_mean_daily_pct_last30": 0.377
+  }
+ },
+ "XAUUSD_L2": {
+  "ladder": [
+   "30m",
+   "4h",
+   "1d"
+  ],
+  "n_trades": 1416,
+  "wr": 25.5,
+  "net_pips": 14650.0,
+  "avg_win": 227.69,
+  "avg_loss": -64.02,
+  "longs_net": 17073.1,
+  "shorts_net": -2423.1,
+  "med_btp": 1,
+  "never_profit_pct": 27.3,
+  "med_hold_bars": 10,
+  "full": {
+   "days": 1499,
+   "total": 14650.0,
+   "mean": 9.77,
+   "green_pct": 21.1,
+   "worst": -859.0,
+   "best": 2880.3,
+   "maxdd": -4908.7,
+   "m_over_w": 0.0114,
+   "tr_per_day": 0.94
+  },
+  "pre": {
+   "days": 1469,
+   "total": 10216.6,
+   "mean": 6.95,
+   "green_pct": 21.0,
+   "worst": -859.0,
+   "best": 2880.3,
+   "maxdd": -4908.7,
+   "m_over_w": 0.0081,
+   "tr_per_day": null
+  },
+  "last30": {
+   "days": 30,
+   "total": 4433.4,
+   "mean": 147.78,
+   "green_pct": 30.0,
+   "worst": -576.3,
+   "best": 1498.8,
+   "maxdd": -893.0,
+   "m_over_w": 0.2564,
+   "tr_per_day": null
+  },
+  "sizing": {
+   "implied_mean_daily_pct_pre": 0.032,
+   "implied_mean_daily_pct_last30": 0.688
+  }
+ },
+ "US500_L0": {
+  "ladder": [
+   "5m",
+   "30m",
+   "1h"
+  ],
+  "n_trades": 8871,
+  "wr": 21.9,
+  "net_pips": -8450.1,
+  "avg_win": 15.45,
+  "avg_loss": -5.55,
+  "longs_net": -3501.9,
+  "shorts_net": -4948.2,
+  "med_btp": 2,
+  "never_profit_pct": 36.4,
+  "med_hold_bars": 11,
+  "full": {
+   "days": 1479,
+   "total": -8450.1,
+   "mean": -5.71,
+   "green_pct": 36.4,
+   "worst": -319.7,
+   "best": 403.9,
+   "maxdd": -8491.2,
+   "m_over_w": -0.0179,
+   "tr_per_day": 6.0
+  },
+  "pre": {
+   "days": 1449,
+   "total": -7890.4,
+   "mean": -5.45,
+   "green_pct": 36.5,
+   "worst": -319.7,
+   "best": 403.9,
+   "maxdd": -7887.0,
+   "m_over_w": -0.017,
+   "tr_per_day": null
+  },
+  "last30": {
+   "days": 30,
+   "total": -559.7,
+   "mean": -18.66,
+   "green_pct": 33.3,
+   "worst": -109.0,
+   "best": 84.3,
+   "maxdd": -700.5,
+   "m_over_w": -0.1712,
+   "tr_per_day": null
+  },
+  "sizing": {
+   "implied_mean_daily_pct_pre": -0.068,
+   "implied_mean_daily_pct_last30": -0.233
+  }
+ },
+ "US500_L1": {
+  "ladder": [
+   "15m",
+   "1h",
+   "4h"
+  ],
+  "n_trades": 2920,
+  "wr": 23.5,
+  "net_pips": -4351.5,
+  "avg_win": 24.47,
+  "avg_loss": -9.46,
+  "longs_net": -834.6,
+  "shorts_net": -3516.8,
+  "med_btp": 1,
+  "never_profit_pct": 31.8,
+  "med_hold_bars": 11,
+  "full": {
+   "days": 1479,
+   "total": -4351.5,
+   "mean": -2.94,
+   "green_pct": 30.3,
+   "worst": -272.2,
+   "best": 585.5,
+   "maxdd": -4403.0,
+   "m_over_w": -0.0108,
+   "tr_per_day": 1.97
+  },
+  "pre": {
+   "days": 1449,
+   "total": -4052.1,
+   "mean": -2.8,
+   "green_pct": 30.3,
+   "worst": -272.2,
+   "best": 585.5,
+   "maxdd": -4093.9,
+   "m_over_w": -0.0103,
+   "tr_per_day": null
+  },
+  "last30": {
+   "days": 30,
+   "total": -299.4,
+   "mean": -9.98,
+   "green_pct": 30.0,
+   "worst": -101.0,
+   "best": 94.3,
+   "maxdd": -399.0,
+   "m_over_w": -0.0988,
+   "tr_per_day": null
+  },
+  "sizing": {
+   "implied_mean_daily_pct_pre": -0.041,
+   "implied_mean_daily_pct_last30": -0.147
+  }
+ },
+ "US500_L2": {
+  "ladder": [
+   "30m",
+   "4h",
+   "1d"
+  ],
+  "n_trades": 1506,
+  "wr": 24.0,
+  "net_pips": -3842.1,
+  "avg_win": 32.82,
+  "avg_loss": -13.7,
+  "longs_net": -904.8,
+  "shorts_net": -2937.3,
+  "med_btp": 1,
+  "never_profit_pct": 29.2,
+  "med_hold_bars": 10,
+  "full": {
+   "days": 1477,
+   "total": -3842.1,
+   "mean": -2.6,
+   "green_pct": 20.8,
+   "worst": -162.9,
+   "best": 416.6,
+   "maxdd": -3857.1,
+   "m_over_w": -0.016,
+   "tr_per_day": 1.02
+  },
+  "pre": {
+   "days": 1447,
+   "total": -3360.6,
+   "mean": -2.32,
+   "green_pct": 20.9,
+   "worst": -162.9,
+   "best": 416.6,
+   "maxdd": -3441.8,
+   "m_over_w": -0.0143,
+   "tr_per_day": null
+  },
+  "last30": {
+   "days": 30,
+   "total": -481.5,
+   "mean": -16.05,
+   "green_pct": 13.3,
+   "worst": -95.0,
+   "best": 116.4,
+   "maxdd": -430.8,
+   "m_over_w": -0.1689,
+   "tr_per_day": null
+  },
+  "sizing": {
+   "implied_mean_daily_pct_pre": -0.057,
+   "implied_mean_daily_pct_last30": -0.394
+  }
+ }
+}

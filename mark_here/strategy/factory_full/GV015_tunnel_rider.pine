@@ -1,0 +1,62 @@
+//@version=5
+// GV-015 "Tunnel Rider" — gapped MTF BB(100/10, 0.5σ, shift+2) breakout + band-touch re-entry, SMA50 exit.
+// DEFAULTS = validated unit: chart XAUUSD 15m, gravity 1h + 4h. Slippage 7 ticks/side (gold).
+// Entry: close above upper BB100 & BB10 on chart TF AND both gravity TFs AND above SMA50 (edge).
+// Re-entry: pullback touch/cross-up of chart-TF upper BB10 while SMA50 > upper BB100 and close > SMA50.
+// Exit: close crosses SMA50 opposite. Shorts mirrored. No repainting (completed higher-TF bars only).
+
+strategy("GV-015 Tunnel Rider (gapped MTF)", overlay=true, initial_capital=100000, default_qty_type=strategy.fixed, default_qty_value=1, slippage=7, calc_on_every_tick=false, process_orders_on_close=false)
+
+gravTF1 = input.timeframe("60", "Mid gravity TF")
+gravTF2 = input.timeframe("240", "High gravity TF")
+showZones = input.bool(true, "Shade gravity regimes")
+
+f_b() =>
+    uA_ = ta.sma(close,100) + 0.5*ta.stdev(close,100)
+    lA_ = ta.sma(close,100) - 0.5*ta.stdev(close,100)
+    uB_ = ta.sma(close,10) + 0.5*ta.stdev(close,10)
+    lB_ = ta.sma(close,10) - 0.5*ta.stdev(close,10)
+    [close[1], uA_[3], lA_[3], uB_[3], lB_[3]]
+
+[mC, mUA, mLA, mUB, mLB] = request.security(syminfo.tickerid, gravTF1, f_b(), lookahead=barmerge.lookahead_on)
+[hC, hUA, hLA, hUB, hLB] = request.security(syminfo.tickerid, gravTF2, f_b(), lookahead=barmerge.lookahead_on)
+
+uA = (ta.sma(close,100) + 0.5*ta.stdev(close,100))[2]
+lA = (ta.sma(close,100) - 0.5*ta.stdev(close,100))[2]
+uB = (ta.sma(close,10) + 0.5*ta.stdev(close,10))[2]
+lB = (ta.sma(close,10) - 0.5*ta.stdev(close,10))[2]
+uB3 = (ta.sma(close,10) + 0.5*ta.stdev(close,10))[3]
+lB3 = (ta.sma(close,10) - 0.5*ta.stdev(close,10))[3]
+sma50 = ta.sma(close, 50)
+
+mUp = mC > mUA and mC > mUB
+mDn = mC < mLA and mC < mLB
+hUp = hC > hUA and hC > hUB
+hDn = hC < hLA and hC < hLB
+
+stUp = close > uA and close > uB and close > sma50 and mUp and hUp
+stDn = close < lA and close < lB and close < sma50 and mDn and hDn
+initL = stUp and not stUp[1]
+initS = stDn and not stDn[1]
+reL = close > uB and (low <= uB or close[1] <= uB3) and sma50 > uA and close > sma50
+reS = close < lB and (high >= lB or close[1] >= lB3) and sma50 < lA and close < sma50
+
+if (initL or reL) and strategy.position_size == 0
+    strategy.entry("L", strategy.long)
+if (initS or reS) and strategy.position_size == 0
+    strategy.entry("S", strategy.short)
+if strategy.position_size > 0 and close < sma50
+    strategy.close("L")
+if strategy.position_size < 0 and close > sma50
+    strategy.close("S")
+
+plot(uA, "Upper BB100", color=color.new(color.orange, 50))
+plot(lA, "Lower BB100", color=color.new(color.orange, 50))
+plot(uB, "Upper BB10", color=color.new(color.teal, 50))
+plot(lB, "Lower BB10", color=color.new(color.teal, 50))
+plot(sma50, "SMA50", color=color.new(color.purple, 30))
+bgcolor(showZones and mUp and hUp ? color.new(color.green, 90) : showZones and mDn and hDn ? color.new(color.red, 90) : na)
+plotshape(initL and strategy.position_size == 0, style=shape.triangleup, location=location.belowbar, color=color.green, size=size.small, title="Initial long")
+plotshape(reL and strategy.position_size == 0, style=shape.circle, location=location.belowbar, color=color.lime, size=size.tiny, title="Re-entry long")
+plotshape(initS and strategy.position_size == 0, style=shape.triangledown, location=location.abovebar, color=color.red, size=size.small, title="Initial short")
+plotshape(reS and strategy.position_size == 0, style=shape.circle, location=location.abovebar, color=color.maroon, size=size.tiny, title="Re-entry short")

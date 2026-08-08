@@ -1,0 +1,57 @@
+{
+  "law_id": "A13",
+  "name": "SCALPING_CADENCE_LAW",
+  "status": "PERMANENT",
+  "promoted_date": "2026-08-07",
+  "human_order": "Monty — overrules Judge: bot MUST take 8–400 trades every day",
+  "owner_overrules_judge": true,
+  "immutable": true,
+  "amendment_requires": "new Court PROMOTE + Monty approval on record",
+  "bot_class": "scalper",
+  "daily_trade_count": {
+    "min_inclusive": 8,
+    "max_inclusive": 400,
+    "modality": "MUST",
+    "meaning": "hard mandate: every production day must close between 8 and 400 trades inclusive; outside band = A13 breach"
+  },
+  "not_identity": [
+    "five_fixed_decision_slots_only",
+    "few_trades_per_day_swing_default",
+    "may_or_capacity_only_soft_language"
+  ],
+  "experimental_partial_path": {
+    "name": "DEFAULT_SLOTS",
+    "count": 5,
+    "label": "non_compliant_cannot_satisfy_A13_min_8",
+    "production_legal": false
+  },
+  "protected_invariants": [
+    "breach_0",
+    "no_retrain_target_risk",
+    "variable_lot_under_risk_envelope",
+    "must_8_to_400_trades_per_day"
+  ],
+  "judge_forbidden": [
+    "soften_must_to_may",
+    "promote_path_structurally_unable_to_hit_min_8",
+    "treat_sub_8_trade_days_as_A13_compliant",
+    "waive_max_400_ceiling"
+  ],
+  "flea_jar": {
+    "non_compliant_if": "day path cannot or does not land trades in [8, 400]",
+    "full_action_space_requires": "dense scalping multi-leg up to 400 under risk envelope; min 8 trades/day hard"
+  },
+  "compliance": {
+    "function": "a13_trade_count_ok",
+    "assert": "assert_a13_trade_count",
+    "module": "evidence_court.meta_rl.goal_path"
+  },
+  "canonical_docs": [
+    "evidence_court/SCALPING_CADENCE_LAW.md",
+    "evidence_court/MASTER_ARCHITECTURE.md",
+    "mark_here/knowledge/lab/GOAL.md",
+    "AGENTS.md",
+    ".grok/rules/00_scalping_cadence.md"
+  ],
+  "test_pin": "evidence_court/tests/test_scalping_cadence_law.py"
+}

@@ -1,0 +1,1192 @@
+"""Goal-conditioned multi-leg day path (CASE-0003).
+
+Internet class: hierarchical / goal-conditioned RL — sequential subgoals under a
+hard risk budget (no retrain; target/risk are inference context only).
+Refs: goal-conditioned RL / hierarchical trading policies (design class).
+
+Mark class: HTF force permission + LTF RSI5/BB timing; wait slingshot_load;
+fire pullback_resume / continuation; lock when target hit.
+
+No look-ahead: each slot uses only bars completed before decision time.
+"""
+from __future__ import annotations
+
+from dataclasses import dataclass
+from typing import Any, Dict, List, Optional, Sequence, Tuple
+
+import numpy as np
+
+from .edge import (
+    build_tf_cache,
+    count_actionable_side_agree,
+    edge_sensors,
+    edge_to_set_confluence,
+    path_side_permission_ok,
+    scan_all_sets,
+    side_permission_ok,
+)
+from .leverage import LEVERAGE, risk_legal_max_lot, stop_distance_price_from_pct
+from .policy import FrozenMetaPolicy, PolicyAction
+from .risk import (
+    DailyRiskLedger,
+    FrictionAssumptions,
+    OpenPosition,
+    apply_trade_result,
+    size_position_risk_percent,
+)
+from .roles import evaluate_understanding, novel_composition, rename_sensors, swap_family
+from .senses import MarketSenseInput, probe_all_senses
+from .regimes import (
+    day_path_regime_skip_new_risk,
+    efficiency_proxy_from_edge,
+    encode_regime_doctrine,
+    regime_from_edge_sensors,
+)
+from .state import build_meta_rl_state
+from .types import StructureFlags
+
+# Law A13 (Monty overrules Judge): production day MUST land 8–400 trades.
+# DEFAULT_SLOTS (5) cannot satisfy min 8 → NON-COMPLIANT as production path (lab shadow only).
+DEFAULT_SLOTS: Tuple[str, ...] = ("07:00:00", "10:00:00", "13:00:00", "16:00:00", "19:00:00")
+DEFAULT_STOP_DISTANCE_PCT = 0.45  # slightly wider → fewer noise stops; size scales via risk %
+# CASE-0009: London–NY active windows on the legacy 5-slot grid (lab only under A13)
+PRIME_SESSION_SLOTS: Tuple[str, ...] = ("10:00:00", "13:00:00", "16:00:00")
+# Law A13 hard mandate (Monty) — every production day must land in this band
+SCALPING_TRADES_PER_DAY_MIN = 8
+SCALPING_TRADES_PER_DAY_MAX = 400
+DEFAULT_SESSION_MIN_ALIGN = 1.5e-4  # mild same-day lean with force (~noise floor)
+
+
+def session_min_align_for_path(*, multi_set_agree: bool = False) -> float:
+    """CASE-0030: multi-set HTF agree eases same-day path confirm threshold.
+
+    When Mark multi-set agrees, HTF confluence already is the primary bias —
+    do not also require a non-trivial open→asof lean (which starves quiet days).
+    Non-multi keeps DEFAULT_SESSION_MIN_ALIGN (anti thrash). min_align=0 still
+    requires correct *sign* of session move (session_confirms_side).
+    """
+    if multi_set_agree:
+        return 0.0
+    return float(DEFAULT_SESSION_MIN_ALIGN)
+
+
+def a13_trade_count_ok(n_trades: int) -> bool:
+    """Law A13: True iff production day trade count is in [8, 400]."""
+    n = int(n_trades)
+    return SCALPING_TRADES_PER_DAY_MIN <= n <= SCALPING_TRADES_PER_DAY_MAX
+
+
+def assert_a13_trade_count(n_trades: int) -> None:
+    """Raise AssertionError if trade count is outside Law A13 hard band."""
+    n = int(n_trades)
+    if not a13_trade_count_ok(n):
+        raise AssertionError(
+            f"A13 breach: trades/day={n} not in "
+            f"[{SCALPING_TRADES_PER_DAY_MIN}, {SCALPING_TRADES_PER_DAY_MAX}] "
+            f"(Monty mandate: MUST take 8–400 trades every day)"
+        )
+
+
+def build_scalping_cadence_slots(
+    *,
+    start_hour: int = 7,
+    end_hour: int = 20,
+    interval_minutes: int = 30,
+) -> Tuple[str, ...]:
+    """CASE-0011: dense decision clock for A13 path capacity (no pad fills).
+
+    Returns HH:MM:SS strings from start_hour inclusive through end_hour inclusive
+    at fixed interval. Production default is 30m → capacity ≥8 and ≤400.
+    """
+    if interval_minutes <= 0:
+        raise ValueError("interval_minutes must be positive")
+    out: List[str] = []
+    # minutes from midnight
+    t = int(start_hour) * 60
+    end = int(end_hour) * 60
+    step = int(interval_minutes)
+    while t <= end:
+        hh, mm = divmod(t, 60)
+        if hh > 23:
+            break
+        out.append(f"{hh:02d}:{mm:02d}:00")
+        t += step
+        if len(out) > SCALPING_TRADES_PER_DAY_MAX * 2:
+            break  # safety
+    return tuple(out)
+
+
+# CASE-0011 lab / pin grid (30m) — name kept for historical tests
+SCALPING_CADENCE_SLOTS: Tuple[str, ...] = build_scalping_cadence_slots(interval_minutes=30)
+# CASE-0023 15m pin (regression / lab shadow)
+PRODUCTION_SCALPING_SLOTS_15M: Tuple[str, ...] = build_scalping_cadence_slots(
+    interval_minutes=15
+)
+# CASE-0027 10m pin (A25 law) — denser than 15m, coarser than production
+PRODUCTION_SCALPING_SLOTS_10M: Tuple[str, ...] = build_scalping_cadence_slots(
+    interval_minutes=10
+)
+# CASE-0029 production grid (5m): structural density continuation of A25 (empty skip, no pad)
+PRODUCTION_CADENCE_INTERVAL_MIN = 5
+PRODUCTION_SCALPING_SLOTS: Tuple[str, ...] = build_scalping_cadence_slots(
+    interval_minutes=PRODUCTION_CADENCE_INTERVAL_MIN
+)
+
+# Continuation outside prime only when multi-set agrees + strong force (CASE-0023/0026)
+# CASE-0026: multi-set densify — extended floor 0.35→0.28 (still multi-set-only, no pad)
+CONT_EXTENDED_FORCE_MIN = 0.28
+ACTIVE_CONT_HOUR_START = 8
+ACTIVE_CONT_HOUR_END = 18
+# CASE-0025: dense London–NY overlap prime band (hours inclusive) for cont session-ok
+PRIME_BAND_HOUR_START = 12
+PRIME_BAND_HOUR_END = 16
+# CASE-0026: multi-set cont entry floor on prime (was hard-coded 0.32)
+MULTI_SET_CONT_ENTRY_FORCE_MIN = 0.28
+
+
+def max_fills_for_a13(target_percent: float = 0.0) -> int:
+    """CASE-0011: hard fill cap at A13 max (envelope still limits risk)."""
+    _ = target_percent  # reserved for future goal-conditioned cap shaping
+    return int(SCALPING_TRADES_PER_DAY_MAX)
+
+
+def allows_empty_slot_skip() -> bool:
+    """CASE-0011 Mark counter: empty candidates must skip (no synthetic pad trades)."""
+    return True
+
+
+@dataclass
+class LegFill:
+    symbol: str
+    slot: str
+    act: str
+    size_risk_percent: float
+    pnl_percent: float
+    topology: str
+    edge_kind: str
+    lot: float
+
+
+def m1_window(
+    m1: Sequence[dict],
+    *,
+    date: str,
+    start_time: str,
+    end_time: Optional[str],
+) -> List[dict]:
+    out: List[dict] = []
+    for b in m1:
+        if str(b.get("date", "")) != date:
+            continue
+        t = str(b.get("time", "00:00:00"))
+        if t < start_time:
+            continue
+        if end_time is not None and t >= end_time:
+            continue
+        out.append(b)
+    return out
+
+
+def is_prime_session_slot(slot: str) -> bool:
+    """CASE-0009 / CASE-0025: high-liquidity session decision times.
+
+    Classic named primes (10/13/16) remain. CASE-0025 densifies cont session-ok
+    across London–NY overlap hours [PRIME_BAND_HOUR_START, PRIME_BAND_HOUR_END]
+    on the production 15m grid. Thin open / late fade stay non-prime; shoulders
+    still use multi-set extended path (A22).
+    """
+    s = str(slot)
+    if s in PRIME_SESSION_SLOTS:
+        return True
+    try:
+        hh = int(s.split(":")[0])
+    except (TypeError, ValueError, IndexError):
+        return False
+    return int(PRIME_BAND_HOUR_START) <= hh <= int(PRIME_BAND_HOUR_END)
+
+
+def next_slot_end_time(
+    slot: str,
+    slots: Sequence[str],
+    *,
+    eod: str = "23:59:59",
+) -> str:
+    """CASE-0010: fill path ends at next decision slot (multi-leg capacity).
+
+    Last / unknown slot → EOD. No look-ahead past scheduled slot times.
+    """
+    slot_list = [str(s) for s in slots]
+    s = str(slot)
+    try:
+        i = slot_list.index(s)
+    except ValueError:
+        return eod
+    if i + 1 < len(slot_list):
+        return slot_list[i + 1]
+    return eod
+
+
+def _slot_to_minutes(slot: str) -> int:
+    """HH:MM[:SS] → minutes from midnight."""
+    parts = str(slot).split(":")
+    try:
+        hh = int(parts[0])
+        mm = int(parts[1]) if len(parts) > 1 else 0
+    except (TypeError, ValueError, IndexError):
+        return 0
+    return hh * 60 + mm
+
+
+def next_slot_end_after_minutes(
+    slot: str,
+    slots: Sequence[str],
+    minutes: int,
+    *,
+    eod: str = "23:59:59",
+) -> str:
+    """First scheduled slot at least ``minutes`` after ``slot`` (else EOD).
+
+    CASE-0028: cont min hold path without look-ahead past the slot grid.
+    """
+    slot_list = [str(s) for s in slots]
+    s = str(slot)
+    try:
+        i = slot_list.index(s)
+    except ValueError:
+        return eod
+    target = _slot_to_minutes(s) + max(0, int(minutes))
+    for j in range(i + 1, len(slot_list)):
+        if _slot_to_minutes(slot_list[j]) >= target:
+            return slot_list[j]
+    return eod
+
+
+# CASE-0028: cont path min hold (minutes) — restores R clipped by 10m next-slot (A25)
+CONT_HOLD_MIN_MINUTES = 30
+
+
+def fill_hold_end_time(
+    topology: str,
+    slot: str,
+    slots: Sequence[str],
+    *,
+    eod: str = "23:59:59",
+    cont_hold_min_minutes: int = CONT_HOLD_MIN_MINUTES,
+) -> str:
+    """CASE-0012/0028: asymmetric hold — pullback runners to EOD; cont min path hold.
+
+    F-017: clipping pullback_resume at short windows on dense grid killed R.
+    CASE-0028: continuation holds until first slot ≥ entry + cont_hold_min_minutes
+    (default 30m) so A25 10m clock does not force 10m cont scratches.
+    On 30m lab grid, +30m equals next slot (0012 pin). Last slot → EOD both.
+    """
+    if str(topology) == "pullback_resume":
+        return eod
+    return next_slot_end_after_minutes(
+        slot, slots, int(cont_hold_min_minutes), eod=eod
+    )
+
+
+def n_symbols_per_slot() -> int:
+    """CASE-0012: one best symbol per decision slot (anti multi-symbol thrash).
+
+    Multi-symbol book still via later slots (A8 flea-jar), not concurrent same-slot.
+    CASE-0013 residual phase may use symbols_per_slot_for_leg instead.
+    """
+    return 1
+
+
+def residual_leg_allowed(
+    n_fills_so_far: int,
+    *,
+    realized_pnl_percent: float = 0.0,
+    topology: str = "continuation",
+    anchor_fills: int = 1,
+    require_profit: bool = True,
+    continuation_only: bool = True,
+) -> bool:
+    """CASE-0019: residual micro/multi only after anchor when dual-safe.
+
+    Road (anti F-019): do not thrash residual into losses or pullback EOD path.
+    Residual legs require:
+      - n_fills >= anchor_fills
+      - realized_pnl > 0 when require_profit (default)
+      - topology == continuation when continuation_only (default)
+    """
+    if int(n_fills_so_far) < int(anchor_fills):
+        return False
+    if require_profit and float(realized_pnl_percent) <= 0.0:
+        return False
+    if continuation_only and str(topology) != "continuation":
+        return False
+    return True
+
+
+def residual_size_scale(
+    n_fills_so_far: int,
+    *,
+    anchor_fills: int = 1,
+    micro_scale: float = 0.25,
+    realized_pnl_percent: float = 0.0,
+    topology: str = "continuation",
+    profit_gate: bool = False,
+    continuation_only: bool = False,
+) -> float:
+    """CASE-0013: full size for first anchor fills; then micro residual scale.
+
+    CASE-0019 (opt-in via profit_gate/continuation_only): residual scale only when
+    ``residual_leg_allowed`` — else 0.0 (block residual thrash; no pad).
+
+    Defaults keep CASE-0013 pin tests (ungated micro after anchor).
+    """
+    if int(n_fills_so_far) < int(anchor_fills):
+        return 1.0
+    if profit_gate or continuation_only:
+        if not residual_leg_allowed(
+            n_fills_so_far,
+            realized_pnl_percent=realized_pnl_percent,
+            topology=topology,
+            anchor_fills=anchor_fills,
+            require_profit=profit_gate,
+            continuation_only=continuation_only,
+        ):
+            return 0.0
+    s = float(micro_scale)
+    if s <= 0.0 or s >= 1.0:
+        s = 0.25
+    return s
+
+
+def symbols_per_slot_for_leg(
+    n_fills_so_far: int,
+    *,
+    anchor_fills: int = 1,
+    residual_n: int = 3,
+    realized_pnl_percent: float = 0.0,
+    profit_gate: bool = False,
+) -> int:
+    """CASE-0013: 1 symbol on anchor legs; multi-symbol only when residual/micro.
+
+    CASE-0019: when profit_gate, multi only if realized_pnl > 0 after anchor
+    (topology gate applied per-leg via residual_size_scale).
+    """
+    if int(n_fills_so_far) < int(anchor_fills):
+        return 1
+    if profit_gate and float(realized_pnl_percent) <= 0.0:
+        return 1
+    return max(1, int(residual_n))
+
+
+def production_symbols_per_slot(
+    *,
+    multi_set_consensus: str = "incomplete",
+    dual_on_agree: bool = True,
+) -> int:
+    """CASE-0021 base: 1 best symbol. CASE-0030: 2 when multi-set agrees (real dual book).
+
+    Not residual thrash (F-017/F-019): dual only on agree_long/agree_short consensus.
+    Incomplete/chop/conflict stay 1-sym (or kill path already filters conflict).
+    """
+    if dual_on_agree and str(multi_set_consensus) in ("agree_long", "agree_short"):
+        return 2
+    return 1
+
+
+def production_leg_size_scale(_n_fills_so_far: int = 0) -> float:
+    """CASE-0021: full size every 1-sym leg — no residual micro starve (F-020).
+
+    Residual multi/micro API (A20) remains for experiments; production day path
+    uses full-scale 1-sym geometry (CASE-0012 class) on the A16–A19 road.
+    """
+    return 1.0
+
+
+def real_edge_force_min(
+    *,
+    topology: str,
+    multi_set_agree: bool = False,
+) -> float:
+    """CASE-0021/0026: honest force floors — denser when multi-set agrees.
+
+    Not pad: floors stay strictly positive. Multi-set agree = real confluence
+    (Mark eyes), so lower bar is still a real edge, not empty thrash.
+    CASE-0026 densifies multi-set only; non-multi floors unchanged (A21).
+    """
+    topo = str(topology)
+    if topo == "pullback_resume":
+        return 0.10 if multi_set_agree else 0.15
+    if topo == "continuation":
+        return 0.15 if multi_set_agree else 0.22
+    return 99.0  # non-fire topologies
+
+
+def first_entry_cont_force_min(*, multi_set_agree: bool = False) -> float:
+    """CASE-0021/0026: first leg cont stronger force; multi-set densified (0.28→0.24)."""
+    return 0.24 if multi_set_agree else 0.35
+
+
+def continuation_session_ok(
+    slot: str,
+    *,
+    multi_set_agree: bool = False,
+    force: float = 0.0,
+    extended_force_min: float = CONT_EXTENDED_FORCE_MIN,
+) -> bool:
+    """CASE-0023: continuation session gate.
+
+    - Prime slots (London–NY core): always session-ok (force floor separate).
+    - Non-prime: only if multi-set HTF agree **and** |force| ≥ extended_force_min
+      **and** hour in [8, 18] (active band) — real confluence density, not pad thrash.
+    """
+    if is_prime_session_slot(slot):
+        return True
+    if not multi_set_agree:
+        return False
+    if abs(float(force)) < float(extended_force_min):
+        return False
+    try:
+        hh = int(str(slot).split(":")[0])
+    except (TypeError, ValueError, IndexError):
+        return False
+    return int(ACTIVE_CONT_HOUR_START) <= hh <= int(ACTIVE_CONT_HOUR_END)
+
+
+def entry_quality_ok(
+    *,
+    slot: str,
+    topology: str,
+    n_fills: int,
+    force: float,
+    cont_force_min: float = 0.40,
+    multi_set_agree: bool = False,
+) -> bool:
+    """CASE-0009: pullback-first; continuation session+force gated.
+
+    CASE-0021/0026: when multi_set_agree on prime, cont floor eases to
+    MULTI_SET_CONT_ENTRY_FORCE_MIN (0.28 after CASE-0026 densify).
+    CASE-0023: multi-set agree + strong force can open active-band non-prime cont
+    (see continuation_session_ok). Pullback any slot. No pad.
+    """
+    if topology == "pullback_resume":
+        return True
+    if topology != "continuation":
+        return False
+    if not continuation_session_ok(
+        slot, multi_set_agree=multi_set_agree, force=force
+    ):
+        return False
+    floor = float(cont_force_min)
+    if multi_set_agree:
+        floor = min(floor, float(MULTI_SET_CONT_ENTRY_FORCE_MIN))
+    # Non-prime extended path already requires extended_force_min
+    if not is_prime_session_slot(slot):
+        floor = max(floor, float(CONT_EXTENDED_FORCE_MIN))
+    return abs(float(force)) >= floor
+
+
+def session_confirms_side(
+    m1: Sequence[dict],
+    *,
+    date: str,
+    asof_time: str,
+    side: int,
+    min_bars: int = 20,
+    min_align: float = 0.0,
+) -> bool:
+    """Prior-only same-day path must already lean with force (no future bars).
+
+    ``min_align`` (CASE-0009): require signed open→asof move ≥ min_align with side
+    after enough bars (filters mild counter-open thrash). Early day (&lt; min_bars)
+    still allows HTF-only permission (flea-jar).
+    """
+    pre = m1_window(m1, date=date, start_time="00:00:00", end_time=asof_time)
+    if len(pre) < min_bars:
+        return True  # too early — allow HTF-only permission
+    o = float(pre[0]["open"])
+    c = float(pre[-1]["close"])
+    if o <= 0:
+        return False
+    move = (c - o) / o
+    align = float(min_align)
+    if side > 0:
+        return move >= align
+    return move <= -align
+
+
+def progressive_partial_floor(
+    floating: float,
+    *,
+    goal_lock: Optional[float],
+    partial_frac: Optional[float],
+) -> Optional[float]:
+    """CASE-0007: path-only partial floor = frac×lock when floating reaches it.
+
+    Requires 0 < partial_frac < 1. Never grants floor above threshold without
+    floating evidence (caller supplies floating from bars seen so far).
+    """
+    if goal_lock is None or partial_frac is None:
+        return None
+    frac = float(partial_frac)
+    lock = float(goal_lock)
+    if lock <= 0 or frac <= 0.0 or frac >= 1.0:
+        return None
+    threshold = frac * lock
+    if float(floating) + 1e-12 >= threshold:
+        return float(threshold)
+    return None
+
+
+def size_r_partial_floor(
+    floating: float,
+    *,
+    size_risk_percent: float,
+    arm_r: Optional[float],
+    friction: float = 0.0,
+) -> Optional[float]:
+    """CASE-0008: path-only floor = size×arm_r − friction when floating reaches it.
+
+    Independent of rem_goal (fixes F-012: half-rem_goal rarely binds). arm_r≥1.0
+    preferred so noise excursions do not bank early.
+    """
+    if arm_r is None or size_risk_percent <= 0:
+        return None
+    ar = float(arm_r)
+    if ar <= 0:
+        return None
+    fr = max(float(friction), 0.0)
+    threshold = float(size_risk_percent) * ar - fr
+    if threshold <= 0:
+        return None
+    if float(floating) + 1e-12 >= threshold:
+        return float(threshold)
+    return None
+
+
+def simulate_fill_m1_path(
+    *,
+    side: int,
+    bars: Sequence[dict],
+    size_risk_percent: float,
+    stop_distance_pct: float = DEFAULT_STOP_DISTANCE_PCT,
+    friction_pct: float = 0.04,
+    trail: bool = False,
+    goal_lock_pnl_percent: Optional[float] = None,
+    be_arm_r: float = 1.5,
+    partial_lock_frac: Optional[float] = None,
+    size_r_arm_r: Optional[float] = None,
+) -> float:
+    """Enter first open; hard stop; optional BE trail / partial floors / goal-lock.
+
+    ``goal_lock_pnl_percent``: exit when unrealized equity-% reaches this
+    (goal-conditioned take-profit — no look-ahead beyond path bars).
+
+    ``trail`` + ``be_arm_r`` (CASE-0006 experimental): Full-BE win-path REJECTED (F-011).
+
+    ``partial_lock_frac`` (CASE-0007): frac×goal_lock floor (F-012: alone insufficient).
+
+    ``size_r_arm_r`` (CASE-0008): bank size×arm_r − fr when floating reaches it
+    (independent of rem_goal; production arm_r=1.0).
+    """
+    if not bars or size_risk_percent <= 0:
+        return 0.0
+    o = float(bars[0]["open"])
+    if o <= 0:
+        return 0.0
+    stop_frac = stop_distance_pct / 100.0
+    fr = float(friction_pct) * 0.01
+    r_dist = o * stop_frac
+    stop_px = o - r_dist if side > 0 else o + r_dist
+    lock = float(goal_lock_pnl_percent) if goal_lock_pnl_percent and goal_lock_pnl_percent > 0 else None
+    be_armed = False
+    arm_r = float(be_arm_r) if be_arm_r and be_arm_r > 0 else 1.5
+    pnl_floor: Optional[float] = None
+
+    for b in bars:
+        h, l = float(b["high"]), float(b["low"])
+        # Favorable floating from path bars only (for floor + goal lock)
+        if side > 0:
+            fav_pct = (h - o) / o * 100.0
+        else:
+            fav_pct = (o - l) / o * 100.0
+        r_mult_fav = fav_pct / max(stop_distance_pct, 1e-6)
+        floating = size_risk_percent * r_mult_fav - fr
+
+        # CASE-0007: rem_goal-frac floor (secondary)
+        if lock is not None and size_risk_percent > 0:
+            fl = progressive_partial_floor(
+                floating, goal_lock=lock, partial_frac=partial_lock_frac
+            )
+            if fl is not None:
+                # never above lock or floating
+                fl = min(fl, lock, floating)
+                pnl_floor = fl if pnl_floor is None else max(pnl_floor, fl)
+
+        # CASE-0008: size-R floor (primary lever; works when rem_goal huge)
+        if size_risk_percent > 0:
+            fl_r = size_r_partial_floor(
+                floating,
+                size_risk_percent=size_risk_percent,
+                arm_r=size_r_arm_r,
+                friction=fr,
+            )
+            if fl_r is not None:
+                fl_r = min(fl_r, floating)
+                if lock is not None:
+                    fl_r = min(fl_r, lock)
+                pnl_floor = fl_r if pnl_floor is None else max(pnl_floor, fl_r)
+
+        # CASE-0006: optional BE trail (goal_path production wire uses trail=False)
+        if trail and size_risk_percent > 0:
+            if r_mult_fav >= arm_r:
+                be_armed = True
+                stop_px = o  # breakeven at entry
+
+        if side > 0 and l <= stop_px:
+            if be_armed and abs(stop_px - o) < 1e-12 * max(abs(o), 1.0):
+                if pnl_floor is not None:
+                    return float(pnl_floor)
+                return float(-fr)
+            if pnl_floor is not None:
+                return float(pnl_floor)
+            return float(-size_risk_percent - fr)
+        if side < 0 and h >= stop_px:
+            if be_armed and abs(stop_px - o) < 1e-12 * max(abs(o), 1.0):
+                if pnl_floor is not None:
+                    return float(pnl_floor)
+                return float(-fr)
+            if pnl_floor is not None:
+                return float(pnl_floor)
+            return float(-size_risk_percent - fr)
+        # Full goal lock
+        if lock is not None and size_risk_percent > 0 and floating >= lock:
+            return float(lock)
+
+    c = float(bars[-1]["close"])
+    if side > 0:
+        move_pct = (c - o) / o * 100.0
+    else:
+        move_pct = (o - c) / o * 100.0
+    r_mult = float(np.clip(move_pct / max(stop_distance_pct, 1e-6), -1.0, 20.0))
+    pnl = size_risk_percent * r_mult - fr
+    if lock is not None:
+        pnl = min(pnl, lock)
+    if pnl_floor is not None:
+        pnl = max(pnl, pnl_floor)
+    return float(max(pnl, -size_risk_percent - fr))
+
+
+def remaining_to_target(ledger: DailyRiskLedger, target_percent: float) -> float:
+    return float(max(target_percent - ledger.realized_pnl_percent, 0.0))
+
+
+def clear_expect_r(topology: str, target_percent: float) -> float:
+    """CASE-0006: pullback_resume sizes for ~1.0R clear; continuation more conservative."""
+    if topology == "pullback_resume":
+        return 1.0
+    if float(target_percent) <= 15.0:
+        return 1.35
+    return 1.9
+
+
+def goal_path_size_for_clear(
+    *,
+    ledger: DailyRiskLedger,
+    target_percent: float,
+    topology: str,
+    wounded: bool = False,
+) -> float:
+    """Size under envelope so expect_r covers remaining goal (CASE-0006 pure helper)."""
+    rem_goal = remaining_to_target(ledger, target_percent)
+    rem_risk = ledger.remaining_risk_budget_percent()
+    if rem_risk <= 0.05 or rem_goal <= 0:
+        return 0.0
+    expect_r = clear_expect_r(topology, target_percent)
+    size = min(
+        rem_goal / max(expect_r, 0.5),
+        rem_risk * 0.95,
+        ledger.max_daily_risk_percent * (
+            0.95 if ledger.realized_pnl_percent > 0 else 0.80
+        ),
+    )
+    if wounded:
+        size *= 0.85
+    return float(max(size, 0.0))
+
+
+def goal_conditioned_size(
+    *,
+    ledger: DailyRiskLedger,
+    target_percent: float,
+    stop_distance_pct: float,
+    aggression: float,
+    expect_r: float = 2.0,
+) -> float:
+    rem_goal = remaining_to_target(ledger, target_percent)
+    rem_risk = ledger.remaining_risk_budget_percent()
+    if rem_risk <= 0.05 or rem_goal <= 0:
+        return 0.0
+    ideal = rem_goal / max(expect_r, 0.5)
+    base = size_position_risk_percent(
+        max_daily_risk_percent=ledger.max_daily_risk_percent,
+        remaining_budget_percent=rem_risk,
+        stop_distance_pct=stop_distance_pct,
+        target_percent=target_percent,
+        aggression=aggression,
+        max_single_fraction=0.95,
+        friction_reserve_percent=0.04,
+    )
+    size = max(base, min(ideal, rem_risk * 0.95))
+    if rem_goal < target_percent * 0.35:
+        size = min(size, max(rem_goal / max(expect_r, 1.0), 0.08))
+    return float(min(size, rem_risk * 0.95))
+
+
+def _sense_l2l_once(snap, target: float, risk: float) -> Tuple[bool, bool, Tuple[str, ...]]:
+    sensors = edge_sensors(snap)
+    role_base = evaluate_understanding(sensors)
+    renamed = evaluate_understanding(rename_sensors(sensors, prefix="HO_"))
+    swapped = evaluate_understanding(swap_family(sensors, "rsi"))
+    novel = evaluate_understanding(
+        novel_composition(
+            "macd",
+            "stochastic",
+            force_val=float(snap.consensus_force),
+            velocity_val=float(sensors[1].value),
+            inertia_val=float(sensors[2].value),
+        )
+    )
+    l2l_ok = (
+        role_base.topology == renamed.topology
+        and role_base.act == renamed.act
+        and role_base.topology == swapped.topology
+        and novel.chain_ok
+    )
+    forces = [e.force for e in snap.set_edges]
+    while len(forces) < 8:
+        forces.append(0.0)
+    vels = [(e.ltf_rsi - 50.0) / 50.0 for e in snap.set_edges] or [0.0]
+    while len(vels) < 4:
+        vels.append(0.0)
+    sense_inp = MarketSenseInput(
+        htf_force=forces[:8],
+        ltf_velocity=vels[:4],
+        inertia=[f * 0.85 for f in forces[:4]],
+        inertia_baseline=[f * 0.4 for f in forces[:4]],
+        velocity_baseline=[v * 0.3 for v in vels[:4]],
+        full_body_outside_rails=abs(snap.consensus_force) >= 0.35,
+        ltf_inside_tight=True,
+        efficiency=0.55 if snap.n_pullback + snap.n_continuation > 0 else 0.3,
+        regime=(
+            "bull"
+            if snap.multi_set_consensus == "agree_long"
+            else "bear"
+            if snap.multi_set_consensus == "agree_short"
+            else "chop"
+        ),
+        g_fixed=True,
+        target_percent=target,
+        max_daily_risk_percent=risk,
+        composition_has_force=any(abs(e.force) >= 0.15 for e in snap.set_edges),
+        composition_has_velocity=any(e.topology != "chop" for e in snap.set_edges),
+        cross_family_agree=snap.multi_set_consensus in ("agree_long", "agree_short"),
+        set_conflict=snap.multi_set_consensus == "conflict",
+    )
+    sense_rep = probe_all_senses(sense_inp)
+    senses_ok = (
+        "topology_class" in sense_rep.sight
+        and "max_tension_load_building" in sense_rep.feel
+        and "edge_quality" in sense_rep.taste
+        and "wait_subtype" in sense_rep.hearing
+    )
+    roles = tuple(sorted({r.value for r in role_base.roles.values()})) or ("force", "velocity")
+    return senses_ok, l2l_ok, roles
+
+
+def run_goal_path_day(
+    policy: FrozenMetaPolicy,
+    *,
+    date: str,
+    m1_by_symbol: Dict[str, List[dict]],
+    target_percent: float,
+    max_daily_risk_percent: float,
+    symbols: Sequence[str],
+    slots: Sequence[str] = PRODUCTION_SCALPING_SLOTS,
+    stop_distance_pct: float = DEFAULT_STOP_DISTANCE_PCT,
+    equity: float = 100_000.0,
+    friction: Optional[FrictionAssumptions] = None,
+    tf_cache_by_symbol: Optional[Dict[str, Dict[str, List[dict]]]] = None,
+    brain_drives: bool = True,
+) -> Tuple[List[LegFill], DailyRiskLedger, Dict[str, Any]]:
+    """Multi-slot scalping path. Law A29: brain decides; sensors feed state.
+
+    ``brain_drives=True`` (default, permanent): Mark HTF+LTF opportunities are
+    candidates; hard gate soup is off. Brain chooses wait/fire/size. Only risk
+    envelope remains hard. London/NY opportunities must be capturable (≥8).
+
+    Default clock is PRODUCTION_SCALPING_SLOTS (CASE-0029 5m).
+    """
+    fr = friction or FrictionAssumptions()
+    ledger = DailyRiskLedger(
+        max_daily_risk_percent=max_daily_risk_percent,
+        equity=equity,
+        friction=fr,
+    )
+    fills: List[LegFill] = []
+    meta: Dict[str, Any] = {
+        "slots": list(slots),
+        "n_slots_fired": 0,
+        "locked_target": False,
+        "path": "goal_conditioned_scalping_cadence_a30_ms_session",
+        "a13_slots_capacity": len(slots),
+        "cadence_interval_min": (
+            PRODUCTION_CADENCE_INTERVAL_MIN
+            if len(slots) >= len(PRODUCTION_SCALPING_SLOTS) - 1
+            else (10 if len(slots) > 60 else (15 if len(slots) > 40 else 30))
+        ),
+        "prime_band_hours": [PRIME_BAND_HOUR_START, PRIME_BAND_HOUR_END],
+        "multiset_force_densify": True,
+        "cont_hold_min_minutes": CONT_HOLD_MIN_MINUTES,
+        "multiset_session_align_ease": True,
+        "brain_drives": bool(brain_drives),
+        "law": "A29_brain_l2l",
+    }
+    slot_list = list(slots)
+    n_pb = n_ct = 0
+    senses_ok = True
+    l2l_ok = True
+    roles_all: List[str] = []
+    probed = False
+
+    caches: Dict[str, Dict[str, List[dict]]] = {}
+    for sym in symbols:
+        if tf_cache_by_symbol and sym in tf_cache_by_symbol:
+            caches[sym] = tf_cache_by_symbol[sym]
+        elif m1_by_symbol.get(sym):
+            caches[sym] = build_tf_cache(m1_by_symbol[sym])
+
+    # CASE-0011 / A13: hard fill cap 400; risk envelope still limits size
+    max_fills = max_fills_for_a13(target_percent)
+    wounded = False
+
+    for si, slot in enumerate(slot_list):
+        if ledger.realized_pnl_percent >= target_percent - 1e-9:
+            meta["locked_target"] = True
+            break
+        if ledger.remaining_risk_budget_percent() <= 0.08:
+            break
+        if len(fills) >= max_fills:
+            break
+
+        # CASE-0012: hold end depends on topology (set per pick below); placeholder
+        end_time_fill = next_slot_end_time(slot, slot_list)
+
+        candidates: List[Tuple[float, str, Any, str]] = []
+        for sym in symbols:
+            m1 = m1_by_symbol.get(sym, [])
+            cache = caches.get(sym)
+            if not m1 or cache is None:
+                continue
+            snap = scan_all_sets(
+                [],
+                symbol=sym,
+                tf_cache=cache,
+                asof_date=date,
+                asof_time=slot,
+            )
+            n_pb += snap.n_pullback
+            n_ct += snap.n_continuation
+            if not probed:
+                s_ok, l_ok, roles = _sense_l2l_once(
+                    snap, target_percent, max_daily_risk_percent
+                )
+                senses_ok = s_ok
+                l2l_ok = l_ok
+                roles_all.extend(roles)
+                probed = True
+
+            best = snap.best
+            topology = best.topology if best else "chop"
+            if best is None or best.act not in ("long", "short") or not best.htf_agree:
+                continue
+            if topology in ("slingshot_load", "collapse", "chop"):
+                continue
+            # --- A29 brain_drives: sensors only; no hard-rule veto soup ---
+            if brain_drives:
+                multi_agree = snap.multi_set_consensus in ("agree_long", "agree_short")
+                n_side = count_actionable_side_agree(snap, best.act)
+                quality = abs(best.force) + (0.55 if topology == "pullback_resume" else 0.0)
+                quality += 0.15 * n_side
+                if multi_agree:
+                    quality += 0.35
+                if is_prime_session_slot(slot):
+                    quality += 0.40  # London/NY — no excuse band
+                if sym == "XAUUSD":
+                    quality += 0.20
+                candidates.append((quality, sym, snap, topology))
+                continue
+            # --- legacy hard-filter path (lab only; brain_drives=False) ---
+            _eff = efficiency_proxy_from_edge(
+                n_pullback=snap.n_pullback,
+                n_continuation=snap.n_continuation,
+                consensus_force=float(snap.consensus_force),
+            )
+            _rid = regime_from_edge_sensors(
+                multi_set_consensus=snap.multi_set_consensus,
+                consensus_force=float(snap.consensus_force),
+                efficiency=_eff,
+            )
+            if day_path_regime_skip_new_risk(_rid):
+                continue
+            if snap.multi_set_consensus == "conflict":
+                continue
+            if snap.multi_set_consensus == "agree_long" and best.act != "long":
+                continue
+            if snap.multi_set_consensus == "agree_short" and best.act != "short":
+                continue
+            if wounded and topology != "pullback_resume":
+                continue
+            multi_agree = snap.multi_set_consensus in ("agree_long", "agree_short")
+            fmin = real_edge_force_min(topology=topology, multi_set_agree=multi_agree)
+            if not fills and topology == "continuation":
+                if abs(best.force) < first_entry_cont_force_min(multi_set_agree=multi_agree):
+                    continue
+            if abs(float(best.force)) < float(fmin):
+                continue
+            if not entry_quality_ok(
+                slot=slot,
+                topology=topology,
+                n_fills=len(fills),
+                force=float(best.force),
+                multi_set_agree=multi_agree,
+            ):
+                continue
+            if not path_side_permission_ok(snap):
+                continue
+            n_side = count_actionable_side_agree(snap, best.act)
+            side_i = 1 if best.act == "long" else -1
+            if not session_confirms_side(
+                m1,
+                date=date,
+                asof_time=slot,
+                side=side_i,
+                min_align=session_min_align_for_path(multi_set_agree=multi_agree),
+            ):
+                continue
+            quality = abs(best.force) + (0.55 if topology == "pullback_resume" else 0.0)
+            quality += 0.15 * n_side
+            if snap.multi_set_consensus in ("agree_long", "agree_short"):
+                quality += 0.35
+            if sym == "XAUUSD":
+                quality += 0.30
+            if is_prime_session_slot(slot):
+                quality += 0.25
+            candidates.append((quality, sym, snap, topology))
+
+        if not candidates:
+            # Mark: empty slot skip — no pad trades (allows_empty_slot_skip)
+            continue
+        candidates.sort(key=lambda x: -x[0])
+        # CASE-0030: dual-sym only when multi-set agrees (best candidate sets tone)
+        top_consensus = str(candidates[0][2].multi_set_consensus)
+        if top_consensus == "agree_long":
+            side_pool = [
+                c
+                for c in candidates
+                if c[2].best is not None and c[2].best.act == "long"
+            ]
+            if side_pool:
+                candidates = side_pool
+        elif top_consensus == "agree_short":
+            side_pool = [
+                c
+                for c in candidates
+                if c[2].best is not None and c[2].best.act == "short"
+            ]
+            if side_pool:
+                candidates = side_pool
+        n_take = min(
+            len(candidates),
+            production_symbols_per_slot(multi_set_consensus=top_consensus),
+        )
+        picked = candidates[:n_take]
+
+        for quality, sym, snap, topology in picked:
+            if ledger.realized_pnl_percent >= target_percent - 1e-9:
+                meta["locked_target"] = True
+                break
+            if ledger.remaining_risk_budget_percent() <= 0.08:
+                break
+            if len(fills) >= max_fills:
+                break
+            best = snap.best
+            assert best is not None
+            m1 = m1_by_symbol[sym]
+            # CASE-0012/0028: pullback → EOD; cont → min hold path (default 30m)
+            end_time_fill = fill_hold_end_time(topology, slot, slot_list)
+            pol_topo = "launch" if topology == "pullback_resume" else "release"
+
+            official = edge_to_set_confluence(snap)
+            progress = max(ledger.realized_pnl_percent, 0.0) / max(target_percent, 1e-6)
+            # CASE-0018: pack A17 regime into doctrine so frozen policy sees it
+            eff_p = efficiency_proxy_from_edge(
+                n_pullback=snap.n_pullback,
+                n_continuation=snap.n_continuation,
+                consensus_force=float(snap.consensus_force),
+            )
+            rid = regime_from_edge_sensors(
+                multi_set_consensus=snap.multi_set_consensus,
+                consensus_force=float(snap.consensus_force),
+                efficiency=eff_p,
+            )
+            doctrine = encode_regime_doctrine(
+                rid, force=float(snap.consensus_force), efficiency=eff_p
+            )
+            state = build_meta_rl_state(
+                target_percent=target_percent,
+                max_daily_risk_percent=max_daily_risk_percent,
+                official=official,
+                doctrine_vec=doctrine,
+                structure=StructureFlags(
+                    pullback=topology == "pullback_resume",
+                    scale_conflict=False,
+                ),
+                progress_to_target=float(np.clip(progress, 0, 1.5)),
+                realized_risk_percent=max(-ledger.realized_pnl_percent, 0.0),
+                session_phase=float(si / max(len(slot_list) - 1, 1)),
+            )
+            meta["last_regime"] = rid.value
+            meta["regime_channel"] = "a17_doctrine"
+            roles = tuple(roles_all) or ("force", "velocity")
+            action: PolicyAction = policy.forward(
+                state, ledger=ledger, topology=pol_topo, roles=roles
+            )
+            # Brain path: one forward only — no hard nudge oracle (A29)
+            if not brain_drives and action.act == "wait":
+                st2 = state.copy()
+                sign = 1.0 if best.act == "long" else -1.0
+                for idx in (0, 3, 6, 9):
+                    if idx < st2.size:
+                        st2[idx] = sign * 0.95
+                action = policy.forward(st2, ledger=ledger, topology="launch", roles=roles)
+            if action.act not in ("long", "short"):
+                continue
+            # Align with edge side when brain fires opposite (sensor truth)
+            if brain_drives and action.act != best.act:
+                # Allow brain side if multi-set not conflict; else take edge side
+                if snap.multi_set_consensus == "conflict":
+                    continue
+                if snap.multi_set_consensus == "agree_long":
+                    action = PolicyAction(
+                        act="long",
+                        size_risk_percent=action.size_risk_percent,
+                        reason=action.reason + "|edge_align_long",
+                        topology=topology,
+                        roles_cited=roles,
+                    )
+                elif snap.multi_set_consensus == "agree_short":
+                    action = PolicyAction(
+                        act="short",
+                        size_risk_percent=action.size_risk_percent,
+                        reason=action.reason + "|edge_align_short",
+                        topology=topology,
+                        roles_cited=roles,
+                    )
+                else:
+                    action = PolicyAction(
+                        act=best.act,
+                        size_risk_percent=action.size_risk_percent,
+                        reason=action.reason + "|edge_side",
+                        topology=topology,
+                        roles_cited=roles,
+                    )
+
+            rem_goal = remaining_to_target(ledger, target_percent)
+            if brain_drives and action.size_risk_percent > 0.05:
+                size = float(action.size_risk_percent)
+            else:
+                size = goal_path_size_for_clear(
+                    ledger=ledger,
+                    target_percent=target_percent,
+                    topology=topology,
+                    wounded=wounded,
+                )
+                size = float(size) * production_leg_size_scale(len(fills))
+            if size <= 0.05 or ledger.would_breach(size):
+                continue
+            meta["path_geometry"] = (
+                "a29_brain_drives" if brain_drives else "a21_one_sym_full_scale"
+            )
+
+            window = m1_window(m1, date=date, start_time=slot, end_time=end_time_fill)
+            if len(window) < 5:
+                continue
+            entry = float(window[0]["open"])
+            stop_px = stop_distance_price_from_pct(entry, stop_distance_pct)
+            lot_info = risk_legal_max_lot(
+                equity=equity,
+                risk_percent=size,
+                entry_price=entry,
+                stop_distance_price=stop_px,
+                symbol=sym,
+                leverage=LEVERAGE,
+            )
+            size = min(size, float(lot_info["risk_percent_actual"]) or size)
+            if size <= 0 or lot_info["lot"] <= 0:
+                continue
+
+            side = 1 if best.act == "long" else -1
+            action_act = best.act
+            ledger.positions.append(
+                OpenPosition(
+                    symbol=sym,
+                    side=side,
+                    risk_percent=size,
+                    notional_pct=size / max(stop_distance_pct, 1e-6) * 100.0,
+                )
+            )
+            # CASE-0008: size-R floor @1.0R + secondary 50% rem_goal; no full BE (F-011)
+            pnl = simulate_fill_m1_path(
+                side=side,
+                bars=window,
+                size_risk_percent=size,
+                stop_distance_pct=stop_distance_pct,
+                friction_pct=fr.total_pct,
+                trail=False,
+                goal_lock_pnl_percent=rem_goal if rem_goal > 0 else None,
+                partial_lock_frac=0.5,
+                size_r_arm_r=1.0,
+            )
+            apply_trade_result(ledger, pnl_percent=pnl, closed_risk_percent=size)
+            ledger.positions.clear()
+            fills.append(
+                LegFill(
+                    symbol=sym,
+                    slot=slot,
+                    act=action_act,
+                    size_risk_percent=size,
+                    pnl_percent=pnl,
+                    topology=topology,
+                    edge_kind=topology,
+                    lot=float(lot_info["lot"]),
+                )
+            )
+            meta["n_slots_fired"] += 1
+            if pnl < 0:
+                wounded = True
+            if ledger.realized_pnl_percent >= target_percent - 1e-9:
+                meta["locked_target"] = True
+                break
+
+        if meta.get("locked_target"):
+            break
+
+    meta["n_pullback"] = n_pb
+    meta["n_continuation"] = n_ct
+    meta["senses_ok"] = senses_ok if probed else False
+    meta["l2l_ok"] = l2l_ok if probed else False
+    meta["n_fills"] = len(fills)
+    meta["n_trades"] = len(fills)
+    meta["a13_ok"] = a13_trade_count_ok(len(fills))
+    meta["max_fills"] = max_fills
+    meta["roles"] = tuple(sorted(set(roles_all))) or ("force", "velocity")
+    return fills, ledger, meta

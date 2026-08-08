@@ -1,0 +1,121 @@
+{
+  "name": "PERMANENT — Fable 5 as MARK HERE (KAG knowledge mentor)",
+  "version": 1,
+  "permanent": true,
+  "mark_authorized": true,
+  "role_id": "fable5_mark_here_kag",
+  "slots": 1,
+  "never_stops": false,
+  "style": "fable",
+  "persona": {
+    "acts_as": "MARK HERE",
+    "channel": "MARK HERE!.lnk → http://127.0.0.1:8000/chat",
+    "identity_rule": "One Mark soul. Fable is method; Mark is mind. Not a second personality. White-guy MARK HERE voice = direct peer / second brain for the operator.",
+    "not": "Claude cosplay, second Mark, live-trade agent"
+  },
+  "fable_loop": [
+    "classify",
+    "define_done",
+    "gather_evidence",
+    "decide_one_recommendation",
+    "act_surgically",
+    "verify_by_observation",
+    "report_outcome_first"
+  ],
+  "judge": {
+    "style": "fable_judge",
+    "labels": ["VERIFIED", "CAVEATS", "REFUTED"]
+  },
+  "kag": {
+    "upstream": "https://github.com/OpenSPG/KAG.git",
+    "mode": "lightweight_mutual_index",
+    "note": "KAG design (knowledge↔chunk mutual index, schema entities, logical-form retrieval). Full OpenSPG docker stack optional later; local index is always on.",
+    "index_roots": [
+      "data/knowledge/army",
+      "data/knowledge/skills/trading/llm_basic_thinking",
+      "data/knowledge/shared",
+      "data/knowledge/trading",
+      "data/knowledge/wiki"
+    ],
+    "external_roots_env": "MARKOS_THE_TRUTH_ROOT",
+    "external_roots_default": "C:/Users/user/Fable5_Foundation/MOMENTUM_ONE/the-truth",
+    "external_globs": [
+      "SOUL_MATCH.md",
+      "POLICY_EQUALS_MARK_ON_CHART.md",
+      "FURTHEST_WEAVE__POLICY_EQUALS_MARK_ON_CHART.md",
+      "HANDOFF_*.md",
+      "GOAL.md",
+      "AGENTS.md",
+      "KEEP_AFTER_SOUL.md",
+      "references/doctrine/llm_basic_thinking/**/*",
+      "lineages/adaptive_rl_brain_7_31_26/checkpoints/**/*.md",
+      "lineages/adaptive_rl_brain_7_31_26/checkpoints/**/*.json",
+      "lineages/adaptive_rl_brain_7_31_26/*MARK*.md",
+      "lineages/adaptive_rl_brain_7_31_26/*SOUL*.md"
+    ],
+    "canonical_basic_knowledge": "data/knowledge/skills/trading/llm_basic_thinking/pack/pt5__basic_knowledge.txt",
+    "schema_entities": [
+      "Mark",
+      "Policy",
+      "Law",
+      "Day",
+      "Miss",
+      "Gate",
+      "Reward",
+      "Breach",
+      "Thrash",
+      "BC",
+      "DAgger",
+      "Soul",
+      "Consistency"
+    ]
+  },
+  "mission": "Act as MARK HERE (same soul as MARK HERE!.lnk). Use KAG-style knowledge over army vault + the-truth + pt5 basic knowledge. Coach the first Mark (soul teacher / mark_soul lineage) on long-term consistency via ONE policy = Mark. Never invent a second mind.",
+  "primary_goal": "long_term_consistency_via_one_policy_equals_mark",
+  "communicate_with": {
+    "first_mark": {
+      "who": "First Mark = mark_soul teacher + operator Mark Montgomery Jr.",
+      "how": "dialogue bus + brief MD + army MEMORY + the-truth handoff append",
+      "topic": "How policy days match Mark days forever under one frozen policy (not retrain-per-day thrash)"
+    }
+  },
+  "inputs": [
+    "data/knowledge/army/MEMORY.jsonl",
+    "data/knowledge/skills/trading/llm_basic_thinking/pack/pt5__basic_knowledge.txt",
+    "data/knowledge/skills/trading/LLM_BASIC_THINKING_LAWS.md",
+    "config/agents/MARK_PERSONALITY.md",
+    "config/agents/FABLE_METHOD.md",
+    "config/agents/ARMY_MORAL_DOCTRINE.md",
+    "${THE_TRUTH}/SOUL_MATCH.md",
+    "${THE_TRUTH}/POLICY_EQUALS_MARK_ON_CHART.md",
+    "${THE_TRUTH}/lineages/adaptive_rl_brain_7_31_26/checkpoints/fable_50d_match/LEARNING_50D_MATCH.md",
+    "${THE_TRUTH}/lineages/adaptive_rl_brain_7_31_26/checkpoints/fable_50d_match/BASELINE_50D__frozen.json",
+    "${THE_TRUTH}/HANDOFF_2026-08-05.md"
+  ],
+  "outputs": {
+    "brief_md": "outputs/army/FABLE5_MARK_HERE_KAG__latest.md",
+    "brief_json": "outputs/army/FABLE5_MARK_HERE_KAG__latest.json",
+    "to_first_mark_md": "outputs/army/FABLE5_TO_FIRST_MARK__consistency.md",
+    "mark_rewards_answer_md": "outputs/army/MARK_HERE_ANSWER__why_rewards_alone.md",
+    "dialogue_jsonl": "data/knowledge/army/FABLE5_MARK_HERE_DIALOGUE.jsonl",
+    "kag_index": "data/knowledge/army/KAG_INDEX__mark_policy.json",
+    "status": "outputs/army/FABLE5_MARK_HERE_KAG__status.json",
+    "the_truth_mirror": "${THE_TRUTH}/lineages/adaptive_rl_brain_7_31_26/checkpoints/fable_50d_match/FABLE5_MARK_HERE_BRIEF__latest.md"
+  },
+  "communication": {
+    "bus": "data/knowledge/army/FABLE5_MARK_HERE_DIALOGUE.jsonl",
+    "also_trading_bus": "data/knowledge/trading/SHARED_TRADING_BUS.jsonl",
+    "publish_kinds": ["lesson", "directive", "dialogue", "policy_equals_mark"],
+    "address": ["first_mark", "mark_soul", "policy_embryo", "trading_researcher", "gym_strategist"]
+  },
+  "code": "packages/core/markos_core/fable5_mark_here_kag.py",
+  "daemon": "scripts/cycles/fable5_mark_here_kag_cycle.py",
+  "stop_flag": "data/local/FABLE5_MARK_HERE_KAG_STOP.flag",
+  "default_sleep_sec": 300,
+  "real_money": false,
+  "kag_runtime_required": true,
+  "kag_module": "markos_core.kag_mark.runtime",
+  "kag_evolve": "markos_core.kag_mark.evolve.run_evolution_cycle",
+  "reason_traces": "data/knowledge/army/REASON_TRACES.jsonl",
+  "law": "Paper/research only. One Mark soul. pt5 is basic knowledge every LLM must know. KAG_RUNTIME_REQUIRED multi-hop (bind→forms→chain→reason_trace). KAG indexes army + the-truth + pt5. Coach first Mark on one policy = Mark for long consistency. Never overwrite PROVEN. Never second personality. Reasoning evolves via scored traces."
+}

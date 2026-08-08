@@ -1,0 +1,83 @@
+{
+  "name": "Mark full obs + timeframe sets",
+  "updated_utc": "2026-08-07",
+  "mark_full_obs": {
+    "dim": 168,
+    "formula": "32 + 16 + 12 + 92 + 16",
+    "source": "lineages/adaptive_rl_brain_7_31_26/perception/observation_full.py",
+    "blocks": {
+      "channel1": {"slice": "0:32", "dim": 32},
+      "doctrine": {"slice": "32:48", "dim": 16},
+      "majority": {"slice": "48:60", "dim": 12},
+      "signal_agents_92": {"slice": "60:152", "dim": 92},
+      "self_state": {"slice": "152:168", "dim": 16}
+    },
+    "channel1": {
+      "official_sets_1_to_4": "0:12  (dir, vel, confluence) x4",
+      "sub_sets_A_to_E": "12:27 (dir, vel, confluence) x5",
+      "pullback": 27,
+      "scale_conflict": 28,
+      "progress_to_goal": 29,
+      "danger": 30,
+      "session_phase": 31
+    },
+    "doctrine_fields": [
+      "force_dir", "n_force_bull/4", "n_force_bear/4", "n_aligned/4", "n_breather/4",
+      "m_conf", "m_regime", "play_launch", "play_breath", "play_aligned",
+      "regime_bull", "regime_bear", "regime_chop", "regime_flat",
+      "teacher_buy", "teacher_sell"
+    ],
+    "self_fields": [
+      "side", "n_open_units", "n_entries", "n_adds", "progress", "danger",
+      "target_pct", "risk_pct", "hardness", "equity_pct", "room_to_floor",
+      "remaining_to_target", "mark_soul", "soul_flips", "session_phase", "in_trade"
+    ],
+    "signal_slots": {
+      "n_filled": 92,
+      "n_enabled": 91,
+      "capacity": 500,
+      "vote_encoding": "+1 buy | -1 sell | 0 flat",
+      "registry": "configs/signal_slots.yaml",
+      "index_doc": "code/signals/00_ALL_92_AGENTS.md",
+      "disabled_slots": [25]
+    }
+  },
+  "other_obs_systems": {
+    "proven_production": {"approx_dim": 1820, "include_signal_agent_slots": false},
+    "sigon_new_lineage": {"approx_dim": 6820, "include_signal_agent_slots": true},
+    "warning": "Never mix PROVEN weights with Mark-168 or SIGON-6820 without retrain"
+  },
+  "timeframe_sets_mark": {
+    "law": "LTF=first (timing); HTF=last two (force). Scan all 4.",
+    "config": "configs/timeframes.yaml -> sets_mark",
+    "lineage": "lineages/adaptive_rl_brain_7_31_26/perception/sets.py -> MARK_SETS_LAW",
+    "sets": [
+      {"id": 1, "name": "micro", "ltf": "1m", "htfs": ["15m", "30m"], "extra": "1h"},
+      {"id": 2, "name": "intraday", "ltf": "5m", "htfs": ["30m", "1h"], "extra": "4h"},
+      {"id": 3, "name": "swing", "ltf": "15m", "htfs": ["1h", "4h"], "extra": "1d"},
+      {"id": 4, "name": "macro", "ltf": "30m", "htfs": ["4h", "1d"], "extra": "1w"}
+    ],
+    "sub_sets": [
+      {"id": "A", "entry": "1m", "confirm": "5m"},
+      {"id": "B", "entry": "5m", "confirm": "15m"},
+      {"id": "C", "entry": "15m", "confirm": "30m"},
+      {"id": "D", "entry": "1h", "confirm": "4h"},
+      {"id": "E", "entry": "4h", "confirm": "1d"}
+    ]
+  },
+  "timeframe_sets_proven_legacy": {
+    "note": "PROVEN only — wrong set2/set3 vs Mark",
+    "sets": [
+      {"id": 1, "ltf": "1m", "htfs": ["15m", "30m"]},
+      {"id": 2, "ltf": "5m", "htfs": ["1h", "4h"]},
+      {"id": 3, "ltf": "15m", "htfs": ["4h", "1d"]},
+      {"id": 4, "ltf": "30m", "htfs": ["4h", "1d"]}
+    ]
+  },
+  "features_sets_lock": {
+    "config": "configs/features.yaml",
+    "values": ["mark", "proven_legacy"],
+    "for_mark_clone": "use mark lock + MARK_SETS_LAW"
+  },
+  "lab_root": "C:/Users/user/Fable5_Foundation/MOMENTUM_ONE/the-truth"
+}

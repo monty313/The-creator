@@ -1,0 +1,63 @@
+{
+  "version": 1,
+  "name": "MarkOS Fable Method",
+  "enabled": true,
+  "philosophy": "Structure + evidence + honesty, filtered through Mark values",
+  "sources": {
+    "fable_method_repo": "https://github.com/Sahir619/fable-method",
+    "vendor_path": "vendor/fable-method",
+    "local_fable5_archive": "docs/12_archive/FABLE_5_SYSTEM_PROMPT_LAW.md",
+    "mark_soul": "config/agents/MARK_PERSONALITY.md",
+    "army_adapter": "config/agents/FABLE_METHOD.md"
+  },
+  "identity_rule": "Mark clone + Fable structure — never roleplay as Anthropic Claude",
+  "loop": [
+    "triviality_gate",
+    "fit_gate",
+    "classify",
+    "define_done",
+    "evidence",
+    "decide",
+    "act",
+    "verify",
+    "report"
+  ],
+  "ask_shapes": ["question", "task", "plan_first"],
+  "verdicts": ["VERIFIED", "CAVEATS", "REFUTED"],
+  "report_artifacts": ["INTENT", "AUTH", "PENDING", "TWINS"],
+  "hard_bounds": {
+    "max_verify_retries": 3,
+    "max_fruitless_lookups": 2
+  },
+  "domain_adapters": {
+    "govcon": {
+      "min_evidence": ["public_source_or_local_brief", "approval_gates_respected"],
+      "auth_for": ["submit_bid", "entity_registration", "outbound"]
+    },
+    "trading": {
+      "min_evidence": ["paper_or_doctrine"],
+      "auth_for": ["real_money_trade", "challenge_fee"]
+    },
+    "automation": {
+      "min_evidence": ["runnable_or_openable_product"],
+      "auth_for": ["external_publish_as_mark", "spend_money"]
+    },
+    "ops": {
+      "min_evidence": ["observed_status"],
+      "auth_for": ["delete_mark_files", "raise_budget"]
+    },
+    "research": {
+      "min_evidence": ["cite_or_label_memory"],
+      "auth_for": []
+    }
+  },
+  "commander_json_extra_fields": [
+    "ask_shape",
+    "definition_of_done",
+    "verification",
+    "domain",
+    "one_recommendation"
+  ],
+  "critic_mode": "fable_judge",
+  "inject_into_all_clones": true
+}

@@ -1,0 +1,3195 @@
+{
+  "updated": "2026-08-06T08:34:16.768216+00:00",
+  "by_agent": {
+    "clone_teacher": [
+      "rt_76a7c9310fc94f3f",
+      "rt_65421732dbcd449c",
+      "rt_846dbfbe8fd74c62",
+      "rt_b7fe3f1dfa854862",
+      "rt_d232ea22d4ac4f35",
+      "rt_a69d736bb2924b79",
+      "rt_34900b0d6ae24b37",
+      "rt_74ba04b0ae2d476f",
+      "rt_0a74c4e4843347b2",
+      "rt_fc97074936734c88",
+      "rt_fdc09dae577646b4",
+      "rt_a1731be0af7e467b",
+      "rt_f5fd0d4d6c774258",
+      "rt_1596117577cb4fea",
+      "rt_29702db112934ff1",
+      "rt_4f2d51e01bd24f2c",
+      "rt_99e03c246d5345fa",
+      "rt_c44fc3b8e6cf41b7",
+      "rt_f368b5a936c44dad",
+      "rt_bf68ba148b124636",
+      "rt_f5bf49a0bfc54b8d",
+      "rt_8e7df80a33b24b44",
+      "rt_a8b83d19b7184284",
+      "rt_bb011af206d44989",
+      "rt_9068229214b9421e",
+      "rt_d429d0328e4e46ea",
+      "rt_6c1c9485cc5e464f",
+      "rt_00f3a532b9c74e7d",
+      "rt_da5b9db076944e54",
+      "rt_53733eaf35f24874",
+      "rt_9fe9967bfa674dc0",
+      "rt_1901d5476b7c4a6b",
+      "rt_8df2fcd7bb6240b8",
+      "rt_98df7e6fba214621",
+      "rt_48e02d2617a546df",
+      "rt_4e7178e29ceb4a4b",
+      "rt_28b86e8e997243ea",
+      "rt_4c67c634b9f947bd",
+      "rt_8584d659e5734078",
+      "rt_3c19939d9e354dc3",
+      "rt_70abfce2ea4b4b19",
+      "rt_946f52f7f0234ca9",
+      "rt_b5c65d7f7885467c",
+      "rt_e0cc4667bf164d50",
+      "rt_020ff2ee068d43ee",
+      "rt_162596b3e94e4ff4",
+      "rt_a9d7670b8bd34044",
+      "rt_d175eb36cae44b12",
+      "rt_3fb8cf8dac3f414b",
+      "rt_ebb66fcf256f4645",
+      "rt_2db5fb804cd440f0",
+      "rt_336cc291cf3b46f1",
+      "rt_e036b1d1fa20425c",
+      "rt_e58941320e414df5",
+      "rt_93043db17481488f",
+      "rt_9cc43348aad5446f",
+      "rt_509b79a377fb4abc",
+      "rt_19a4ce8745184fe6",
+      "rt_9cebf7b982e54a24",
+      "rt_b79a70bb7cea4652",
+      "rt_7137e2cfb3294921",
+      "rt_39d3f5aaadf34871",
+      "rt_69aff1c64ab043e5",
+      "rt_06dda3b63c5b4ed7",
+      "rt_a6c6ef89ff8740f8",
+      "rt_0c6d21c104314f57",
+      "rt_42aeec793a9c4244",
+      "rt_5a1b27746b564cfb",
+      "rt_0b144d0f027c4373",
+      "rt_c7a49eb3b89e4333",
+      "rt_6c043e0a9f56456c",
+      "rt_de8a404fca2b4552",
+      "rt_862db7929a084c2b",
+      "rt_42730a26d6674d37",
+      "rt_5f75b1f6f2414a3b",
+      "rt_cedfc0e3e2fe4acf",
+      "rt_45f711fa097c4906",
+      "rt_db21c401bbff427f",
+      "rt_f91e7b0d5cb2438f",
+      "rt_49cf98c7f3cf41d3",
+      "rt_da7f61691a63465e",
+      "rt_b7393259dc344fb5",
+      "rt_b819e39d96b6458c",
+      "rt_9a8f27b2bf4d405b",
+      "rt_9f881636b5974998",
+      "rt_3508320baf724678",
+      "rt_f469c73b945b4bae",
+      "rt_e6db91d5f52a4a4e",
+      "rt_a55796e967544770",
+      "rt_107ef22fb922433c",
+      "rt_bb746e969a124f4b",
+      "rt_e96731b5d99f4880",
+      "rt_ae002d9127ef4c5c",
+      "rt_e1569d1da9b24015",
+      "rt_6c19f976dcef4587",
+      "rt_d25f421852f54985",
+      "rt_5e2f0a04ec3347a9",
+      "rt_8d23a167d9f044a9",
+      "rt_e51fff75fe074936",
+      "rt_30afa9567a5244c9",
+      "rt_833235db656147ea",
+      "rt_09b91cfad8d348d3",
+      "rt_61eaffb3436f4ec5",
+      "rt_37f32681cecd42d4",
+      "rt_978e2ff5718e4c23",
+      "rt_005195f9f0e046e0",
+      "rt_4493b850204a4699",
+      "rt_1820755ae5964ede",
+      "rt_99e7e07dbfb84327",
+      "rt_895d8e1dd4eb4525",
+      "rt_9e76079513724d21",
+      "rt_bbaabc79db084193",
+      "rt_0b5c3c3201854038",
+      "rt_9a63349d01ae4d02",
+      "rt_096d139cc68e42c8",
+      "rt_83fc622c0f914816",
+      "rt_e6aac811f57447ba",
+      "rt_ec8a668e13234c00",
+      "rt_6d1a369fd68b49fa",
+      "rt_7a5d9787849c40fb",
+      "rt_46bbcc6baf0b4e6d",
+      "rt_e36280cfced84931",
+      "rt_ed133fe4c6da4d69",
+      "rt_b4d3402f3cd54064",
+      "rt_9418ed46518d4235",
+      "rt_0379f475360b4936",
+      "rt_048d8bef15004272",
+      "rt_131d298ca5bf4ed8",
+      "rt_be85fd7906e84a48",
+      "rt_98b7f1c831a94848",
+      "rt_2cda3d0a460a4869",
+      "rt_add0968c272a414d",
+      "rt_acedba9b489f40be",
+      "rt_aaf16138aa074636",
+      "rt_a8c9982a63c94282",
+      "rt_6b1d0f7181044f2f",
+      "rt_3577a2a7b5c04518",
+      "rt_8592264e28504f63",
+      "rt_dd1932649a5943a6",
+      "rt_309fa02cc6144cef",
+      "rt_4e26e1d614c9433a",
+      "rt_fb6e5a948c6941e1",
+      "rt_ee33da75224d4f16",
+      "rt_aa163de71f7e481e",
+      "rt_6beb3a3c89584759",
+      "rt_cf7dae9bd25b4950",
+      "rt_128c8f03f2194fd0",
+      "rt_2dc7356fc0f24a7c",
+      "rt_20214baadd9f46b7",
+      "rt_6318eb488aa84da1",
+      "rt_fc9ec33db8124bcc",
+      "rt_3aaa3354d3f644bb",
+      "rt_b83e660545cb4f6d",
+      "rt_c61e0526e7a5475d",
+      "rt_19bbc127ae054aa9",
+      "rt_53839f64cbc04a7e",
+      "rt_88f31785c9a5457b",
+      "rt_d10d72465a544e53",
+      "rt_623ffc816ca247e2",
+      "rt_2b776ab1bdc04784",
+      "rt_85bc6283218547e3",
+      "rt_6162ce4b26744104",
+      "rt_96d525535d85479c",
+      "rt_e3f8e93a9a084cfe",
+      "rt_f3f8fe1995fc4289",
+      "rt_3dae32db90c64541",
+      "rt_6200716b26d145e1",
+      "rt_b76035ea9a15403d",
+      "rt_23095375bf56473d",
+      "rt_cd6b76eb777e412e",
+      "rt_656f418fb95441c2",
+      "rt_26a6d0310acf4333",
+      "rt_99281c60ef0b4665",
+      "rt_5552726d759443c8",
+      "rt_acc9c9142ce54b56",
+      "rt_3e91adaeb52747cc",
+      "rt_ed9855fe392c4350",
+      "rt_8ec471158f9149a4",
+      "rt_683ee7a2367b4738",
+      "rt_5f73e96a5b674eb0",
+      "rt_a90a6007061c4d83",
+      "rt_d6a216ad82634372",
+      "rt_041e53c9191d4955",
+      "rt_0141a30617ad4919",
+      "rt_657e61824de64465",
+      "rt_9405835cd561468f",
+      "rt_ad3d68b988094470",
+      "rt_c343420dc4ad4149",
+      "rt_c35ed5565bb5403b",
+      "rt_6e8c34d46d3442e6",
+      "rt_c0f2ee43dcac4f69",
+      "rt_db00cf568b874633",
+      "rt_e75b916ef9904642",
+      "rt_46520ce947b14288",
+      "rt_0248f5b0c9b846d9",
+      "rt_996270fc24d94900",
+      "rt_f9646ec451c643d3",
+      "rt_7e9d7b87f31c4a68",
+      "rt_af164cc3cdc14249",
+      "rt_64be5d9c427b4dc7"
+    ],
+    "test_agent": [
+      "rt_0d9244e89d37484e",
+      "rt_d8e912e6246b4eb5"
+    ],
+    "evolution_job_stage1": [
+      "rt_14f80fedda6e4970",
+      "rt_7f039b43c73045ff",
+      "rt_ae0ec8f92e2b4683",
+      "rt_1c2cc72f500a4299"
+    ],
+    "evolution_job_stage2": [
+      "rt_6062d90efa7f44cc",
+      "rt_e7079f6e49564867",
+      "rt_783edd5dba80401e",
+      "rt_a713deb2f4c844c3"
+    ],
+    "evolution_job_stage3": [
+      "rt_3b68907b476143c9",
+      "rt_eada6b55eea0447d",
+      "rt_3c36873465c04613",
+      "rt_8a8ed89589d9419f"
+    ],
+    "evolution_job_stage4": [
+      "rt_19e263411c7e4d56",
+      "rt_f3df9b40a45a40a9",
+      "rt_beb7b4e9067c435f",
+      "rt_be36198766b34e72"
+    ],
+    "evolution_job_stage5": [
+      "rt_434314a5313040f8",
+      "rt_dad9074a879645e9",
+      "rt_ae06992907a94459",
+      "rt_25ff7a58b3e240ef"
+    ],
+    "markos_second_brain": [
+      "rt_e1c8d82d6c304c3d",
+      "rt_342f32eb89d941fb",
+      "rt_6052e5306bed499c",
+      "rt_cae1dc4f16494bf5",
+      "rt_05fb91b145dd41e6"
+    ],
+    "reason_teacher_v1": [
+      "rt_354e2730300f4d19",
+      "rt_35fb22b2f4f64d3c",
+      "rt_60f14207f10b4881",
+      "rt_89f94d40a0504528",
+      "rt_295e107de30e4a64",
+      "rt_83b22cbc058e425d",
+      "rt_5e51004afe4e4caf",
+      "rt_d3aa70c87d8e4d85",
+      "rt_5b0a86470fd84729",
+      "rt_41c1255138dc4553",
+      "rt_9a65a57e89b04948",
+      "rt_1a5b72e482514e5c",
+      "rt_e40c0e3d0ada4020",
+      "rt_a9e311e218db4403",
+      "rt_db402ae506fa4419",
+      "rt_113fd3e962b14f33",
+      "rt_0c6648fd39e544ab",
+      "rt_ada6b09c4c794f08",
+      "rt_5bfce75db6524074",
+      "rt_e01c09fedbe24207",
+      "rt_cf01c04b6a594b56",
+      "rt_b8225981986a4169",
+      "rt_b1f83c7010664ed9",
+      "rt_099572f036ae4d07",
+      "rt_c2cabae3ca1348f7",
+      "rt_ae9b5e849df34746",
+      "rt_6ffdc075859349c7",
+      "rt_8ab9e7d7130b4580",
+      "rt_9cd7242c83f64f35",
+      "rt_a12dc1f29e044487",
+      "rt_326ecb612cd24bde",
+      "rt_b6fcbf7efca342cc",
+      "rt_444290a65f184a21",
+      "rt_1ad9e5ec043549a7",
+      "rt_6aee03b54e8b447c",
+      "rt_dcaf7cfdb26944e9",
+      "rt_eb3343d1224e4a59",
+      "rt_ee1bd10458bc4fdf",
+      "rt_bb1fbaf529054c36",
+      "rt_14f7f1d9342c46c4",
+      "rt_3dcc2715dfb74b2b",
+      "rt_b9d48754286e4375",
+      "rt_cffb5eafa99a43cb",
+      "rt_6699672ac20145df",
+      "rt_9879806d3cb74a0a",
+      "rt_7a8230e531c2489a",
+      "rt_366b3112fb8a40b7",
+      "rt_238176d19249467f",
+      "rt_a073ab623126469b",
+      "rt_2a9e500fc3304a88",
+      "rt_29842189b4214f27",
+      "rt_c7d4d80bcf974ceb",
+      "rt_d56dfc31001c4c1e",
+      "rt_74aa2c7a7bc349f1",
+      "rt_e7dfce12a0a74129",
+      "rt_330410b97eaf44f0",
+      "rt_ccf5069d77844e55",
+      "rt_3963aee6eee44fbb",
+      "rt_283560e616404faf",
+      "rt_9c72d7a98a8d405f",
+      "rt_e93ae8ee01404501",
+      "rt_9483a30691b84790",
+      "rt_a12f5291b99046b8",
+      "rt_cad8e25eaff740e9",
+      "rt_0ab085f71e4544cf",
+      "rt_9aeb5249ead54ebb",
+      "rt_41d0225a64954cca",
+      "rt_87c8803f0eac4a4c",
+      "rt_fb8588cab226473f",
+      "rt_5e4a6dc94d8f467a",
+      "rt_7b1eef55903c4fa9",
+      "rt_2f2cf16f7c6a47d4",
+      "rt_6179f06d0e4c4024",
+      "rt_27b6d93599ea47fa",
+      "rt_20485880f9bc4fe9",
+      "rt_25c11680e4da457d",
+      "rt_d7bfc1657a424d45",
+      "rt_ea552ed268244fad",
+      "rt_2edae329d3764a0d",
+      "rt_06f7dad0deb847a4",
+      "rt_c6fb870bb1ff4ca4",
+      "rt_c8dd8e3a0ad142bf",
+      "rt_4b7157909fbe4d66",
+      "rt_238c892623414bb0",
+      "rt_795460091e6f4041",
+      "rt_c5e5f949bcdc443b",
+      "rt_9ac1425c2de7427d",
+      "rt_cffcf2315d2349a0",
+      "rt_87c2c4fc78a74def",
+      "rt_0d1ebdaa2c7c499e",
+      "rt_fe222de90c894ec0",
+      "rt_7ba6a154d76a467f",
+      "rt_64c4c208b0ac4f27"
+    ],
+    "mark_hitl_gold": [
+      "gold_rt_35fb22b2f4f64d3c",
+      "gold_rt_0c6648fd39e544ab",
+      "gold_rt_6699672ac20145df",
+      "gold_rt_2a9e500fc3304a88",
+      "gold_rt_7b1eef55903c4fa9",
+      "gold_rt_4b7157909fbe4d66"
+    ]
+  },
+  "recent": [
+    {
+      "trace_id": "rt_eb88cdf102544a56",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:02:59.680368+00:00"
+    },
+    {
+      "trace_id": "rt_0d9244e89d37484e",
+      "agent_id": "test_agent",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:02:59.724489+00:00"
+    },
+    {
+      "trace_id": "rt_96481d3a11254b61",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:02:59.755907+00:00"
+    },
+    {
+      "trace_id": "rt_4fe9647bf38b4fc5",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:03:00.447636+00:00"
+    },
+    {
+      "trace_id": "rt_d4d6bd0261904de2",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:03:00.475797+00:00"
+    },
+    {
+      "trace_id": "rt_7d11498982184243",
+      "agent_id": "clone_teacher",
+      "act": "fire_buy",
+      "topology": "launch",
+      "ts": "2026-08-06T01:03:00.550857+00:00"
+    },
+    {
+      "trace_id": "rt_ca1ff2fb0aed4166",
+      "agent_id": "clone_teacher",
+      "act": "wait_no_trade",
+      "topology": "chop",
+      "ts": "2026-08-06T01:03:00.646476+00:00"
+    },
+    {
+      "trace_id": "rt_48359688af6044ea",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:03:00.722738+00:00"
+    },
+    {
+      "trace_id": "rt_7b6ea6140c0c40ea",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:03:00.795284+00:00"
+    },
+    {
+      "trace_id": "rt_9de6e04b9f3c4dc9",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:03:00.888380+00:00"
+    },
+    {
+      "trace_id": "rt_14f80fedda6e4970",
+      "agent_id": "evolution_job_stage1",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:03:00.992910+00:00"
+    },
+    {
+      "trace_id": "rt_02a5c14f2c544af5",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:03:01.052677+00:00"
+    },
+    {
+      "trace_id": "rt_6062d90efa7f44cc",
+      "agent_id": "evolution_job_stage2",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:03:01.122746+00:00"
+    },
+    {
+      "trace_id": "rt_44150624517842eb",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:03:01.163585+00:00"
+    },
+    {
+      "trace_id": "rt_3b68907b476143c9",
+      "agent_id": "evolution_job_stage3",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:03:01.247280+00:00"
+    },
+    {
+      "trace_id": "rt_f7d376f92f1c474b",
+      "agent_id": "clone_teacher",
+      "act": "wait_no_trade",
+      "topology": "chop",
+      "ts": "2026-08-06T01:03:01.285645+00:00"
+    },
+    {
+      "trace_id": "rt_19e263411c7e4d56",
+      "agent_id": "evolution_job_stage4",
+      "act": "wait_no_trade",
+      "topology": "chop",
+      "ts": "2026-08-06T01:03:01.350367+00:00"
+    },
+    {
+      "trace_id": "rt_35ea4d1b0ae94e21",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:03:01.390253+00:00"
+    },
+    {
+      "trace_id": "rt_434314a5313040f8",
+      "agent_id": "evolution_job_stage5",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:03:01.457312+00:00"
+    },
+    {
+      "trace_id": "rt_09a06b97ff1e4405",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:03:01.518450+00:00"
+    },
+    {
+      "trace_id": "rt_e542704ba2c64ac4",
+      "agent_id": "clone_teacher",
+      "act": "fire_buy",
+      "topology": "launch",
+      "ts": "2026-08-06T01:03:01.600038+00:00"
+    },
+    {
+      "trace_id": "rt_c39206b692f34614",
+      "agent_id": "clone_teacher",
+      "act": "wait_no_trade",
+      "topology": "chop",
+      "ts": "2026-08-06T01:03:01.671217+00:00"
+    },
+    {
+      "trace_id": "rt_bd13d7bc3ec4432b",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:03:01.773055+00:00"
+    },
+    {
+      "trace_id": "rt_79120854aca442da",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:03:02.110625+00:00"
+    },
+    {
+      "trace_id": "rt_a847c4629e584951",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:03:02.273337+00:00"
+    },
+    {
+      "trace_id": "rt_e1c8d82d6c304c3d",
+      "agent_id": "markos_second_brain",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:03:02.361610+00:00"
+    },
+    {
+      "trace_id": "rt_2a2e0021992a474a",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:03:02.582022+00:00"
+    },
+    {
+      "trace_id": "rt_895ccad8a0cb43e7",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:03:02.632049+00:00"
+    },
+    {
+      "trace_id": "rt_668d8ec8ee20481a",
+      "agent_id": "clone_teacher",
+      "act": "fire_buy",
+      "topology": "launch",
+      "ts": "2026-08-06T01:03:02.687947+00:00"
+    },
+    {
+      "trace_id": "rt_d9df8ebdff4e4444",
+      "agent_id": "clone_teacher",
+      "act": "wait_no_trade",
+      "topology": "chop",
+      "ts": "2026-08-06T01:03:02.718464+00:00"
+    },
+    {
+      "trace_id": "rt_c281b90571e04ee6",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:03:02.788201+00:00"
+    },
+    {
+      "trace_id": "rt_983d5930eb4b45e4",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:03:22.529684+00:00"
+    },
+    {
+      "trace_id": "rt_7f039b43c73045ff",
+      "agent_id": "evolution_job_stage1",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:03:22.643147+00:00"
+    },
+    {
+      "trace_id": "rt_25e0dee5d53e4616",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:03:22.693131+00:00"
+    },
+    {
+      "trace_id": "rt_e7079f6e49564867",
+      "agent_id": "evolution_job_stage2",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:03:22.792057+00:00"
+    },
+    {
+      "trace_id": "rt_de8053dafcf7486b",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:03:22.860470+00:00"
+    },
+    {
+      "trace_id": "rt_eada6b55eea0447d",
+      "agent_id": "evolution_job_stage3",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:03:22.939291+00:00"
+    },
+    {
+      "trace_id": "rt_9ed8079d6ed04d7a",
+      "agent_id": "clone_teacher",
+      "act": "wait_no_trade",
+      "topology": "chop",
+      "ts": "2026-08-06T01:03:22.988114+00:00"
+    },
+    {
+      "trace_id": "rt_f3df9b40a45a40a9",
+      "agent_id": "evolution_job_stage4",
+      "act": "wait_no_trade",
+      "topology": "chop",
+      "ts": "2026-08-06T01:03:23.096273+00:00"
+    },
+    {
+      "trace_id": "rt_1b7286a8f2f3411d",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:03:23.145106+00:00"
+    },
+    {
+      "trace_id": "rt_dad9074a879645e9",
+      "agent_id": "evolution_job_stage5",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:03:23.287188+00:00"
+    },
+    {
+      "trace_id": "rt_70d88df0cf7844b3",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:03:23.439509+00:00"
+    },
+    {
+      "trace_id": "rt_27a8df9068f849b0",
+      "agent_id": "clone_teacher",
+      "act": "fire_buy",
+      "topology": "launch",
+      "ts": "2026-08-06T01:03:23.642157+00:00"
+    },
+    {
+      "trace_id": "rt_509b2367b1ad48db",
+      "agent_id": "clone_teacher",
+      "act": "wait_no_trade",
+      "topology": "chop",
+      "ts": "2026-08-06T01:03:23.808891+00:00"
+    },
+    {
+      "trace_id": "rt_4d5c91051656406d",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:03:23.988792+00:00"
+    },
+    {
+      "trace_id": "rt_d5bb9148563c4f09",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:03:24.154787+00:00"
+    },
+    {
+      "trace_id": "rt_cb38456c2c92411c",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:03:24.474496+00:00"
+    },
+    {
+      "trace_id": "rt_d94aea41f84d4bb5",
+      "agent_id": "clone_teacher",
+      "act": "fire_buy",
+      "topology": "launch",
+      "ts": "2026-08-06T01:03:24.610660+00:00"
+    },
+    {
+      "trace_id": "rt_65bad8fca8044596",
+      "agent_id": "clone_teacher",
+      "act": "wait_no_trade",
+      "topology": "chop",
+      "ts": "2026-08-06T01:03:24.744638+00:00"
+    },
+    {
+      "trace_id": "rt_9cbc10216e3e44a2",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:03:24.848252+00:00"
+    },
+    {
+      "trace_id": "rt_7d74bc492c5943dd",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:03:24.965962+00:00"
+    },
+    {
+      "trace_id": "rt_51f3f5fa44f945b8",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:06:47.022569+00:00"
+    },
+    {
+      "trace_id": "rt_342f32eb89d941fb",
+      "agent_id": "markos_second_brain",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:06:47.103608+00:00"
+    },
+    {
+      "trace_id": "rt_072cda11c1644e31",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:07:24.039122+00:00"
+    },
+    {
+      "trace_id": "rt_6052e5306bed499c",
+      "agent_id": "markos_second_brain",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:07:24.133242+00:00"
+    },
+    {
+      "trace_id": "rt_354e2730300f4d19",
+      "agent_id": "reason_teacher_v1",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:15:22.495566+00:00"
+    },
+    {
+      "trace_id": "rt_c4122654c42c4091",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:15:22.504551+00:00"
+    },
+    {
+      "trace_id": "rt_7a2c3716fb2946ee",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:15:22.640505+00:00"
+    },
+    {
+      "trace_id": "rt_35fb22b2f4f64d3c",
+      "agent_id": "reason_teacher_v1",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:15:22.766808+00:00"
+    },
+    {
+      "trace_id": "rt_2bc2676c554c45a6",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:15:22.807471+00:00"
+    },
+    {
+      "trace_id": "gold_rt_35fb22b2f4f64d3c",
+      "agent_id": "mark_hitl_gold",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:15:22.881583+00:00"
+    },
+    {
+      "trace_id": "rt_60f14207f10b4881",
+      "agent_id": "reason_teacher_v1",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:15:23.074376+00:00"
+    },
+    {
+      "trace_id": "rt_d1edbc36142f4959",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:15:23.160161+00:00"
+    },
+    {
+      "trace_id": "rt_89f94d40a0504528",
+      "agent_id": "reason_teacher_v1",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:15:23.340646+00:00"
+    },
+    {
+      "trace_id": "rt_5bcd876f9d3e48cf",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:15:23.374612+00:00"
+    },
+    {
+      "trace_id": "rt_295e107de30e4a64",
+      "agent_id": "reason_teacher_v1",
+      "act": "fire_buy",
+      "topology": "launch",
+      "ts": "2026-08-06T01:15:23.491147+00:00"
+    },
+    {
+      "trace_id": "rt_a20b66fe62854386",
+      "agent_id": "clone_teacher",
+      "act": "fire_buy",
+      "topology": "launch",
+      "ts": "2026-08-06T01:15:23.527464+00:00"
+    },
+    {
+      "trace_id": "rt_83b22cbc058e425d",
+      "agent_id": "reason_teacher_v1",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:15:24.121245+00:00"
+    },
+    {
+      "trace_id": "rt_62cd05c17c584f84",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:15:24.331200+00:00"
+    },
+    {
+      "trace_id": "rt_90ab22e7d61b4135",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:15:24.445817+00:00"
+    },
+    {
+      "trace_id": "rt_d8e912e6246b4eb5",
+      "agent_id": "test_agent",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:15:24.582965+00:00"
+    },
+    {
+      "trace_id": "rt_40d73996f5b140f7",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:15:24.643457+00:00"
+    },
+    {
+      "trace_id": "rt_463de39720d14a2a",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:15:24.789126+00:00"
+    },
+    {
+      "trace_id": "rt_d685df7f58ff4354",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:15:24.892751+00:00"
+    },
+    {
+      "trace_id": "rt_3baae47af99c4f89",
+      "agent_id": "clone_teacher",
+      "act": "fire_buy",
+      "topology": "launch",
+      "ts": "2026-08-06T01:15:24.988565+00:00"
+    },
+    {
+      "trace_id": "rt_08dfc2149ce149c0",
+      "agent_id": "clone_teacher",
+      "act": "wait_no_trade",
+      "topology": "chop",
+      "ts": "2026-08-06T01:15:25.075834+00:00"
+    },
+    {
+      "trace_id": "rt_232646c79b5c4b78",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:15:25.163721+00:00"
+    },
+    {
+      "trace_id": "rt_8e5d9efbc9034eed",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:15:25.282397+00:00"
+    },
+    {
+      "trace_id": "rt_c2113194501d45d2",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:15:25.587464+00:00"
+    },
+    {
+      "trace_id": "rt_ae0ec8f92e2b4683",
+      "agent_id": "evolution_job_stage1",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:15:25.705738+00:00"
+    },
+    {
+      "trace_id": "rt_d883b3c206df4608",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:15:25.742219+00:00"
+    },
+    {
+      "trace_id": "rt_783edd5dba80401e",
+      "agent_id": "evolution_job_stage2",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:15:25.820755+00:00"
+    },
+    {
+      "trace_id": "rt_15aa2b21ccc644fe",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:15:25.864017+00:00"
+    },
+    {
+      "trace_id": "rt_3c36873465c04613",
+      "agent_id": "evolution_job_stage3",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:15:25.963593+00:00"
+    },
+    {
+      "trace_id": "rt_aecbf02580f541eb",
+      "agent_id": "clone_teacher",
+      "act": "wait_no_trade",
+      "topology": "chop",
+      "ts": "2026-08-06T01:15:26.003189+00:00"
+    },
+    {
+      "trace_id": "rt_beb7b4e9067c435f",
+      "agent_id": "evolution_job_stage4",
+      "act": "wait_no_trade",
+      "topology": "chop",
+      "ts": "2026-08-06T01:15:26.105418+00:00"
+    },
+    {
+      "trace_id": "rt_4f69362402754a93",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:15:26.143392+00:00"
+    },
+    {
+      "trace_id": "rt_ae06992907a94459",
+      "agent_id": "evolution_job_stage5",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:15:26.257714+00:00"
+    },
+    {
+      "trace_id": "rt_c87d4a986f524fe6",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:15:26.422979+00:00"
+    },
+    {
+      "trace_id": "rt_922439b6b6fa4f99",
+      "agent_id": "clone_teacher",
+      "act": "fire_buy",
+      "topology": "launch",
+      "ts": "2026-08-06T01:15:26.537063+00:00"
+    },
+    {
+      "trace_id": "rt_9f649c730c3d4396",
+      "agent_id": "clone_teacher",
+      "act": "wait_no_trade",
+      "topology": "chop",
+      "ts": "2026-08-06T01:15:26.816587+00:00"
+    },
+    {
+      "trace_id": "rt_b516c6f59f7f464b",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:15:26.970454+00:00"
+    },
+    {
+      "trace_id": "rt_3a8e65131a2c48b0",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:15:27.082774+00:00"
+    },
+    {
+      "trace_id": "rt_833cc7fbd4d34f3f",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:15:27.243979+00:00"
+    },
+    {
+      "trace_id": "rt_cae1dc4f16494bf5",
+      "agent_id": "markos_second_brain",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:15:27.449255+00:00"
+    },
+    {
+      "trace_id": "rt_5e51004afe4e4caf",
+      "agent_id": "reason_teacher_v1",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:15:35.917687+00:00"
+    },
+    {
+      "trace_id": "rt_a68472f4c1e245ae",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:15:35.975933+00:00"
+    },
+    {
+      "trace_id": "rt_d3aa70c87d8e4d85",
+      "agent_id": "reason_teacher_v1",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:15:36.097585+00:00"
+    },
+    {
+      "trace_id": "rt_f17a958998cf43cd",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:15:36.240230+00:00"
+    },
+    {
+      "trace_id": "rt_5b0a86470fd84729",
+      "agent_id": "reason_teacher_v1",
+      "act": "fire_buy",
+      "topology": "launch",
+      "ts": "2026-08-06T01:15:36.498637+00:00"
+    },
+    {
+      "trace_id": "rt_221aa24fc1bc4a4f",
+      "agent_id": "clone_teacher",
+      "act": "fire_buy",
+      "topology": "launch",
+      "ts": "2026-08-06T01:15:36.553982+00:00"
+    },
+    {
+      "trace_id": "rt_41c1255138dc4553",
+      "agent_id": "reason_teacher_v1",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:22:16.877972+00:00"
+    },
+    {
+      "trace_id": "rt_b4c2d9686e01478f",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:22:16.936623+00:00"
+    },
+    {
+      "trace_id": "rt_3c5be74f92214770",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:22:17.195015+00:00"
+    },
+    {
+      "trace_id": "rt_b74a9ca8e3a8499e",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:22:17.320596+00:00"
+    },
+    {
+      "trace_id": "rt_ddd14de20db54258",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:22:17.468152+00:00"
+    },
+    {
+      "trace_id": "rt_9a65a57e89b04948",
+      "agent_id": "reason_teacher_v1",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:22:17.674789+00:00"
+    },
+    {
+      "trace_id": "rt_0c521b18a48448cf",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:22:17.742186+00:00"
+    },
+    {
+      "trace_id": "rt_1a5b72e482514e5c",
+      "agent_id": "reason_teacher_v1",
+      "act": "fire_buy",
+      "topology": "launch",
+      "ts": "2026-08-06T01:22:17.903945+00:00"
+    },
+    {
+      "trace_id": "rt_c8792fa74e644a8a",
+      "agent_id": "clone_teacher",
+      "act": "fire_buy",
+      "topology": "launch",
+      "ts": "2026-08-06T01:22:17.978367+00:00"
+    },
+    {
+      "trace_id": "rt_e40c0e3d0ada4020",
+      "agent_id": "reason_teacher_v1",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:22:18.175415+00:00"
+    },
+    {
+      "trace_id": "rt_f9a9734f463f48d5",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:22:18.232749+00:00"
+    },
+    {
+      "trace_id": "rt_a9e311e218db4403",
+      "agent_id": "reason_teacher_v1",
+      "act": "kill",
+      "topology": "collapse",
+      "ts": "2026-08-06T01:22:18.487936+00:00"
+    },
+    {
+      "trace_id": "rt_eb7028c5dcba4e37",
+      "agent_id": "clone_teacher",
+      "act": "kill",
+      "topology": "collapse",
+      "ts": "2026-08-06T01:22:18.549565+00:00"
+    },
+    {
+      "trace_id": "rt_db402ae506fa4419",
+      "agent_id": "reason_teacher_v1",
+      "act": "kill",
+      "topology": "no_trade",
+      "ts": "2026-08-06T01:22:18.750192+00:00"
+    },
+    {
+      "trace_id": "rt_09b119bcf12e475e",
+      "agent_id": "clone_teacher",
+      "act": "wait_no_trade",
+      "topology": "no_trade",
+      "ts": "2026-08-06T01:22:18.804810+00:00"
+    },
+    {
+      "trace_id": "rt_7d3ed6830c6548aa",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:22:19.053667+00:00"
+    },
+    {
+      "trace_id": "rt_113fd3e962b14f33",
+      "agent_id": "reason_teacher_v1",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:22:19.192717+00:00"
+    },
+    {
+      "trace_id": "rt_76a7c9310fc94f3f",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:22:19.235645+00:00"
+    },
+    {
+      "trace_id": "rt_65421732dbcd449c",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:22:19.429019+00:00"
+    },
+    {
+      "trace_id": "rt_0c6648fd39e544ab",
+      "agent_id": "reason_teacher_v1",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:22:19.587738+00:00"
+    },
+    {
+      "trace_id": "rt_846dbfbe8fd74c62",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:22:19.674025+00:00"
+    },
+    {
+      "trace_id": "gold_rt_0c6648fd39e544ab",
+      "agent_id": "mark_hitl_gold",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:22:19.784136+00:00"
+    },
+    {
+      "trace_id": "rt_ada6b09c4c794f08",
+      "agent_id": "reason_teacher_v1",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:22:19.955727+00:00"
+    },
+    {
+      "trace_id": "rt_b7fe3f1dfa854862",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:22:20.010622+00:00"
+    },
+    {
+      "trace_id": "rt_5bfce75db6524074",
+      "agent_id": "reason_teacher_v1",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:22:20.439485+00:00"
+    },
+    {
+      "trace_id": "rt_d232ea22d4ac4f35",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:22:20.493351+00:00"
+    },
+    {
+      "trace_id": "rt_e01c09fedbe24207",
+      "agent_id": "reason_teacher_v1",
+      "act": "fire_buy",
+      "topology": "launch",
+      "ts": "2026-08-06T01:22:20.758266+00:00"
+    },
+    {
+      "trace_id": "rt_a69d736bb2924b79",
+      "agent_id": "clone_teacher",
+      "act": "fire_buy",
+      "topology": "launch",
+      "ts": "2026-08-06T01:22:20.990487+00:00"
+    },
+    {
+      "trace_id": "rt_cf01c04b6a594b56",
+      "agent_id": "reason_teacher_v1",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:22:22.024301+00:00"
+    },
+    {
+      "trace_id": "rt_34900b0d6ae24b37",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:22:22.073335+00:00"
+    },
+    {
+      "trace_id": "rt_b8225981986a4169",
+      "agent_id": "reason_teacher_v1",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:22:34.872428+00:00"
+    },
+    {
+      "trace_id": "rt_74ba04b0ae2d476f",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:22:34.927936+00:00"
+    },
+    {
+      "trace_id": "rt_b1f83c7010664ed9",
+      "agent_id": "reason_teacher_v1",
+      "act": "fire_buy",
+      "topology": "launch",
+      "ts": "2026-08-06T01:22:35.510977+00:00"
+    },
+    {
+      "trace_id": "rt_0a74c4e4843347b2",
+      "agent_id": "clone_teacher",
+      "act": "fire_buy",
+      "topology": "launch",
+      "ts": "2026-08-06T01:22:35.561591+00:00"
+    },
+    {
+      "trace_id": "rt_099572f036ae4d07",
+      "agent_id": "reason_teacher_v1",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:22:35.724364+00:00"
+    },
+    {
+      "trace_id": "rt_fc97074936734c88",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:22:35.773171+00:00"
+    },
+    {
+      "trace_id": "rt_c2cabae3ca1348f7",
+      "agent_id": "reason_teacher_v1",
+      "act": "kill",
+      "topology": "collapse",
+      "ts": "2026-08-06T01:22:35.935048+00:00"
+    },
+    {
+      "trace_id": "rt_fdc09dae577646b4",
+      "agent_id": "clone_teacher",
+      "act": "kill",
+      "topology": "collapse",
+      "ts": "2026-08-06T01:22:35.986342+00:00"
+    },
+    {
+      "trace_id": "rt_ae9b5e849df34746",
+      "agent_id": "reason_teacher_v1",
+      "act": "kill",
+      "topology": "no_trade",
+      "ts": "2026-08-06T01:22:36.173973+00:00"
+    },
+    {
+      "trace_id": "rt_a1731be0af7e467b",
+      "agent_id": "clone_teacher",
+      "act": "wait_no_trade",
+      "topology": "no_trade",
+      "ts": "2026-08-06T01:22:36.255998+00:00"
+    },
+    {
+      "trace_id": "rt_6ffdc075859349c7",
+      "agent_id": "reason_teacher_v1",
+      "act": "kill",
+      "topology": "chop",
+      "ts": "2026-08-06T01:23:12.980555+00:00"
+    },
+    {
+      "trace_id": "rt_f5fd0d4d6c774258",
+      "agent_id": "clone_teacher",
+      "act": "wait_no_trade",
+      "topology": "chop",
+      "ts": "2026-08-06T01:23:13.049769+00:00"
+    },
+    {
+      "trace_id": "rt_8ab9e7d7130b4580",
+      "agent_id": "reason_teacher_v1",
+      "act": "kill",
+      "topology": "chop",
+      "ts": "2026-08-06T01:23:13.336946+00:00"
+    },
+    {
+      "trace_id": "rt_1596117577cb4fea",
+      "agent_id": "clone_teacher",
+      "act": "wait_no_trade",
+      "topology": "chop",
+      "ts": "2026-08-06T01:23:13.392269+00:00"
+    },
+    {
+      "trace_id": "rt_9cd7242c83f64f35",
+      "agent_id": "reason_teacher_v1",
+      "act": "kill",
+      "topology": "collapse",
+      "ts": "2026-08-06T01:23:13.634685+00:00"
+    },
+    {
+      "trace_id": "rt_29702db112934ff1",
+      "agent_id": "clone_teacher",
+      "act": "kill",
+      "topology": "collapse",
+      "ts": "2026-08-06T01:23:13.691474+00:00"
+    },
+    {
+      "trace_id": "rt_a12dc1f29e044487",
+      "agent_id": "reason_teacher_v1",
+      "act": "kill",
+      "topology": "chop",
+      "ts": "2026-08-06T01:23:13.986914+00:00"
+    },
+    {
+      "trace_id": "rt_4f2d51e01bd24f2c",
+      "agent_id": "clone_teacher",
+      "act": "wait_no_trade",
+      "topology": "chop",
+      "ts": "2026-08-06T01:23:14.041353+00:00"
+    },
+    {
+      "trace_id": "rt_326ecb612cd24bde",
+      "agent_id": "reason_teacher_v1",
+      "act": "kill",
+      "topology": "chop",
+      "ts": "2026-08-06T01:23:14.259577+00:00"
+    },
+    {
+      "trace_id": "rt_99e03c246d5345fa",
+      "agent_id": "clone_teacher",
+      "act": "wait_no_trade",
+      "topology": "chop",
+      "ts": "2026-08-06T01:23:14.303889+00:00"
+    },
+    {
+      "trace_id": "rt_b6fcbf7efca342cc",
+      "agent_id": "reason_teacher_v1",
+      "act": "kill",
+      "topology": "collapse",
+      "ts": "2026-08-06T01:23:27.874129+00:00"
+    },
+    {
+      "trace_id": "rt_c44fc3b8e6cf41b7",
+      "agent_id": "clone_teacher",
+      "act": "kill",
+      "topology": "collapse",
+      "ts": "2026-08-06T01:23:27.911164+00:00"
+    },
+    {
+      "trace_id": "rt_444290a65f184a21",
+      "agent_id": "reason_teacher_v1",
+      "act": "kill",
+      "topology": "collapse",
+      "ts": "2026-08-06T01:23:28.212490+00:00"
+    },
+    {
+      "trace_id": "rt_f368b5a936c44dad",
+      "agent_id": "clone_teacher",
+      "act": "kill",
+      "topology": "collapse",
+      "ts": "2026-08-06T01:23:28.246091+00:00"
+    },
+    {
+      "trace_id": "rt_1ad9e5ec043549a7",
+      "agent_id": "reason_teacher_v1",
+      "act": "kill",
+      "topology": "collapse",
+      "ts": "2026-08-06T01:23:28.450331+00:00"
+    },
+    {
+      "trace_id": "rt_bf68ba148b124636",
+      "agent_id": "clone_teacher",
+      "act": "kill",
+      "topology": "collapse",
+      "ts": "2026-08-06T01:23:28.480139+00:00"
+    },
+    {
+      "trace_id": "rt_6aee03b54e8b447c",
+      "agent_id": "reason_teacher_v1",
+      "act": "kill",
+      "topology": "collapse",
+      "ts": "2026-08-06T01:23:28.800781+00:00"
+    },
+    {
+      "trace_id": "rt_f5bf49a0bfc54b8d",
+      "agent_id": "clone_teacher",
+      "act": "kill",
+      "topology": "collapse",
+      "ts": "2026-08-06T01:23:28.836127+00:00"
+    },
+    {
+      "trace_id": "rt_dcaf7cfdb26944e9",
+      "agent_id": "reason_teacher_v1",
+      "act": "kill",
+      "topology": "collapse",
+      "ts": "2026-08-06T01:23:28.989444+00:00"
+    },
+    {
+      "trace_id": "rt_8e7df80a33b24b44",
+      "agent_id": "clone_teacher",
+      "act": "kill",
+      "topology": "collapse",
+      "ts": "2026-08-06T01:23:29.034946+00:00"
+    },
+    {
+      "trace_id": "rt_eb3343d1224e4a59",
+      "agent_id": "reason_teacher_v1",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:43:56.033450+00:00"
+    },
+    {
+      "trace_id": "rt_a8b83d19b7184284",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:43:56.067580+00:00"
+    },
+    {
+      "trace_id": "rt_bb011af206d44989",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:43:56.290426+00:00"
+    },
+    {
+      "trace_id": "rt_9068229214b9421e",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:43:56.407829+00:00"
+    },
+    {
+      "trace_id": "rt_d429d0328e4e46ea",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:43:56.536603+00:00"
+    },
+    {
+      "trace_id": "rt_ee1bd10458bc4fdf",
+      "agent_id": "reason_teacher_v1",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:43:56.675566+00:00"
+    },
+    {
+      "trace_id": "rt_6c1c9485cc5e464f",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:43:56.715952+00:00"
+    },
+    {
+      "trace_id": "rt_bb1fbaf529054c36",
+      "agent_id": "reason_teacher_v1",
+      "act": "fire_buy",
+      "topology": "launch",
+      "ts": "2026-08-06T01:43:56.875167+00:00"
+    },
+    {
+      "trace_id": "rt_00f3a532b9c74e7d",
+      "agent_id": "clone_teacher",
+      "act": "fire_buy",
+      "topology": "launch",
+      "ts": "2026-08-06T01:43:56.927552+00:00"
+    },
+    {
+      "trace_id": "rt_14f7f1d9342c46c4",
+      "agent_id": "reason_teacher_v1",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:43:57.093106+00:00"
+    },
+    {
+      "trace_id": "rt_da5b9db076944e54",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:43:57.138128+00:00"
+    },
+    {
+      "trace_id": "rt_3dcc2715dfb74b2b",
+      "agent_id": "reason_teacher_v1",
+      "act": "kill",
+      "topology": "collapse",
+      "ts": "2026-08-06T01:43:57.326821+00:00"
+    },
+    {
+      "trace_id": "rt_53733eaf35f24874",
+      "agent_id": "clone_teacher",
+      "act": "kill",
+      "topology": "collapse",
+      "ts": "2026-08-06T01:43:57.367982+00:00"
+    },
+    {
+      "trace_id": "rt_b9d48754286e4375",
+      "agent_id": "reason_teacher_v1",
+      "act": "kill",
+      "topology": "no_trade",
+      "ts": "2026-08-06T01:43:57.533489+00:00"
+    },
+    {
+      "trace_id": "rt_9fe9967bfa674dc0",
+      "agent_id": "clone_teacher",
+      "act": "wait_no_trade",
+      "topology": "no_trade",
+      "ts": "2026-08-06T01:43:57.567495+00:00"
+    },
+    {
+      "trace_id": "rt_1901d5476b7c4a6b",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:43:57.764874+00:00"
+    },
+    {
+      "trace_id": "rt_cffb5eafa99a43cb",
+      "agent_id": "reason_teacher_v1",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:43:58.086376+00:00"
+    },
+    {
+      "trace_id": "rt_8df2fcd7bb6240b8",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:43:58.140521+00:00"
+    },
+    {
+      "trace_id": "rt_98df7e6fba214621",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:43:58.326823+00:00"
+    },
+    {
+      "trace_id": "rt_6699672ac20145df",
+      "agent_id": "reason_teacher_v1",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:43:58.475229+00:00"
+    },
+    {
+      "trace_id": "rt_48e02d2617a546df",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:43:58.521139+00:00"
+    },
+    {
+      "trace_id": "gold_rt_6699672ac20145df",
+      "agent_id": "mark_hitl_gold",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:43:58.569057+00:00"
+    },
+    {
+      "trace_id": "rt_9879806d3cb74a0a",
+      "agent_id": "reason_teacher_v1",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:43:58.684293+00:00"
+    },
+    {
+      "trace_id": "rt_4e7178e29ceb4a4b",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:43:58.727711+00:00"
+    },
+    {
+      "trace_id": "rt_7a8230e531c2489a",
+      "agent_id": "reason_teacher_v1",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:43:58.894641+00:00"
+    },
+    {
+      "trace_id": "rt_28b86e8e997243ea",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:43:58.935811+00:00"
+    },
+    {
+      "trace_id": "rt_366b3112fb8a40b7",
+      "agent_id": "reason_teacher_v1",
+      "act": "fire_buy",
+      "topology": "launch",
+      "ts": "2026-08-06T01:43:59.064116+00:00"
+    },
+    {
+      "trace_id": "rt_4c67c634b9f947bd",
+      "agent_id": "clone_teacher",
+      "act": "fire_buy",
+      "topology": "launch",
+      "ts": "2026-08-06T01:43:59.138017+00:00"
+    },
+    {
+      "trace_id": "rt_238176d19249467f",
+      "agent_id": "reason_teacher_v1",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:43:59.887118+00:00"
+    },
+    {
+      "trace_id": "rt_8584d659e5734078",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:43:59.923716+00:00"
+    },
+    {
+      "trace_id": "rt_3c19939d9e354dc3",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:44:00.304476+00:00"
+    },
+    {
+      "trace_id": "rt_70abfce2ea4b4b19",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:44:00.398694+00:00"
+    },
+    {
+      "trace_id": "rt_946f52f7f0234ca9",
+      "agent_id": "clone_teacher",
+      "act": "fire_buy",
+      "topology": "launch",
+      "ts": "2026-08-06T01:44:00.538405+00:00"
+    },
+    {
+      "trace_id": "rt_b5c65d7f7885467c",
+      "agent_id": "clone_teacher",
+      "act": "wait_no_trade",
+      "topology": "chop",
+      "ts": "2026-08-06T01:44:00.637275+00:00"
+    },
+    {
+      "trace_id": "rt_e0cc4667bf164d50",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:44:00.667781+00:00"
+    },
+    {
+      "trace_id": "rt_a073ab623126469b",
+      "agent_id": "reason_teacher_v1",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:45:04.294906+00:00"
+    },
+    {
+      "trace_id": "rt_020ff2ee068d43ee",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:45:04.365600+00:00"
+    },
+    {
+      "trace_id": "rt_162596b3e94e4ff4",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:45:04.797936+00:00"
+    },
+    {
+      "trace_id": "rt_2a9e500fc3304a88",
+      "agent_id": "reason_teacher_v1",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:45:05.300646+00:00"
+    },
+    {
+      "trace_id": "rt_a9d7670b8bd34044",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:45:05.532496+00:00"
+    },
+    {
+      "trace_id": "gold_rt_2a9e500fc3304a88",
+      "agent_id": "mark_hitl_gold",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:45:05.692758+00:00"
+    },
+    {
+      "trace_id": "rt_29842189b4214f27",
+      "agent_id": "reason_teacher_v1",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:45:05.848457+00:00"
+    },
+    {
+      "trace_id": "rt_d175eb36cae44b12",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:45:05.916005+00:00"
+    },
+    {
+      "trace_id": "rt_c7d4d80bcf974ceb",
+      "agent_id": "reason_teacher_v1",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:45:06.151922+00:00"
+    },
+    {
+      "trace_id": "rt_3fb8cf8dac3f414b",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:45:06.216651+00:00"
+    },
+    {
+      "trace_id": "rt_d56dfc31001c4c1e",
+      "agent_id": "reason_teacher_v1",
+      "act": "fire_buy",
+      "topology": "launch",
+      "ts": "2026-08-06T01:45:06.407792+00:00"
+    },
+    {
+      "trace_id": "rt_ebb66fcf256f4645",
+      "agent_id": "clone_teacher",
+      "act": "fire_buy",
+      "topology": "launch",
+      "ts": "2026-08-06T01:45:06.596138+00:00"
+    },
+    {
+      "trace_id": "rt_74aa2c7a7bc349f1",
+      "agent_id": "reason_teacher_v1",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:45:07.172294+00:00"
+    },
+    {
+      "trace_id": "rt_2db5fb804cd440f0",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:45:07.221883+00:00"
+    },
+    {
+      "trace_id": "rt_e7dfce12a0a74129",
+      "agent_id": "reason_teacher_v1",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:45:07.514775+00:00"
+    },
+    {
+      "trace_id": "rt_336cc291cf3b46f1",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:45:07.574753+00:00"
+    },
+    {
+      "trace_id": "rt_e036b1d1fa20425c",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:45:07.841918+00:00"
+    },
+    {
+      "trace_id": "rt_e58941320e414df5",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:45:07.954427+00:00"
+    },
+    {
+      "trace_id": "rt_93043db17481488f",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:45:08.093941+00:00"
+    },
+    {
+      "trace_id": "rt_330410b97eaf44f0",
+      "agent_id": "reason_teacher_v1",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:45:08.311036+00:00"
+    },
+    {
+      "trace_id": "rt_9cc43348aad5446f",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:45:08.359183+00:00"
+    },
+    {
+      "trace_id": "rt_ccf5069d77844e55",
+      "agent_id": "reason_teacher_v1",
+      "act": "fire_buy",
+      "topology": "launch",
+      "ts": "2026-08-06T01:45:08.576592+00:00"
+    },
+    {
+      "trace_id": "rt_509b79a377fb4abc",
+      "agent_id": "clone_teacher",
+      "act": "fire_buy",
+      "topology": "launch",
+      "ts": "2026-08-06T01:45:08.612081+00:00"
+    },
+    {
+      "trace_id": "rt_3963aee6eee44fbb",
+      "agent_id": "reason_teacher_v1",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:45:08.815903+00:00"
+    },
+    {
+      "trace_id": "rt_19a4ce8745184fe6",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:45:08.858257+00:00"
+    },
+    {
+      "trace_id": "rt_283560e616404faf",
+      "agent_id": "reason_teacher_v1",
+      "act": "kill",
+      "topology": "collapse",
+      "ts": "2026-08-06T01:45:09.044708+00:00"
+    },
+    {
+      "trace_id": "rt_9cebf7b982e54a24",
+      "agent_id": "clone_teacher",
+      "act": "kill",
+      "topology": "collapse",
+      "ts": "2026-08-06T01:45:09.106384+00:00"
+    },
+    {
+      "trace_id": "rt_9c72d7a98a8d405f",
+      "agent_id": "reason_teacher_v1",
+      "act": "kill",
+      "topology": "no_trade",
+      "ts": "2026-08-06T01:45:09.308464+00:00"
+    },
+    {
+      "trace_id": "rt_b79a70bb7cea4652",
+      "agent_id": "clone_teacher",
+      "act": "wait_no_trade",
+      "topology": "no_trade",
+      "ts": "2026-08-06T01:45:09.350453+00:00"
+    },
+    {
+      "trace_id": "rt_7137e2cfb3294921",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:45:09.601454+00:00"
+    },
+    {
+      "trace_id": "rt_39d3f5aaadf34871",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:45:09.856417+00:00"
+    },
+    {
+      "trace_id": "rt_69aff1c64ab043e5",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:45:09.912728+00:00"
+    },
+    {
+      "trace_id": "rt_06dda3b63c5b4ed7",
+      "agent_id": "clone_teacher",
+      "act": "fire_buy",
+      "topology": "launch",
+      "ts": "2026-08-06T01:45:09.972949+00:00"
+    },
+    {
+      "trace_id": "rt_a6c6ef89ff8740f8",
+      "agent_id": "clone_teacher",
+      "act": "wait_no_trade",
+      "topology": "chop",
+      "ts": "2026-08-06T01:45:10.021342+00:00"
+    },
+    {
+      "trace_id": "rt_0c6d21c104314f57",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:45:10.053663+00:00"
+    },
+    {
+      "trace_id": "rt_e93ae8ee01404501",
+      "agent_id": "reason_teacher_v1",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:45:12.855155+00:00"
+    },
+    {
+      "trace_id": "rt_42aeec793a9c4244",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:45:12.954636+00:00"
+    },
+    {
+      "trace_id": "rt_9483a30691b84790",
+      "agent_id": "reason_teacher_v1",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:47:29.855560+00:00"
+    },
+    {
+      "trace_id": "rt_5a1b27746b564cfb",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:47:29.914517+00:00"
+    },
+    {
+      "trace_id": "rt_a12f5291b99046b8",
+      "agent_id": "reason_teacher_v1",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:47:30.387804+00:00"
+    },
+    {
+      "trace_id": "rt_0b144d0f027c4373",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:47:30.436648+00:00"
+    },
+    {
+      "trace_id": "rt_cad8e25eaff740e9",
+      "agent_id": "reason_teacher_v1",
+      "act": "fire_buy",
+      "topology": "launch",
+      "ts": "2026-08-06T01:47:30.667697+00:00"
+    },
+    {
+      "trace_id": "rt_c7a49eb3b89e4333",
+      "agent_id": "clone_teacher",
+      "act": "fire_buy",
+      "topology": "launch",
+      "ts": "2026-08-06T01:47:30.743515+00:00"
+    },
+    {
+      "trace_id": "rt_0ab085f71e4544cf",
+      "agent_id": "reason_teacher_v1",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:47:31.294416+00:00"
+    },
+    {
+      "trace_id": "rt_6c043e0a9f56456c",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:47:31.371357+00:00"
+    },
+    {
+      "trace_id": "rt_9aeb5249ead54ebb",
+      "agent_id": "reason_teacher_v1",
+      "act": "fire_buy",
+      "topology": "launch",
+      "ts": "2026-08-06T01:47:31.508695+00:00"
+    },
+    {
+      "trace_id": "rt_de8a404fca2b4552",
+      "agent_id": "clone_teacher",
+      "act": "fire_buy",
+      "topology": "launch",
+      "ts": "2026-08-06T01:47:31.623973+00:00"
+    },
+    {
+      "trace_id": "rt_41d0225a64954cca",
+      "agent_id": "reason_teacher_v1",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:47:32.086439+00:00"
+    },
+    {
+      "trace_id": "rt_862db7929a084c2b",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:47:32.157858+00:00"
+    },
+    {
+      "trace_id": "rt_87c8803f0eac4a4c",
+      "agent_id": "reason_teacher_v1",
+      "act": "kill",
+      "topology": "collapse",
+      "ts": "2026-08-06T01:47:32.443661+00:00"
+    },
+    {
+      "trace_id": "rt_42730a26d6674d37",
+      "agent_id": "clone_teacher",
+      "act": "kill",
+      "topology": "collapse",
+      "ts": "2026-08-06T01:47:32.484289+00:00"
+    },
+    {
+      "trace_id": "rt_fb8588cab226473f",
+      "agent_id": "reason_teacher_v1",
+      "act": "kill",
+      "topology": "no_trade",
+      "ts": "2026-08-06T01:47:32.636540+00:00"
+    },
+    {
+      "trace_id": "rt_5f75b1f6f2414a3b",
+      "agent_id": "clone_teacher",
+      "act": "wait_no_trade",
+      "topology": "no_trade",
+      "ts": "2026-08-06T01:47:32.669764+00:00"
+    },
+    {
+      "trace_id": "rt_cedfc0e3e2fe4acf",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:47:32.769517+00:00"
+    },
+    {
+      "trace_id": "rt_1c2cc72f500a4299",
+      "agent_id": "evolution_job_stage1",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:47:33.076929+00:00"
+    },
+    {
+      "trace_id": "rt_45f711fa097c4906",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:47:33.162147+00:00"
+    },
+    {
+      "trace_id": "rt_a713deb2f4c844c3",
+      "agent_id": "evolution_job_stage2",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:47:33.340194+00:00"
+    },
+    {
+      "trace_id": "rt_db21c401bbff427f",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:47:33.391132+00:00"
+    },
+    {
+      "trace_id": "rt_8a8ed89589d9419f",
+      "agent_id": "evolution_job_stage3",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:47:33.521001+00:00"
+    },
+    {
+      "trace_id": "rt_f91e7b0d5cb2438f",
+      "agent_id": "clone_teacher",
+      "act": "wait_no_trade",
+      "topology": "chop",
+      "ts": "2026-08-06T01:47:33.561612+00:00"
+    },
+    {
+      "trace_id": "rt_be36198766b34e72",
+      "agent_id": "evolution_job_stage4",
+      "act": "wait_no_trade",
+      "topology": "chop",
+      "ts": "2026-08-06T01:47:33.762825+00:00"
+    },
+    {
+      "trace_id": "rt_49cf98c7f3cf41d3",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:47:33.807374+00:00"
+    },
+    {
+      "trace_id": "rt_25ff7a58b3e240ef",
+      "agent_id": "evolution_job_stage5",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:47:33.959740+00:00"
+    },
+    {
+      "trace_id": "rt_da7f61691a63465e",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:47:34.117871+00:00"
+    },
+    {
+      "trace_id": "rt_b7393259dc344fb5",
+      "agent_id": "clone_teacher",
+      "act": "fire_buy",
+      "topology": "launch",
+      "ts": "2026-08-06T01:47:34.274019+00:00"
+    },
+    {
+      "trace_id": "rt_b819e39d96b6458c",
+      "agent_id": "clone_teacher",
+      "act": "wait_no_trade",
+      "topology": "chop",
+      "ts": "2026-08-06T01:47:34.485696+00:00"
+    },
+    {
+      "trace_id": "rt_9a8f27b2bf4d405b",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:47:34.714837+00:00"
+    },
+    {
+      "trace_id": "rt_9f881636b5974998",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:47:35.059114+00:00"
+    },
+    {
+      "trace_id": "rt_3508320baf724678",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:49:22.301102+00:00"
+    },
+    {
+      "trace_id": "rt_f469c73b945b4bae",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:49:22.403446+00:00"
+    },
+    {
+      "trace_id": "rt_e6db91d5f52a4a4e",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:49:22.559011+00:00"
+    },
+    {
+      "trace_id": "rt_a55796e967544770",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:49:22.606578+00:00"
+    },
+    {
+      "trace_id": "rt_107ef22fb922433c",
+      "agent_id": "clone_teacher",
+      "act": "fire_buy",
+      "topology": "launch",
+      "ts": "2026-08-06T01:49:22.634375+00:00"
+    },
+    {
+      "trace_id": "rt_bb746e969a124f4b",
+      "agent_id": "clone_teacher",
+      "act": "wait_no_trade",
+      "topology": "chop",
+      "ts": "2026-08-06T01:49:22.666247+00:00"
+    },
+    {
+      "trace_id": "rt_e96731b5d99f4880",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:49:22.713788+00:00"
+    },
+    {
+      "trace_id": "rt_5e4a6dc94d8f467a",
+      "agent_id": "reason_teacher_v1",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:49:22.828491+00:00"
+    },
+    {
+      "trace_id": "rt_ae002d9127ef4c5c",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:49:22.858176+00:00"
+    },
+    {
+      "trace_id": "rt_e1569d1da9b24015",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:49:22.972914+00:00"
+    },
+    {
+      "trace_id": "rt_7b1eef55903c4fa9",
+      "agent_id": "reason_teacher_v1",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:49:23.089338+00:00"
+    },
+    {
+      "trace_id": "rt_6c19f976dcef4587",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:49:23.115174+00:00"
+    },
+    {
+      "trace_id": "gold_rt_7b1eef55903c4fa9",
+      "agent_id": "mark_hitl_gold",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:49:23.148887+00:00"
+    },
+    {
+      "trace_id": "rt_2f2cf16f7c6a47d4",
+      "agent_id": "reason_teacher_v1",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:49:23.248973+00:00"
+    },
+    {
+      "trace_id": "rt_d25f421852f54985",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:49:23.280818+00:00"
+    },
+    {
+      "trace_id": "rt_6179f06d0e4c4024",
+      "agent_id": "reason_teacher_v1",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:49:23.400335+00:00"
+    },
+    {
+      "trace_id": "rt_5e2f0a04ec3347a9",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:49:23.424625+00:00"
+    },
+    {
+      "trace_id": "rt_27b6d93599ea47fa",
+      "agent_id": "reason_teacher_v1",
+      "act": "fire_buy",
+      "topology": "launch",
+      "ts": "2026-08-06T01:49:23.533120+00:00"
+    },
+    {
+      "trace_id": "rt_8d23a167d9f044a9",
+      "agent_id": "clone_teacher",
+      "act": "fire_buy",
+      "topology": "launch",
+      "ts": "2026-08-06T01:49:23.561966+00:00"
+    },
+    {
+      "trace_id": "rt_20485880f9bc4fe9",
+      "agent_id": "reason_teacher_v1",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:49:23.950262+00:00"
+    },
+    {
+      "trace_id": "rt_e51fff75fe074936",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:49:23.967882+00:00"
+    },
+    {
+      "trace_id": "rt_25c11680e4da457d",
+      "agent_id": "reason_teacher_v1",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:49:24.074381+00:00"
+    },
+    {
+      "trace_id": "rt_30afa9567a5244c9",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:49:24.106194+00:00"
+    },
+    {
+      "trace_id": "rt_833235db656147ea",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:49:24.253755+00:00"
+    },
+    {
+      "trace_id": "rt_09b91cfad8d348d3",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:49:24.348343+00:00"
+    },
+    {
+      "trace_id": "rt_61eaffb3436f4ec5",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:49:24.443194+00:00"
+    },
+    {
+      "trace_id": "rt_d7bfc1657a424d45",
+      "agent_id": "reason_teacher_v1",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:49:24.560654+00:00"
+    },
+    {
+      "trace_id": "rt_37f32681cecd42d4",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:49:24.588153+00:00"
+    },
+    {
+      "trace_id": "rt_ea552ed268244fad",
+      "agent_id": "reason_teacher_v1",
+      "act": "fire_buy",
+      "topology": "launch",
+      "ts": "2026-08-06T01:49:24.697640+00:00"
+    },
+    {
+      "trace_id": "rt_978e2ff5718e4c23",
+      "agent_id": "clone_teacher",
+      "act": "fire_buy",
+      "topology": "launch",
+      "ts": "2026-08-06T01:49:24.722793+00:00"
+    },
+    {
+      "trace_id": "rt_2edae329d3764a0d",
+      "agent_id": "reason_teacher_v1",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:49:24.842058+00:00"
+    },
+    {
+      "trace_id": "rt_005195f9f0e046e0",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:49:24.867790+00:00"
+    },
+    {
+      "trace_id": "rt_06f7dad0deb847a4",
+      "agent_id": "reason_teacher_v1",
+      "act": "kill",
+      "topology": "collapse",
+      "ts": "2026-08-06T01:49:25.016844+00:00"
+    },
+    {
+      "trace_id": "rt_4493b850204a4699",
+      "agent_id": "clone_teacher",
+      "act": "kill",
+      "topology": "collapse",
+      "ts": "2026-08-06T01:49:25.050567+00:00"
+    },
+    {
+      "trace_id": "rt_c6fb870bb1ff4ca4",
+      "agent_id": "reason_teacher_v1",
+      "act": "kill",
+      "topology": "no_trade",
+      "ts": "2026-08-06T01:49:25.161064+00:00"
+    },
+    {
+      "trace_id": "rt_1820755ae5964ede",
+      "agent_id": "clone_teacher",
+      "act": "wait_no_trade",
+      "topology": "no_trade",
+      "ts": "2026-08-06T01:49:25.185480+00:00"
+    },
+    {
+      "trace_id": "rt_99e7e07dbfb84327",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:49:25.332753+00:00"
+    },
+    {
+      "trace_id": "rt_895d8e1dd4eb4525",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:51:23.586909+00:00"
+    },
+    {
+      "trace_id": "rt_9e76079513724d21",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:51:23.709122+00:00"
+    },
+    {
+      "trace_id": "rt_bbaabc79db084193",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:51:23.905610+00:00"
+    },
+    {
+      "trace_id": "rt_0b5c3c3201854038",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:51:23.997434+00:00"
+    },
+    {
+      "trace_id": "rt_9a63349d01ae4d02",
+      "agent_id": "clone_teacher",
+      "act": "fire_buy",
+      "topology": "launch",
+      "ts": "2026-08-06T01:51:24.145436+00:00"
+    },
+    {
+      "trace_id": "rt_096d139cc68e42c8",
+      "agent_id": "clone_teacher",
+      "act": "wait_no_trade",
+      "topology": "chop",
+      "ts": "2026-08-06T01:51:24.171686+00:00"
+    },
+    {
+      "trace_id": "rt_83fc622c0f914816",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:51:24.206715+00:00"
+    },
+    {
+      "trace_id": "rt_e6aac811f57447ba",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:51:47.629562+00:00"
+    },
+    {
+      "trace_id": "rt_ec8a668e13234c00",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:51:48.554926+00:00"
+    },
+    {
+      "trace_id": "rt_6d1a369fd68b49fa",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:51:49.339507+00:00"
+    },
+    {
+      "trace_id": "rt_7a5d9787849c40fb",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:51:49.772419+00:00"
+    },
+    {
+      "trace_id": "rt_46bbcc6baf0b4e6d",
+      "agent_id": "clone_teacher",
+      "act": "fire_buy",
+      "topology": "launch",
+      "ts": "2026-08-06T01:51:49.806516+00:00"
+    },
+    {
+      "trace_id": "rt_e36280cfced84931",
+      "agent_id": "clone_teacher",
+      "act": "wait_no_trade",
+      "topology": "chop",
+      "ts": "2026-08-06T01:51:49.836803+00:00"
+    },
+    {
+      "trace_id": "rt_ed133fe4c6da4d69",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:51:49.870536+00:00"
+    },
+    {
+      "trace_id": "rt_c8dd8e3a0ad142bf",
+      "agent_id": "reason_teacher_v1",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:51:50.607200+00:00"
+    },
+    {
+      "trace_id": "rt_b4d3402f3cd54064",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:51:51.024594+00:00"
+    },
+    {
+      "trace_id": "rt_9418ed46518d4235",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:51:51.539736+00:00"
+    },
+    {
+      "trace_id": "rt_4b7157909fbe4d66",
+      "agent_id": "reason_teacher_v1",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:51:52.719912+00:00"
+    },
+    {
+      "trace_id": "rt_0379f475360b4936",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:51:53.117316+00:00"
+    },
+    {
+      "trace_id": "gold_rt_4b7157909fbe4d66",
+      "agent_id": "mark_hitl_gold",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:51:53.748643+00:00"
+    },
+    {
+      "trace_id": "rt_238c892623414bb0",
+      "agent_id": "reason_teacher_v1",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:51:54.101183+00:00"
+    },
+    {
+      "trace_id": "rt_048d8bef15004272",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:51:54.204025+00:00"
+    },
+    {
+      "trace_id": "rt_795460091e6f4041",
+      "agent_id": "reason_teacher_v1",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:51:54.523665+00:00"
+    },
+    {
+      "trace_id": "rt_131d298ca5bf4ed8",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:51:54.555010+00:00"
+    },
+    {
+      "trace_id": "rt_c5e5f949bcdc443b",
+      "agent_id": "reason_teacher_v1",
+      "act": "fire_buy",
+      "topology": "launch",
+      "ts": "2026-08-06T01:51:54.780622+00:00"
+    },
+    {
+      "trace_id": "rt_be85fd7906e84a48",
+      "agent_id": "clone_teacher",
+      "act": "fire_buy",
+      "topology": "launch",
+      "ts": "2026-08-06T01:51:54.854060+00:00"
+    },
+    {
+      "trace_id": "rt_9ac1425c2de7427d",
+      "agent_id": "reason_teacher_v1",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:51:55.665536+00:00"
+    },
+    {
+      "trace_id": "rt_98b7f1c831a94848",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:51:55.813320+00:00"
+    },
+    {
+      "trace_id": "rt_cffcf2315d2349a0",
+      "agent_id": "reason_teacher_v1",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:51:56.517188+00:00"
+    },
+    {
+      "trace_id": "rt_2cda3d0a460a4869",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:51:56.637029+00:00"
+    },
+    {
+      "trace_id": "rt_add0968c272a414d",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:51:57.480666+00:00"
+    },
+    {
+      "trace_id": "rt_acedba9b489f40be",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:51:58.155707+00:00"
+    },
+    {
+      "trace_id": "rt_aaf16138aa074636",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:51:58.599407+00:00"
+    },
+    {
+      "trace_id": "rt_87c2c4fc78a74def",
+      "agent_id": "reason_teacher_v1",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:51:59.340037+00:00"
+    },
+    {
+      "trace_id": "rt_a8c9982a63c94282",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:51:59.407516+00:00"
+    },
+    {
+      "trace_id": "rt_0d1ebdaa2c7c499e",
+      "agent_id": "reason_teacher_v1",
+      "act": "fire_buy",
+      "topology": "launch",
+      "ts": "2026-08-06T01:52:00.138042+00:00"
+    },
+    {
+      "trace_id": "rt_6b1d0f7181044f2f",
+      "agent_id": "clone_teacher",
+      "act": "fire_buy",
+      "topology": "launch",
+      "ts": "2026-08-06T01:52:00.358836+00:00"
+    },
+    {
+      "trace_id": "rt_fe222de90c894ec0",
+      "agent_id": "reason_teacher_v1",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:52:01.262021+00:00"
+    },
+    {
+      "trace_id": "rt_3577a2a7b5c04518",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:52:01.609399+00:00"
+    },
+    {
+      "trace_id": "rt_7ba6a154d76a467f",
+      "agent_id": "reason_teacher_v1",
+      "act": "kill",
+      "topology": "collapse",
+      "ts": "2026-08-06T01:52:02.184213+00:00"
+    },
+    {
+      "trace_id": "rt_8592264e28504f63",
+      "agent_id": "clone_teacher",
+      "act": "kill",
+      "topology": "collapse",
+      "ts": "2026-08-06T01:52:02.652908+00:00"
+    },
+    {
+      "trace_id": "rt_64c4c208b0ac4f27",
+      "agent_id": "reason_teacher_v1",
+      "act": "kill",
+      "topology": "no_trade",
+      "ts": "2026-08-06T01:52:03.316408+00:00"
+    },
+    {
+      "trace_id": "rt_dd1932649a5943a6",
+      "agent_id": "clone_teacher",
+      "act": "wait_no_trade",
+      "topology": "no_trade",
+      "ts": "2026-08-06T01:52:03.750480+00:00"
+    },
+    {
+      "trace_id": "rt_309fa02cc6144cef",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T01:52:04.734677+00:00"
+    },
+    {
+      "trace_id": "rt_4e26e1d614c9433a",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T02:09:14.204965+00:00"
+    },
+    {
+      "trace_id": "rt_fb6e5a948c6941e1",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T02:09:14.220745+00:00"
+    },
+    {
+      "trace_id": "rt_ee33da75224d4f16",
+      "agent_id": "clone_teacher",
+      "act": "fire_buy",
+      "topology": "launch",
+      "ts": "2026-08-06T02:09:14.270216+00:00"
+    },
+    {
+      "trace_id": "rt_aa163de71f7e481e",
+      "agent_id": "clone_teacher",
+      "act": "wait_no_trade",
+      "topology": "chop",
+      "ts": "2026-08-06T02:09:14.301205+00:00"
+    },
+    {
+      "trace_id": "rt_6beb3a3c89584759",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T02:09:14.329089+00:00"
+    },
+    {
+      "trace_id": "rt_cf7dae9bd25b4950",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T02:09:16.147423+00:00"
+    },
+    {
+      "trace_id": "rt_128c8f03f2194fd0",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T02:09:16.249705+00:00"
+    },
+    {
+      "trace_id": "rt_2dc7356fc0f24a7c",
+      "agent_id": "clone_teacher",
+      "act": "fire_buy",
+      "topology": "launch",
+      "ts": "2026-08-06T02:09:16.362026+00:00"
+    },
+    {
+      "trace_id": "rt_20214baadd9f46b7",
+      "agent_id": "clone_teacher",
+      "act": "wait_no_trade",
+      "topology": "chop",
+      "ts": "2026-08-06T02:09:16.408330+00:00"
+    },
+    {
+      "trace_id": "rt_6318eb488aa84da1",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T02:09:16.452807+00:00"
+    },
+    {
+      "trace_id": "rt_fc9ec33db8124bcc",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T02:09:19.493227+00:00"
+    },
+    {
+      "trace_id": "rt_3aaa3354d3f644bb",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T02:09:19.529911+00:00"
+    },
+    {
+      "trace_id": "rt_b83e660545cb4f6d",
+      "agent_id": "clone_teacher",
+      "act": "fire_buy",
+      "topology": "launch",
+      "ts": "2026-08-06T02:09:19.557844+00:00"
+    },
+    {
+      "trace_id": "rt_c61e0526e7a5475d",
+      "agent_id": "clone_teacher",
+      "act": "wait_no_trade",
+      "topology": "chop",
+      "ts": "2026-08-06T02:09:19.586635+00:00"
+    },
+    {
+      "trace_id": "rt_19bbc127ae054aa9",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T02:09:19.636050+00:00"
+    },
+    {
+      "trace_id": "rt_53839f64cbc04a7e",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T02:09:20.134433+00:00"
+    },
+    {
+      "trace_id": "rt_88f31785c9a5457b",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T02:09:20.339486+00:00"
+    },
+    {
+      "trace_id": "rt_d10d72465a544e53",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T02:09:20.580417+00:00"
+    },
+    {
+      "trace_id": "rt_623ffc816ca247e2",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T02:09:20.640502+00:00"
+    },
+    {
+      "trace_id": "rt_2b776ab1bdc04784",
+      "agent_id": "clone_teacher",
+      "act": "fire_buy",
+      "topology": "launch",
+      "ts": "2026-08-06T02:09:20.714001+00:00"
+    },
+    {
+      "trace_id": "rt_85bc6283218547e3",
+      "agent_id": "clone_teacher",
+      "act": "wait_no_trade",
+      "topology": "chop",
+      "ts": "2026-08-06T02:09:20.787775+00:00"
+    },
+    {
+      "trace_id": "rt_6162ce4b26744104",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T02:09:20.819089+00:00"
+    },
+    {
+      "trace_id": "rt_96d525535d85479c",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T02:09:30.530548+00:00"
+    },
+    {
+      "trace_id": "rt_e3f8e93a9a084cfe",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T02:09:30.562250+00:00"
+    },
+    {
+      "trace_id": "rt_f3f8fe1995fc4289",
+      "agent_id": "clone_teacher",
+      "act": "fire_buy",
+      "topology": "launch",
+      "ts": "2026-08-06T02:09:30.596846+00:00"
+    },
+    {
+      "trace_id": "rt_3dae32db90c64541",
+      "agent_id": "clone_teacher",
+      "act": "wait_no_trade",
+      "topology": "chop",
+      "ts": "2026-08-06T02:09:30.645341+00:00"
+    },
+    {
+      "trace_id": "rt_6200716b26d145e1",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T02:09:30.681111+00:00"
+    },
+    {
+      "trace_id": "rt_b76035ea9a15403d",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T02:09:33.359890+00:00"
+    },
+    {
+      "trace_id": "rt_23095375bf56473d",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T02:09:33.397120+00:00"
+    },
+    {
+      "trace_id": "rt_cd6b76eb777e412e",
+      "agent_id": "clone_teacher",
+      "act": "fire_buy",
+      "topology": "launch",
+      "ts": "2026-08-06T02:09:33.428375+00:00"
+    },
+    {
+      "trace_id": "rt_656f418fb95441c2",
+      "agent_id": "clone_teacher",
+      "act": "wait_no_trade",
+      "topology": "chop",
+      "ts": "2026-08-06T02:09:33.460639+00:00"
+    },
+    {
+      "trace_id": "rt_26a6d0310acf4333",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T02:09:33.495854+00:00"
+    },
+    {
+      "trace_id": "rt_99281c60ef0b4665",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T02:12:22.796875+00:00"
+    },
+    {
+      "trace_id": "rt_5552726d759443c8",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T02:12:22.833589+00:00"
+    },
+    {
+      "trace_id": "rt_acc9c9142ce54b56",
+      "agent_id": "clone_teacher",
+      "act": "fire_buy",
+      "topology": "launch",
+      "ts": "2026-08-06T02:12:22.869440+00:00"
+    },
+    {
+      "trace_id": "rt_3e91adaeb52747cc",
+      "agent_id": "clone_teacher",
+      "act": "wait_no_trade",
+      "topology": "chop",
+      "ts": "2026-08-06T02:12:22.899996+00:00"
+    },
+    {
+      "trace_id": "rt_ed9855fe392c4350",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T02:12:22.928037+00:00"
+    },
+    {
+      "trace_id": "rt_8ec471158f9149a4",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T02:12:25.493489+00:00"
+    },
+    {
+      "trace_id": "rt_683ee7a2367b4738",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T02:12:25.538210+00:00"
+    },
+    {
+      "trace_id": "rt_5f73e96a5b674eb0",
+      "agent_id": "clone_teacher",
+      "act": "fire_buy",
+      "topology": "launch",
+      "ts": "2026-08-06T02:12:25.571056+00:00"
+    },
+    {
+      "trace_id": "rt_a90a6007061c4d83",
+      "agent_id": "clone_teacher",
+      "act": "wait_no_trade",
+      "topology": "chop",
+      "ts": "2026-08-06T02:12:25.601659+00:00"
+    },
+    {
+      "trace_id": "rt_d6a216ad82634372",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T02:12:25.651705+00:00"
+    },
+    {
+      "trace_id": "rt_041e53c9191d4955",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T02:15:17.207586+00:00"
+    },
+    {
+      "trace_id": "rt_0141a30617ad4919",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T02:15:17.246632+00:00"
+    },
+    {
+      "trace_id": "rt_657e61824de64465",
+      "agent_id": "clone_teacher",
+      "act": "fire_buy",
+      "topology": "launch",
+      "ts": "2026-08-06T02:15:17.275126+00:00"
+    },
+    {
+      "trace_id": "rt_9405835cd561468f",
+      "agent_id": "clone_teacher",
+      "act": "wait_no_trade",
+      "topology": "chop",
+      "ts": "2026-08-06T02:15:17.311020+00:00"
+    },
+    {
+      "trace_id": "rt_ad3d68b988094470",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T02:15:17.343511+00:00"
+    },
+    {
+      "trace_id": "rt_c343420dc4ad4149",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T02:15:19.739143+00:00"
+    },
+    {
+      "trace_id": "rt_c35ed5565bb5403b",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T02:15:19.773127+00:00"
+    },
+    {
+      "trace_id": "rt_6e8c34d46d3442e6",
+      "agent_id": "clone_teacher",
+      "act": "fire_buy",
+      "topology": "launch",
+      "ts": "2026-08-06T02:15:19.810715+00:00"
+    },
+    {
+      "trace_id": "rt_c0f2ee43dcac4f69",
+      "agent_id": "clone_teacher",
+      "act": "wait_no_trade",
+      "topology": "chop",
+      "ts": "2026-08-06T02:15:19.873365+00:00"
+    },
+    {
+      "trace_id": "rt_db00cf568b874633",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T02:15:19.929544+00:00"
+    },
+    {
+      "trace_id": "rt_e75b916ef9904642",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T02:15:20.793137+00:00"
+    },
+    {
+      "trace_id": "rt_46520ce947b14288",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T02:15:20.937042+00:00"
+    },
+    {
+      "trace_id": "rt_0248f5b0c9b846d9",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T02:16:30.814845+00:00"
+    },
+    {
+      "trace_id": "rt_996270fc24d94900",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T02:16:30.858450+00:00"
+    },
+    {
+      "trace_id": "rt_f9646ec451c643d3",
+      "agent_id": "clone_teacher",
+      "act": "fire_buy",
+      "topology": "launch",
+      "ts": "2026-08-06T02:16:30.915215+00:00"
+    },
+    {
+      "trace_id": "rt_7e9d7b87f31c4a68",
+      "agent_id": "clone_teacher",
+      "act": "wait_no_trade",
+      "topology": "chop",
+      "ts": "2026-08-06T02:16:30.955673+00:00"
+    },
+    {
+      "trace_id": "rt_af164cc3cdc14249",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T02:16:30.993498+00:00"
+    },
+    {
+      "trace_id": "rt_64be5d9c427b4dc7",
+      "agent_id": "clone_teacher",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T08:34:16.605544+00:00"
+    },
+    {
+      "trace_id": "rt_05fb91b145dd41e6",
+      "agent_id": "markos_second_brain",
+      "act": "wait_loaded",
+      "topology": "slingshot_load",
+      "ts": "2026-08-06T08:34:16.739188+00:00"
+    }
+  ]
+}

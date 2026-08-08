@@ -1,0 +1,110 @@
+{
+  "name": "MARK HERE portable kit",
+  "version": 1,
+  "purpose": "Copy this whole mark_here/ folder anywhere. Soul + KAG slice + doctrine + lab pack travel with it.",
+  "one_mark_rule": "Not a second personality. Same Mark soul as ARMY when ARMY is available; offline pack is a mirror.",
+  "canonical_when_online": {
+    "army_system_default": "C:\\Users\\user\\OneDrive\\Desktop\\ARMY\\01_SYSTEM",
+    "army_env": "MARKOS_ARMY_ROOT",
+    "the_truth_env": "MARKOS_THE_TRUTH_ROOT",
+    "chat_url": "http://127.0.0.1:8000/chat",
+    "health_url": "http://127.0.0.1:8000/api/health"
+  },
+  "local_pack_roots": {
+    "soul": "knowledge/soul",
+    "doctrine": "knowledge/doctrine/llm_basic_thinking",
+    "kag_configs": "knowledge/kag/configs",
+    "army_vault": "knowledge/kag/army",
+    "skills": "knowledge/kag/skills",
+    "shared": "knowledge/kag/shared",
+    "wiki": "knowledge/kag/wiki",
+    "trading_slice": "knowledge/kag/trading",
+    "lab": "knowledge/lab",
+    "index": "knowledge/00_INDEX.md"
+  },
+  "sync": {
+    "script": "sync_portable_pack.ps1",
+    "soul_files": [
+      "MARK_PERSONALITY.md",
+      "FABLE_METHOD.md",
+      "ARMY_MORAL_DOCTRINE.md",
+      "OPERATING_PRINCIPLES.md",
+      "mark_personality.json",
+      "army_moral.json",
+      "fable_method.json",
+      "second_brain.json",
+      "fable5_mark_here_kag.json",
+      "dual_folder_kag_peer.json",
+      "super_mentor_l2l_kag.json",
+      "physics_super_agent_kag.json"
+    ],
+    "army_knowledge_dirs": [
+      "army",
+      "skills",
+      "shared",
+      "wiki",
+      "learning",
+      "personal_principles",
+      "project_memory",
+      "lessons_learned"
+    ],
+    "trading_max_file_mb": 8,
+    "trading_tail_lines_if_oversize": 2000,
+    "lab_root_files": [
+      "SOUL_MATCH.md",
+      "GOAL.md",
+      "AGENTS.md",
+      "KEEP_AFTER_SOUL.md",
+      "POLICY_EQUALS_MARK_ON_CHART.md",
+      "FURTHEST_WEAVE__POLICY_EQUALS_MARK_ON_CHART.md",
+      "HANDOFF_2026-08-05.md",
+      "00_MAP_OF_THE_HOUSE.md",
+      "00_START_HERE.md",
+      "DO_THIS.md"
+    ],
+    "price_data": {
+      "card": "knowledge/00_PRICE_DATA.md",
+      "paths_json": "knowledge/PRICE_DATA_PATHS.json",
+      "config": "configs/data.yaml",
+      "dir": "data/raw",
+      "symbols": ["XAUUSD", "EURUSD", "GBPUSD", "US30"],
+      "note": "Map only in pack; CSVs stay in lab data/raw (too large to embed)"
+    },
+    "flea_jar_and_performance": {
+      "card": "FLEA_JAR_AND_PERFORMANCE.md",
+      "lid": "knowledge/doctrine/00_LID_OFF_THE_JAR.md",
+      "flea_jar": "knowledge/doctrine/flea-jar/",
+      "performance": "knowledge/performance/",
+      "sources": [
+        "references/doctrine/00_LID_OFF_THE_JAR.md",
+        "references/doctrine/flea-jar/",
+        "references/performance/"
+      ],
+      "note": "Full copies travel with Mark (not links)"
+    },
+    "lab_globs": [
+      "references/doctrine/llm_basic_thinking/**/*",
+      "lineages/adaptive_rl_brain_7_31_26/*MARK*.md",
+      "lineages/adaptive_rl_brain_7_31_26/*SOUL*.md",
+      "lineages/adaptive_rl_brain_7_31_26/MARK_*.md",
+      "lineages/adaptive_rl_brain_7_31_26/checkpoints/fable_50d_match/*MARK*",
+      "lineages/adaptive_rl_brain_7_31_26/checkpoints/fable_50d_match/*FABLE5*",
+      "lineages/adaptive_rl_brain_7_31_26/checkpoints/fable_50d_match/*LEARNING*",
+      "lineages/adaptive_rl_brain_7_31_26/checkpoints/fable_50d_match/BEST__*",
+      "lineages/adaptive_rl_brain_7_31_26/checkpoints/fable_50d_match/*SPINE*",
+      "lineages/adaptive_rl_brain_7_31_26/checkpoints/fable_50d_match/*HITL*",
+      "lineages/adaptive_rl_brain_7_31_26/checkpoints/fable_50d_match/*KAG*",
+      "lineages/adaptive_rl_brain_7_31_26/checkpoints/fable_50d_match/WHAT_WORKS*",
+      "lineages/adaptive_rl_brain_7_31_26/checkpoints/fable_50d_match/GROW_UP*",
+      "lineages/adaptive_rl_brain_7_31_26/checkpoints/mark_chart_hitl/**/*"
+    ]
+  },
+  "discovery_order": [
+    "PORTABLE.json army_override",
+    "env MARKOS_ARMY_ROOT",
+    "sibling ../ARMY/01_SYSTEM",
+    "sibling ../../ARMY/01_SYSTEM",
+    "default Desktop ARMY path",
+    "local knowledge pack only (offline)"
+  ]
+}

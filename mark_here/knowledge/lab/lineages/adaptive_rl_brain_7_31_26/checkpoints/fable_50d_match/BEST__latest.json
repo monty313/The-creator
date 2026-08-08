@@ -1,0 +1,14 @@
+{
+  "same_outcome": 36,
+  "policy_clear": 36,
+  "mwt": 14,
+  "breach": 0,
+  "source": "climb_35_combined_knowledge_KEEP_blend_teen_a1.0",
+  "stage": "teen",
+  "growth_method": "weight_blend_child_floor_teen_fire_skill",
+  "core_skill": "fire_skill multi-day (teen) fused with child pack floor",
+  "prior_same": 35,
+  "alpha": 1.0,
+  "backup": "C:\\Users\\user\\Fable5_Foundation\\MOMENTUM_ONE\\the-truth\\lineages\\adaptive_rl_brain_7_31_26\\checkpoints\\fable_50d_match\\backups/KEEP36__20260807T071028Z",
+  "ts": "2026-08-07T07:10:28.731629+00:00"
+}

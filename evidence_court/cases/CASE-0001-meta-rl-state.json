@@ -1,0 +1,139 @@
+{
+  "case_id": "CASE-0001",
+  "status": "PROMOTED",
+  "question": "How should the existing observation vector and retained timeframe sets be transformed into the Meta-RL state so the model can: (a) receive daily target_percent [5-90] and max_daily_risk_percent [1-3] as inference-time context WITHOUT retraining, (b) learn to learn (transferable roles, topology, and decision chain across novel sensors and regimes), (c) develop emergent senses (sight, feel, taste, hearing) relative to edge and reasoning?",
+  "scope": [
+    "evidence_court/**",
+    "read-only mark_here perception/doctrine/PRICE_DATA"
+  ],
+  "protected_invariants": [
+    "MARK_SETS_LAW stacks 1m,15m,30m | 5m,30m,1h | 15m,1h,4h | 30m,4h,1d",
+    "Mark-168 block layout 32+16+12+92+16",
+    "No PROVEN 1820 / SIGON 6820 weight mix into Mark-168",
+    "target/risk are inference-time only",
+    "No live MT5 deploy without separate human deploy step"
+  ],
+  "creator_submission": {
+    "claim": "Meta-RL state = Mark full 168-dim + additive 8-dim non-saturating goal/risk context; frozen policy conditions on context.",
+    "mechanism": "build_meta_rl_state + encode_goal_risk_context + FrozenMetaPolicy; train_step forbidden.",
+    "web_and_repo_evidence": [
+      "mark_here/knowledge/lab/GOAL.md",
+      "mark_here/.../observation_full.py",
+      "mark_here/.../MARK_SETS_LAW.md"
+    ],
+    "assumptions": [
+      "Portable layout-compatible packers allowed under evidence_court",
+      "Price CSVs at PRICE_DATA path for forward eval"
+    ],
+    "prediction": "Distinct pairs -> distinct context; stable weight fingerprint; risk <= envelope",
+    "falsifier": "Identical context for 5 vs 90 target; weight mutation; breach",
+    "proposed_experiment": "pytest evidence_court/tests + forward eval",
+    "no_retrain_support": "Goal/risk are state channels; no gradient API",
+    "learn_to_learn_support": "Role ports by family x port; rename/swap/novel tests",
+    "senses_support": "sight/feel/taste/hearing probes"
+  },
+  "mark_submission": {
+    "appearance": "Mark Here, Esq.",
+    "claim": "Preserve Mark eyes and sets law; fix target encoding saturation with additive context only.",
+    "identity": "same person as mark_here pack (soul + personal KAG)",
+    "law_physics": ["official_sets", "decision_chain", "kinematics"],
+    "law_belief_paths": [
+      "mark_here/ESQUIRE.md",
+      "mark_here/knowledge/lab/GOAL.md",
+      "mark_here/FULL_OBS_AND_TIMEFRAME_SETS.md",
+      "mark_here/knowledge/kag/army/PHYSICS_INFORMED_L2L.md"
+    ],
+    "personal_KAG_or_soul_cite": [
+      "mark_here/WHO_I_AM.md",
+      "mark_here/knowledge/soul/MARK_PERSONALITY.md"
+    ],
+    "KAG_experience_or_reason_trace": "Force->regime->velocity; slingshot load wait skill",
+    "new_test": {
+      "type": "new_runnable_test",
+      "why_new": "CASE-0001 principle proof requires a new discriminating run for sets+L2L+senses under this case claim — not a recycled pre-case green used as principle proof",
+      "detail": "New case-scoped pins: MARK_SETS_LAW + L2L slingshot_load wait + sense tension for THIS state-representation claim",
+      "command_or_path": "pytest evidence_court/tests/test_l2l.py evidence_court/tests/test_senses.py evidence_court/tests/test_court_schema.py -q",
+      "result_artifact_path": "evidence_court/artifacts/CASE-0001_mark_new_test__pending.json"
+    },
+    "proof_valid_only_if": "new_test",
+    "concrete_counterexample": "Act-only match without topology = COPYING_FAIL",
+    "prediction": "Slingshot_load acts wait; sets law stacks unchanged; pytest green",
+    "falsifier": "Set2-only or PROVEN stacks as Mark; or L2L pass without topology",
+    "required_measurement": "assert_mark_sets_law + L2L + sense tension",
+    "result": "pending",
+    "new_experience_to_remember": "Court requires esquire exhibits with new tests under @physics + belief paths",
+    "no_retrain_concern": "Baking one target into weights",
+    "learn_to_learn_concern": "Name-memorized recipes",
+    "senses_concern": "Absolute thresholds without HTF force"
+  },
+  "critic_cross_examination": {
+    "realism_checks": ["Declared friction assumptions"],
+    "risk_and_leverage_checks": ["Aggregate open+realized; friction reserve in sizing"],
+    "leakage_and_statistics_checks": ["Chronological forward; fixture units"],
+    "flea_jar_checks": ["Full [5,90] band retained"],
+    "no_retrain_checks": ["Fingerprint + forbidden train_step"],
+    "learn_vs_copy_checks": ["COPYING_FAIL detector"],
+    "senses_checks": ["One probe each modality"],
+    "failure_conditions": ["breach>0", "weight change", "saturated-only context"]
+  },
+  "optimist_challenge": {
+    "capability_hypothesis": "Sharper wait_loaded vs fire raises clear without extra risk",
+    "proposed_2x_or_10x_test": "Multi-pair matrix coverage under same envelope",
+    "constraint_preservation": "max daily risk hard cap",
+    "senses_sharpening": "multi-set consensus + dual clock"
+  },
+  "judge_pretrial_order": {
+    "experiment_design": "Additive evidence_court/meta_rl package + focused pytest",
+    "metrics": [
+      "context_distinctness",
+      "weight_fingerprint_stable",
+      "breach_count_0",
+      "l2l_pass",
+      "senses_pass"
+    ],
+    "pass_thresholds": {
+      "pytest": "all green",
+      "breach_count": 0,
+      "no_retrain": true
+    },
+    "fail_thresholds": {
+      "NO_RETRAIN_VIOLATION": true,
+      "sets_law_break": true,
+      "breach_count_gt_0": true
+    },
+    "data_split_or_worlds": "XAUUSD_curriculum_2026 chronological; unit fixtures",
+    "seeds": [42, 7, 11, 3],
+    "required_artifacts": [
+      "evidence_court/tests/*.py",
+      "evidence_court/artifacts/*",
+      "scratch gating logs"
+    ],
+    "allowed_code_scope": ["evidence_court/**"],
+    "no_retrain_test_required": true,
+    "learn_to_learn_test_required": true,
+    "senses_test_required": true
+  },
+  "execution_record": {
+    "command": "python -m pytest evidence_court/tests -q ; python -m evidence_court.meta_rl.cli prove 15 2",
+    "git_commit": "local-workspace",
+    "config_hash": "meta_rl_dim_176_goal_risk_8_mark_168",
+    "dataset_or_world_fingerprint": "unit fixtures + XAUUSD paths per PRICE_DATA",
+    "seed_results": {
+      "pytest": "24 passed",
+      "prove_15_2": "no_retrain true train_steps 0"
+    },
+    "raw_artifact_paths": [
+      "evidence_court/tests/",
+      "evidence_court/artifacts/forward100_report.json"
+    ],
+    "artifact_hash": "see-forward100-report"
+  },
+  "judge_IRAC_verdict": {
+    "issue": "Valid Meta-RL state for no-retrain target/risk + L2L + senses without replacing Mark law",
+    "rule": "PROMOTE only with reproducible tests, risk envelope, no-retrain, L2L/senses gates",
+    "application": "Shipped units + tests meet pretrial metrics; Mark-168 preserved; additive context fixes saturation",
+    "conclusion": "PROMOTE additive architecture into Court package (not live deploy)",
+    "ruling": "PROMOTE",
+    "required_next_step": "CASE-FORWARD-100 100-day matrix evaluation"
+  }
+}

@@ -1,0 +1,79 @@
+{
+  "law_id": "A15",
+  "name": "COUNSEL_TO_THE_COURT_LAW",
+  "status": "PERMANENT",
+  "promoted_date": "2026-08-07",
+  "human_order": "Monty — permanent Counsel to help Judge deliberate; internet sift for best policy; Judge must view all 3 opinions + evidence",
+  "immutable": true,
+  "amendment_requires": "new Court PROMOTE + Monty approval on record",
+  "role": {
+    "name": "Counsel to the Court",
+    "job": "sift_internet_for_best_possible_policy",
+    "output": "opinion",
+    "writes_production_code": false,
+    "filings_per_case": 1
+  },
+  "three_opinions_judge_must_weigh": [
+    {
+      "party": "Creator",
+      "source": "internet",
+      "evidence": "new_test"
+    },
+    {
+      "party": "Mark",
+      "source": "knowledge",
+      "evidence": "new_test"
+    },
+    {
+      "party": "Counsel",
+      "source": "internet_sift_best_policy",
+      "evidence": "sources_and_recommendation_plus_test_or_measurement_order"
+    }
+  ],
+  "sequence_after_counters": [
+    "counsel_opinion",
+    "critic",
+    "optimist",
+    "judge_irac_three_opinions"
+  ],
+  "required_case_fields": [
+    "counsel_opinion"
+  ],
+  "counsel_opinion_required_keys": [
+    "internet_sift",
+    "policy_recommendation",
+    "opinion",
+    "evidence",
+    "sources"
+  ],
+  "judge_forbidden": [
+    "promote_without_three_opinion_deliberation",
+    "irac_omitting_counsel",
+    "irac_omitting_creator",
+    "irac_omitting_mark"
+  ],
+  "soft_counsel_opinion": "INCONCLUSIVE_order_redo",
+  "legacy_cases_exempt": [
+    "CASE-0001",
+    "CASE-0002",
+    "CASE-FORWARD-100",
+    "CASE-0003",
+    "CASE-0004",
+    "CASE-0005",
+    "CASE-0006",
+    "CASE-0007",
+    "CASE-0008",
+    "CASE-0009",
+    "CASE-0010",
+    "CASE-0011"
+  ],
+  "canonical_docs": [
+    "evidence_court/COUNSEL_TO_THE_COURT_LAW.md",
+    "evidence_court/ADVERSARIAL_ROUNDS_LAW.md",
+    "evidence_court/MASTER_ARCHITECTURE.md",
+    "AGENTS.md",
+    ".grok/rules/00_counsel.md",
+    "grok_cli_evidence_court_v2.md"
+  ],
+  "test_pin": "evidence_court/tests/test_counsel_to_the_court_law.py"
+}

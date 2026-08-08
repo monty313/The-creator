@@ -1,0 +1,50 @@
+{
+  "law_id": "A28",
+  "name": "OPPORTUNITY_WATCH_LAW",
+  "status": "PERMANENT",
+  "promoted_date": "2026-08-07",
+  "human_order": "Monty — always-on opportunity watch; senses next cases; London/NY activity; multi-complaint cases; long-term performance",
+  "immutable": true,
+  "agent": {
+    "name": "OpportunityWatchAgent",
+    "always_on": true,
+    "writes_production_trades": false,
+    "emits": "complaints"
+  },
+  "opportunity": {
+    "htf": "trending_confirmation_tfs_htf_agree",
+    "ltf": "lowest_tf_of_each_official_set",
+    "timing": "RSI5_BB10_dev0.5_shift+2",
+    "topologies": ["pullback_resume", "continuation"],
+    "prime_session": "london_ny"
+  },
+  "miss_definition": "opportunity_exists_and_bot_did_not_fire_matching_side",
+  "complaints": {
+    "multiple_per_case": true,
+    "feed": "sense_cases",
+    "required_fields": [
+      "complaint_id",
+      "topology",
+      "side",
+      "session_band",
+      "sense_gap",
+      "what_bot_did",
+      "how_to_sense_next"
+    ]
+  },
+  "senses_docket": [
+    {"case": "CASE-0031", "sense": "sight", "focus": "watch_agent_miss_detection"},
+    {"case": "CASE-0032", "sense": "feel", "focus": "load_vs_launch"},
+    {"case": "CASE-0033", "sense": "taste", "focus": "edge_quality_goal_risk_conversion"},
+    {"case": "CASE-0034", "sense": "hearing", "focus": "london_ny_day_story_density"}
+  ],
+  "performance_horizon": "long_term",
+  "code": "evidence_court/meta_rl/opportunity_watch.py",
+  "test_pin": "evidence_court/tests/test_opportunity_watch_law.py",
+  "canonical_docs": [
+    "evidence_court/OPPORTUNITY_WATCH_LAW.md",
+    "evidence_court/SENSES_CASE_DOCKET.md",
+    "AGENTS.md",
+    ".grok/rules/00_opportunity_watch.md"
+  ]
+}

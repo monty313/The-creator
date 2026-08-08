@@ -1,0 +1,5 @@
+﻿PORTABLE TAIL ONLY - full file was larger than 8 MB
+source: C:\Users\user\OneDrive\Desktop\ARMY\01_SYSTEM\data\knowledge\trading\SCALPING_GYM_LESSONS.jsonl
+bytes: 41800217 (~39.86 MB)
+tail_lines: 2000
+---

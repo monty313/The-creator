@@ -1,0 +1,64 @@
+﻿{
+    "synced_utc":  "2026-08-07T11:42:16.5223485Z",
+    "army_root":  "C:\\Users\\user\\OneDrive\\Desktop\\ARMY\\01_SYSTEM",
+    "truth_root":  "C:\\Users\\user\\Fable5_Foundation\\MOMENTUM_ONE\\the-truth",
+    "full_trading":  false,
+    "counts":  {
+                   "soul_and_kag_configs":  12,
+                   "doctrine":  7,
+                   "knowledge_army":  34,
+                   "knowledge_skills":  73,
+                   "knowledge_shared":  1,
+                   "knowledge_wiki":  5,
+                   "knowledge_learning":  1,
+                   "knowledge_personal_principles":  1,
+                   "knowledge_project_memory":  1,
+                   "knowledge_lessons_learned":  3,
+                   "knowledge_trading":  18,
+                   "doctrine_truth":  7,
+                   "lab_files":  77,
+                   "total_pack_files":  226,
+                   "total_pack_mb":  41.64
+               },
+    "soul_fingerprint":  [
+                             {
+                                 "file":  "MARK_PERSONALITY.md",
+                                 "path":  "C:\\Users\\user\\OneDrive\\Desktop\\ARMY\\01_SYSTEM\\config\\agents\\MARK_PERSONALITY.md",
+                                 "hash16":  "689269F7210A6AA4",
+                                 "bytes":  14150
+                             },
+                             {
+                                 "file":  "FABLE_METHOD.md",
+                                 "path":  "C:\\Users\\user\\OneDrive\\Desktop\\ARMY\\01_SYSTEM\\config\\agents\\FABLE_METHOD.md",
+                                 "hash16":  "1AFA5DF8D6D3D368",
+                                 "bytes":  5910
+                             },
+                             {
+                                 "file":  "ARMY_MORAL_DOCTRINE.md",
+                                 "path":  "C:\\Users\\user\\OneDrive\\Desktop\\ARMY\\01_SYSTEM\\config\\agents\\ARMY_MORAL_DOCTRINE.md",
+                                 "hash16":  "77AD3592D5E420AE",
+                                 "bytes":  4284
+                             },
+                             {
+                                 "file":  "mark_personality.json",
+                                 "path":  "C:\\Users\\user\\OneDrive\\Desktop\\ARMY\\01_SYSTEM\\config\\agents\\mark_personality.json",
+                                 "hash16":  "224FEDCC579545E6",
+                                 "bytes":  4123
+                             },
+                             {
+                                 "file":  "army_moral.json",
+                                 "path":  "C:\\Users\\user\\OneDrive\\Desktop\\ARMY\\01_SYSTEM\\config\\agents\\army_moral.json",
+                                 "hash16":  "A564EE2B18B9E6C3",
+                                 "bytes":  7302
+                             },
+                             {
+                                 "file":  "fable_method.json",
+                                 "path":  "C:\\Users\\user\\OneDrive\\Desktop\\ARMY\\01_SYSTEM\\config\\agents\\fable_method.json",
+                                 "hash16":  "976E96BBC6B165E1",
+                                 "bytes":  1854
+                             }
+                         ],
+    "warnings":  [
+
+                 ]
+}

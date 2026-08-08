@@ -1,0 +1,132 @@
+{
+  "case_id": "CASE-0002",
+  "status": "PROMOTED",
+  "question": "How should the untested edge — HTF trend permission + LTF RSI(5)+BB(10,0.5,shift+2) pullback/continuation timing on official Mark sets — be implemented with multi-symbol concurrent risk and 1:100 leverage without look-ahead or retrain?",
+  "scope": [
+    "evidence_court/meta_rl/indicators.py",
+    "evidence_court/meta_rl/edge.py",
+    "evidence_court/meta_rl/leverage.py",
+    "evidence_court/meta_rl/price_io.py",
+    "evidence_court/meta_rl/forward_eval.py"
+  ],
+  "protected_invariants": [
+    "MARK_SETS_LAW",
+    "META_RL_DIM 176",
+    "no retrain",
+    "daily risk envelope hard",
+    "flea-jar full action space before impossibility"
+  ],
+  "creator_submission": {
+    "claim": "Multi-set HTF force + LTF RSI5/BB timing; multi-symbol aggregated risk-legal lots at 1:100",
+    "mechanism": "scan_all_sets -> edge_to_set_confluence -> state/policy; risk_legal_max_lot",
+    "web_and_repo_evidence": [
+      "Possible edge not tested.txt",
+      "MARK_SETS_LAW",
+      "features.yaml s2_bb / rsi patterns",
+      "FLEA_JAR_COURT_LAW.md"
+    ],
+    "assumptions": ["M1 CSVs available for XAUUSD EURUSD GBPUSD"],
+    "prediction": "pb+cont coverage >0; breach=0; multi_symbol true; leverage 100",
+    "falsifier": "look-ahead indicators; single-set only; force_side; breach",
+    "proposed_experiment": "pytest test_edge_multitf + forward100 multi-symbol",
+    "no_retrain_support": "edge is feature path; FrozenMetaPolicy",
+    "learn_to_learn_support": "edge_sensors rename/swap on day path",
+    "senses_support": "probe_all_senses from set edge snapshot"
+  },
+  "mark_submission": {
+    "claim": "LTF times pullback/continuation; HTF permission; missed entries are coverage defects",
+    "KAG_experience_or_reason_trace": "MARK_DOCTRINE force->velocity; sets law LTF first",
+    "concrete_counterexample": "Set2-only eyes miss micro/swing pullbacks",
+    "prediction": "scan_all_sets returns 4 set edges",
+    "falsifier": "act without htf_agree",
+    "required_measurement": "n_pullback + n_continuation on forward + unit scan",
+    "no_retrain_concern": "baking one BB period into weights",
+    "learn_to_learn_concern": "name-locked RSI recipe without role ports",
+    "senses_concern": "absolute RSI 30/70 without HTF force"
+  },
+  "critic_cross_examination": {
+    "realism_checks": ["declared friction", "1:100 leverage in lot math"],
+    "risk_and_leverage_checks": ["risk_legal_max_lot", "aggregate multi-symbol ledger"],
+    "leakage_and_statistics_checks": ["BB shift + completed bars only", "m1 date < decision day"],
+    "flea_jar_checks": [
+      "leverage 1:100",
+      "risk-legal max lot under envelope",
+      "pullbacks AND continuations",
+      "multiple symbols concurrent",
+      "aggregated risk + costs",
+      "envelope still hard"
+    ],
+    "no_retrain_checks": ["fingerprint stable"],
+    "learn_vs_copy_checks": ["day-path L2L rename/swap"],
+    "senses_checks": ["senses_ok per day"],
+    "failure_conditions": ["breach>0", "look-ahead", "zero pb/cont with trends available"]
+  },
+  "optimist_challenge": {
+    "capability_hypothesis": "Covering pullback_resume + continuation raises clear under same risk",
+    "proposed_2x_or_10x_test": "Compare n_trades when edge coverage on vs off",
+    "constraint_preservation": "max daily risk hard",
+    "senses_sharpening": "multi-set consensus into hearing"
+  },
+  "judge_pretrial_order": {
+    "experiment_design": "Implement edge+leverage; multi-symbol forward100",
+    "metrics": [
+      "breach_count",
+      "pullback_continuation_coverage",
+      "multi_symbol",
+      "leverage",
+      "goal_consistency_ok",
+      "l2l_day_path_ok",
+      "senses_day_path_ok"
+    ],
+    "pass_thresholds": {
+      "breach_count": 0,
+      "leverage": 100,
+      "multi_symbol": true,
+      "pullback_continuation_coverage": true
+    },
+    "fail_thresholds": {"breach_count_gt_0": true, "look_ahead": true},
+    "data_split_or_worlds": "common calendar intersection multi-symbol trailing window",
+    "seeds": [42, 11],
+    "required_artifacts": [
+      "evidence_court/artifacts/forward100_report.json",
+      "evidence_court/tests/test_edge_multitf.py"
+    ],
+    "allowed_code_scope": ["evidence_court/**"],
+    "no_retrain_test_required": true,
+    "learn_to_learn_test_required": true,
+    "senses_test_required": true
+  },
+  "execution_record": {
+    "command": "python -m pytest evidence_court/tests -q ; python -m evidence_court.meta_rl.cli forward100 --days 100",
+    "git_commit": "local-workspace",
+    "config_hash": "case0002_multitf_multisymbol_lev100",
+    "dataset_or_world_fingerprint": "trailing M1 common calendar XAUUSD+EURUSD+GBPUSD; window 2026-01-06..2026-05-26",
+    "seed_results": {
+      "pytest": "37 passed",
+      "forward100_seed_42": {
+        "n_days": 100,
+        "breach_count": 0,
+        "no_retrain": true,
+        "multi_symbol": true,
+        "leverage": 100,
+        "pullback_signals": 18,
+        "continuation_signals": 162,
+        "promote_ready": true
+      },
+      "mark_NEW_tests": "test_mark_kag_case0002_new.py all green"
+    },
+    "raw_artifact_paths": [
+      "evidence_court/artifacts/forward100_report.json",
+      "evidence_court/cases/COURT_TRANSCRIPT_0001_0002.md"
+    ],
+    "artifact_hash": "23f1bc438b061317ac41948a05f88706d8ecdbd0729cdf31aba524a8eb909754"
+  },
+  "judge_IRAC_verdict": {
+    "issue": "Untested multi-TF pullback/continuation edge under flea-jar space",
+    "rule": "PROMOTE only with NEW Mark tests, prior-only indicators, Mark sets, multi-symbol, 1:100, breach=0, pb+cont coverage",
+    "application": "37 tests green including Mark NEW suite; forward100 promote_ready; pb=18 cont=162; 3 symbols traded; leverage=100; breach=0",
+    "conclusion": "Creator claim holds under Mark KAG counters measured by NEW tests",
+    "ruling": "PROMOTE",
+    "required_next_step": "Live MT5 deploy remains separate human-approved step"
+  }
+}

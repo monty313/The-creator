@@ -1,0 +1,1 @@
+TRAP: old writers open ALPHA_MAKING_SUBMISSIONS.jsonl as a file.\nThis is a directory so spam open() fails.\nCanonical log: ALPHA_MAKING_SUBMISSIONS_CANONICAL.jsonl\nCreated 2026-08-04T02:28:36.959559+00:00\n

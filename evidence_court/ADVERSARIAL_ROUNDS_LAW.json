@@ -1,0 +1,62 @@
+{
+  "law_id": "A10",
+  "name": "ADVERSARIAL_ROUNDS_LAW",
+  "status": "PERMANENT",
+  "promoted_date": "2026-08-07",
+  "human_order": "Monty — make permanent",
+  "immutable": true,
+  "amendment_requires": "new Court PROMOTE + Monty approval on record",
+  "opening": {
+    "creator": {
+      "source": "internet",
+      "must": "strongest_internet_argument",
+      "proof": "new_test"
+    },
+    "mark": {
+      "source": "knowledge",
+      "must": "strongest_knowledge_argument",
+      "proof": "new_test",
+      "law_classes": ["@physics", "beliefs"]
+    }
+  },
+  "counter": {
+    "max_per_side": 1,
+    "requires": ["counter_argument", "newer_test"],
+    "or": "waived",
+    "second_counter": "STRIKE"
+  },
+  "forbidden_as_proof": [
+    "old_suite_greens",
+    "prior_kag_alone",
+    "rank",
+    "re_run_opening_test_as_counter"
+  ],
+  "required_case_fields": [
+    "creator_opening",
+    "mark_opening",
+    "creator_counter",
+    "mark_counter",
+    "counsel_opinion"
+  ],
+  "counsel_law": "A15",
+  "three_opinions": ["Creator", "Mark", "Counsel"],
+  "sequence_after_counters": [
+    "counsel_opinion",
+    "critic",
+    "optimist",
+    "judge_irac_three_opinions"
+  ],
+  "legacy_cases_exempt": [
+    "CASE-0001",
+    "CASE-0002",
+    "CASE-FORWARD-100"
+  ],
+  "canonical_docs": [
+    "evidence_court/ADVERSARIAL_ROUNDS_LAW.md",
+    "evidence_court/ADVERSARIAL_ROUNDS.md",
+    "grok_cli_evidence_court_v2.md",
+    "mark_here/ESQUIRE.md",
+    "evidence_court/MASTER_ARCHITECTURE.md"
+  ],
+  "test_pin": "evidence_court/tests/test_adversarial_rounds_law.py"
+}

@@ -1,0 +1,44 @@
+﻿{
+    "config":  "configs/data.yaml",
+    "discovery":  [
+                      "MARKOS_THE_TRUTH_ROOT/data/raw",
+                      "parent_of_mark_here/data/raw if GOAL.md present",
+                      "C:/Users/user/Fable5_Foundation/MOMENTUM_ONE/the-truth/data/raw"
+                  ],
+    "note":  "CSVs not embedded in portable pack; use this map. 4 symbols: XAUUSD EURUSD GBPUSD US30.",
+    "updated_utc":  "2026-08-07T11:55:28.4269077Z",
+    "lab_price_dir_absolute":  "C:\\Users\\user\\Fable5_Foundation\\MOMENTUM_ONE\\the-truth\\data\\raw",
+    "lab_price_dir_relative":  "data/raw",
+    "symbols":  [
+                    {
+                        "files":  [
+                                      "XAUUSD_curriculum_2026.csv",
+                                      "XAUUSD_M1_full.csv",
+                                      "XAUUSD_M1_drill.csv"
+                                  ],
+                        "symbol":  "XAUUSD",
+                        "role":  "bootcamp"
+                    },
+                    {
+                        "files":  [
+                                      "EURUSD_M1_curriculum.csv"
+                                  ],
+                        "symbol":  "EURUSD",
+                        "role":  "expansion"
+                    },
+                    {
+                        "files":  [
+                                      "GBPUSD_M1_curriculum.csv"
+                                  ],
+                        "symbol":  "GBPUSD",
+                        "role":  "expansion"
+                    },
+                    {
+                        "files":  [
+                                      "US30_M1_curriculum.csv"
+                                  ],
+                        "symbol":  "US30",
+                        "role":  "expansion"
+                    }
+                ]
+}

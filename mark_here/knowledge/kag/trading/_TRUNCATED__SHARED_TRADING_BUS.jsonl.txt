@@ -1,0 +1,5 @@
+﻿PORTABLE TAIL ONLY - full file was larger than 8 MB
+source: C:\Users\user\OneDrive\Desktop\ARMY\01_SYSTEM\data\knowledge\trading\SHARED_TRADING_BUS.jsonl
+bytes: 53284332 (~50.82 MB)
+tail_lines: 2000
+---
