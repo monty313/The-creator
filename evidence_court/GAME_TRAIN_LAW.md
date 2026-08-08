@@ -5,6 +5,9 @@
 
 ## Law
 
+**Principles, not hard rules.** Soft principle labels train judgment;
+no frozen recipe path may replace the brain (A29). Risk envelope remains hard safety only.
+
 Human-in-the-loop **Policy Forge** gameplay may produce training trajectories that
 **offline** improve the meta-policy toward the mission (any target×risk, breach 0,
 A13 density, senses-drive-brain). Ingest is **meta_update only while unlocked** —

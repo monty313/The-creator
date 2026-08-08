@@ -2,6 +2,9 @@
 
 ## What this is
 
+**Doctrine:** teach **principles** (sight/feel/taste/hearing + goal context)
+via **soft labels** — never hard if/then recipes. Risk envelope is the only hard safety.
+
 A **browser trading game** trains a real MetaBrain (176-dim state, wait/long/short)
 using sense-aligned teacher labels (A32) under any target×risk (A31). Export packs
 fold into the champion **offline** with `meta_update` — never weight updates at
