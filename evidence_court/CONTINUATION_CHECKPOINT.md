@@ -22,6 +22,8 @@ One bot · any target% [5–90] × risk% [1–3] · no retrain after final polic
 | **A31** | Goal is north star of every Court action |
 | **A32** | Emergent senses full definitions + fail modes permanent |
 | **A33** | Court never stops; generates goal-relative issues; ledger + tiered Court |
+| **A34** | Policy Forge game-train → offline game-ingest into champion |
+
 | **A30** | Creator checklist each item Court; then Mark |
 | **A13** | MUST 8–400 trades/day |
 | **A14/A29** | Meta-policy must be trained; brain decides |
@@ -41,6 +43,10 @@ One bot · any target% [5–90] × risk% [1–3] · no retrain after final polic
 Master: `schedules/SCHEDULE.md`
 
 ---
+
+## Game-train (additive)
+
+Browser **Policy Forge** exports → `python -m evidence_court.meta_rl.cli game-ingest <pack.json>` · see `meta_rl/game_train/README.md` · Law **A34**.
 
 ## Docket rank-1 (next Full Court)
 

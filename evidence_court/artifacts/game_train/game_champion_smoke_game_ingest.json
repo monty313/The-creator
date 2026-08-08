@@ -1,0 +1,9 @@
+{
+  "source_pack": "evidence_court/artifacts/game_train/sample_pack.json",
+  "n_traj": 20,
+  "n_applied": 20,
+  "skipped": 0,
+  "meta_train_steps": 9620,
+  "fingerprint": "42:meta9620:inf0:94087141caaf9f9d",
+  "law": "A14_offline_game_ingest_not_inference_retrain"
+}

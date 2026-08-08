@@ -17,6 +17,7 @@ from evidence_court.meta_rl.policy import (
     load_or_train_champion,
     train_goal_conditioned_meta_policy,
 )
+from evidence_court.meta_rl.game_train import ingest_game_pack
 from evidence_court.meta_rl.state import META_RL_DIM, build_meta_rl_state, extract_goal_risk_context
 
 
@@ -80,6 +81,25 @@ def main(argv: list[str] | None = None) -> int:
     fe.add_argument("--price", type=str, default="")
     fe.add_argument("--seed", type=int, default=42)
 
+    gi = sub.add_parser(
+        "game-ingest",
+        help="Ingest Policy Forge browser trajectories into champion (offline meta_update)",
+    )
+    gi.add_argument("pack", type=str, help="path to policy_forge_export_*.json")
+    gi.add_argument(
+        "--out",
+        type=str,
+        default="evidence_court/artifacts/meta_policy_champion.npz",
+    )
+    gi.add_argument("--lr", type=float, default=0.02)
+    gi.add_argument("--max-steps", type=int, default=0, help="0 = all")
+    gi.add_argument(
+        "--warmstart-browser-brain",
+        action="store_true",
+        help="Only if champion is young: seed from pack.brain",
+    )
+    gi.add_argument("--seed", type=int, default=42)
+
     args = p.parse_args(argv)
     if args.cmd == "prove":
         out = prove_pair(args.target, args.risk, seed=args.seed)
@@ -129,6 +149,33 @@ def main(argv: list[str] | None = None) -> int:
             and (report.n_days < 100 or report.promote_ready)
         )
         return 0 if ok else 2
+    if args.cmd == "game-ingest":
+        rep = ingest_game_pack(
+            args.pack,
+            out_path=args.out,
+            lr=args.lr,
+            max_steps=args.max_steps or None,
+            seed=args.seed,
+            include_browser_brain_warmstart=bool(args.warmstart_browser_brain),
+        )
+        print(
+            json.dumps(
+                {
+                    "n_traj": rep.n_traj,
+                    "n_applied": rep.n_applied,
+                    "skipped": rep.skipped,
+                    "meta_train_steps_before": rep.meta_train_steps_before,
+                    "meta_train_steps_after": rep.meta_train_steps_after,
+                    "fingerprint_before": rep.fingerprint_before,
+                    "fingerprint_after": rep.fingerprint_after,
+                    "saved": rep.saved,
+                    "mean_loss": rep.mean_loss,
+                    "law": "A14_offline_game_ingest",
+                },
+                indent=2,
+            )
+        )
+        return 0 if rep.n_applied > 0 else 2
     return 1
 
 

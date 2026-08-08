@@ -22,6 +22,7 @@ Every open row **must** list `goal_axes`. Rank = biggest blocker to final boss f
 | 10 | S4 | **C-010** | Fill realism (friction) re-measure dual | G-CLEAR, G-LONG | honest_clear | PENDING_COURT |
 | 11 | S4 | **C-011** | Court brain ↔ single prove champion path | G-ONEBOT | dual_brain | PENDING_COURT |
 | 12 | S1 | **C-012** | FINAL_BOT_SPEC gates = A13+dual+L2L+senses+no-retrain | G-CLEAR, G-A13, G-NO_RETRAIN | promote_ready | PENDING_COURT |
+| — | S4 | **GAME-TRAIN** | Policy Forge human/oracle traj → game-ingest champion | G-TRAIN, G-SIGHT, G-FEEL, G-TASTE, G-HEAR, G-CLEAR | meta_train_steps, align | **ACTIVE** |
 | — | S3 | **CASE-0031** | Sight + Opportunity Watch (serves C-001 / C-005) | G-SIGHT, G-A13 | miss_rate | OPEN_NEXT |
 | — | S3 | **CASE-0032** | Feel (after 0031) | G-FEEL | false_launch / freeze | QUEUED |
 | — | S3 | **CASE-0033** | Taste (after 0032) | G-TASTE | marginal_high_target | QUEUED |
