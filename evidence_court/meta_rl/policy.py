@@ -353,7 +353,26 @@ def sample_training_state(
     strength = abs(force) if abs(force) > 0.15 else float(rng.uniform(0.45, 0.95))
 
     official = build_official_for_regime(rid, rng=rng, side=side, strength=strength)
-    doctrine = encode_regime_doctrine(rid, force=force, efficiency=efficiency)
+    # Curriculum: random HTF source flags so retrain can learn wind provenance
+    # (doctrine[12:15]); correlated with trend regimes when force is strong.
+    if rid in (RegimeId.TREND_BULL, RegimeId.TREND_BEAR, RegimeId.VOL_EXPANSION):
+        slope_on = 1.0 if float(rng.random()) > 0.25 else 0.0
+        cci_on = 1.0 if float(rng.random()) > 0.45 else 0.0
+        rsi_on = 1.0 if float(rng.random()) > 0.45 else 0.0
+        if slope_on + cci_on + rsi_on < 1.0:
+            slope_on = 1.0
+    else:
+        slope_on = 1.0 if float(rng.random()) > 0.7 else 0.0
+        cci_on = 1.0 if float(rng.random()) > 0.85 else 0.0
+        rsi_on = 1.0 if float(rng.random()) > 0.85 else 0.0
+    doctrine = encode_regime_doctrine(
+        rid,
+        force=force,
+        efficiency=efficiency,
+        slope_on=slope_on,
+        cci_on=cci_on,
+        rsi_on=rsi_on,
+    )
 
     if rid in (RegimeId.TREND_BULL, RegimeId.TREND_BEAR, RegimeId.VOL_EXPANSION):
         topology = "launch" if float(rng.random()) > 0.35 else "release"

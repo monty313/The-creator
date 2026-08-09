@@ -106,7 +106,16 @@ def sma(closes: np.ndarray, period: int) -> np.ndarray:
 
 
 def trend_dir(closes: np.ndarray, lookback: int = 5) -> float:
-    """Signed force proxy in [-1,1] from completed closes slope."""
+    """Signed force proxy in [-1,1] from completed closes slope.
+
+    Exact formula (current Court HTF force primitive):
+      a = close[-(lookback+1)]   # close lookback bars before last
+      b = close[-1]              # latest completed close
+      ret = (b - a) / abs(a)
+      score = clip(ret * 50.0, -1.0, +1.0)
+
+    Not an MA structure model — pure recent close-to-close return scaled.
+    """
     c = np.asarray(closes, dtype=np.float64).reshape(-1)
     if c.size < lookback + 1:
         return 0.0
@@ -115,6 +124,82 @@ def trend_dir(closes: np.ndarray, lookback: int = 5) -> float:
         return 0.0
     ret = (b - a) / abs(a)
     return float(np.clip(ret * 50.0, -1.0, 1.0))
+
+
+def trend_dir_series(closes: np.ndarray, lookback: int = 5) -> np.ndarray:
+    """Per-bar trend_dir at each index (uses completed window ending at i)."""
+    c = np.asarray(closes, dtype=np.float64).reshape(-1)
+    n = c.size
+    out = np.zeros(n, dtype=np.float64)
+    for i in range(lookback, n):
+        a, b = float(c[i - lookback]), float(c[i])
+        if a == 0:
+            out[i] = 0.0
+        else:
+            out[i] = float(np.clip(((b - a) / abs(a)) * 50.0, -1.0, 1.0))
+    return out
+
+
+def cci(
+    high: np.ndarray,
+    low: np.ndarray,
+    close: np.ndarray,
+    period: int = 20,
+) -> np.ndarray:
+    """Commodity Channel Index (Lambert): (TP - SMA(TP)) / (0.015 * MAD)."""
+    h = np.asarray(high, dtype=np.float64).reshape(-1)
+    l = np.asarray(low, dtype=np.float64).reshape(-1)
+    c = np.asarray(close, dtype=np.float64).reshape(-1)
+    n = c.size
+    out = np.full(n, np.nan, dtype=np.float64)
+    if n < period or h.size != n or l.size != n:
+        return out
+    tp = (h + l + c) / 3.0
+    for i in range(period - 1, n):
+        window = tp[i - period + 1 : i + 1]
+        m = float(np.mean(window))
+        mad = float(np.mean(np.abs(window - m)))
+        if mad < 1e-12:
+            out[i] = 0.0
+        else:
+            out[i] = (float(tp[i]) - m) / (0.015 * mad)
+    return out
+
+
+def series_above_bb_mid(
+    series: np.ndarray,
+    bb_period: int = 10,
+    bb_dev: float = 0.5,
+    shift: int = 0,
+) -> np.ndarray:
+    """True where series[i] > Bollinger mid (SMA of series). NaN → False."""
+    mid, _up, _lo = bollinger(series, period=bb_period, dev=bb_dev, shift=shift)
+    s = np.asarray(series, dtype=np.float64).reshape(-1)
+    out = np.zeros(s.size, dtype=bool)
+    for i in range(s.size):
+        if np.isnan(s[i]) or np.isnan(mid[i]):
+            out[i] = False
+        else:
+            out[i] = bool(s[i] > float(mid[i]))
+    return out
+
+
+def series_below_bb_mid(
+    series: np.ndarray,
+    bb_period: int = 10,
+    bb_dev: float = 0.5,
+    shift: int = 0,
+) -> np.ndarray:
+    """True where series[i] < Bollinger mid (SMA of series). NaN → False."""
+    mid, _up, _lo = bollinger(series, period=bb_period, dev=bb_dev, shift=shift)
+    s = np.asarray(series, dtype=np.float64).reshape(-1)
+    out = np.zeros(s.size, dtype=bool)
+    for i in range(s.size):
+        if np.isnan(s[i]) or np.isnan(mid[i]):
+            out[i] = False
+        else:
+            out[i] = bool(s[i] < float(mid[i]))
+    return out
 
 
 def resample_m1_to_tf(

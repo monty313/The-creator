@@ -834,6 +834,7 @@ def run_goal_path_day(
     collect_path_state_teachers: bool = False,
     max_path_state_teachers: int = 80,
     aggressive_capture: bool = False,
+    monty_htf_blend: bool = False,
 ) -> Tuple[List[LegFill], DailyRiskLedger, Dict[str, Any]]:
     """Multi-slot scalping path. Law A29: brain decides; sensors feed state.
 
@@ -850,6 +851,11 @@ def run_goal_path_day(
 
     ``aggressive_capture`` (shadow/lab): multi-symbol pick up to 3, no XAU rank
     monopoly, cont/FX boosted in quality — risk envelope still hard; no pad.
+
+    ``monty_htf_blend`` (lab/shadow, default **False**): HTF force = Court slope
+    blended with Monty CCI+BB / RSI+BB on both HTFs; packs slope_on/cci_on/rsi_on
+    into doctrine[12:15] so the brain can learn wind source. Production champ
+    stays slope-only until Court PROMOTE + retrain.
 
     Default clock is PRODUCTION_SCALPING_SLOTS (CASE-0029 5m).
     """
@@ -879,6 +885,7 @@ def run_goal_path_day(
         "brain_drives": bool(brain_drives),
         "watch_enabled": bool(watch_enabled),
         "aggressive_capture": bool(aggressive_capture),
+        "monty_htf_blend": bool(monty_htf_blend),
         "law": "A29_brain_l2l",
     }
     slot_list = list(slots)
@@ -927,6 +934,7 @@ def run_goal_path_day(
                 tf_cache=cache,
                 asof_date=date,
                 asof_time=slot,
+                monty_htf_blend=bool(monty_htf_blend),
             )
             slot_snaps[sym] = snap
             n_pb += snap.n_pullback
@@ -1126,7 +1134,12 @@ def run_goal_path_day(
                 efficiency=eff_p,
             )
             doctrine = encode_regime_doctrine(
-                rid, force=float(snap.consensus_force), efficiency=eff_p
+                rid,
+                force=float(snap.consensus_force),
+                efficiency=eff_p,
+                slope_on=float(getattr(snap, "slope_on", 0.0) or 0.0),
+                cci_on=float(getattr(snap, "cci_on", 0.0) or 0.0),
+                rsi_on=float(getattr(snap, "rsi_on", 0.0) or 0.0),
             )
             state = build_meta_rl_state(
                 target_percent=target_percent,
@@ -1143,6 +1156,12 @@ def run_goal_path_day(
             )
             meta["last_regime"] = rid.value
             meta["regime_channel"] = "a17_doctrine"
+            meta["htf_source"] = {
+                "slope_on": float(getattr(snap, "slope_on", 0.0) or 0.0),
+                "cci_on": float(getattr(snap, "cci_on", 0.0) or 0.0),
+                "rsi_on": float(getattr(snap, "rsi_on", 0.0) or 0.0),
+                "monty_htf_blend": bool(monty_htf_blend),
+            }
             roles = tuple(roles_all) or ("force", "velocity")
             action: PolicyAction = policy.forward(
                 state, ledger=ledger, topology=pol_topo, roles=roles
@@ -1347,7 +1366,12 @@ def run_goal_path_day(
                             efficiency=eff_p,
                         )
                         doctrine = encode_regime_doctrine(
-                            rid, force=float(snap.consensus_force), efficiency=eff_p
+                            rid,
+                            force=float(snap.consensus_force),
+                            efficiency=eff_p,
+                            slope_on=float(getattr(snap, "slope_on", 0.0) or 0.0),
+                            cci_on=float(getattr(snap, "cci_on", 0.0) or 0.0),
+                            rsi_on=float(getattr(snap, "rsi_on", 0.0) or 0.0),
                         )
                         st = build_meta_rl_state(
                             target_percent=target_percent,

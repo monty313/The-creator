@@ -1,0 +1,1555 @@
+{
+  "law": "experimental_htf_momentum_compare",
+  "slope_formula": {
+    "name": "trend_dir",
+    "lookback_bars": 5,
+    "a": "close[i - lookback]",
+    "b": "close[i]",
+    "ret": "(b - a) / abs(a)",
+    "score": "clip(ret * 50, -1, +1)",
+    "pair_agree": "same sign and |f| >= 0.12 on both HTFs",
+    "strong": "agree and |mean force| >= 0.2",
+    "note": "This is what production edge uses for HTF force (agree + mean)."
+  },
+  "monty_cond1": {
+    "cci_periods": [
+      10,
+      30,
+      100
+    ],
+    "bb": {
+      "period": 10,
+      "dev": 0.5,
+      "shift": 0
+    },
+    "bull": "all 3 CCI > BB mid on both HTFs",
+    "bear": "all 3 CCI < BB mid on both HTFs"
+  },
+  "monty_cond2": {
+    "rsi_periods": [
+      5,
+      15
+    ],
+    "bb": {
+      "period": 10,
+      "dev": 0.5,
+      "shift": 0
+    },
+    "bull": "both RSI > BB mid on both HTFs",
+    "bear": "both RSI < BB mid on both HTFs"
+  },
+  "strong_trend_monty": "cond1 OR cond2 (same side)",
+  "symbols": [
+    "XAUUSD",
+    "EURUSD",
+    "GBPUSD"
+  ],
+  "n_days": 90,
+  "rows": [
+    {
+      "symbol": "XAUUSD",
+      "set_id": 1,
+      "set_name": "micro",
+      "stack": [
+        "1m",
+        "15m",
+        "30m"
+      ],
+      "eval": {
+        "n_bars": 4723,
+        "methods": {
+          "slope": {
+            "predictive": {
+              "bull_fwd5": {
+                "n": 603,
+                "hit_rate": 0.5074626865671642,
+                "mean_fwd": 0.00022848797656537453,
+                "coverage": 0.1276730891382596
+              },
+              "bear_fwd5": {
+                "n": 512,
+                "hit_rate": 0.4609375,
+                "mean_fwd": 0.0003150736591028434,
+                "coverage": 0.10840567435951726
+              },
+              "bull_fwd3": {
+                "n": 603,
+                "hit_rate": 0.5091210613598673,
+                "mean_fwd": 0.00031209064711446905,
+                "coverage": 0.1276730891382596
+              },
+              "bear_fwd3": {
+                "n": 512,
+                "hit_rate": 0.439453125,
+                "mean_fwd": 0.00037118095243168965,
+                "coverage": 0.10840567435951726
+              }
+            },
+            "combined_active_hit_rate_fwd5": 0.4860986547085202,
+            "combined_active_n": 1115,
+            "coverage_any": 0.23607876349777684,
+            "trade_proxy_ltf_align_fwd5": {
+              "n_trades": 750,
+              "win_rate": 0.484,
+              "mean_proxy_pnl": 0.00018520457617999414
+            }
+          },
+          "cci_bb_cond1": {
+            "predictive": {
+              "bull_fwd5": {
+                "n": 1006,
+                "hit_rate": 0.5039761431411531,
+                "mean_fwd": 0.0003057259263111562,
+                "coverage": 0.21300021172983274
+              },
+              "bear_fwd5": {
+                "n": 1057,
+                "hit_rate": 0.4607379375591296,
+                "mean_fwd": 0.0004718585317170579,
+                "coverage": 0.22379843319923778
+              },
+              "bull_fwd3": {
+                "n": 1006,
+                "hit_rate": 0.5059642147117296,
+                "mean_fwd": 0.000252982095800797,
+                "coverage": 0.21300021172983274
+              },
+              "bear_fwd3": {
+                "n": 1059,
+                "hit_rate": 0.4400377714825307,
+                "mean_fwd": 0.00047698833202135764,
+                "coverage": 0.22422189286470465
+              }
+            },
+            "combined_active_hit_rate_fwd5": 0.4818225884634028,
+            "combined_active_n": 2063,
+            "coverage_any": 0.4376455642600042,
+            "trade_proxy_ltf_align_fwd5": {
+              "n_trades": 551,
+              "win_rate": 0.46823956442831216,
+              "mean_proxy_pnl": 0.00014823873485096927
+            }
+          },
+          "rsi_bb_cond2": {
+            "predictive": {
+              "bull_fwd5": {
+                "n": 1526,
+                "hit_rate": 0.4954128440366973,
+                "mean_fwd": -5.95391866492921e-05,
+                "coverage": 0.32309972475121745
+              },
+              "bear_fwd5": {
+                "n": 1412,
+                "hit_rate": 0.4745042492917847,
+                "mean_fwd": 0.0002146686986878346,
+                "coverage": 0.2989625238196062
+              },
+              "bull_fwd3": {
+                "n": 1526,
+                "hit_rate": 0.4947575360419397,
+                "mean_fwd": -2.2922326859328976e-05,
+                "coverage": 0.32309972475121745
+              },
+              "bear_fwd3": {
+                "n": 1414,
+                "hit_rate": 0.46322489391796323,
+                "mean_fwd": 0.00017225053520858802,
+                "coverage": 0.29938598348507306
+              }
+            },
+            "combined_active_hit_rate_fwd5": 0.4853641933287951,
+            "combined_active_n": 2938,
+            "coverage_any": 0.6231208977344908,
+            "trade_proxy_ltf_align_fwd5": {
+              "n_trades": 682,
+              "win_rate": 0.47653958944281527,
+              "mean_proxy_pnl": 0.00018375023472427183
+            }
+          },
+          "monty_or_cond1_or_cond2": {
+            "predictive": {
+              "bull_fwd5": {
+                "n": 1609,
+                "hit_rate": 0.49844623990055936,
+                "mean_fwd": -2.8903944487535468e-05,
+                "coverage": 0.34067330086809233
+              },
+              "bear_fwd5": {
+                "n": 1527,
+                "hit_rate": 0.4747871643745907,
+                "mean_fwd": 0.00019456600105517905,
+                "coverage": 0.3233114545839509
+              },
+              "bull_fwd3": {
+                "n": 1609,
+                "hit_rate": 0.49409571162212557,
+                "mean_fwd": -2.7107518082614796e-05,
+                "coverage": 0.34067330086809233
+              },
+              "bear_fwd3": {
+                "n": 1529,
+                "hit_rate": 0.45846958796599085,
+                "mean_fwd": 0.0001791022257610548,
+                "coverage": 0.32373491424941775
+              }
+            },
+            "combined_active_hit_rate_fwd5": 0.4864347270986275,
+            "combined_active_n": 3133,
+            "coverage_any": 0.66440821511751,
+            "trade_proxy_ltf_align_fwd5": {
+              "n_trades": 696,
+              "win_rate": 0.47844827586206895,
+              "mean_proxy_pnl": 0.00019442344896521425
+            }
+          }
+        }
+      }
+    },
+    {
+      "symbol": "XAUUSD",
+      "set_id": 2,
+      "set_name": "intraday",
+      "stack": [
+        "5m",
+        "30m",
+        "1h"
+      ],
+      "eval": {
+        "n_bars": 2364,
+        "methods": {
+          "slope": {
+            "predictive": {
+              "bull_fwd5": {
+                "n": 444,
+                "hit_rate": 0.5202702702702703,
+                "mean_fwd": 0.0004451237084739288,
+                "coverage": 0.18781725888324874
+              },
+              "bear_fwd5": {
+                "n": 385,
+                "hit_rate": 0.44415584415584414,
+                "mean_fwd": -1.2801746752390697e-05,
+                "coverage": 0.1628595600676819
+              },
+              "bull_fwd3": {
+                "n": 444,
+                "hit_rate": 0.5247747747747747,
+                "mean_fwd": 0.00031805095688734226,
+                "coverage": 0.18781725888324874
+              },
+              "bear_fwd3": {
+                "n": 386,
+                "hit_rate": 0.4481865284974093,
+                "mean_fwd": -0.00025439892158332487,
+                "coverage": 0.16328257191201354
+              }
+            },
+            "combined_active_hit_rate_fwd5": 0.48492159227985526,
+            "combined_active_n": 829,
+            "coverage_any": 0.35152284263959394,
+            "trade_proxy_ltf_align_fwd5": {
+              "n_trades": 642,
+              "win_rate": 0.4657320872274143,
+              "mean_proxy_pnl": -5.2189401478419646e-05
+            }
+          },
+          "cci_bb_cond1": {
+            "predictive": {
+              "bull_fwd5": {
+                "n": 467,
+                "hit_rate": 0.4817987152034261,
+                "mean_fwd": 3.4943473509849386e-06,
+                "coverage": 0.19754653130287647
+              },
+              "bear_fwd5": {
+                "n": 504,
+                "hit_rate": 0.46825396825396826,
+                "mean_fwd": -0.0002366502597872678,
+                "coverage": 0.2131979695431472
+              },
+              "bull_fwd3": {
+                "n": 467,
+                "hit_rate": 0.4925053533190578,
+                "mean_fwd": 0.0001576895495795687,
+                "coverage": 0.19754653130287647
+              },
+              "bear_fwd3": {
+                "n": 504,
+                "hit_rate": 0.4662698412698413,
+                "mean_fwd": 0.00012213605662379025,
+                "coverage": 0.2131979695431472
+              }
+            },
+            "combined_active_hit_rate_fwd5": 0.4747682801235839,
+            "combined_active_n": 971,
+            "coverage_any": 0.411590524534687,
+            "trade_proxy_ltf_align_fwd5": {
+              "n_trades": 433,
+              "win_rate": 0.45496535796766746,
+              "mean_proxy_pnl": -0.0002488234638629418
+            }
+          },
+          "rsi_bb_cond2": {
+            "predictive": {
+              "bull_fwd5": {
+                "n": 720,
+                "hit_rate": 0.49583333333333335,
+                "mean_fwd": 0.0001910752281920473,
+                "coverage": 0.30456852791878175
+              },
+              "bear_fwd5": {
+                "n": 713,
+                "hit_rate": 0.45722300140252453,
+                "mean_fwd": 0.0002669229132745691,
+                "coverage": 0.30160744500846026
+              },
+              "bull_fwd3": {
+                "n": 720,
+                "hit_rate": 0.4986111111111111,
+                "mean_fwd": 0.00018049644630459117,
+                "coverage": 0.30456852791878175
+              },
+              "bear_fwd3": {
+                "n": 715,
+                "hit_rate": 0.4643356643356643,
+                "mean_fwd": 0.00021970430383740625,
+                "coverage": 0.30245346869712353
+              }
+            },
+            "combined_active_hit_rate_fwd5": 0.47662247034194,
+            "combined_active_n": 1433,
+            "coverage_any": 0.6078680203045685,
+            "trade_proxy_ltf_align_fwd5": {
+              "n_trades": 558,
+              "win_rate": 0.46774193548387094,
+              "mean_proxy_pnl": -9.11913910926551e-05
+            }
+          },
+          "monty_or_cond1_or_cond2": {
+            "predictive": {
+              "bull_fwd5": {
+                "n": 763,
+                "hit_rate": 0.4980340760157274,
+                "mean_fwd": 0.00016935584580444343,
+                "coverage": 0.3227580372250423
+              },
+              "bear_fwd5": {
+                "n": 769,
+                "hit_rate": 0.4616384915474642,
+                "mean_fwd": 0.0001399815525858289,
+                "coverage": 0.32529610829103217
+              },
+              "bull_fwd3": {
+                "n": 763,
+                "hit_rate": 0.5032765399737876,
+                "mean_fwd": 0.000156453314163166,
+                "coverage": 0.3227580372250423
+              },
+              "bear_fwd3": {
+                "n": 771,
+                "hit_rate": 0.4682230869001297,
+                "mean_fwd": 6.740933727929133e-05,
+                "coverage": 0.32614213197969544
+              }
+            },
+            "combined_active_hit_rate_fwd5": 0.47942521227955587,
+            "combined_active_n": 1531,
+            "coverage_any": 0.649746192893401,
+            "trade_proxy_ltf_align_fwd5": {
+              "n_trades": 572,
+              "win_rate": 0.46853146853146854,
+              "mean_proxy_pnl": -0.00013236368857625546
+            }
+          }
+        }
+      }
+    },
+    {
+      "symbol": "XAUUSD",
+      "set_id": 3,
+      "set_name": "swing",
+      "stack": [
+        "15m",
+        "1h",
+        "4h"
+      ],
+      "eval": {
+        "n_bars": 630,
+        "methods": {
+          "slope": {
+            "predictive": {
+              "bull_fwd5": {
+                "n": 147,
+                "hit_rate": 0.4965986394557823,
+                "mean_fwd": 0.0023988407439486056,
+                "coverage": 0.23333333333333334
+              },
+              "bear_fwd5": {
+                "n": 127,
+                "hit_rate": 0.4015748031496063,
+                "mean_fwd": -0.0011055419806405538,
+                "coverage": 0.2015873015873016
+              },
+              "bull_fwd3": {
+                "n": 147,
+                "hit_rate": 0.5034013605442177,
+                "mean_fwd": 0.0013840997555063892,
+                "coverage": 0.23333333333333334
+              },
+              "bear_fwd3": {
+                "n": 129,
+                "hit_rate": 0.4806201550387597,
+                "mean_fwd": -0.0015815732602689938,
+                "coverage": 0.20476190476190476
+              }
+            },
+            "combined_active_hit_rate_fwd5": 0.45255474452554745,
+            "combined_active_n": 274,
+            "coverage_any": 0.4396825396825397,
+            "trade_proxy_ltf_align_fwd5": {
+              "n_trades": 218,
+              "win_rate": 0.47706422018348627,
+              "mean_proxy_pnl": 0.0021838481133193443
+            }
+          },
+          "cci_bb_cond1": {
+            "predictive": {
+              "bull_fwd5": {
+                "n": 90,
+                "hit_rate": 0.4666666666666667,
+                "mean_fwd": 0.002056590925439219,
+                "coverage": 0.14285714285714285
+              },
+              "bear_fwd5": {
+                "n": 82,
+                "hit_rate": 0.4878048780487805,
+                "mean_fwd": -0.004205095928570304,
+                "coverage": 0.13015873015873017
+              },
+              "bull_fwd3": {
+                "n": 90,
+                "hit_rate": 0.4777777777777778,
+                "mean_fwd": 0.0017278754193584553,
+                "coverage": 0.14285714285714285
+              },
+              "bear_fwd3": {
+                "n": 84,
+                "hit_rate": 0.4642857142857143,
+                "mean_fwd": -0.0012956450513446826,
+                "coverage": 0.13333333333333333
+              }
+            },
+            "combined_active_hit_rate_fwd5": 0.47674418604651164,
+            "combined_active_n": 172,
+            "coverage_any": 0.27936507936507937,
+            "trade_proxy_ltf_align_fwd5": {
+              "n_trades": 100,
+              "win_rate": 0.52,
+              "mean_proxy_pnl": 0.004720742158243841
+            }
+          },
+          "rsi_bb_cond2": {
+            "predictive": {
+              "bull_fwd5": {
+                "n": 163,
+                "hit_rate": 0.5214723926380368,
+                "mean_fwd": 0.0031159116277033835,
+                "coverage": 0.25873015873015875
+              },
+              "bear_fwd5": {
+                "n": 151,
+                "hit_rate": 0.4370860927152318,
+                "mean_fwd": -0.0005881610545948745,
+                "coverage": 0.2396825396825397
+              },
+              "bull_fwd3": {
+                "n": 163,
+                "hit_rate": 0.5276073619631901,
+                "mean_fwd": 0.002142314462565411,
+                "coverage": 0.25873015873015875
+              },
+              "bear_fwd3": {
+                "n": 153,
+                "hit_rate": 0.49673202614379086,
+                "mean_fwd": -0.0009958837548666923,
+                "coverage": 0.24285714285714285
+              }
+            },
+            "combined_active_hit_rate_fwd5": 0.48089171974522293,
+            "combined_active_n": 314,
+            "coverage_any": 0.5031746031746032,
+            "trade_proxy_ltf_align_fwd5": {
+              "n_trades": 162,
+              "win_rate": 0.5061728395061729,
+              "mean_proxy_pnl": 0.002807645179479799
+            }
+          },
+          "monty_or_cond1_or_cond2": {
+            "predictive": {
+              "bull_fwd5": {
+                "n": 171,
+                "hit_rate": 0.5087719298245614,
+                "mean_fwd": 0.002811769737009103,
+                "coverage": 0.2714285714285714
+              },
+              "bear_fwd5": {
+                "n": 157,
+                "hit_rate": 0.4394904458598726,
+                "mean_fwd": -0.0005830336861907093,
+                "coverage": 0.2492063492063492
+              },
+              "bull_fwd3": {
+                "n": 171,
+                "hit_rate": 0.52046783625731,
+                "mean_fwd": 0.0019589526033562637,
+                "coverage": 0.2714285714285714
+              },
+              "bear_fwd3": {
+                "n": 159,
+                "hit_rate": 0.49056603773584906,
+                "mean_fwd": -0.0008949573240494429,
+                "coverage": 0.2523809523809524
+              }
+            },
+            "combined_active_hit_rate_fwd5": 0.4740061162079511,
+            "combined_active_n": 327,
+            "coverage_any": 0.5253968253968254,
+            "trade_proxy_ltf_align_fwd5": {
+              "n_trades": 164,
+              "win_rate": 0.5060975609756098,
+              "mean_proxy_pnl": 0.0027974756271656413
+            }
+          }
+        }
+      }
+    },
+    {
+      "symbol": "EURUSD",
+      "set_id": 1,
+      "set_name": "micro",
+      "stack": [
+        "1m",
+        "15m",
+        "30m"
+      ],
+      "eval": {
+        "n_bars": 4978,
+        "methods": {
+          "slope": {
+            "predictive": {
+              "bull_fwd5": {
+                "n": 13,
+                "hit_rate": 0.3076923076923077,
+                "mean_fwd": 0.0004326576988009101,
+                "coverage": 0.0026114905584572116
+              },
+              "bear_fwd5": {
+                "n": 11,
+                "hit_rate": 0.36363636363636365,
+                "mean_fwd": 0.00034684255475390187,
+                "coverage": 0.0022097227802330252
+              },
+              "bull_fwd3": {
+                "n": 13,
+                "hit_rate": 0.5384615384615384,
+                "mean_fwd": 0.0006439169201914007,
+                "coverage": 0.0026114905584572116
+              },
+              "bear_fwd3": {
+                "n": 11,
+                "hit_rate": 0.7272727272727273,
+                "mean_fwd": -0.00013107796348384116,
+                "coverage": 0.0022097227802330252
+              }
+            },
+            "combined_active_hit_rate_fwd5": 0.3333333333333333,
+            "combined_active_n": 24,
+            "coverage_any": 0.004821213338690237,
+            "trade_proxy_ltf_align_fwd5": {
+              "n_trades": 16,
+              "win_rate": 0.3125,
+              "mean_proxy_pnl": -1.0056491522955461e-05
+            }
+          },
+          "cci_bb_cond1": {
+            "predictive": {
+              "bull_fwd5": {
+                "n": 1066,
+                "hit_rate": 0.44090056285178236,
+                "mean_fwd": -8.549169488829018e-05,
+                "coverage": 0.21414222579349138
+              },
+              "bear_fwd5": {
+                "n": 1084,
+                "hit_rate": 0.503690036900369,
+                "mean_fwd": 4.1083893604156606e-05,
+                "coverage": 0.21775813579750905
+              },
+              "bull_fwd3": {
+                "n": 1068,
+                "hit_rate": 0.4541198501872659,
+                "mean_fwd": -5.0195621273428166e-05,
+                "coverage": 0.21454399357171555
+              },
+              "bear_fwd3": {
+                "n": 1084,
+                "hit_rate": 0.48154981549815495,
+                "mean_fwd": 2.905096560182068e-05,
+                "coverage": 0.21775813579750905
+              }
+            },
+            "combined_active_hit_rate_fwd5": 0.47255813953488374,
+            "combined_active_n": 2150,
+            "coverage_any": 0.4327038971474488,
+            "trade_proxy_ltf_align_fwd5": {
+              "n_trades": 16,
+              "win_rate": 0.4375,
+              "mean_proxy_pnl": -0.00023739929426372033
+            }
+          },
+          "rsi_bb_cond2": {
+            "predictive": {
+              "bull_fwd5": {
+                "n": 1556,
+                "hit_rate": 0.442159383033419,
+                "mean_fwd": -6.810707075355967e-05,
+                "coverage": 0.31257533145841704
+              },
+              "bear_fwd5": {
+                "n": 1582,
+                "hit_rate": 0.4854614412136536,
+                "mean_fwd": 7.40873349465371e-05,
+                "coverage": 0.3177983125753315
+              },
+              "bull_fwd3": {
+                "n": 1558,
+                "hit_rate": 0.45186136071887034,
+                "mean_fwd": -5.60748155780376e-05,
+                "coverage": 0.31297709923664124
+              },
+              "bear_fwd3": {
+                "n": 1582,
+                "hit_rate": 0.47661188369152974,
+                "mean_fwd": 4.365544466356983e-05,
+                "coverage": 0.3177983125753315
+              }
+            },
+            "combined_active_hit_rate_fwd5": 0.4639898024219248,
+            "combined_active_n": 3138,
+            "coverage_any": 0.6311771795901968,
+            "trade_proxy_ltf_align_fwd5": {
+              "n_trades": 22,
+              "win_rate": 0.4090909090909091,
+              "mean_proxy_pnl": -0.00039229576043158415
+            }
+          },
+          "monty_or_cond1_or_cond2": {
+            "predictive": {
+              "bull_fwd5": {
+                "n": 1644,
+                "hit_rate": 0.4416058394160584,
+                "mean_fwd": -6.998574971077277e-05,
+                "coverage": 0.33025311370028126
+              },
+              "bear_fwd5": {
+                "n": 1694,
+                "hit_rate": 0.4923258559622196,
+                "mean_fwd": 6.21175363443023e-05,
+                "coverage": 0.3402973081558859
+              },
+              "bull_fwd3": {
+                "n": 1646,
+                "hit_rate": 0.4513973268529769,
+                "mean_fwd": -5.120327619907619e-05,
+                "coverage": 0.3306548814785054
+              },
+              "bear_fwd3": {
+                "n": 1694,
+                "hit_rate": 0.47756788665879574,
+                "mean_fwd": 3.756251334635221e-05,
+                "coverage": 0.3402973081558859
+              }
+            },
+            "combined_active_hit_rate_fwd5": 0.4671860952951753,
+            "combined_active_n": 3337,
+            "coverage_any": 0.6711530735235034,
+            "trade_proxy_ltf_align_fwd5": {
+              "n_trades": 23,
+              "win_rate": 0.391304347826087,
+              "mean_proxy_pnl": -0.00038011736930106674
+            }
+          }
+        }
+      }
+    },
+    {
+      "symbol": "EURUSD",
+      "set_id": 2,
+      "set_name": "intraday",
+      "stack": [
+        "5m",
+        "30m",
+        "1h"
+      ],
+      "eval": {
+        "n_bars": 2490,
+        "methods": {
+          "slope": {
+            "predictive": {
+              "bull_fwd5": {
+                "n": 26,
+                "hit_rate": 0.46153846153846156,
+                "mean_fwd": 0.0007937562609745424,
+                "coverage": 0.010441767068273093
+              },
+              "bear_fwd5": {
+                "n": 24,
+                "hit_rate": 0.375,
+                "mean_fwd": 0.0002911534368212859,
+                "coverage": 0.00963855421686747
+              },
+              "bull_fwd3": {
+                "n": 26,
+                "hit_rate": 0.38461538461538464,
+                "mean_fwd": 2.4257603285158576e-05,
+                "coverage": 0.010441767068273093
+              },
+              "bear_fwd3": {
+                "n": 24,
+                "hit_rate": 0.3333333333333333,
+                "mean_fwd": 0.00044785662954190906,
+                "coverage": 0.00963855421686747
+              }
+            },
+            "combined_active_hit_rate_fwd5": 0.42,
+            "combined_active_n": 50,
+            "coverage_any": 0.020080321285140562,
+            "trade_proxy_ltf_align_fwd5": {
+              "n_trades": 44,
+              "win_rate": 0.4318181818181818,
+              "mean_proxy_pnl": 0.0004300773658223915
+            }
+          },
+          "cci_bb_cond1": {
+            "predictive": {
+              "bull_fwd5": {
+                "n": 506,
+                "hit_rate": 0.5098814229249012,
+                "mean_fwd": 5.875041833382001e-05,
+                "coverage": 0.20321285140562248
+              },
+              "bear_fwd5": {
+                "n": 541,
+                "hit_rate": 0.5194085027726433,
+                "mean_fwd": 4.529809389268646e-06,
+                "coverage": 0.21726907630522088
+              },
+              "bull_fwd3": {
+                "n": 506,
+                "hit_rate": 0.4743083003952569,
+                "mean_fwd": 6.763118703984818e-06,
+                "coverage": 0.20321285140562248
+              },
+              "bear_fwd3": {
+                "n": 541,
+                "hit_rate": 0.5304990757855823,
+                "mean_fwd": -8.418859359596221e-06,
+                "coverage": 0.21726907630522088
+              }
+            },
+            "combined_active_hit_rate_fwd5": 0.5148042024832856,
+            "combined_active_n": 1047,
+            "coverage_any": 0.42128514056224897,
+            "trade_proxy_ltf_align_fwd5": {
+              "n_trades": 35,
+              "win_rate": 0.45714285714285713,
+              "mean_proxy_pnl": 0.00043778582066244804
+            }
+          },
+          "rsi_bb_cond2": {
+            "predictive": {
+              "bull_fwd5": {
+                "n": 746,
+                "hit_rate": 0.5093833780160858,
+                "mean_fwd": 6.762382934949072e-05,
+                "coverage": 0.2995983935742972
+              },
+              "bear_fwd5": {
+                "n": 780,
+                "hit_rate": 0.5358974358974359,
+                "mean_fwd": -5.68335290939704e-06,
+                "coverage": 0.3132530120481928
+              },
+              "bull_fwd3": {
+                "n": 747,
+                "hit_rate": 0.48058902275769744,
+                "mean_fwd": 3.103586794007136e-05,
+                "coverage": 0.3
+              },
+              "bear_fwd3": {
+                "n": 780,
+                "hit_rate": 0.5166666666666667,
+                "mean_fwd": -1.1729333827959085e-05,
+                "coverage": 0.3132530120481928
+              }
+            },
+            "combined_active_hit_rate_fwd5": 0.5229357798165137,
+            "combined_active_n": 1526,
+            "coverage_any": 0.6144578313253012,
+            "trade_proxy_ltf_align_fwd5": {
+              "n_trades": 44,
+              "win_rate": 0.4318181818181818,
+              "mean_proxy_pnl": 0.0003376268990976206
+            }
+          },
+          "monty_or_cond1_or_cond2": {
+            "predictive": {
+              "bull_fwd5": {
+                "n": 780,
+                "hit_rate": 0.5064102564102564,
+                "mean_fwd": 6.759465302041008e-05,
+                "coverage": 0.3132530120481928
+              },
+              "bear_fwd5": {
+                "n": 834,
+                "hit_rate": 0.5359712230215827,
+                "mean_fwd": -1.4249916717766501e-05,
+                "coverage": 0.3349397590361446
+              },
+              "bull_fwd3": {
+                "n": 781,
+                "hit_rate": 0.4839948783610755,
+                "mean_fwd": 2.883466687824933e-05,
+                "coverage": 0.3136546184738956
+              },
+              "bear_fwd3": {
+                "n": 834,
+                "hit_rate": 0.5215827338129496,
+                "mean_fwd": -1.6946239908197156e-05,
+                "coverage": 0.3349397590361446
+              }
+            },
+            "combined_active_hit_rate_fwd5": 0.5213887166769994,
+            "combined_active_n": 1613,
+            "coverage_any": 0.6493975903614457,
+            "trade_proxy_ltf_align_fwd5": {
+              "n_trades": 44,
+              "win_rate": 0.4318181818181818,
+              "mean_proxy_pnl": 0.0003376268990976206
+            }
+          }
+        }
+      }
+    },
+    {
+      "symbol": "EURUSD",
+      "set_id": 3,
+      "set_name": "swing",
+      "stack": [
+        "15m",
+        "1h",
+        "4h"
+      ],
+      "eval": {
+        "n_bars": 625,
+        "methods": {
+          "slope": {
+            "predictive": {
+              "bull_fwd5": {
+                "n": 23,
+                "hit_rate": 0.43478260869565216,
+                "mean_fwd": -0.00023795361746698683,
+                "coverage": 0.0368
+              },
+              "bear_fwd5": {
+                "n": 13,
+                "hit_rate": 0.3076923076923077,
+                "mean_fwd": 0.0023174863656876617,
+                "coverage": 0.0208
+              },
+              "bull_fwd3": {
+                "n": 23,
+                "hit_rate": 0.391304347826087,
+                "mean_fwd": -0.00010694736851108294,
+                "coverage": 0.0368
+              },
+              "bear_fwd3": {
+                "n": 13,
+                "hit_rate": 0.15384615384615385,
+                "mean_fwd": 0.0008473454899212823,
+                "coverage": 0.0208
+              }
+            },
+            "combined_active_hit_rate_fwd5": 0.3888888888888889,
+            "combined_active_n": 36,
+            "coverage_any": 0.0576,
+            "trade_proxy_ltf_align_fwd5": {
+              "n_trades": 34,
+              "win_rate": 0.38235294117647056,
+              "mean_proxy_pnl": -0.000917567993060469
+            }
+          },
+          "cci_bb_cond1": {
+            "predictive": {
+              "bull_fwd5": {
+                "n": 66,
+                "hit_rate": 0.4090909090909091,
+                "mean_fwd": -7.304804192631195e-05,
+                "coverage": 0.1056
+              },
+              "bear_fwd5": {
+                "n": 96,
+                "hit_rate": 0.5520833333333334,
+                "mean_fwd": 3.237407665951751e-06,
+                "coverage": 0.1536
+              },
+              "bull_fwd3": {
+                "n": 66,
+                "hit_rate": 0.42424242424242425,
+                "mean_fwd": 5.033999825687309e-05,
+                "coverage": 0.1056
+              },
+              "bear_fwd3": {
+                "n": 96,
+                "hit_rate": 0.4791666666666667,
+                "mean_fwd": 0.00014666113490890734,
+                "coverage": 0.1536
+              }
+            },
+            "combined_active_hit_rate_fwd5": 0.49382716049382713,
+            "combined_active_n": 162,
+            "coverage_any": 0.2624,
+            "trade_proxy_ltf_align_fwd5": {
+              "n_trades": 21,
+              "win_rate": 0.42857142857142855,
+              "mean_proxy_pnl": -8.663947683062881e-05
+            }
+          },
+          "rsi_bb_cond2": {
+            "predictive": {
+              "bull_fwd5": {
+                "n": 126,
+                "hit_rate": 0.4444444444444444,
+                "mean_fwd": 0.00016218910213374135,
+                "coverage": 0.2016
+              },
+              "bear_fwd5": {
+                "n": 147,
+                "hit_rate": 0.5306122448979592,
+                "mean_fwd": 0.00010710099416078234,
+                "coverage": 0.2352
+              },
+              "bull_fwd3": {
+                "n": 126,
+                "hit_rate": 0.4444444444444444,
+                "mean_fwd": 0.0002449792518145597,
+                "coverage": 0.2016
+              },
+              "bear_fwd3": {
+                "n": 148,
+                "hit_rate": 0.5540540540540541,
+                "mean_fwd": -5.937981418581295e-05,
+                "coverage": 0.2368
+              }
+            },
+            "combined_active_hit_rate_fwd5": 0.4908424908424908,
+            "combined_active_n": 273,
+            "coverage_any": 0.4432,
+            "trade_proxy_ltf_align_fwd5": {
+              "n_trades": 34,
+              "win_rate": 0.38235294117647056,
+              "mean_proxy_pnl": -0.0006801226640901521
+            }
+          },
+          "monty_or_cond1_or_cond2": {
+            "predictive": {
+              "bull_fwd5": {
+                "n": 131,
+                "hit_rate": 0.4351145038167939,
+                "mean_fwd": 9.465302245318088e-05,
+                "coverage": 0.2096
+              },
+              "bear_fwd5": {
+                "n": 163,
+                "hit_rate": 0.5337423312883436,
+                "mean_fwd": 0.00017151874373803276,
+                "coverage": 0.2608
+              },
+              "bull_fwd3": {
+                "n": 131,
+                "hit_rate": 0.4351145038167939,
+                "mean_fwd": 0.000210888723341268,
+                "coverage": 0.2096
+              },
+              "bear_fwd3": {
+                "n": 164,
+                "hit_rate": 0.5426829268292683,
+                "mean_fwd": 6.611366493769689e-05,
+                "coverage": 0.2624
+              }
+            },
+            "combined_active_hit_rate_fwd5": 0.4897959183673469,
+            "combined_active_n": 294,
+            "coverage_any": 0.4768,
+            "trade_proxy_ltf_align_fwd5": {
+              "n_trades": 34,
+              "win_rate": 0.38235294117647056,
+              "mean_proxy_pnl": -0.0006801226640901521
+            }
+          }
+        }
+      }
+    },
+    {
+      "symbol": "GBPUSD",
+      "set_id": 1,
+      "set_name": "micro",
+      "stack": [
+        "1m",
+        "15m",
+        "30m"
+      ],
+      "eval": {
+        "n_bars": 4975,
+        "methods": {
+          "slope": {
+            "predictive": {
+              "bull_fwd5": {
+                "n": 18,
+                "hit_rate": 0.5,
+                "mean_fwd": 0.0008428948129842479,
+                "coverage": 0.0036180904522613066
+              },
+              "bear_fwd5": {
+                "n": 24,
+                "hit_rate": 0.375,
+                "mean_fwd": 0.0005086161555129708,
+                "coverage": 0.004824120603015076
+              },
+              "bull_fwd3": {
+                "n": 18,
+                "hit_rate": 0.5555555555555556,
+                "mean_fwd": 0.0006662001564137181,
+                "coverage": 0.0036180904522613066
+              },
+              "bear_fwd3": {
+                "n": 24,
+                "hit_rate": 0.5416666666666666,
+                "mean_fwd": 9.908404425970731e-05,
+                "coverage": 0.004824120603015076
+              }
+            },
+            "combined_active_hit_rate_fwd5": 0.42857142857142855,
+            "combined_active_n": 42,
+            "coverage_any": 0.008442211055276382,
+            "trade_proxy_ltf_align_fwd5": {
+              "n_trades": 25,
+              "win_rate": 0.44,
+              "mean_proxy_pnl": 0.00012067242168301674
+            }
+          },
+          "cci_bb_cond1": {
+            "predictive": {
+              "bull_fwd5": {
+                "n": 1092,
+                "hit_rate": 0.45695970695970695,
+                "mean_fwd": -0.00010202093929355446,
+                "coverage": 0.21949748743718592
+              },
+              "bear_fwd5": {
+                "n": 1071,
+                "hit_rate": 0.5107376283846872,
+                "mean_fwd": 2.567989156385926e-05,
+                "coverage": 0.21527638190954773
+              },
+              "bull_fwd3": {
+                "n": 1094,
+                "hit_rate": 0.44789762340036565,
+                "mean_fwd": -8.663434271700301e-05,
+                "coverage": 0.21989949748743717
+              },
+              "bear_fwd3": {
+                "n": 1071,
+                "hit_rate": 0.49486461251167135,
+                "mean_fwd": 2.6522483816663522e-05,
+                "coverage": 0.21527638190954773
+              }
+            },
+            "combined_active_hit_rate_fwd5": 0.483587609801202,
+            "combined_active_n": 2163,
+            "coverage_any": 0.43537688442211053,
+            "trade_proxy_ltf_align_fwd5": {
+              "n_trades": 21,
+              "win_rate": 0.47619047619047616,
+              "mean_proxy_pnl": 0.00026829893932123634
+            }
+          },
+          "rsi_bb_cond2": {
+            "predictive": {
+              "bull_fwd5": {
+                "n": 1615,
+                "hit_rate": 0.4662538699690402,
+                "mean_fwd": -7.363983582848797e-05,
+                "coverage": 0.3246231155778894
+              },
+              "bear_fwd5": {
+                "n": 1552,
+                "hit_rate": 0.49162371134020616,
+                "mean_fwd": 7.355499147077753e-05,
+                "coverage": 0.3119597989949749
+              },
+              "bull_fwd3": {
+                "n": 1617,
+                "hit_rate": 0.47371675943104513,
+                "mean_fwd": -4.564834291361039e-05,
+                "coverage": 0.3250251256281407
+              },
+              "bear_fwd3": {
+                "n": 1552,
+                "hit_rate": 0.4793814432989691,
+                "mean_fwd": 5.813816839490722e-05,
+                "coverage": 0.3119597989949749
+              }
+            },
+            "combined_active_hit_rate_fwd5": 0.4786864540574676,
+            "combined_active_n": 3167,
+            "coverage_any": 0.6373869346733668,
+            "trade_proxy_ltf_align_fwd5": {
+              "n_trades": 28,
+              "win_rate": 0.4642857142857143,
+              "mean_proxy_pnl": 5.744449755873085e-05
+            }
+          },
+          "monty_or_cond1_or_cond2": {
+            "predictive": {
+              "bull_fwd5": {
+                "n": 1717,
+                "hit_rate": 0.46825859056493885,
+                "mean_fwd": -7.713999811171872e-05,
+                "coverage": 0.3451256281407035
+              },
+              "bear_fwd5": {
+                "n": 1659,
+                "hit_rate": 0.4948764315852923,
+                "mean_fwd": 6.491023562809343e-05,
+                "coverage": 0.3334673366834171
+              },
+              "bull_fwd3": {
+                "n": 1719,
+                "hit_rate": 0.4735311227457824,
+                "mean_fwd": -4.7734650694648195e-05,
+                "coverage": 0.3455276381909548
+              },
+              "bear_fwd3": {
+                "n": 1659,
+                "hit_rate": 0.4804098854731766,
+                "mean_fwd": 5.4617743950214965e-05,
+                "coverage": 0.3334673366834171
+              }
+            },
+            "combined_active_hit_rate_fwd5": 0.4813388625592417,
+            "combined_active_n": 3376,
+            "coverage_any": 0.6793969849246231,
+            "trade_proxy_ltf_align_fwd5": {
+              "n_trades": 29,
+              "win_rate": 0.4482758620689655,
+              "mean_proxy_pnl": 2.5861183094148524e-05
+            }
+          }
+        }
+      }
+    },
+    {
+      "symbol": "GBPUSD",
+      "set_id": 2,
+      "set_name": "intraday",
+      "stack": [
+        "5m",
+        "30m",
+        "1h"
+      ],
+      "eval": {
+        "n_bars": 2488,
+        "methods": {
+          "slope": {
+            "predictive": {
+              "bull_fwd5": {
+                "n": 28,
+                "hit_rate": 0.7857142857142857,
+                "mean_fwd": 0.0013512345357156914,
+                "coverage": 0.011254019292604502
+              },
+              "bear_fwd5": {
+                "n": 36,
+                "hit_rate": 0.4166666666666667,
+                "mean_fwd": 0.0006806118089502491,
+                "coverage": 0.014469453376205787
+              },
+              "bull_fwd3": {
+                "n": 28,
+                "hit_rate": 0.6428571428571429,
+                "mean_fwd": 0.0006883639533712162,
+                "coverage": 0.011254019292604502
+              },
+              "bear_fwd3": {
+                "n": 36,
+                "hit_rate": 0.4166666666666667,
+                "mean_fwd": 0.0005520676439331457,
+                "coverage": 0.014469453376205787
+              }
+            },
+            "combined_active_hit_rate_fwd5": 0.578125,
+            "combined_active_n": 64,
+            "coverage_any": 0.02572347266881029,
+            "trade_proxy_ltf_align_fwd5": {
+              "n_trades": 56,
+              "win_rate": 0.5892857142857143,
+              "mean_proxy_pnl": 0.0003160125787596519
+            }
+          },
+          "cci_bb_cond1": {
+            "predictive": {
+              "bull_fwd5": {
+                "n": 497,
+                "hit_rate": 0.5271629778672032,
+                "mean_fwd": 0.00010450456077787344,
+                "coverage": 0.1997588424437299
+              },
+              "bear_fwd5": {
+                "n": 532,
+                "hit_rate": 0.5225563909774437,
+                "mean_fwd": -4.547385924594706e-05,
+                "coverage": 0.21382636655948553
+              },
+              "bull_fwd3": {
+                "n": 497,
+                "hit_rate": 0.48088531187122735,
+                "mean_fwd": 6.356895072005592e-05,
+                "coverage": 0.1997588424437299
+              },
+              "bear_fwd3": {
+                "n": 532,
+                "hit_rate": 0.5338345864661654,
+                "mean_fwd": -9.623011699363843e-05,
+                "coverage": 0.21382636655948553
+              }
+            },
+            "combined_active_hit_rate_fwd5": 0.5247813411078717,
+            "combined_active_n": 1029,
+            "coverage_any": 0.41358520900321544,
+            "trade_proxy_ltf_align_fwd5": {
+              "n_trades": 46,
+              "win_rate": 0.5,
+              "mean_proxy_pnl": -4.560387036911902e-05
+            }
+          },
+          "rsi_bb_cond2": {
+            "predictive": {
+              "bull_fwd5": {
+                "n": 773,
+                "hit_rate": 0.5019404915912031,
+                "mean_fwd": 2.921896043854004e-06,
+                "coverage": 0.31069131832797425
+              },
+              "bear_fwd5": {
+                "n": 748,
+                "hit_rate": 0.5294117647058824,
+                "mean_fwd": -1.9902134956797335e-05,
+                "coverage": 0.30064308681672025
+              },
+              "bull_fwd3": {
+                "n": 773,
+                "hit_rate": 0.4760672703751617,
+                "mean_fwd": -1.3596078494317764e-06,
+                "coverage": 0.31069131832797425
+              },
+              "bear_fwd3": {
+                "n": 748,
+                "hit_rate": 0.516042780748663,
+                "mean_fwd": 1.9949248823651443e-05,
+                "coverage": 0.30064308681672025
+              }
+            },
+            "combined_active_hit_rate_fwd5": 0.5154503616042078,
+            "combined_active_n": 1521,
+            "coverage_any": 0.6121382636655949,
+            "trade_proxy_ltf_align_fwd5": {
+              "n_trades": 63,
+              "win_rate": 0.5396825396825397,
+              "mean_proxy_pnl": 0.00010261537732126023
+            }
+          },
+          "monty_or_cond1_or_cond2": {
+            "predictive": {
+              "bull_fwd5": {
+                "n": 814,
+                "hit_rate": 0.5012285012285013,
+                "mean_fwd": -1.405736105929026e-07,
+                "coverage": 0.3271704180064309
+              },
+              "bear_fwd5": {
+                "n": 808,
+                "hit_rate": 0.5371287128712872,
+                "mean_fwd": -5.64028762871088e-05,
+                "coverage": 0.3247588424437299
+              },
+              "bull_fwd3": {
+                "n": 814,
+                "hit_rate": 0.4742014742014742,
+                "mean_fwd": -3.5659009204681593e-06,
+                "coverage": 0.3271704180064309
+              },
+              "bear_fwd3": {
+                "n": 808,
+                "hit_rate": 0.5247524752475248,
+                "mean_fwd": -2.5794603864960905e-05,
+                "coverage": 0.3247588424437299
+              }
+            },
+            "combined_active_hit_rate_fwd5": 0.5185185185185185,
+            "combined_active_n": 1620,
+            "coverage_any": 0.6519292604501608,
+            "trade_proxy_ltf_align_fwd5": {
+              "n_trades": 63,
+              "win_rate": 0.5396825396825397,
+              "mean_proxy_pnl": 0.00010261537732126023
+            }
+          }
+        }
+      }
+    },
+    {
+      "symbol": "GBPUSD",
+      "set_id": 3,
+      "set_name": "swing",
+      "stack": [
+        "15m",
+        "1h",
+        "4h"
+      ],
+      "eval": {
+        "n_bars": 625,
+        "methods": {
+          "slope": {
+            "predictive": {
+              "bull_fwd5": {
+                "n": 22,
+                "hit_rate": 0.3181818181818182,
+                "mean_fwd": -0.0009505609361269647,
+                "coverage": 0.0352
+              },
+              "bear_fwd5": {
+                "n": 27,
+                "hit_rate": 0.4074074074074074,
+                "mean_fwd": 0.0017788473313269035,
+                "coverage": 0.0432
+              },
+              "bull_fwd3": {
+                "n": 22,
+                "hit_rate": 0.5,
+                "mean_fwd": -6.956981113339816e-05,
+                "coverage": 0.0352
+              },
+              "bear_fwd3": {
+                "n": 27,
+                "hit_rate": 0.4444444444444444,
+                "mean_fwd": 0.000717948563406155,
+                "coverage": 0.0432
+              }
+            },
+            "combined_active_hit_rate_fwd5": 0.3673469387755102,
+            "combined_active_n": 49,
+            "coverage_any": 0.0784,
+            "trade_proxy_ltf_align_fwd5": {
+              "n_trades": 45,
+              "win_rate": 0.37777777777777777,
+              "mean_proxy_pnl": -0.0011676264433277373
+            }
+          },
+          "cci_bb_cond1": {
+            "predictive": {
+              "bull_fwd5": {
+                "n": 74,
+                "hit_rate": 0.5,
+                "mean_fwd": 4.20822643573353e-05,
+                "coverage": 0.1184
+              },
+              "bear_fwd5": {
+                "n": 84,
+                "hit_rate": 0.5952380952380952,
+                "mean_fwd": -5.6451576691902306e-05,
+                "coverage": 0.1344
+              },
+              "bull_fwd3": {
+                "n": 74,
+                "hit_rate": 0.5675675675675675,
+                "mean_fwd": 0.0003359514360329136,
+                "coverage": 0.1184
+              },
+              "bear_fwd3": {
+                "n": 85,
+                "hit_rate": 0.5411764705882353,
+                "mean_fwd": -0.00022125306967118452,
+                "coverage": 0.136
+              }
+            },
+            "combined_active_hit_rate_fwd5": 0.5506329113924051,
+            "combined_active_n": 158,
+            "coverage_any": 0.256,
+            "trade_proxy_ltf_align_fwd5": {
+              "n_trades": 26,
+              "win_rate": 0.46153846153846156,
+              "mean_proxy_pnl": -0.0010393799471559973
+            }
+          },
+          "rsi_bb_cond2": {
+            "predictive": {
+              "bull_fwd5": {
+                "n": 138,
+                "hit_rate": 0.4782608695652174,
+                "mean_fwd": -2.9854729679862177e-06,
+                "coverage": 0.2208
+              },
+              "bear_fwd5": {
+                "n": 157,
+                "hit_rate": 0.5477707006369427,
+                "mean_fwd": -2.842137390597809e-05,
+                "coverage": 0.2512
+              },
+              "bull_fwd3": {
+                "n": 138,
+                "hit_rate": 0.5289855072463768,
+                "mean_fwd": 0.00011158386002983426,
+                "coverage": 0.2208
+              },
+              "bear_fwd3": {
+                "n": 158,
+                "hit_rate": 0.5253164556962026,
+                "mean_fwd": -0.00016790424419672198,
+                "coverage": 0.2528
+              }
+            },
+            "combined_active_hit_rate_fwd5": 0.5152542372881356,
+            "combined_active_n": 295,
+            "coverage_any": 0.4768,
+            "trade_proxy_ltf_align_fwd5": {
+              "n_trades": 46,
+              "win_rate": 0.41304347826086957,
+              "mean_proxy_pnl": -0.0008778635056664254
+            }
+          },
+          "monty_or_cond1_or_cond2": {
+            "predictive": {
+              "bull_fwd5": {
+                "n": 145,
+                "hit_rate": 0.47586206896551725,
+                "mean_fwd": 3.1760464806085386e-05,
+                "coverage": 0.232
+              },
+              "bear_fwd5": {
+                "n": 163,
+                "hit_rate": 0.5521472392638037,
+                "mean_fwd": 2.065379248044904e-05,
+                "coverage": 0.2608
+              },
+              "bull_fwd3": {
+                "n": 145,
+                "hit_rate": 0.5310344827586206,
+                "mean_fwd": 0.0001429466766772515,
+                "coverage": 0.232
+              },
+              "bear_fwd3": {
+                "n": 164,
+                "hit_rate": 0.524390243902439,
+                "mean_fwd": -0.0001579807233088822,
+                "coverage": 0.2624
+              }
+            },
+            "combined_active_hit_rate_fwd5": 0.5162337662337663,
+            "combined_active_n": 308,
+            "coverage_any": 0.4976,
+            "trade_proxy_ltf_align_fwd5": {
+              "n_trades": 46,
+              "win_rate": 0.41304347826086957,
+              "mean_proxy_pnl": -0.0008778635056664254
+            }
+          }
+        }
+      }
+    }
+  ],
+  "aggregate": {
+    "slope": {
+      "mean_predictive_hit_rate_fwd5": 0.47684252919855014,
+      "mean_coverage": 0.13581681824086977,
+      "mean_trade_proxy_win_rate": 0.4721311475409836,
+      "total_trade_proxy_n": 1830,
+      "mean_proxy_pnl": 0.00012093052515275748,
+      "n_set_symbol_rows": 9
+    },
+    "cci_bb_cond1": {
+      "mean_predictive_hit_rate_fwd5": 0.4886535552193646,
+      "mean_coverage": 0.37221692214386604,
+      "mean_trade_proxy_win_rate": 0.4675740592473979,
+      "total_trade_proxy_n": 1249,
+      "mean_proxy_pnl": 0.00043524662228845425,
+      "n_set_symbol_rows": 9
+    },
+    "rsi_bb_cond2": {
+      "mean_predictive_hit_rate_fwd5": 0.4861348853132489,
+      "mean_coverage": 0.5721470811631246,
+      "mean_trade_proxy_win_rate": 0.47284929835265405,
+      "total_trade_proxy_n": 1639,
+      "mean_proxy_pnl": 0.0001608454296556518,
+      "n_set_symbol_rows": 9
+    },
+    "monty_or_cond1_or_cond2": {
+      "mean_predictive_hit_rate_fwd5": 0.4878692322543278,
+      "mean_coverage": 0.6073142380741633,
+      "mean_trade_proxy_win_rate": 0.47336923997606223,
+      "total_trade_proxy_n": 1671,
+      "mean_proxy_pnl": 0.00015417058977888724,
+      "n_set_symbol_rows": 9
+    }
+  },
+  "rank_by_predictive_then_trade": [
+    {
+      "method": "cci_bb_cond1",
+      "mean_predictive_hit_rate_fwd5": 0.4886535552193646,
+      "mean_coverage": 0.37221692214386604,
+      "mean_trade_proxy_win_rate": 0.4675740592473979,
+      "total_trade_proxy_n": 1249,
+      "mean_proxy_pnl": 0.00043524662228845425,
+      "n_set_symbol_rows": 9
+    },
+    {
+      "method": "monty_or_cond1_or_cond2",
+      "mean_predictive_hit_rate_fwd5": 0.4878692322543278,
+      "mean_coverage": 0.6073142380741633,
+      "mean_trade_proxy_win_rate": 0.47336923997606223,
+      "total_trade_proxy_n": 1671,
+      "mean_proxy_pnl": 0.00015417058977888724,
+      "n_set_symbol_rows": 9
+    },
+    {
+      "method": "rsi_bb_cond2",
+      "mean_predictive_hit_rate_fwd5": 0.4861348853132489,
+      "mean_coverage": 0.5721470811631246,
+      "mean_trade_proxy_win_rate": 0.47284929835265405,
+      "total_trade_proxy_n": 1639,
+      "mean_proxy_pnl": 0.0001608454296556518,
+      "n_set_symbol_rows": 9
+    },
+    {
+      "method": "slope",
+      "mean_predictive_hit_rate_fwd5": 0.47684252919855014,
+      "mean_coverage": 0.13581681824086977,
+      "mean_trade_proxy_win_rate": 0.4721311475409836,
+      "total_trade_proxy_n": 1830,
+      "mean_proxy_pnl": 0.00012093052515275748,
+      "n_set_symbol_rows": 9
+    }
+  ],
+  "winner_predictive": "cci_bb_cond1",
+  "winner_trade_proxy": "monty_or_cond1_or_cond2"
+}

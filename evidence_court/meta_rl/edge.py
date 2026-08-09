@@ -3,7 +3,8 @@
 Mechanism
 ---------
 For each official Mark set (LTF first, HTF last two):
-  1. HTF force = agreement of the two confirmation TFs (trend_dir on completed bars).
+  1. HTF force = slope pair (trend_dir) on confirmation TFs; optional lab blend
+     with Monty CCI+BB / RSI+BB on both HTFs (``monty_htf_blend``).
   2. LTF timing = RSI(5) + BB(10, dev=0.5, shift=+2) on the entry TF.
   3. Pullback: HTF force clear AND LTF dipped toward opposite BB rail / RSI
      against force, then resumed with force (timing).
@@ -11,6 +12,7 @@ For each official Mark set (LTF first, HTF last two):
      (no deep dip required).
 
 No look-ahead: indicators use completed bars only; BB shift delays the rails.
+Source flags slope_on / cci_on / rsi_on pack into doctrine when blend is used.
 """
 from __future__ import annotations
 
@@ -19,6 +21,7 @@ from typing import Dict, List, Optional, Sequence, Tuple
 
 import numpy as np
 
+from .htf_force import compute_htf_force_from_bars
 from .indicators import bollinger, resample_m1_to_tf, rsi, trend_dir
 from .sets import OFFICIAL_SETS
 
@@ -33,6 +36,12 @@ class SetEdge:
     act: str  # long | short | wait
     reason: str
     htf_agree: bool
+    # HTF wind source flags (0/1) — doctrine indices 12–14 when packed
+    slope_on: float = 0.0
+    cci_on: float = 0.0
+    rsi_on: float = 0.0
+    force_mode: str = "slope"
+    force_reason: str = ""
 
 
 @dataclass
@@ -44,6 +53,10 @@ class SymbolEdgeSnapshot:
     multi_set_consensus: str  # agree_long | agree_short | conflict | incomplete
     n_pullback: int
     n_continuation: int
+    # Aggregated source flags (OR across sets) for doctrine pack
+    slope_on: float = 0.0
+    cci_on: float = 0.0
+    rsi_on: float = 0.0
 
 
 def _closes(bars: Sequence[dict]) -> np.ndarray:
@@ -113,19 +126,24 @@ def evaluate_set_edge(
     ltf: str,
     htf1: str,
     htf2: str,
+    *,
+    monty_htf_blend: bool = False,
 ) -> SetEdge:
     """Evaluate one official set from M1 history (completed bars only)."""
     ltf_bars = resample_m1_to_tf(m1_bars, ltf)
     h1_bars = resample_m1_to_tf(m1_bars, htf1)
     h2_bars = resample_m1_to_tf(m1_bars, htf2)
 
-    f1 = trend_dir(_closes(h1_bars), lookback=5) if len(h1_bars) >= 6 else 0.0
-    f2 = trend_dir(_closes(h2_bars), lookback=5) if len(h2_bars) >= 6 else 0.0
-    # HTF force: mean; agree if same sign
-    htf_agree = (f1 * f2 > 0) and abs(f1) >= 0.12 and abs(f2) >= 0.12
-    force = float(np.clip(0.5 * (f1 + f2), -1.0, 1.0))
-    if not htf_agree:
-        force *= 0.35  # weak incomplete force
+    htf = compute_htf_force_from_bars(
+        h1_bars,
+        h2_bars,
+        monty_htf_blend=bool(monty_htf_blend),
+        agree_min=0.12,
+        incomplete_scale=0.35,
+        dual_lookback=False,
+    )
+    force = float(htf.force)
+    htf_agree = bool(htf.htf_agree)
 
     if len(ltf_bars) < 25:
         return SetEdge(
@@ -137,6 +155,11 @@ def evaluate_set_edge(
             act="wait",
             reason="insufficient_ltf_bars",
             htf_agree=htf_agree,
+            slope_on=htf.slope_on,
+            cci_on=htf.cci_on,
+            rsi_on=htf.rsi_on,
+            force_mode=htf.mode,
+            force_reason=htf.reason,
         )
 
     topo, act, rsi_v, reason = _ltf_timing_signal(_closes(ltf_bars), force)
@@ -154,6 +177,11 @@ def evaluate_set_edge(
         act=act,
         reason=reason,
         htf_agree=htf_agree,
+        slope_on=htf.slope_on,
+        cci_on=htf.cci_on,
+        rsi_on=htf.rsi_on,
+        force_mode=htf.mode,
+        force_reason=htf.reason,
     )
 
 
@@ -262,6 +290,7 @@ def evaluate_set_edge_from_cache(
     *,
     asof_date: Optional[str] = None,
     asof_time: Optional[str] = None,
+    monty_htf_blend: bool = False,
 ) -> SetEdge:
     """Like evaluate_set_edge but reuses pre-resampled frames; optional asof filter."""
 
@@ -276,19 +305,21 @@ def evaluate_set_edge_from_cache(
         tf_cache.get(htf2, []), asof_date=asof_date, asof_time=asof_time, tf=htf2
     )
 
-    f1 = trend_dir(_closes(h1_bars), lookback=5) if len(h1_bars) >= 6 else 0.0
-    f2 = trend_dir(_closes(h2_bars), lookback=5) if len(h2_bars) >= 6 else 0.0
-    # Dual-scale force: short + medium lookback agreement raises quality
-    f1b = trend_dir(_closes(h1_bars), lookback=min(10, max(len(h1_bars) - 1, 5))) if len(h1_bars) >= 8 else f1
-    f2b = trend_dir(_closes(h2_bars), lookback=min(10, max(len(h2_bars) - 1, 5))) if len(h2_bars) >= 8 else f2
-    f1 = 0.6 * f1 + 0.4 * f1b
-    f2 = 0.6 * f2 + 0.4 * f2b
-    htf_agree = (f1 * f2 > 0) and abs(f1) >= 0.10 and abs(f2) >= 0.10
-    force = float(np.clip(0.5 * (f1 + f2), -1.0, 1.0))
-    if not htf_agree:
-        force *= 0.25  # incomplete force heavily discounted (Mark)
+    # Dual-scale slope + optional Monty blend (incomplete_scale 0.25 matches legacy cache path)
+    htf = compute_htf_force_from_bars(
+        h1_bars,
+        h2_bars,
+        monty_htf_blend=bool(monty_htf_blend),
+        agree_min=0.10,
+        incomplete_scale=0.25,
+        dual_lookback=True,
+    )
+    force = float(htf.force)
+    htf_agree = bool(htf.htf_agree)
+    slope_on, cci_on, rsi_on = htf.slope_on, htf.cci_on, htf.rsi_on
+    force_mode, force_reason = htf.mode, htf.reason
 
-    # Multi-day momentum from daily stack when present
+    # Multi-day momentum from daily stack when present (legacy CASE-0004 tide)
     if asof_date and "1d" in tf_cache:
         mom = multi_day_momentum(tf_cache["1d"], asof_date=asof_date, n=3)
         if abs(mom) >= 0.05:
@@ -298,6 +329,7 @@ def evaluate_set_edge_from_cache(
                 # fight multi-day tide → kill permission
                 htf_agree = False
                 force *= 0.15
+                force_reason = (force_reason + "+multiday_fight").strip("+")
 
     if len(ltf_bars) < 25:
         return SetEdge(
@@ -309,6 +341,11 @@ def evaluate_set_edge_from_cache(
             act="wait",
             reason="insufficient_ltf_bars",
             htf_agree=htf_agree,
+            slope_on=slope_on,
+            cci_on=cci_on,
+            rsi_on=rsi_on,
+            force_mode=force_mode,
+            force_reason=force_reason,
         )
 
     topo, act, rsi_v, reason = _ltf_timing_signal(_closes(ltf_bars), force)
@@ -325,6 +362,11 @@ def evaluate_set_edge_from_cache(
         act=act,
         reason=reason,
         htf_agree=htf_agree,
+        slope_on=slope_on,
+        cci_on=cci_on,
+        rsi_on=rsi_on,
+        force_mode=force_mode,
+        force_reason=force_reason,
     )
 
 
@@ -335,6 +377,7 @@ def scan_all_sets(
     tf_cache: Optional[Dict[str, List[dict]]] = None,
     asof_date: Optional[str] = None,
     asof_time: Optional[str] = None,
+    monty_htf_blend: bool = False,
 ) -> SymbolEdgeSnapshot:
     """Scan all 4 official Mark sets — never collapse to set2 only."""
     cache = tf_cache if tf_cache is not None else build_tf_cache(m1_bars)
@@ -350,6 +393,7 @@ def scan_all_sets(
             s.confirmation_tfs[1],
             asof_date=asof_date,
             asof_time=asof_time,
+            monty_htf_blend=bool(monty_htf_blend),
         )
         edges.append(e)
 
@@ -375,6 +419,13 @@ def scan_all_sets(
         best = max(pool, key=lambda e: abs(e.force))
 
     mean_force = float(np.mean([e.force for e in edges])) if edges else 0.0
+    # Prefer best-edge source flags; fall back to OR across sets
+    if best is not None:
+        slope_on, cci_on, rsi_on = float(best.slope_on), float(best.cci_on), float(best.rsi_on)
+    else:
+        slope_on = max((float(e.slope_on) for e in edges), default=0.0)
+        cci_on = max((float(e.cci_on) for e in edges), default=0.0)
+        rsi_on = max((float(e.rsi_on) for e in edges), default=0.0)
     return SymbolEdgeSnapshot(
         symbol=symbol,
         set_edges=edges,
@@ -383,6 +434,9 @@ def scan_all_sets(
         multi_set_consensus=consensus,
         n_pullback=n_pb,
         n_continuation=n_ct,
+        slope_on=slope_on,
+        cci_on=cci_on,
+        rsi_on=rsi_on,
     )
 
 

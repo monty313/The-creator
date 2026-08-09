@@ -1,5 +1,29 @@
 # Policy Forge → MetaBrain (additive game-train)
 
+## 00 — What the bot must LEARN (not remember / not copy)
+
+| File (top of this folder) | Role |
+|---------------------------|------|
+| **`00_HIGH_TREND_MASTERY.html`** | **North star skill gym.** Force · load · launch · multi-set consensus · fail modes on all official Mark sets. |
+
+Open that first. It is the **skill** the meta-policy must **internalize**:
+
+- HTF force = wind · LTF load → launch = ride  
+- Sight → Feel → Taste → Act (A32)  
+- Kill fail modes: fade trend, chase, LTF-only, mush force, thrash reverse  
+
+| LEARN | NOT this |
+|-------|----------|
+| Principles that transfer across days, symbols, sets, target×risk | Memorize one chart answer / multi-hit the same teacher state |
+| Generalize under holdout + goal/L2L aug (`forge train-learn`) | Copy coach WAIT forever or pad thrash at prove |
+| Soft labels that train judgment (A34 / A14) | Hard if/then recipes as the brain |
+
+Human drills the gym. Offline train uses **unique path teachers + holdouts** so weights fit the **skill**, not the answer key. Risk envelope stays hard safety only.
+
+Old link `high_trend_mastery.html` redirects here.
+
+---
+
 ## What this is
 
 **Doctrine:** teach **principles** (sight/feel/taste/hearing + goal context)

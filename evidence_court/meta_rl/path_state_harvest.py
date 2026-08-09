@@ -113,8 +113,13 @@ def harvest_path_state_teachers(
     warmup_days: int = 10,
     policy: Optional[FrozenMetaPolicy] = None,
     symbols: Optional[Sequence[str]] = None,
+    monty_htf_blend: bool = False,
 ) -> Dict[str, Any]:
-    """Run real path with collect_path_state_teachers; return packed examples."""
+    """Run real path with collect_path_state_teachers; return packed examples.
+
+    ``monty_htf_blend=True``: harvest under Monty slope+CCI/RSI HTF force so
+    teacher states include real source flags (doctrine 12–14) and blend force.
+    """
     syms = list(symbols) if symbols else [
         s for s in ("XAUUSD", "EURUSD", "GBPUSD") if s in available_symbols()
     ]
@@ -177,6 +182,7 @@ def harvest_path_state_teachers(
             watch_enabled=True,
             collect_path_state_teachers=True,
             max_path_state_teachers=int(max_per_day),
+            monty_htf_blend=bool(monty_htf_blend),
         )
         exs = list(gmeta.get("path_state_teachers") or [])
         for ex in exs:
@@ -214,6 +220,7 @@ def harvest_path_state_teachers(
         "day_stats_head": day_stats[:8],
         "source": "path_state_miss",
         "law": "A28_C003_CASE0037",
+        "monty_htf_blend": bool(monty_htf_blend),
         "policy_fingerprint": pol.weight_fingerprint(),
         "symbols": list(m1_by_sym.keys()),
         "window_start": eval_dates[0] if eval_dates else None,
@@ -237,23 +244,38 @@ def train_path_state_a13_policy(
     path_mix: float = 0.35,
     freeze: bool = True,
     save_path: Optional[Path | str] = None,
+    warmstart_path: Optional[Path | str] = None,
+    n_passes: int = 2,
 ) -> MetaPolicy:
-    """Base meta-train + offline path-state teacher mix. Shadow only by default."""
+    """Base meta-train (or warmstart) + offline path-state teacher mix. Shadow only."""
     labs = filter_path_state_teachers(examples, max_examples=max(50, len(examples)))
     if not labs:
         raise ValueError("no path-state teachers to train on")
-    # Base curriculum first (no opportunity_labels — those rebuild synthetic state)
-    pol = train_goal_conditioned_meta_policy(
-        seed=seed,
-        n_steps=n_steps,
-        freeze=False,
-        opportunity_labels=None,
-    )
-    brain = pol.brain
-    n_extra = max(1, int(n_steps * float(path_mix)))
-    # first pass all labels, then mix extras
+    if warmstart_path is not None and Path(warmstart_path).exists():
+        # Continue from existing champion/shadow — load unlocked for offline meta_update
+        pol = MetaPolicy.load(Path(warmstart_path), freeze=False, require_serious=False)
+        pol.unlock_for_meta_train()
+        brain = pol.brain
+        base_steps = 0
+    else:
+        # Base curriculum first (no opportunity_labels — those rebuild synthetic state)
+        pol = train_goal_conditioned_meta_policy(
+            seed=seed,
+            n_steps=n_steps,
+            freeze=False,
+            opportunity_labels=None,
+        )
+        brain = pol.brain
+        base_steps = int(n_steps)
+    n_extra = max(1, int(max(base_steps, 500) * float(path_mix)))
+    # first pass(es) all labels, then mix extras
     apply_path_state_teachers_to_brain(
-        brain, labs, lr=0.02, seed=seed + 7, max_examples=len(labs), n_passes=1
+        brain,
+        labs,
+        lr=0.02,
+        seed=seed + 7,
+        max_examples=len(labs),
+        n_passes=int(n_passes),
     )
     rng = np.random.default_rng(seed + 3)
     for i in range(n_extra):

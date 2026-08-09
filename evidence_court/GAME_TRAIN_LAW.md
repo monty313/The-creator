@@ -26,4 +26,5 @@ If game align-rate is high but dual conversion is low → spawn residual **G-CLE
 curriculum issues. If game fires density but a13_frac low on real bars → **G-A13**
 real-bar path (C-003). Game is a **road**, not the final boss.
 
-Canonical: `meta_rl/game_train/README.md`
+Canonical: `meta_rl/game_train/README.md`  
+**Learn-not-memorize north star (top of game_train):** `meta_rl/game_train/00_HIGH_TREND_MASTERY.html`

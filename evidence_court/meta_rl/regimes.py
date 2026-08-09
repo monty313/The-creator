@@ -532,7 +532,11 @@ IDX_REGIME_ALLOW = 8
 IDX_REGIME_KILL = 9
 IDX_REGIME_FORCE = 10
 IDX_REGIME_EFFICIENCY = 11
-# 12–15 reserved
+# HTF wind source flags (lab blend / Monty) — reserved pad was 12–15
+IDX_HTF_SLOPE_ON = 12
+IDX_HTF_CCI_ON = 13
+IDX_HTF_RSI_ON = 14
+# 15 still pad
 
 
 def encode_regime_doctrine(
@@ -541,11 +545,18 @@ def encode_regime_doctrine(
     force: float = 0.0,
     efficiency: float = 0.5,
     doctrine_dim: int = 16,
+    slope_on: float = 0.0,
+    cci_on: float = 0.0,
+    rsi_on: float = 0.0,
 ) -> "np.ndarray":
     """CASE-0018: pack A17 regime into Mark doctrine vector (no META_RL_DIM change).
 
-    Layout: [onehot×8 | allow_fire | kill | force | efficiency | pad]
-    Shared by curriculum sample_training_state and day-path build_meta_rl_state.
+    Layout:
+      [onehot×8 | allow_fire | kill | force | efficiency |
+       slope_on | cci_on | rsi_on | pad]
+
+    Source flags tell the brain *which* HTF wind definition is active
+    (Court slope / Monty CCI+BB / Monty RSI+BB). Still 16-dim doctrine.
     """
     import numpy as np
 
@@ -566,6 +577,12 @@ def encode_regime_doctrine(
         out[IDX_REGIME_FORCE] = float(np.clip(force, -1.0, 1.0))
     if dim > IDX_REGIME_EFFICIENCY:
         out[IDX_REGIME_EFFICIENCY] = float(np.clip(efficiency, 0.0, 1.0))
+    if dim > IDX_HTF_SLOPE_ON:
+        out[IDX_HTF_SLOPE_ON] = 1.0 if float(slope_on) > 0.5 else 0.0
+    if dim > IDX_HTF_CCI_ON:
+        out[IDX_HTF_CCI_ON] = 1.0 if float(cci_on) > 0.5 else 0.0
+    if dim > IDX_HTF_RSI_ON:
+        out[IDX_HTF_RSI_ON] = 1.0 if float(rsi_on) > 0.5 else 0.0
     return out
 
 

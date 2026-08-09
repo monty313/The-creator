@@ -166,7 +166,7 @@ python -m evidence_court.meta_rl.cli forward100 --days 100 --out evidence_court/
 **Checkpoint cross-link:** `CONTINUATION_CHECKPOINT.md`  
 **Docket:** `ISSUE_DOCKET.md`  
 **Architecture note:** `MASTER_ARCHITECTURE.md` (CASE-0037 section)  
-**Senses / high-trend practice (human):** `meta_rl/game_train/high_trend_mastery.html`
+**Senses / high-trend mastery (learn, don’t memorize):** `meta_rl/game_train/00_HIGH_TREND_MASTERY.html`
 
 ---
 

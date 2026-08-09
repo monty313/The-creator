@@ -1,0 +1,13 @@
+{
+  "fingerprint": "42:meta4567:inf0:f4f91bef3739cf3d",
+  "meta_train_steps": 4567,
+  "trained": true,
+  "n_examples": 46,
+  "warmstart": "C:\\Users\\user\\OneDrive\\Desktop\\The Creator\\evidence_court\\artifacts\\meta_policy_champion.npz",
+  "warmstart_fp": "42:meta4275:inf0:bcfe6c74f68b7623",
+  "monty_htf_blend_harvest": true,
+  "law": "lab_path_state_monty_blend",
+  "format": 2,
+  "seed": 42,
+  "promote": false
+}
