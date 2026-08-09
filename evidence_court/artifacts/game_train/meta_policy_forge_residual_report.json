@@ -1,0 +1,93 @@
+{
+  "track": "meta_policy_forge_residual",
+  "law": "A28_residual_watch_miss_no_multihit",
+  "doctrine": "train_on_actual_pb_cont_misses_augmented_eurusd_cont_boost",
+  "start_src": "learn_warmstart",
+  "n_miss_labels": 520,
+  "n_path_state": 374,
+  "primary": "path_state",
+  "n_unique_teachers": 374,
+  "n_train": 373,
+  "n_hold": 1,
+  "hold_dates": [
+    "2026-05-20"
+  ],
+  "pack_topo": {
+    "continuation": 316,
+    "pullback_resume": 58
+  },
+  "pack_symbols": {
+    "EURUSD": 3,
+    "XAUUSD": 369,
+    "GBPUSD": 2
+  },
+  "steps_applied": 10000,
+  "steps_before": 50000,
+  "steps_after": 60000,
+  "fingerprint_before": "42:meta50000:inf0:45672a52e7d746f6",
+  "fingerprint_after": "42:meta60000:inf0:da8fe9dac7af79fe",
+  "mean_loss": 0.09338197061129909,
+  "applied_acts": {
+    "short": 5062,
+    "wait": 1862,
+    "long": 3076
+  },
+  "applied_tags": {
+    "aug": 5369,
+    "synth": 4631
+  },
+  "mix": {
+    "miss_frac": 0.55,
+    "synth_frac": 0.2,
+    "wait_frac": 0.1,
+    "noise": 0.05,
+    "multi_hit": 0
+  },
+  "agreement": {
+    "train_before": {
+      "n": 200.0,
+      "agree": 1.0,
+      "fire_agree": 1.0,
+      "fire_n": 200.0
+    },
+    "hold_before": {
+      "n": 1.0,
+      "agree": 1.0,
+      "fire_agree": 1.0,
+      "fire_n": 1.0
+    },
+    "train_after": {
+      "n": 200.0,
+      "agree": 1.0,
+      "fire_agree": 1.0,
+      "fire_n": 200.0
+    },
+    "hold_after": {
+      "n": 1.0,
+      "agree": 1.0,
+      "fire_agree": 1.0,
+      "fire_n": 1.0
+    },
+    "train_aug": {
+      "n": 200.0,
+      "agree": 1.0,
+      "fire_agree": 1.0,
+      "fire_n": 200.0
+    },
+    "hold_aug": {
+      "n": 1.0,
+      "agree": 1.0,
+      "fire_agree": 1.0,
+      "fire_n": 1.0
+    },
+    "mem_gap": 0.0
+  },
+  "lr": 0.014,
+  "seed": 42,
+  "saved": "C:\\Users\\user\\OneDrive\\Desktop\\The Creator\\evidence_court\\artifacts\\game_train\\meta_policy_forge_residual.npz",
+  "miss_pack": "C:\\Users\\user\\OneDrive\\Desktop\\The Creator\\evidence_court\\artifacts\\game_train\\residual_watch_misses.json",
+  "aggressive_capture_harvest": true,
+  "champion_untouched": true,
+  "inference_force_pad": false,
+  "elapsed_note": "2026-08-08T13:32:31Z"
+}

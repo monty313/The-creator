@@ -329,9 +329,13 @@ def train_meta_brain(
     lr: float = 0.025,
     freeze: bool = True,
 ) -> MetaBrain:
-    """Serious permanent curriculum — required for production brain."""
-    if n_steps < 500:
-        raise ValueError("A29: n_steps must be >= 500 for a real training run")
+    """Serious permanent curriculum — required for production brain.
+
+    Lab pins may use n_steps >= 50. Production champion load still requires
+    meta_train_steps >= 500 (MetaPolicy.load).
+    """
+    if n_steps < 50:
+        raise ValueError("A29: n_steps must be >= 50 (lab pin); production >= 500")
     rng = np.random.default_rng(seed)
     brain = MetaBrain.create(seed)
     targets = (5.0, 10.0, 15.0, 30.0, 50.0, 70.0, 90.0)

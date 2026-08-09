@@ -74,16 +74,34 @@ def main(argv: list[str] | None = None) -> int:
         type=str,
         default="evidence_court/artifacts/meta_policy_champion.npz",
     )
+    tr.add_argument(
+        "--labels",
+        type=str,
+        default="",
+        help="C-002: JSON/JSONL path of Watch curriculum_labels for opportunity mix",
+    )
+    tr.add_argument(
+        "--opportunity-mix",
+        type=float,
+        default=0.15,
+        help="Fraction of extra steps from opportunity labels (default 0.15)",
+    )
 
     fe = sub.add_parser("forward100", help="Run N-day forward matrix eval")
     fe.add_argument("--days", type=int, default=100)
     fe.add_argument("--out", type=str, default="evidence_court/artifacts/forward100_report.json")
     fe.add_argument("--price", type=str, default="")
     fe.add_argument("--seed", type=int, default=42)
+    fe.add_argument(
+        "--champion-path",
+        type=str,
+        default="",
+        help="Optional shadow/champion .npz path (CASE-0035 measure; default PROVEN champion)",
+    )
 
     gi = sub.add_parser(
         "game-ingest",
-        help="Ingest Policy Forge browser trajectories into champion (offline meta_update)",
+        help="Ingest Policy Forge browser trajectories (offline meta_update; default out=champion)",
     )
     gi.add_argument("pack", type=str, help="path to policy_forge_export_*.json")
     gi.add_argument(
@@ -96,18 +114,62 @@ def main(argv: list[str] | None = None) -> int:
     gi.add_argument(
         "--warmstart-browser-brain",
         action="store_true",
-        help="Only if champion is young: seed from pack.brain",
+        help="Only if policy is young: seed from pack.brain",
+    )
+    gi.add_argument(
+        "--from-prior",
+        action="store_true",
+        help="Start from untrained seed prior if --out does not exist yet (experimental track)",
     )
     gi.add_argument("--seed", type=int, default=42)
 
+    fo = sub.add_parser(
+        "forge",
+        help="Policy Forge fast loop: go|pull|ingest|score|play|status (forge_v1 only)",
+    )
+    fo.add_argument(
+        "forge_args",
+        nargs=argparse.REMAINDER,
+        help="subcommand + flags, e.g. go  |  score --days 8  |  play",
+    )
+
     args = p.parse_args(argv)
+    if args.cmd == "forge":
+        from evidence_court.meta_rl.game_train.quick import main as forge_main
+
+        fa = list(getattr(args, "forge_args", None) or [])
+        if fa and fa[0] == "--":
+            fa = fa[1:]
+        if not fa:
+            fa = ["status"]
+        return forge_main(fa)
     if args.cmd == "prove":
         out = prove_pair(args.target, args.risk, seed=args.seed)
         print(json.dumps(out, indent=2))
         return 0
     if args.cmd == "meta-train":
+        opp_labels = None
+        n_labels = 0
+        if getattr(args, "labels", ""):
+            lp = Path(args.labels)
+            raw = lp.read_text(encoding="utf-8")
+            if lp.suffix.lower() == ".jsonl":
+                opp_labels = [json.loads(line) for line in raw.splitlines() if line.strip()]
+            else:
+                data = json.loads(raw)
+                if isinstance(data, list):
+                    opp_labels = data
+                elif isinstance(data, dict):
+                    opp_labels = data.get("curriculum_labels") or data.get("labels") or []
+                else:
+                    opp_labels = []
+            n_labels = len(opp_labels or [])
         pol = train_goal_conditioned_meta_policy(
-            seed=args.seed, n_steps=args.steps, freeze=True
+            seed=args.seed,
+            n_steps=args.steps,
+            freeze=True,
+            opportunity_labels=opp_labels,
+            opportunity_mix=float(getattr(args, "opportunity_mix", 0.15) or 0.15),
         )
         path = pol.save(Path(args.out))
         print(
@@ -119,6 +181,8 @@ def main(argv: list[str] | None = None) -> int:
                     "frozen_for_inference": pol.frozen_for_inference,
                     "fingerprint": pol.weight_fingerprint(),
                     "law": "A14_permanent_meta_policy",
+                    "opportunity_labels": n_labels,
+                    "c002": bool(n_labels),
                 },
                 indent=2,
             )
@@ -126,7 +190,13 @@ def main(argv: list[str] | None = None) -> int:
         return 0
     if args.cmd == "forward100":
         price = Path(args.price) if args.price else None
-        report = run_forward_eval(n_days=args.days, price_path=price, seed=args.seed)
+        champ = Path(args.champion_path) if getattr(args, "champion_path", "") else None
+        report = run_forward_eval(
+            n_days=args.days,
+            price_path=price,
+            seed=args.seed,
+            champion_path=champ,
+        )
         out_path = Path(args.out)
         save_report(report, out_path)
         summary = {
@@ -141,6 +211,7 @@ def main(argv: list[str] | None = None) -> int:
             "pairs": list(report.pair_results.keys()),
             "out": str(out_path),
             "metadata": report.metadata,
+            "champion_path": str(champ) if champ else "default",
         }
         print(json.dumps(summary, indent=2))
         ok = (
@@ -157,6 +228,7 @@ def main(argv: list[str] | None = None) -> int:
             max_steps=args.max_steps or None,
             seed=args.seed,
             include_browser_brain_warmstart=bool(args.warmstart_browser_brain),
+            from_prior=bool(getattr(args, "from_prior", False)),
         )
         print(
             json.dumps(

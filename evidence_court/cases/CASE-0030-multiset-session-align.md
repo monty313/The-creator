@@ -1,8 +1,9 @@
 # CASE-0030 — Multi-set eases same-day session path confirm
 
 **case_id:** CASE-0030  
-**status:** OPEN  
+**status:** CLOSED — units **PASS**; dual **REJECT (near-null)**; floor **held**  
 **opened:** 2026-08-07  
+**closed:** 2026-08-07  
 **docket_issue_id:** ISSUE-ROAD / ISSUE-A13 / ISSUE-DUAL  
 **question:** Does **easing same-day session min_align to 0 when multi-set HTF agrees** raise a13 day-share and/or hits ≥12 **without** undoing floor (prefer hits≥11 / low_hr≥0.28 / a13≥28%; absolute ≥9/0.24) and without F-011…F-022?
 
@@ -21,94 +22,88 @@ Creator + Mark openings + NEW tests → counters → Counsel → Critic → Opti
 
 ## Creator opening
 
-### strongest_internet_argument
-
-Top-down MTF: **HTF bias is primary**; LTF times entry with the HTF. When multiple official sets already agree (Mark multi-set), requiring a separate same-day open→now lean (session_confirm) is a **redundant LTF filter** that can block real HTF-aligned edges on quiet/choppy opens — especially silent days (~41% zero-trade). Easing min_align to 0 **only when multi_set_agree** densifies real confluence edges without pad and without residual multi thrash.
-
-**claim:** `session_min_align_for_path(multi_set_agree=True)==0`; non-multi keeps DEFAULT.
-
-**new_test:** `test_creator_new_multiset_eases_session_min_align`
+**new_test:** `test_creator_new_multiset_eases_session_min_align` — **PASS**
 
 ---
 
 ## Mark Here, Esq. — opening
 
-### strongest_knowledge_argument
-
-1. Multi-set HTF agree = Mark eyes permission — session lean is secondary.  
-2. Without multi-set, keep DEFAULT_SESSION_MIN_ALIGN (anti-thrash).  
-3. Early day (<min_bars) still flea-jar True.  
-4. 1-sym; empty skip; conflict still blocked upstream.
-
-**claim:** multi_set ease does not zero non-multi floor; session_confirms still works with min_align=0 as pure side sign.
-
-**new_test:** `test_mark_new_non_multiset_session_floor_kept`
+**new_test:** `test_mark_new_non_multiset_session_floor_kept` — **PASS**
 
 ---
 
 ## Creator counter
 
-**newer_test:** `test_creator_new_session_confirm_zero_align_still_side_aware`
+**newer_test:** `test_creator_new_session_confirm_zero_align_still_side_aware` — **PASS**
 
 ---
 
 ## Mark counter
 
-**newer_test:** `test_mark_new_a27_a26_geometry_preserved`
+**newer_test:** `test_mark_new_a27_a26_geometry_preserved` — **PASS**
 
 ---
 
 ## Counsel opinion (A15)
 
-### internet_sift
-
-MTF guides: trade with HTF bias; LTF confirms entry in that direction — multi-set already is HTF. Session path lean is extra LTF noise filter; under multi-set it can starve silent days.
-
 ### policy_recommendation
 
-Single lever: multi-set → session min_align 0; else DEFAULT. Unit-pin; forward100 seed=42 vs 0029 floor.
+Multi-set → session min_align 0; else DEFAULT; forward100 seed=42.
 
 ### opinion
 
-Creator silent-day unlock + Mark non-multi discipline = dual-on-road. Prefer over 1m clock (cost) or residual multi.
-
-### evidence
-
-NEW tests; 0009/0029 regression; forward100.
-
-### sources
-
-MTF top-down confluence; CASE-0029 n_zero bottleneck; ROAD; F-017…F-022
+**Post-measure:** near-null dual — multi-set edges already largely cleared default align; silent-day bottleneck is deeper than this gate.
 
 ---
 
 ## Critic
 
-May add counter-path multi-set fires if same-day lean opposes — force floors still gate. Watch conversion floor.
+Hits/a13 flat; n_zero only 41→39. Not a cliff; not a dual climb.
 
 ---
 
 ## Optimist
 
-Unlocks HTF-clear quiet days → a13 day-share + hits ≥12 path.
+Tiny mean_tr bump proves wire live; need different silent-day lever.
 
 ---
 
 ## Judge pretrial
 
-1. NEW 4 + 0009/0029 regression green  
-2. Code only session_min_align helper + day wire  
-3. forward100 seed=42  
-4. Floor prefer ≥11/0.28/a13≥28%; absolute ≥9/0.24; breach 0  
+1. Units — **12/12 PASS**  
+2. Code session_min_align + wire — **done**  
+3. forward100 seed=42 — **DONE** ~5557s  
 
 ---
 
-## Results
+## Results (100d seed=42)
 
-_(pending)_
+| Metric | CASE-0029 | **CASE-0030** | Delta |
+|--------|----------:|--------------:|------:|
+| breach | 0 | **0** | = |
+| hits | 11 | **11** | = |
+| low_hr | 0.28 | **0.28** | = |
+| mean_tr | 7.27 | **7.38** | +0.11 |
+| max_tr | 47 | **47** | = |
+| a13_frac | 28% | **28%** | = |
+| n_zero | 41 | **39** | −2 |
+| n_ge8 | 28 | **28** | = |
+| max_pnl | 70.0 | **70.0** | = |
+| promote | false | **false** | — |
+
+**SHA256:** `f6fc9b32788d4a85874b704f2fc8017aad794a99d998808f360a870e8fe6bdf4`  
+**Elapsed:** ~5557s  
+
+**Interpretation:** Multi-set session-align ease is **legal** and **not a cliff** (floor held) but **near-null dual** (hits/a13 flat). Silent-day / a13 day-share bottleneck is not this gate. **F-023**.
 
 ---
 
 ## Judge IRAC
 
-_(pending)_
+- **Issue:** Multi-set session min_align ease dual progress vs 0029 floor?  
+- **Rule:** A10+A15; ROAD; floor prefer ≥11/0.28/a13≥28%; no F-011…F-022.  
+- **Application:** Units prove multi-set→0 align, non-multi DEFAULT, side sign kept. Measure: hits/low_hr/a13 flat; mean_tr +0.11; n_zero −2; breach 0.  
+- **Conclusion:**  
+  1. **REJECT** Law A28 / dual promote of multi-set session-align ease (**F-023**).  
+  2. Floor **held** — helper may remain (harmless).  
+  3. **Next CASE-0031:** silent-day / a13 day-share structural lever under A27+A26 (e.g. first-entry multi-set cont ease, regime skip review, or curriculum) — not another near-null gate re-label; avoid F-011…F-023.

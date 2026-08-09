@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>HIGH TREND MASTERY — All Official Sets</title>
+<style>
+  :root {
+    --bg: #070b12;
+    --panel: #101826;
+    --line: #243044;
+    --text: #e9eef8;
+    --muted: #8b9bb4;
+    --up: #3dd68c;
+    --down: #ff6b7a;
+    --wait: #f0c14b;
+    --accent: #6ea8ff;
+    --load: #a78bfa;
+    --s1: #6ea8ff; --s2: #3dd68c; --s3: #f0c14b; --s4: #ff8f6b;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: "Segoe UI", system-ui, sans-serif;
+    background: radial-gradient(1100px 600px at 15% -15%, #182744 0%, var(--bg) 55%);
+    color: var(--text);
+    line-height: 1.45;
+  }
+  header {
+    position: sticky; top: 0; z-index: 20;
+    backdrop-filter: blur(10px);
+    background: rgba(7,11,18,.88);
+    border-bottom: 1px solid var(--line);
+    padding: 12px 18px;
+  }
+  .hdr {
+    max-width: 1220px; margin: 0 auto;
+    display: flex; flex-wrap: wrap; gap: 12px;
+    align-items: center; justify-content: space-between;
+  }
+  h1 { margin: 0; font-size: 1.15rem; letter-spacing: .02em; }
+  h1 span { color: var(--accent); }
+  .stats { display: flex; flex-wrap: wrap; gap: 10px 14px; font-size: .82rem; color: var(--muted); }
+  .stats b { color: var(--text); }
+  main { max-width: 1220px; margin: 0 auto; padding: 14px 18px 48px; display: grid; gap: 14px; }
+  .card {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 14px 16px;
+  }
+  .card h2 {
+    margin: 0 0 10px; font-size: .72rem; letter-spacing: .09em;
+    text-transform: uppercase; color: var(--muted);
+  }
+  .row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+  .pill, button.act {
+    border: 1px solid var(--line); border-radius: 999px;
+    padding: 8px 12px; font-size: .82rem; color: var(--muted);
+    cursor: pointer; background: #0c1422;
+  }
+  .pill.on, button.act:hover { border-color: var(--accent); color: var(--text); }
+  button.act.long { color: var(--up); border-color: #1f6b45; background: #0f241a; }
+  button.act.short { color: var(--down); border-color: #7a2b3a; background: #2a1218; }
+  button.act.wait { color: var(--wait); border-color: #8a7220; background: #1a1608; }
+  button.act.primary { background: #15305a; border-color: #3d6db5; color: #d7e7ff; font-weight: 600; }
+  canvas.chart {
+    width: 100%; height: 280px; display: block;
+    background: #090f1a; border-radius: 12px; border: 1px solid var(--line);
+  }
+  canvas.mini {
+    width: 100%; height: 110px; display: block;
+    background: #090f1a; border-radius: 10px; border: 1px solid var(--line);
+  }
+  .grid2 { display: grid; grid-template-columns: 1.35fr 1fr; gap: 12px; }
+  .grid4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+  .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+  @media (max-width: 960px) {
+    .grid2, .grid3 { grid-template-columns: 1fr; }
+    .grid4 { grid-template-columns: 1fr 1fr; }
+  }
+  .set-tab {
+    border: 1px solid var(--line); border-radius: 12px; padding: 10px;
+    background: #0a1220; cursor: pointer;
+  }
+  .set-tab.on { outline: 1px solid var(--accent); }
+  .set-tab .nm { font-weight: 700; }
+  .set-tab .st { color: var(--muted); font-size: .78rem; margin-top: 2px; }
+  .chip {
+    min-width: 70px; text-align: center; padding: 8px 6px;
+    border-radius: 10px; border: 1px solid var(--line); background: #0a1220; font-size: .78rem;
+  }
+  .chip .l { color: var(--muted); font-size: .68rem; text-transform: uppercase; letter-spacing: .05em; }
+  .chip .v { font-weight: 700; margin-top: 3px; }
+  .chip.up .v { color: var(--up); } .chip.down .v { color: var(--down); }
+  .chip.mix .v { color: var(--wait); } .chip.load .v { color: var(--load); }
+  .callout {
+    border-left: 3px solid var(--accent); background: #0e1624;
+    border-radius: 0 10px 10px 0; padding: 10px 12px; color: var(--muted); font-size: .9rem;
+  }
+  .callout.warn { border-left-color: var(--wait); background: #1a1608; }
+  .callout.good { border-left-color: var(--up); background: #0f241a; }
+  .callout.bad { border-left-color: var(--down); background: #2a1218; }
+  .callout strong { color: var(--text); }
+  .lvl {
+    display: flex; gap: 6px; flex-wrap: wrap;
+  }
+  .lvl .step {
+    flex: 1; min-width: 120px; padding: 10px; border-radius: 10px;
+    border: 1px solid var(--line); background: #0a1220; font-size: .8rem; color: var(--muted);
+  }
+  .lvl .step.on { border-color: var(--accent); color: var(--text); }
+  .lvl .step.done { border-color: #1f6b45; color: var(--up); }
+  .feedback { min-height: 48px; margin-top: 10px; }
+  .progress {
+    height: 8px; background: #0a1220; border-radius: 99px; overflow: hidden; border: 1px solid var(--line);
+  }
+  .progress > i { display: block; height: 100%; width: 0%; background: linear-gradient(90deg, var(--accent), var(--up)); }
+  ul.tight { margin: 6px 0 0; padding-left: 1.1rem; color: var(--muted); font-size: .86rem; }
+  li { margin: 3px 0; }
+  .kb { color: var(--muted); font-size: .78rem; margin-top: 8px; }
+  kbd { background: #1a2438; border: 1px solid var(--line); border-radius: 4px; padding: 1px 6px; }
+  footer { max-width: 1220px; margin: 0 auto; padding: 0 18px 30px; color: var(--muted); font-size: .72rem; }
+  .hidden { display: none !important; }
+</style>
+</head>
+<body>
+<header>
+  <div class="hdr">
+    <div>
+      <h1>HIGH TREND <span>MASTERY</span> · all official sets</h1>
+      <div style="color:var(--muted);font-size:.8rem;margin-top:3px">Skill gym — force · load · launch · multi-set consensus · fail modes</div>
+    </div>
+    <div class="stats">
+      <span>level <b id="scLevel">1</b>/6</span>
+      <span>streak <b id="scStreak">0</b></span>
+      <span>correct <b id="scOk">0</b>/<b id="scN">0</b></span>
+      <span>acc <b id="scAcc">—</b></span>
+      <span>mastery <b id="scMastery">0%</b></span>
+    </div>
+  </div>
+</header>
+
+<main>
+  <!-- Doctrine -->
+  <section class="card">
+    <h2>The skill we master</h2>
+    <div class="grid2">
+      <div class="callout">
+        <strong>One skill, four clocks.</strong> In a high-trending market the wind is HTF force on each official set.
+        You do not fight it. You wait for that set’s LTF to <em>load</em> against the wind, then <em>launch</em> with it.
+        Sets differ by role/stack — never by inventing a different law.
+      </div>
+      <div>
+        <div class="lvl" id="levelBar"></div>
+        <div class="progress" style="margin-top:10px"><i id="masteryBar"></i></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sets -->
+  <section class="card">
+    <h2>Official sets — know each clock cold</h2>
+    <div class="grid4" id="setTabs"></div>
+  </section>
+
+  <!-- Drill arena -->
+  <section class="card">
+    <h2>Drill arena · choose action for the active set</h2>
+    <div class="row" style="margin-bottom:8px">
+      <button class="pill on" data-mode="drill" id="modeDrill">Drill</button>
+      <button class="pill" data-mode="study" id="modeStudy">Study chart</button>
+      <button class="pill" data-mode="fails" id="modeFails">Fail modes</button>
+      <button class="act primary" id="btnNext">New scenario (N)</button>
+      <button class="act" id="btnHint">Hint (H)</button>
+    </div>
+
+    <div id="panelDrill">
+      <div class="grid2">
+        <div>
+          <canvas class="chart" id="chart" width="760" height="300"></canvas>
+          <div class="row" style="margin-top:10px" id="actions">
+            <button class="act long" data-a="long">LONG (A)</button>
+            <button class="act wait" data-a="wait">WAIT (S)</button>
+            <button class="act short" data-a="short">SHORT (D)</button>
+          </div>
+          <div class="kb">Keys: <kbd>A</kbd> long · <kbd>S</kbd> wait · <kbd>D</kbd> short · <kbd>N</kbd> next · <kbd>H</kbd> hint · <kbd>1</kbd>–<kbd>4</kbd> set</div>
+          <div class="feedback" id="feedback"></div>
+        </div>
+        <div>
+          <div id="scenarioMeta" class="callout"></div>
+          <div style="margin-top:12px">
+            <div style="font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:8px">Multi-set force board</div>
+            <div class="row" id="board"></div>
+          </div>
+          <div style="margin-top:12px" id="senseBox" class="callout warn"></div>
+          <div style="margin-top:12px" class="callout" id="coachBox">Coach: answer the drill. Sight → Feel → Taste → Act.</div>
+        </div>
+      </div>
+    </div>
+
+    <div id="panelStudy" class="hidden">
+      <div class="row" style="margin-bottom:8px">
+        <button class="pill on" data-dir="up">Uptrend</button>
+        <button class="pill" data-dir="down">Downtrend</button>
+        <button class="pill" data-dir="conflict">Conflict</button>
+      </div>
+      <canvas class="chart" id="studyChart" width="1000" height="280"></canvas>
+      <div class="callout" id="studyStory" style="margin-top:10px"></div>
+      <div class="grid4" style="margin-top:12px" id="studyStrips"></div>
+    </div>
+
+    <div id="panelFails" class="hidden">
+      <div class="grid3" id="failCards"></div>
+    </div>
+  </section>
+
+  <!-- Mastery checklist -->
+  <section class="card">
+    <h2>Mastery checklist (mark what you own)</h2>
+    <div class="grid2" id="checklist"></div>
+  </section>
+
+  <!-- Curriculum -->
+  <section class="card">
+    <h2>6-level curriculum</h2>
+    <div class="grid3" id="curriculum"></div>
+  </section>
+
+  <!-- Set-specific high trend notes -->
+  <section class="card">
+    <h2>High trend notes per set</h2>
+    <div class="grid4" id="setNotes"></div>
+  </section>
+</main>
+
+<footer>
+  MARK SETS LAW: Set1 1m/15m/30m · Set2 5m/30m/1h · Set3 15m/1h/4h · Set4 30m/4h/1d ·
+  Progress saved in this browser (localStorage) · Principles not hard rules · Risk envelope hard safety only
+</footer>
+
+<script>
+(() => {
+  const UP="#3dd68c", DOWN="#ff6b7a", WAIT="#f0c14b", LOAD="#a78bfa", ACC="#6ea8ff", MUTED="#5a6a84";
+  const CSET=["#6ea8ff","#3dd68c","#f0c14b","#ff8f6b"];
+
+  const SETS = [
+    { id:1, name:"Micro", ltf:"1m", htfs:["15m","30m"], stack:"1m · 15m · 30m", period:10, color:CSET[0],
+      note:"Fastest. High trend = many small loads. Only fire 1m resumes when 15m+30m force is clean. Noise is the enemy." },
+    { id:2, name:"Intraday", ltf:"5m", htfs:["30m","1h"], stack:"5m · 30m · 1h", period:16, color:CSET[1],
+      note:"Primary scalping clock for London/NY trend days. Best density set — still wait load, never mid-leg chase." },
+    { id:3, name:"Swing", ltf:"15m", htfs:["1h","4h"], stack:"15m · 1h · 4h", period:24, color:CSET[2],
+      note:"Fewer fires, cleaner legs. When 1h+4h force is strong, 15m load→launch is high taste. Don’t overtrade it." },
+    { id:4, name:"Macro", ltf:"30m", htfs:["4h","1d"], stack:"30m · 4h · 1d", period:36, color:CSET[3],
+      note:"Heavy wind. 4h+1d force defines the day story. 30m loads are rare and meaningful — respect them." },
+  ];
+
+  const LEVELS = [
+    { id:1, title:"See the wind", goal:"Name HTF force direction on one set", need:8 },
+    { id:2, title:"Feel the load", goal:"WAIT during slingshot_load", need:10 },
+    { id:3, title:"Launch with force", goal:"Fire only on resume with force", need:12 },
+    { id:4, title:"All four clocks", goal:"Correct on every set id", need:16 },
+    { id:5, title:"Consensus taste", goal:"Multi-set agree vs conflict", need:12 },
+    { id:6, title:"Kill fail modes", goal:"Reject chase / fade / thrash", need:14 },
+  ];
+
+  const FAILS = [
+    { title:"Fade the trend", bad:"SHORT into HTF force up because it 'went too far'", fix:"Sight first. Wind up → only long resumes. Exhaustion is rare; ego is common." },
+    { title:"Chase mid-leg", bad:"LONG after full extension, no load", fix:"Taste. Location wrong even if direction right. Wait next load." },
+    { title:"LTF-only story", bad:"1m looks down so you short while 15m/30m force up", fix:"Roles. LTF times; HTF permits. Micro does not veto clean HTF wind." },
+    { title:"Mush force", bad:"Average every TF into one vague 'force'", fix:"Per-set HTF pair only. Never blend all TFs into soup (A32)." },
+    { title:"Force all sets same second", bad:"Enter all four stacks at once", fix:"Agreement is confidence, not a market order on every clock. Time each LTF." },
+    { title:"Thrash reverse", bad:"Flip long/short every LTF wiggle", fix:"Hearing. Tide changes on HTF structure break — not on every pullback." },
+  ];
+
+  const CHECKS = [
+    "I can state each set’s LTF and both HTFs from memory",
+    "I wait load on Micro even when Intraday already fired",
+    "I do not fade multi-set uptrend on a micro dip",
+    "I treat conflict / incomplete HTF as WAIT or reduced size",
+    "I can mark launch vs chase on all four stacks",
+    "I use multi-set agreement as taste boost, not thrash fuel",
+    "I keep risk envelope as only hard safety",
+    "I can explain why 30m is HTF on Set1 but LTF on Set4",
+  ];
+
+  // ---------- state ----------
+  const STORE_KEY = "high_trend_mastery_v1";
+  let S = loadState();
+  let activeSet = 0;
+  let mode = "drill";
+  let scenario = null;
+  let locked = false;
+  let studyDir = "up";
+
+  function loadState() {
+    try {
+      const raw = localStorage.getItem(STORE_KEY);
+      if (raw) return JSON.parse(raw);
+    } catch {}
+    return {
+      ok: 0, n: 0, streak: 0, bestStreak: 0,
+      level: 1, levelProgress: 0,
+      bySet: {1:{ok:0,n:0},2:{ok:0,n:0},3:{ok:0,n:0},4:{ok:0,n:0}},
+      checks: CHECKS.map(() => false),
+      history: [],
+    };
+  }
+  function saveState() {
+    localStorage.setItem(STORE_KEY, JSON.stringify(S));
+    paintStats();
+  }
+
+  // ---------- chart utils ----------
+  function clear(ctx) {
+    ctx.fillStyle = "#090f1a";
+    ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+    ctx.strokeStyle = "#152033";
+    for (let i = 1; i < 4; i++) {
+      const y = ctx.canvas.height * i / 4;
+      ctx.beginPath(); ctx.moveTo(0,y); ctx.lineTo(ctx.canvas.width,y); ctx.stroke();
+    }
+  }
+  function series(n, forceDir, period, noise=0.25, phaseOffset=0) {
+    const px=[]; let p=100;
+    for (let i=0;i<n;i++) {
+      const phase = (i + phaseOffset) % period;
+      const load0 = Math.floor(period*0.60);
+      const launch0 = Math.floor(period*0.80);
+      let d = forceDir * 0.48;
+      if (phase >= load0 && phase < launch0) d = -forceDir * 0.45;
+      if (phase >= launch0) d = forceDir * 0.95;
+      p += d + (Math.random()-0.5)*noise;
+      px.push(p);
+    }
+    return px;
+  }
+  function drawPx(ctx, px, color, w=2) {
+    const W=ctx.canvas.width, H=ctx.canvas.height;
+    const min=Math.min(...px), max=Math.max(...px), span=Math.max(1e-6,max-min);
+    ctx.strokeStyle=color; ctx.lineWidth=w; ctx.beginPath();
+    px.forEach((p,i)=>{
+      const x=(i/(px.length-1))*(W-24)+12;
+      const y=H-20-((p-min)/span)*(H-44);
+      if(i===0) ctx.moveTo(x,y); else ctx.lineTo(x,y);
+    });
+    ctx.stroke();
+  }
+  function mark(ctx, px, idx, color, label) {
+    const W=ctx.canvas.width, H=ctx.canvas.height;
+    const min=Math.min(...px), max=Math.max(...px), span=Math.max(1e-6,max-min);
+    idx=Math.max(0, Math.min(px.length-1, idx));
+    const x=(idx/(px.length-1))*(W-24)+12;
+    const y=H-20-((px[idx]-min)/span)*(H-44);
+    ctx.fillStyle=color; ctx.beginPath(); ctx.arc(x,y,6,0,Math.PI*2); ctx.fill();
+    if (label) { ctx.font="12px Segoe UI"; ctx.fillText(label, x+8, y-8); }
+    return {x,y};
+  }
+
+  // ---------- scenario engine ----------
+  // kinds: load, launch, chase, fade, conflict, incomplete
+  function multiBoard(kind, forceDir) {
+    // forceDir +1 / -1 for clean high trend
+    const dirs = [forceDir, forceDir, forceDir, forceDir];
+    if (kind === "conflict") {
+      dirs[0]=1; dirs[1]=-1; dirs[2]=1; dirs[3]=-1;
+    } else if (kind === "incomplete") {
+      dirs[0]=forceDir; dirs[1]=forceDir; dirs[2]=0; dirs[3]=0;
+    } else if (kind === "micro_noise") {
+      dirs[0]=0; dirs[1]=forceDir; dirs[2]=forceDir; dirs[3]=forceDir;
+    }
+    return dirs.map((d,i)=>({
+      set: i+1,
+      force: d>0?"up":d<0?"down":"mix",
+      phase: "force"
+    }));
+  }
+
+  function makeScenario() {
+    const level = S.level;
+    const setIdx = level >= 4 ? Math.floor(Math.random()*4) : (level === 1 ? activeSet : Math.floor(Math.random()*Math.min(4, level+1)));
+    const set = SETS[setIdx];
+    const forceDir = Math.random()<0.5 ? 1 : -1;
+
+    // weight kinds by level
+    let kinds;
+    if (level <= 1) kinds = ["launch","load","load","launch"];
+    else if (level === 2) kinds = ["load","load","launch","chase"];
+    else if (level === 3) kinds = ["launch","load","chase","fade"];
+    else if (level === 4) kinds = ["launch","load","chase","load"];
+    else if (level === 5) kinds = ["launch","conflict","incomplete","load","micro_noise"];
+    else kinds = ["chase","fade","conflict","launch","load","incomplete"];
+
+    const kind = kinds[Math.floor(Math.random()*kinds.length)];
+    const board = multiBoard(kind === "micro_noise" ? "micro_noise" : kind, forceDir);
+
+    // correct action for THIS set
+    let correct = "wait";
+    let reason = "";
+    const setForce = board[setIdx].force;
+    if (kind === "conflict" || kind === "incomplete") {
+      correct = "wait";
+      reason = kind === "conflict"
+        ? "Multi-set / HTF conflict — story unclear. WAIT."
+        : "Incomplete HTF permission on higher sets — WAIT or tiny probe only (we train WAIT).";
+    } else if (kind === "micro_noise" && setIdx === 0) {
+      correct = "wait";
+      reason = "Micro force mixed while higher sets trend — don’t let 1m invent a side. WAIT for clean micro force+load.";
+    } else if (kind === "load") {
+      correct = "wait";
+      reason = `LTF ${set.ltf} is loading against HTF force — slingshot_load. WAIT.`;
+    } else if (kind === "chase") {
+      correct = "wait";
+      reason = "Extended mid-leg / no fresh load — chase is thin taste. WAIT next load.";
+    } else if (kind === "fade") {
+      correct = "wait";
+      // also accept wrong side as fail; correct is wait (or with-trend only on launch)
+      reason = `Fading HTF force ${forceDir>0?"up":"down"} is the classic high-trend death. WAIT (or only with-trend launch later).`;
+    } else if (kind === "launch") {
+      if (setForce === "up") { correct = "long"; reason = `HTF force up on Set${set.id} + LTF ${set.ltf} launch/resume → LONG.`; }
+      else if (setForce === "down") { correct = "short"; reason = `HTF force down on Set${set.id} + LTF ${set.ltf} launch/resume → SHORT.`; }
+      else { correct = "wait"; reason = "No clean force on this set."; }
+    }
+
+    // build price path ending in the kind
+    const n = 80;
+    const period = set.period;
+    let px = series(n, forceDir, period, 0.22);
+    // reshape tail for kind
+    if (kind === "load") {
+      // ensure last segment is pullback against force
+      const tail = 12;
+      for (let i=n-tail;i<n;i++) px[i] = px[n-tail-1] + (-forceDir)*0.55*(i-(n-tail)) + (Math.random()-0.5)*0.2;
+    } else if (kind === "launch") {
+      const tail = 14;
+      for (let i=n-tail;i<n-5;i++) px[i] = px[Math.max(0,n-tail-1)] + (-forceDir)*0.4*(i-(n-tail));
+      for (let i=n-5;i<n;i++) px[i] = px[n-6] + forceDir*0.9*(i-(n-6));
+    } else if (kind === "chase") {
+      for (let i=n-20;i<n;i++) px[i] = px[n-21] + forceDir*1.1*(i-(n-21));
+    } else if (kind === "fade") {
+      // strong trend then invite a fake top/bottom fade
+      for (let i=n-15;i<n;i++) px[i] = px[n-16] + forceDir*0.7*(i-(n-16));
+    } else if (kind === "conflict") {
+      px = series(n, 1, period, 0.5, 3).map((p,i)=> (p + series(n,-1,period+3,0.5)[i])/2);
+    }
+
+    return {
+      setIdx, set, kind, forceDir, board, correct, reason, px,
+      label: kind.toUpperCase(),
+    };
+  }
+
+  function paintBoard(board) {
+    const el = document.getElementById("board");
+    el.innerHTML = board.map((b,i) => {
+      const set = SETS[i];
+      const cls = b.force === "up" ? "up" : b.force === "down" ? "down" : "mix";
+      const val = b.force === "up" ? "↑" : b.force === "down" ? "↓" : "±";
+      const on = i === scenario.setIdx ? `outline:1px solid ${set.color}` : "";
+      return `<div class="chip ${cls}" style="border-color:${set.color}66;${on}">
+        <div class="l">Set ${b.set}</div>
+        <div class="v">${val}</div>
+        <div class="l">${set.ltf}</div>
+      </div>`;
+    }).join("");
+  }
+
+  function paintScenario() {
+    scenario = makeScenario();
+    locked = false;
+    activeSet = scenario.setIdx;
+    highlightSets();
+    const ctx = document.getElementById("chart").getContext("2d");
+    clear(ctx);
+    const forceDir = scenario.forceDir;
+    const col = scenario.kind === "conflict" ? WAIT : (forceDir>0?UP:DOWN);
+    drawPx(ctx, scenario.px, col, 2.4);
+    // markers by kind
+    const n = scenario.px.length;
+    if (scenario.kind === "load") mark(ctx, scenario.px, n-3, LOAD, "LOAD");
+    if (scenario.kind === "launch") mark(ctx, scenario.px, n-2, ACC, "LAUNCH");
+    if (scenario.kind === "chase") mark(ctx, scenario.px, n-2, WAIT, "CHASE?");
+    if (scenario.kind === "fade") mark(ctx, scenario.px, n-2, DOWN, "FADE?");
+    if (scenario.kind === "conflict") {
+      ctx.fillStyle = WAIT; ctx.font="bold 13px Segoe UI"; ctx.fillText("CONFLICT", 14, 20);
+    } else {
+      ctx.fillStyle = col; ctx.font="bold 13px Segoe UI";
+      ctx.fillText(forceDir>0?"FORCE ↑":"FORCE ↓", 14, 20);
+    }
+    ctx.fillStyle = MUTED; ctx.font="11px Segoe UI";
+    ctx.fillText(`Set ${scenario.set.id} ${scenario.set.name} · LTF ${scenario.set.ltf} · HTF ${scenario.set.htfs.join("+")}`, 14, ctx.canvas.height-8);
+
+    document.getElementById("scenarioMeta").innerHTML =
+      `<strong>Level ${S.level}:</strong> ${LEVELS[S.level-1].title}<br/>
+       <strong>Active set:</strong> ${scenario.set.id} ${scenario.set.name} (${scenario.set.stack})<br/>
+       <strong>Pattern:</strong> ${scenario.label}<br/>
+       Decide for <em>this set’s</em> role — not for all clocks at once.`;
+
+    document.getElementById("senseBox").innerHTML =
+      `<strong>Sense checklist</strong><br/>
+       Sight: HTF ${scenario.set.htfs.join("+")} force?<br/>
+       Feel: ${scenario.set.ltf} load or launch?<br/>
+       Taste: B&amp;B resume or thin chase?<br/>
+       Hearing: multi-set story agree or conflict?`;
+
+    document.getElementById("coachBox").className = "callout";
+    document.getElementById("coachBox").textContent = "Coach: pick LONG / WAIT / SHORT for the active set.";
+    document.getElementById("feedback").innerHTML = "";
+    paintBoard(scenario.board);
+  }
+
+  function answer(act) {
+    if (mode !== "drill" || !scenario || locked) return;
+    locked = true;
+    S.n += 1;
+    S.bySet[scenario.set.id].n += 1;
+    const ok = act === scenario.correct;
+    // special: on fade, if they fire with-trend we can soft-fail (still wrong for fade prompt) — keep strict
+    if (ok) {
+      S.ok += 1;
+      S.streak += 1;
+      S.bestStreak = Math.max(S.bestStreak, S.streak);
+      S.bySet[scenario.set.id].ok += 1;
+      S.levelProgress += 1;
+      document.getElementById("feedback").innerHTML =
+        `<div class="callout good"><strong>CORRECT · ${act.toUpperCase()}</strong><br/>${scenario.reason}</div>`;
+    } else {
+      S.streak = 0;
+      document.getElementById("feedback").innerHTML =
+        `<div class="callout bad"><strong>WRONG · you ${act.toUpperCase()} · coach ${scenario.correct.toUpperCase()}</strong><br/>${scenario.reason}</div>`;
+    }
+    // level up
+    const need = LEVELS[S.level-1].need;
+    if (S.levelProgress >= need && S.level < 6) {
+      S.level += 1;
+      S.levelProgress = 0;
+      document.getElementById("coachBox").innerHTML =
+        `<strong>LEVEL UP → ${S.level}: ${LEVELS[S.level-1].title}</strong> — ${LEVELS[S.level-1].goal}`;
+      document.getElementById("coachBox").className = "callout good";
+    }
+    S.history.push({ t: Date.now(), ok, act, correct: scenario.correct, set: scenario.set.id, kind: scenario.kind, level: S.level });
+    if (S.history.length > 200) S.history = S.history.slice(-200);
+    saveState();
+    paintLevels();
+  }
+
+  // ---------- UI paint ----------
+  function paintStats() {
+    document.getElementById("scLevel").textContent = S.level;
+    document.getElementById("scStreak").textContent = S.streak;
+    document.getElementById("scOk").textContent = S.ok;
+    document.getElementById("scN").textContent = S.n;
+    document.getElementById("scAcc").textContent = S.n ? ((S.ok/S.n)*100).toFixed(0)+"%" : "—";
+    // mastery: checklist + accuracy + level
+    const chk = S.checks.filter(Boolean).length / CHECKS.length;
+    const acc = S.n ? S.ok/S.n : 0;
+    const lvl = (S.level-1)/5;
+    const m = Math.round((0.35*chk + 0.35*acc + 0.30*lvl)*100);
+    document.getElementById("scMastery").textContent = m + "%";
+    document.getElementById("masteryBar").style.width = m + "%";
+  }
+
+  function paintLevels() {
+    document.getElementById("levelBar").innerHTML = LEVELS.map(L => {
+      const cls = L.id < S.level ? "done" : L.id === S.level ? "on" : "";
+      const prog = L.id === S.level ? ` · ${S.levelProgress}/${L.need}` : "";
+      return `<div class="step ${cls}"><b>L${L.id}</b> ${L.title}${prog}<br/><span style="opacity:.8">${L.goal}</span></div>`;
+    }).join("");
+  }
+
+  function paintSetTabs() {
+    document.getElementById("setTabs").innerHTML = SETS.map((set,i) => {
+      const st = S.bySet[set.id];
+      const acc = st.n ? Math.round(st.ok/st.n*100) : null;
+      return `<div class="set-tab ${i===activeSet?"on":""}" data-i="${i}" style="border-color:${set.color}55">
+        <div class="nm" style="color:${set.color}">Set ${set.id} · ${set.name}</div>
+        <div class="st">${set.stack}</div>
+        <div class="st">LTF ${set.ltf} · HTF ${set.htfs.join("+")}</div>
+        <div class="st">drill acc ${acc===null?"—":acc+"%"} (${st.ok}/${st.n})</div>
+      </div>`;
+    }).join("");
+    document.querySelectorAll("#setTabs .set-tab").forEach(el => {
+      el.onclick = () => {
+        activeSet = +el.dataset.i;
+        highlightSets();
+        if (mode === "study") paintStudy();
+        else if (mode === "drill") { /* next scenario will use level mix */ paintScenario(); }
+      };
+    });
+  }
+
+  function highlightSets() {
+    document.querySelectorAll("#setTabs .set-tab").forEach((el,i) => el.classList.toggle("on", i===activeSet));
+  }
+
+  function paintChecklist() {
+    document.getElementById("checklist").innerHTML = CHECKS.map((c,i) => {
+      const on = S.checks[i];
+      return `<label style="display:flex;gap:8px;align-items:flex-start;padding:8px;border:1px solid var(--line);border-radius:10px;background:#0a1220;cursor:pointer">
+        <input type="checkbox" data-i="${i}" ${on?"checked":""} style="margin-top:3px"/>
+        <span style="color:${on?"var(--up)":"var(--muted)"};font-size:.88rem">${c}</span>
+      </label>`;
+    }).join("");
+    document.querySelectorAll("#checklist input").forEach(inp => {
+      inp.onchange = () => {
+        S.checks[+inp.dataset.i] = inp.checked;
+        saveState();
+        paintChecklist();
+      };
+    });
+  }
+
+  function paintCurriculum() {
+    document.getElementById("curriculum").innerHTML = LEVELS.map(L => `
+      <div class="set-tab ${L.id===S.level?"on":""}" style="cursor:default">
+        <div class="nm">Level ${L.id} · ${L.title}</div>
+        <div class="st">${L.goal}</div>
+        <div class="st">Need ${L.need} correct in a row of progress · ${L.id < S.level ? "DONE" : L.id===S.level ? "ACTIVE" : "LOCKED"}</div>
+      </div>
+    `).join("");
+  }
+
+  function paintSetNotes() {
+    document.getElementById("setNotes").innerHTML = SETS.map(set => `
+      <div class="set-tab" style="cursor:default;border-color:${set.color}44">
+        <div class="nm" style="color:${set.color}">Set ${set.id} ${set.name}</div>
+        <div class="st">${set.stack}</div>
+        <ul class="tight"><li>${set.note}</li>
+        <li>High trend fire = ${set.ltf} resume with ${set.htfs.join("+")} force</li>
+        <li>WAIT = load / incomplete / conflict</li></ul>
+      </div>
+    `).join("");
+  }
+
+  function paintFails() {
+    document.getElementById("failCards").innerHTML = FAILS.map(f => `
+      <div class="set-tab" style="cursor:default">
+        <div class="nm" style="color:var(--down)">${f.title}</div>
+        <div class="st" style="color:var(--down);margin-top:6px">BAD: ${f.bad}</div>
+        <div class="st" style="color:var(--up);margin-top:6px">FIX: ${f.fix}</div>
+      </div>
+    `).join("");
+  }
+
+  // study mode
+  function paintStudy() {
+    const set = SETS[activeSet];
+    const ctx = document.getElementById("studyChart").getContext("2d");
+    clear(ctx);
+    const story = document.getElementById("studyStory");
+    if (studyDir === "conflict") {
+      const a = series(90,1,set.period,0.45);
+      const b = series(90,-1,set.period+2,0.45);
+      drawPx(ctx, a, "rgba(61,214,140,.4)", 2);
+      drawPx(ctx, b, "rgba(255,107,122,.75)", 2);
+      story.innerHTML = `<strong>Conflict study:</strong> When force disagrees across HTFs or sets, Hearing says wait. Don’t let the fastest set invent certainty.`;
+    } else {
+      const fd = studyDir==="up"?1:-1;
+      const px = series(90, fd, set.period, 0.2);
+      drawPx(ctx, px, fd>0?UP:DOWN, 2.5);
+      for (let base=0; base<90; base+=set.period) {
+        mark(ctx, px, Math.min(89, base+Math.floor(set.period*0.7)), LOAD, "load");
+        mark(ctx, px, Math.min(89, base+Math.floor(set.period*0.88)), ACC, fd>0?"LONG":"SHORT");
+      }
+      story.innerHTML = `<strong>Set ${set.id} ${set.name}:</strong> HTF ${set.htfs.join("+")} = wind.
+        LTF ${set.ltf} = load then launch. Master waiting the purple load dots — that is the skill.`;
+    }
+    // strips
+    const host = document.getElementById("studyStrips");
+    host.innerHTML = "";
+    SETS.forEach((s,i) => {
+      const d = document.createElement("div");
+      d.className = "set-tab"+(i===activeSet?" on":"");
+      d.innerHTML = `<div class="nm" style="color:${s.color}">${s.name}</div><div class="st">${s.stack}</div><canvas class="mini" width="240" height="100"></canvas>`;
+      host.appendChild(d);
+      const c = d.querySelector("canvas").getContext("2d");
+      clear(c);
+      if (studyDir==="conflict") {
+        drawPx(c, series(40, i%2?1:-1, s.period, 0.5), i%2?UP:DOWN, 1.6);
+      } else {
+        const fd = studyDir==="up"?1:-1;
+        const px = series(40, fd, Math.max(8, s.period/2), 0.2);
+        drawPx(c, px, fd>0?UP:DOWN, 1.6);
+        mark(c, px, 28, LOAD, "");
+        mark(c, px, 35, ACC, "");
+      }
+      d.onclick = () => { activeSet=i; highlightSets(); paintStudy(); };
+    });
+  }
+
+  // modes
+  function setMode(m) {
+    mode = m;
+    document.getElementById("modeDrill").classList.toggle("on", m==="drill");
+    document.getElementById("modeStudy").classList.toggle("on", m==="study");
+    document.getElementById("modeFails").classList.toggle("on", m==="fails");
+    document.getElementById("panelDrill").classList.toggle("hidden", m!=="drill");
+    document.getElementById("panelStudy").classList.toggle("hidden", m!=="study");
+    document.getElementById("panelFails").classList.toggle("hidden", m!=="fails");
+    if (m==="drill") paintScenario();
+    if (m==="study") paintStudy();
+    if (m==="fails") paintFails();
+  }
+
+  // events
+  document.getElementById("actions").onclick = (e) => {
+    const b = e.target.closest("[data-a]");
+    if (b) answer(b.dataset.a);
+  };
+  document.getElementById("btnNext").onclick = () => paintScenario();
+  document.getElementById("btnHint").onclick = () => {
+    if (!scenario) return;
+    document.getElementById("coachBox").className = "callout warn";
+    document.getElementById("coachBox").innerHTML =
+      `<strong>Hint:</strong> Pattern is <em>${scenario.kind}</em>.
+       Ask: is LTF loading or launching? Do HTFs agree? Multi-set board agree?
+       (Answer not shown — train the chain.)`;
+  };
+  document.getElementById("modeDrill").onclick = () => setMode("drill");
+  document.getElementById("modeStudy").onclick = () => setMode("study");
+  document.getElementById("modeFails").onclick = () => setMode("fails");
+  document.querySelector("#panelStudy .row").onclick = (e) => {
+    const b = e.target.closest("[data-dir]");
+    if (!b) return;
+    studyDir = b.dataset.dir;
+    document.querySelectorAll("#panelStudy .pill").forEach(p => p.classList.toggle("on", p===b));
+    paintStudy();
+  };
+
+  window.addEventListener("keydown", (e) => {
+    if (e.target.matches("input,textarea")) return;
+    const k = e.key.toLowerCase();
+    if (k==="a") answer("long");
+    if (k==="s") answer("wait");
+    if (k==="d") answer("short");
+    if (k==="n") paintScenario();
+    if (k==="h") document.getElementById("btnHint").click();
+    if (k>="1" && k<="4") {
+      activeSet = +k - 1;
+      highlightSets();
+      if (mode==="study") paintStudy();
+      else paintScenario();
+    }
+  });
+
+  // boot
+  paintStats();
+  paintLevels();
+  paintSetTabs();
+  paintChecklist();
+  paintCurriculum();
+  paintSetNotes();
+  setMode("drill");
+})();
+</script>
+</body>
+</html>

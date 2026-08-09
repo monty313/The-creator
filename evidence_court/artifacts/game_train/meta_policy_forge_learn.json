@@ -1,0 +1,8 @@
+{
+  "track": "forge_learn",
+  "meta_train_steps": 50000,
+  "fingerprint": "42:meta50000:inf0:45672a52e7d746f6",
+  "hold_agree": 1.0,
+  "mem_gap": 0.0,
+  "champion_untouched": true
+}

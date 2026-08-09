@@ -151,3 +151,24 @@ Append-only. Failure is data.
 - **Why failed:** seed=42 100d — hits **7**, low_hr **0.20** (flat); a13 **19%→20%**; mean_tr **3.63→3.66**; breach **0**. Floor held; dual not climbed. Extra multi-set edges in the force slice rarely clear remaining gates.
 - **Regression pin:** `tests/test_case0026_multiset_force_densify.py`; SHA256 `08988733f6411d1b9545e9c4db00d37a07bdb9f2acc6fdbd28cf7f9e672a255e`
 - **Remedy:** Stop micro force dials as sole dual lever. Next: cont **hold-R** (longer multi-set cont horizon) or **10m real clock** with empty skip — structural R/capacity under A10. No residual multi (F-017…F-020).
+
+## F-023 — Multi-set session min_align ease near-null dual (CASE-0030)
+
+- **Hypothesis:** When multi-set HTF agrees, set session_confirm min_align=0 (else DEFAULT) unlocks silent days / a13 / hits vs A27.
+- **Why failed:** seed=42 100d — hits **11**, low_hr **0.28**, a13 **28%** (flat vs 0029); mean_tr **7.27→7.38**; n_zero **41→39**; n_ge8 **28** flat; breach **0**. Multi-set edges already largely cleared default align.
+- **Regression pin:** `tests/test_case0030_multiset_session_align.py`; SHA256 `f6fc9b32788d4a85874b704f2fc8017aad794a99d998808f360a870e8fe6bdf4`
+- **Remedy:** Do not PROMOTE session-align re-threshold as dual lever. Next: silent-day structural levers (first-entry multi-set cont, regime skip review, curriculum/policy) under A27+A26 — not another near-null gate.
+
+## F-024 — Synthetic denser opportunity-miss curriculum alone (CASE-0035)
+
+- **Hypothesis:** Offline denser London/NY multi-set PB/cont miss teachers + shadow meta-train cuts **n_zero** / raises a13 and dual vs floor without pad.
+- **Why failed:** seed=42 100d shadow meta3689 vs champion meta2862 — hits **11** flat; a13 **28%→38%**; mean_tr **7.38→21.15** (active-day densify only); **n_zero 39→45** (silent days **worse**); low_hr **0.28→0.24** (prefer broken, absolute edge); breach **0**. Primary silent-day unlock failed.
+- **Regression pin:** `tests/test_case0035_silent_day_opportunity_curriculum.py`; report SHA256 `099268c312335728c0ca53a99998cb3e46f4d91ba70ea367e7a55423c1f80bd4`
+- **Remedy:** Do **not** replace PROVEN champion with synthetic-only opp mix. Keep label→train API (C-002 narrow). Next: **real-bar M1 harvest** of Watch `curriculum_labels` (C-002 residual) and/or **C-003** structural every-day A13 density — not another pure synthetic teacher densify.
+
+## F-025 — Real-bar Watch labels + synthetic state rebuild (CASE-0036)
+
+- **Hypothesis:** Harvest dated Watch miss labels from real multi-day path (not pure synthetic teachers) + offline mix raises a13 / cuts n_zero vs floor.
+- **Why failed:** seed=42 100d shadow meta4050 — hits **11** flat; a13 **28%→38%**; mean_tr **7.38→21.23**; **n_zero 39→45**; low_hr **0.28→0.24**; breach **0**. Scoreboard **~identical to F-024** despite 300 real-dated labels (237 London/NY). Provenance of asof/force/topo is real, but `opportunity_label_to_training_example` still **rebuilds synthetic official state** — distribution shift vs silent-day decision states remains.
+- **Regression pin:** `tests/test_case0036_real_bar_a13_harvest.py`; report SHA256 `efc88555fdaedadf53ee49a2a048d03bd74bdcbdddce359959dd8ad6973b2020`; harvest `artifacts/real_bar_opp_labels_case0036.json`
+- **Remedy:** Do **not** replace PROVEN. Keep harvest tooling. Next C-003 lever must be **(state, teacher) pairs from actual path decision states at miss slots** (full packed `build_meta_rl_state` at decision), or structural path geometry for partial days (1–7→8+), or game-train human traj (A34) — not another label→synthetic-state mix.

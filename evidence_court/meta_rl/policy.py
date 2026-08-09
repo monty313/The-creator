@@ -24,8 +24,17 @@ from .goal_risk import (
     IDX_RISK_REMAINING,
     IDX_TARGET_NORM,
 )
+from .regimes import (
+    RegimeId,
+    build_official_for_regime,
+    encode_regime_doctrine,
+    regime_sensor_template,
+    sample_curriculum_regime,
+    teacher_action_under_regime,
+)
 from .risk import DailyRiskLedger, size_position_risk_percent
-from .state import META_RL_DIM, extract_goal_risk_context
+from .state import META_RL_DIM, build_meta_rl_state, extract_goal_risk_context
+from .types import StructureFlags
 
 DEFAULT_CHAMPION_PATH = (
     Path(__file__).resolve().parents[1] / "artifacts" / "meta_policy_champion.npz"
@@ -275,7 +284,18 @@ class MetaPolicy:
         return path
 
     @classmethod
-    def load(cls, path: Path | str, *, freeze: bool = True) -> "MetaPolicy":
+    def load(
+        cls,
+        path: Path | str,
+        *,
+        freeze: bool = True,
+        require_serious: bool = True,
+    ) -> "MetaPolicy":
+        """Load brain weights. Production champion uses require_serious=True (A29).
+
+        Experimental tracks (e.g. Policy Forge forge_v1) may pass
+        require_serious=False to continue offline ingest before 500 steps.
+        """
         path = Path(path)
         data = np.load(path, allow_pickle=False)
         if "W1" not in data:
@@ -294,15 +314,308 @@ class MetaPolicy:
             trained=bool(int(data["trained"][0])),
             frozen_for_inference=False,
         )
-        if not brain.trained or brain.meta_train_steps < 500:
+        if require_serious and (not brain.trained or brain.meta_train_steps < 500):
             raise RuntimeError(f"Loaded brain not seriously trained: {path}")
         pol = cls(brain=brain)
         if freeze:
-            pol.freeze_for_inference()
+            if brain.trained:
+                pol.freeze_for_inference()
+            else:
+                pol.frozen_for_inference = False
         return pol
 
 
 FrozenMetaPolicy = MetaPolicy
+
+
+def sample_training_state(
+    rng: Any,
+    *,
+    target: float = 15.0,
+    risk: float = 2.0,
+    regime: Any = None,
+    return_regime: bool = False,
+    london_ny: bool = False,
+) -> Tuple[Any, ...]:
+    """CASE-0017/0018 curriculum sample: A17 regime + doctrine pack + teacher.
+
+    Shared layout with day-path encode_regime_doctrine (doctrine at state[32:48]).
+    Returns (state, teacher_act, topology) or (+ regime) if return_regime.
+    """
+    rid = regime if regime is not None else sample_curriculum_regime(rng)
+    if not isinstance(rid, RegimeId):
+        rid = RegimeId(str(rid))
+
+    tpl = regime_sensor_template(rid)
+    force = float(tpl["force"])
+    efficiency = float(tpl["efficiency"])
+    side = 1 if force >= 0 else -1
+    strength = abs(force) if abs(force) > 0.15 else float(rng.uniform(0.45, 0.95))
+
+    official = build_official_for_regime(rid, rng=rng, side=side, strength=strength)
+    doctrine = encode_regime_doctrine(rid, force=force, efficiency=efficiency)
+
+    if rid in (RegimeId.TREND_BULL, RegimeId.TREND_BEAR, RegimeId.VOL_EXPANSION):
+        topology = "launch" if float(rng.random()) > 0.35 else "release"
+        pullback = topology == "launch"
+    elif rid == RegimeId.TRANSITION:
+        topology = "launch"
+        pullback = True
+    else:
+        topology = "chop"
+        pullback = False
+
+    progress = float(rng.uniform(0.0, 0.65))
+    realized = float(rng.uniform(0.0, float(risk) * 0.45))
+    session = (
+        float(rng.uniform(0.35, 0.85)) if london_ny else float(rng.uniform(0.0, 1.0))
+    )
+
+    st = build_meta_rl_state(
+        target_percent=float(target),
+        max_daily_risk_percent=float(risk),
+        official=official,
+        doctrine_vec=doctrine,
+        structure=StructureFlags(pullback=pullback, scale_conflict=rid == RegimeId.CONFLICT),
+        progress_to_target=progress,
+        realized_risk_percent=realized,
+        session_phase=session,
+    )
+
+    dirs: List[float] = []
+    for sid in (1, 2, 3, 4):
+        c = official.get(sid)
+        if c is not None:
+            dirs.append(float(int(c.direction)))
+    mean_dir = float(np.mean(dirs)) if dirs else float(force)
+
+    ctx = extract_goal_risk_context(st)
+    allow = float(ctx[IDX_ALLOW_FIRE]) >= 0.5
+    risk_rem = float(ctx[IDX_RISK_REMAINING])
+    hardness = float(ctx[IDX_HARDNESS])
+    pressure = float(ctx[IDX_GOAL_PRESSURE])
+    if london_ny:
+        pressure = min(1.0, pressure * 1.15)
+
+    topo_for_teacher = "launch" if topology == "release" else topology
+    teacher = teacher_action_under_regime(
+        rid,
+        mean_dir=mean_dir,
+        allow=allow,
+        risk_rem=risk_rem,
+        hardness=hardness,
+        pressure=pressure,
+        topology=topo_for_teacher,
+    )
+
+    if return_regime:
+        return st, teacher, topology, rid
+    return st, teacher, topology
+
+
+def teacher_action_for_state(
+    state: np.ndarray,
+    *,
+    topology: str = "chop",
+    regime: Any = None,
+) -> str:
+    """Optional A17-gated teacher from a built state (CASE-0017 pin)."""
+    ctx = extract_goal_risk_context(state)
+    allow = float(ctx[IDX_ALLOW_FIRE]) >= 0.5
+    risk_rem = float(ctx[IDX_RISK_REMAINING])
+    hardness = float(ctx[IDX_HARDNESS])
+    pressure = float(ctx[IDX_GOAL_PRESSURE])
+    # mean direction from first four set-dir slots (channel1 layout)
+    s = np.asarray(state, dtype=np.float64).reshape(-1)
+    dirs = [float(s[i * 3]) for i in range(4) if i * 3 < s.size]
+    mean_dir = float(np.mean(dirs)) if dirs else 0.0
+
+    rid: RegimeId
+    if regime is not None:
+        rid = regime if isinstance(regime, RegimeId) else RegimeId(str(regime))
+    else:
+        from .regimes import decode_regime_from_doctrine
+
+        rid = decode_regime_from_doctrine(s[32:48] if s.size >= 48 else s)
+
+    return teacher_action_under_regime(
+        rid,
+        mean_dir=mean_dir,
+        allow=allow,
+        risk_rem=risk_rem,
+        hardness=hardness,
+        pressure=pressure,
+        topology=str(topology or "chop"),
+    )
+
+
+def opportunity_label_to_training_example(
+    label: Dict[str, Any],
+    *,
+    target: float = 15.0,
+    risk: float = 2.0,
+    rng: Optional[Any] = None,
+) -> Tuple[np.ndarray, str, float]:
+    """C-002: Watch miss curriculum_label → (state, teacher_act, size_frac).
+
+    London/NY labels get stronger size target. No live force — offline only.
+    """
+    gen = rng if rng is not None else np.random.default_rng(0)
+    side = str(label.get("teacher_act") or label.get("side") or "wait")
+    if side not in ("long", "short", "wait"):
+        side = "wait"
+    band = str(label.get("session_band") or "other")
+    weight = float(label.get("weight") or (1.5 if band == "london_ny" else 1.0))
+    topology = str(label.get("topology") or "pullback_resume")
+    london = band == "london_ny" or weight >= 1.4
+
+    # Prefer fire regimes aligned with teacher side
+    if side == "long":
+        rid = RegimeId.TREND_BULL
+        force = 0.5
+    elif side == "short":
+        rid = RegimeId.TREND_BEAR
+        force = -0.5
+    else:
+        rid = RegimeId.RANGE_CHOP
+        force = 0.0
+
+    official = build_official_for_regime(
+        rid, rng=gen, side=1 if side != "short" else -1, strength=0.75
+    )
+    doctrine = encode_regime_doctrine(
+        rid, force=force, efficiency=0.6 if side != "wait" else 0.35
+    )
+    pullback = "pullback" in topology
+    session = float(gen.uniform(0.4, 0.8)) if london else float(gen.uniform(0.0, 1.0))
+    st = build_meta_rl_state(
+        target_percent=float(target),
+        max_daily_risk_percent=float(risk),
+        official=official,
+        doctrine_vec=doctrine,
+        structure=StructureFlags(pullback=pullback),
+        progress_to_target=float(gen.uniform(0.0, 0.4)),
+        realized_risk_percent=float(gen.uniform(0.0, risk * 0.3)),
+        session_phase=session,
+    )
+    if side == "wait":
+        return st, "wait", 0.0
+    t_norm = (float(target) - 5.0) / 85.0
+    size_frac = float(
+        np.clip(0.5 + 0.35 * t_norm + (0.12 if london else 0.0), 0.25, 0.95)
+    )
+    return st, side, size_frac
+
+
+def apply_opportunity_labels_to_brain(
+    brain: MetaBrain,
+    labels: Sequence[Dict[str, Any]],
+    *,
+    target: float = 15.0,
+    risk: float = 2.0,
+    lr: float = 0.02,
+    seed: int = 7,
+    max_labels: int = 500,
+) -> int:
+    """Offline: feed Watch miss labels into meta_update (C-002). Returns update count."""
+    if brain.frozen_for_inference:
+        brain.unlock_for_meta_train()
+    rng = np.random.default_rng(seed)
+    n = 0
+    for lab in list(labels)[: int(max_labels)]:
+        st, teacher, sf = opportunity_label_to_training_example(
+            lab, target=target, risk=risk, rng=rng
+        )
+        w = float(lab.get("weight") or 1.0)
+        brain.meta_update(
+            st,
+            teacher_act=teacher,
+            lr=lr,
+            reward=1.0 + 0.25 * min(w, 2.0),
+            teacher_size_frac=sf if teacher != "wait" else 0.0,
+        )
+        n += 1
+    brain.trained = True
+    return n
+
+
+def silent_day_opportunity_curriculum(n: int = 64) -> List[Dict[str, Any]]:
+    """CASE-0035: denser offline miss curriculum for silent-day unlock (C-002 residual).
+
+    Synthetic Watch-class labels: multi-set HTF-agree PB/cont teachers, London/NY
+    weighted. Offline only — never live force-pad. Used to retrain a *shadow*
+    champion for dual measure; does not overwrite PROVEN until PROMOTE.
+    """
+    n = max(1, int(n))
+    topos = ("pullback_resume", "continuation")
+    sides = ("long", "short")
+    # London/NY active band times + a few other-band controls
+    times_ln = (
+        "08:00:00",
+        "09:30:00",
+        "10:00:00",
+        "11:00:00",
+        "13:00:00",
+        "14:00:00",
+        "15:00:00",
+        "16:00:00",
+    )
+    times_other = ("03:00:00", "05:00:00", "21:00:00")
+    labels: List[Dict[str, Any]] = []
+    i = 0
+    while len(labels) < n:
+        topo = topos[i % len(topos)]
+        side = sides[(i // 2) % len(sides)]
+        use_ln = (i % 5) != 0  # ~80% London/NY
+        t = times_ln[i % len(times_ln)] if use_ln else times_other[i % len(times_other)]
+        band = "london_ny" if use_ln else "other"
+        w = 1.5 if use_ln else 1.0
+        force = 0.42 if side == "long" else -0.42
+        labels.append(
+            {
+                "teacher_act": side,
+                "topology": topo,
+                "session_band": band,
+                "weight": float(w),
+                "symbol": "XAUUSD" if (i % 3) == 0 else ("EURUSD" if (i % 3) == 1 else "GBPUSD"),
+                "set_id": int(1 + (i % 4)),
+                "sense_gap": "sight",
+                "what_bot_did": "wait",
+                "asof_date": "2026-02-01",
+                "asof_time": t,
+                "force": float(force),
+                "complaint_id": f"CASE0035-syn-{i:04d}",
+                "multi_set_agree": True,
+            }
+        )
+        i += 1
+    return labels
+
+
+def train_silent_day_opportunity_policy(
+    *,
+    seed: int = 42,
+    n_steps: int = 2500,
+    n_labels: int = 64,
+    opportunity_mix: float = 0.25,
+    freeze: bool = True,
+    save_path: Optional[Path] = None,
+) -> MetaPolicy:
+    """CASE-0035: train shadow policy with silent-day opportunity curriculum.
+
+    Does **not** write DEFAULT_CHAMPION_PATH unless save_path points there.
+    """
+    labs = silent_day_opportunity_curriculum(n_labels)
+    pol = train_goal_conditioned_meta_policy(
+        seed=seed,
+        n_steps=n_steps,
+        freeze=freeze,
+        opportunity_labels=labs,
+        opportunity_mix=opportunity_mix,
+    )
+    if save_path is not None:
+        pol.save(Path(save_path))
+    return pol
 
 
 def train_goal_conditioned_meta_policy(
@@ -313,10 +626,40 @@ def train_goal_conditioned_meta_policy(
     targets: Sequence[float] = DEFAULT_TRAIN_TARGETS,
     risks: Sequence[float] = DEFAULT_TRAIN_RISKS,
     freeze: bool = True,
+    opportunity_labels: Optional[Sequence[Dict[str, Any]]] = None,
+    opportunity_mix: float = 0.15,
 ) -> MetaPolicy:
-    """A29 serious training — multi-layer brain, L2L + London/NY drills."""
-    del targets, risks  # curriculum fixed inside train_meta_brain
+    """A29 serious training — multi-layer brain, L2L + London/NY + optional Watch labels (C-002)."""
+    del targets, risks  # base curriculum fixed inside train_meta_brain
     brain = train_meta_brain(seed=seed, n_steps=n_steps, lr=lr, freeze=False)
+    # C-002: mix opportunity miss labels into trained brain (offline only)
+    if opportunity_labels:
+        apply_opportunity_labels_to_brain(
+            brain,
+            opportunity_labels,
+            lr=lr * 0.9,
+            seed=seed + 11,
+            max_labels=max(50, int(len(opportunity_labels))),
+        )
+        # Extra mix steps: re-sample labels into remaining curriculum feel
+        rng = np.random.default_rng(seed + 3)
+        n_extra = max(1, int(n_steps * float(opportunity_mix)))
+        labs = list(opportunity_labels)
+        for i in range(n_extra):
+            lab = labs[int(rng.integers(0, len(labs)))]
+            st, teacher, sf = opportunity_label_to_training_example(
+                lab,
+                target=float(rng.choice(DEFAULT_TRAIN_TARGETS)),
+                risk=float(rng.choice(DEFAULT_TRAIN_RISKS)),
+                rng=rng,
+            )
+            brain.meta_update(
+                st,
+                teacher_act=teacher,
+                lr=lr * (0.95 ** (i // 50)),
+                reward=1.15,
+                teacher_size_frac=sf if teacher != "wait" else 0.0,
+            )
     pol = MetaPolicy(brain=brain)
     pol.trained = True
     pol.meta_train_steps = brain.meta_train_steps

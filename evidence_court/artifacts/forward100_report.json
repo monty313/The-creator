@@ -22,9 +22,9 @@
       "breaches": 0,
       "hits": 1,
       "hit_rate": 0.1111111111111111,
-      "mean_pnl": 6.355162814748945,
-      "mean_goal_progress": 0.12802523372666666,
-      "trades": 82,
+      "mean_pnl": 6.275238829193394,
+      "mean_goal_progress": 0.12802750957111111,
+      "trades": 90,
       "pullbacks": 322,
       "continuations": 583
     },
@@ -35,7 +35,7 @@
       "breaches": 0,
       "hits": 1,
       "hit_rate": 0.1,
-      "mean_pnl": 2.476211428482202,
+      "mean_pnl": 2.4762808608822016,
       "mean_goal_progress": 0.1,
       "trades": 78,
       "pullbacks": 250,
@@ -48,8 +48,8 @@
       "breaches": 0,
       "hits": 2,
       "hit_rate": 0.4,
-      "mean_pnl": 10.662021107570322,
-      "mean_goal_progress": 0.7108014071713548,
+      "mean_pnl": 10.66205731117032,
+      "mean_goal_progress": 0.7108038207446881,
       "trades": 44,
       "pullbacks": 74,
       "continuations": 312
@@ -113,8 +113,8 @@
       "breaches": 0,
       "hits": 1,
       "hit_rate": 0.3333333333333333,
-      "mean_pnl": 4.494051459536167,
-      "mean_goal_progress": 0.3540400935555556,
+      "mean_pnl": 4.494093594202834,
+      "mean_goal_progress": 0.35404290253333337,
       "trades": 54,
       "pullbacks": 259,
       "continuations": 834
@@ -126,7 +126,7 @@
       "breaches": 0,
       "hits": 0,
       "hit_rate": 0.0,
-      "mean_pnl": 0.8454330750000006,
+      "mean_pnl": 0.8454541851666671,
       "mean_goal_progress": 0.021485636916666676,
       "trades": 36,
       "pullbacks": 159,
@@ -139,9 +139,9 @@
       "breaches": 0,
       "hits": 0,
       "hit_rate": 0.0,
-      "mean_pnl": 0.010569297499999889,
+      "mean_pnl": 0.010503854166666549,
       "mean_goal_progress": 0.0004622630833333328,
-      "trades": 47,
+      "trades": 48,
       "pullbacks": 316,
       "continuations": 752
     },
@@ -204,9 +204,9 @@
       "breaches": 0,
       "hits": 0,
       "hit_rate": 0.0,
-      "mean_pnl": 6.722776124928434,
+      "mean_pnl": 6.644926033357008,
       "mean_goal_progress": 0.09813983673469397,
-      "trades": 43,
+      "trades": 44,
       "pullbacks": 357,
       "continuations": 1123
     },
@@ -230,9 +230,9 @@
       "breaches": 0,
       "hits": 0,
       "hit_rate": 0.0,
-      "mean_pnl": -0.09312841900000066,
+      "mean_pnl": -0.20331854775000435,
       "mean_goal_progress": 0.0005043162000000012,
-      "trades": 7,
+      "trades": 8,
       "pullbacks": 125,
       "continuations": 318
     }
@@ -295,7 +295,7 @@
     "n_days_executed": 100,
     "goal_consistency": {
       "total_hits": 11,
-      "mean_goal_progress": 0.15526837994160939,
+      "mean_goal_progress": 0.1552687897156094,
       "max_day_pnl_percent": 70.0,
       "by_target": {
         "5.0": {
@@ -303,7 +303,7 @@
           "hits": 3,
           "hit_rate": 0.2,
           "fire_rate": 0.6666666666666666,
-          "mean_pnl": 0.710642418791133,
+          "mean_pnl": 0.6812583844577987,
           "mean_goal_progress": 0.20025150777721334
         },
         "15.0": {
@@ -311,31 +311,31 @@
           "hits": 4,
           "hit_rate": 0.4,
           "fire_rate": 0.8,
-          "mean_pnl": 8.17922599164601,
-          "mean_goal_progress": 0.561612731652344
+          "mean_pnl": 8.179256733846012,
+          "mean_goal_progress": 0.561614781132344
         },
         "30.0": {
           "days": 21,
           "hits": 2,
           "hit_rate": 0.09523809523809523,
-          "fire_rate": 0.5238095238095238,
-          "mean_pnl": 2.517711729252264,
+          "fire_rate": 0.5714285714285714,
+          "mean_pnl": 2.517726094204645,
           "mean_goal_progress": 0.09538121999123096
         },
         "50.0": {
           "days": 17,
           "hits": 1,
           "hit_rate": 0.058823529411764705,
-          "fire_rate": 0.5882352941176471,
-          "mean_pnl": 4.721919302102392,
-          "mean_goal_progress": 0.09934553482117665
+          "fire_rate": 0.6470588235294118,
+          "mean_pnl": 4.679606603867099,
+          "mean_goal_progress": 0.09934673968000018
         },
         "70.0": {
           "days": 20,
           "hits": 1,
           "hit_rate": 0.05,
           "fire_rate": 0.6,
-          "mean_pnl": 7.911212766298452,
+          "mean_pnl": 7.883971567298454,
           "mean_goal_progress": 0.1165747939331929
         },
         "90.0": {
@@ -349,7 +349,7 @@
       },
       "low_fire_rate": 0.72,
       "high_fire_rate": 0.5405405405405406,
-      "low_mean_goal_progress": 0.3447959973272656,
+      "low_mean_goal_progress": 0.3447968171192656,
       "high_mean_goal_progress": 0.08689346889739046,
       "low_hits": 7,
       "low_hit_rate": 0.28,
@@ -1177,16 +1177,16 @@
       "day": "2026-05-21",
       "target_percent": 50.0,
       "max_daily_risk_percent": 2.0,
-      "pnl_percent": 0.0,
-      "worst_case_loss_percent": -0.0,
+      "pnl_percent": -0.7203399999999658,
+      "worst_case_loss_percent": 0.7203399999999658,
       "breach": false,
-      "n_trades": 0,
+      "n_trades": 1,
       "retrain_steps": 0,
-      "topology": "chop",
-      "act_summary": "wait",
+      "topology": "continuation",
+      "act_summary": "long",
       "hit_target": false,
       "goal_progress": 0.0,
-      "wait_subtype": "no_trade",
+      "wait_subtype": "",
       "roles": [
         "force",
         "inertia",
@@ -1198,8 +1198,22 @@
       "l2l_ok": true,
       "n_pullback": 66,
       "n_continuation": 110,
-      "symbols_traded": [],
-      "symbol_trades": [],
+      "symbols_traded": [
+        "XAUUSD"
+      ],
+      "symbol_trades": [
+        {
+          "symbol": "XAUUSD",
+          "act": "long",
+          "size_risk_percent": 1.59372603,
+          "pnl_percent": -0.7203399999999658,
+          "topology": "continuation",
+          "edge_kind": "continuation",
+          "lot": 0.78,
+          "slot": "12:20:00",
+          "leverage": 100.0
+        }
+      ],
       "leverage": 100.0
     },
     {
@@ -2535,15 +2549,15 @@
       "day": "2026-01-26",
       "target_percent": 50.0,
       "max_daily_risk_percent": 2.0,
-      "pnl_percent": 7.604632578000002,
+      "pnl_percent": 7.605656708000003,
       "worst_case_loss_percent": 0.0,
       "breach": false,
-      "n_trades": 19,
+      "n_trades": 26,
       "retrain_steps": 0,
-      "topology": "pullback_resume,pullback_resume,pullback_resume,pullback_resume,pullback_resume,pullback_resume,pullback_resume,pullback_resume,pullback_resume,pullback_resume,pullback_resume,pullback_resume,pullback_resume,pullback_resume,pullback_resume,pullback_resume,pullback_resume,pullback_resume,pullback_resume",
-      "act_summary": "long,long,long,long,long,long,long,long,long,long,long,long,long,long,long,long,long,long,long",
+      "topology": "pullback_resume,pullback_resume,pullback_resume,pullback_resume,pullback_resume,pullback_resume,pullback_resume,pullback_resume,pullback_resume,pullback_resume,pullback_resume,pullback_resume,pullback_resume,pullback_resume,pullback_resume,pullback_resume,pullback_resume,pullback_resume,pullback_resume,pullback_resume,pullback_resume,pullback_resume,pullback_resume,pullback_resume,pullback_resume,pullback_resume",
+      "act_summary": "long,long,long,long,long,long,long,long,long,long,long,long,long,long,long,long,long,long,long,long,long,long,long,long,long,long",
       "hit_target": false,
-      "goal_progress": 0.15209265156000004,
+      "goal_progress": 0.15211313416000005,
       "wait_subtype": "",
       "roles": [
         "force",
@@ -2559,12 +2573,19 @@
       "symbols_traded": [
         "GBPUSD",
         "GBPUSD",
+        "GBPUSD",
+        "GBPUSD",
         "XAUUSD",
         "XAUUSD",
         "XAUUSD",
         "XAUUSD",
         "XAUUSD",
         "XAUUSD",
+        "GBPUSD",
+        "GBPUSD",
+        "GBPUSD",
+        "GBPUSD",
+        "GBPUSD",
         "GBPUSD",
         "GBPUSD",
         "GBPUSD",
@@ -2578,6 +2599,28 @@
         "XAUUSD"
       ],
       "symbol_trades": [
+        {
+          "symbol": "GBPUSD",
+          "act": "long",
+          "size_risk_percent": 0.0022499667000000006,
+          "pnl_percent": 0.0001782799999999689,
+          "topology": "pullback_resume",
+          "edge_kind": "pullback_resume",
+          "lot": 36.6,
+          "slot": "07:05:00",
+          "leverage": 100.0
+        },
+        {
+          "symbol": "GBPUSD",
+          "act": "long",
+          "size_risk_percent": 0.0022499502300000005,
+          "pnl_percent": 0.0001819399999999928,
+          "topology": "pullback_resume",
+          "edge_kind": "pullback_resume",
+          "lot": 36.6,
+          "slot": "07:15:00",
+          "leverage": 100.0
+        },
         {
           "symbol": "GBPUSD",
           "act": "long",
@@ -2669,6 +2712,28 @@
         {
           "symbol": "GBPUSD",
           "act": "long",
+          "size_risk_percent": 0.0022495001445000003,
+          "pnl_percent": 0.00014519099999999694,
+          "topology": "pullback_resume",
+          "edge_kind": "pullback_resume",
+          "lot": 36.59,
+          "slot": "08:20:00",
+          "leverage": 100.0
+        },
+        {
+          "symbol": "GBPUSD",
+          "act": "long",
+          "size_risk_percent": 0.0022499667000000006,
+          "pnl_percent": 0.0001782799999999689,
+          "topology": "pullback_resume",
+          "edge_kind": "pullback_resume",
+          "lot": 36.6,
+          "slot": "08:25:00",
+          "leverage": 100.0
+        },
+        {
+          "symbol": "GBPUSD",
+          "act": "long",
           "size_risk_percent": 0.0022496977305000005,
           "pnl_percent": 0.00010128300000003429,
           "topology": "pullback_resume",
@@ -2691,12 +2756,34 @@
         {
           "symbol": "GBPUSD",
           "act": "long",
+          "size_risk_percent": 0.002249631868500001,
+          "pnl_percent": 0.00011591899999996766,
+          "topology": "pullback_resume",
+          "edge_kind": "pullback_resume",
+          "lot": 36.59,
+          "slot": "09:05:00",
+          "leverage": 100.0
+        },
+        {
+          "symbol": "GBPUSD",
+          "act": "long",
           "size_risk_percent": 0.002249659026,
           "pnl_percent": -2.688399999999238e-05,
           "topology": "pullback_resume",
           "edge_kind": "pullback_resume",
           "lot": 36.58,
           "slot": "09:10:00",
+          "leverage": 100.0
+        },
+        {
+          "symbol": "GBPUSD",
+          "act": "long",
+          "size_risk_percent": 0.002249631868500001,
+          "pnl_percent": 0.00011591899999996766,
+          "topology": "pullback_resume",
+          "edge_kind": "pullback_resume",
+          "lot": 36.59,
+          "slot": "09:15:00",
           "leverage": 100.0
         },
         {
@@ -2752,6 +2839,17 @@
           "edge_kind": "pullback_resume",
           "lot": 36.59,
           "slot": "10:55:00",
+          "leverage": 100.0
+        },
+        {
+          "symbol": "GBPUSD",
+          "act": "long",
+          "size_risk_percent": 0.0022496647995000007,
+          "pnl_percent": 0.00010860100000000097,
+          "topology": "pullback_resume",
+          "edge_kind": "pullback_resume",
+          "lot": 36.59,
+          "slot": "11:00:00",
           "leverage": 100.0
         },
         {
@@ -3432,13 +3530,13 @@
       "day": "2026-02-10",
       "target_percent": 70.0,
       "max_daily_risk_percent": 1.0,
-      "pnl_percent": -0.004276813000000209,
-      "worst_case_loss_percent": 0.004276813000000209,
+      "pnl_percent": -0.005520209000000144,
+      "worst_case_loss_percent": 0.005520209000000144,
       "breach": false,
-      "n_trades": 4,
+      "n_trades": 5,
       "retrain_steps": 0,
-      "topology": "continuation,pullback_resume,pullback_resume,pullback_resume",
-      "act_summary": "long,long,long,long",
+      "topology": "continuation,pullback_resume,pullback_resume,pullback_resume,pullback_resume",
+      "act_summary": "long,long,long,long,long",
       "hit_target": false,
       "goal_progress": 0.0,
       "wait_subtype": "",
@@ -3457,18 +3555,19 @@
         "EURUSD",
         "EURUSD",
         "EURUSD",
+        "EURUSD",
         "EURUSD"
       ],
       "symbol_trades": [
         {
           "symbol": "EURUSD",
           "act": "long",
-          "size_risk_percent": 0.0022497525360000003,
-          "pnl_percent": -0.00031188400000007493,
+          "size_risk_percent": 0.00224950707,
+          "pnl_percent": -0.0003496479999999497,
           "topology": "continuation",
           "edge_kind": "continuation",
           "lot": 41.96,
-          "slot": "11:10:00",
+          "slot": "10:45:00",
           "leverage": 100.0
         },
         {
@@ -3502,6 +3601,17 @@
           "edge_kind": "pullback_resume",
           "lot": 41.95,
           "slot": "17:55:00",
+          "leverage": 100.0
+        },
+        {
+          "symbol": "EURUSD",
+          "act": "long",
+          "size_risk_percent": 0.0022495637160000006,
+          "pnl_percent": -0.0012056320000000604,
+          "topology": "pullback_resume",
+          "edge_kind": "pullback_resume",
+          "lot": 41.96,
+          "slot": "18:00:00",
           "leverage": 100.0
         }
       ],
@@ -3540,16 +3650,16 @@
       "day": "2026-02-12",
       "target_percent": 30.0,
       "max_daily_risk_percent": 1.0,
-      "pnl_percent": 0.0,
-      "worst_case_loss_percent": -0.0,
+      "pnl_percent": -0.0003926600000000334,
+      "worst_case_loss_percent": 0.0003926600000000334,
       "breach": false,
-      "n_trades": 0,
+      "n_trades": 1,
       "retrain_steps": 0,
-      "topology": "chop",
-      "act_summary": "wait",
+      "topology": "pullback_resume",
+      "act_summary": "short",
       "hit_target": false,
       "goal_progress": 0.0,
-      "wait_subtype": "no_trade",
+      "wait_subtype": "",
       "roles": [
         "force",
         "inertia",
@@ -3561,8 +3671,22 @@
       "l2l_ok": true,
       "n_pullback": 79,
       "n_continuation": 67,
-      "symbols_traded": [],
-      "symbol_trades": [],
+      "symbols_traded": [
+        "GBPUSD"
+      ],
+      "symbol_trades": [
+        {
+          "symbol": "GBPUSD",
+          "act": "short",
+          "size_risk_percent": 0.00224964027,
+          "pnl_percent": -0.0003926600000000334,
+          "topology": "pullback_resume",
+          "edge_kind": "pullback_resume",
+          "lot": 36.7,
+          "slot": "18:30:00",
+          "leverage": 100.0
+        }
+      ],
       "leverage": 100.0
     },
     {
@@ -5362,13 +5486,13 @@
       "day": "2026-03-06",
       "target_percent": 5.0,
       "max_daily_risk_percent": 1.0,
-      "pnl_percent": -0.38260000000000266,
-      "worst_case_loss_percent": 0.38260000000000266,
+      "pnl_percent": -0.8233605150000174,
+      "worst_case_loss_percent": 0.8233605150000174,
       "breach": false,
-      "n_trades": 1,
+      "n_trades": 2,
       "retrain_steps": 0,
-      "topology": "continuation",
-      "act_summary": "short",
+      "topology": "continuation,pullback_resume",
+      "act_summary": "short,short",
       "hit_target": false,
       "goal_progress": 0.0,
       "wait_subtype": "",
@@ -5384,18 +5508,30 @@
       "n_pullback": 31,
       "n_continuation": 168,
       "symbols_traded": [
+        "XAUUSD",
         "XAUUSD"
       ],
       "symbol_trades": [
         {
           "symbol": "XAUUSD",
           "act": "short",
-          "size_risk_percent": 0.7998795000000003,
-          "pnl_percent": -0.38260000000000266,
+          "size_risk_percent": 0.7774174800000001,
+          "pnl_percent": -0.15986000000001738,
           "topology": "continuation",
           "edge_kind": "continuation",
-          "lot": 0.35000000000000003,
-          "slot": "13:55:00",
+          "lot": 0.34,
+          "slot": "12:05:00",
+          "leverage": 100.0
+        },
+        {
+          "symbol": "XAUUSD",
+          "act": "short",
+          "size_risk_percent": 0.663100515,
+          "pnl_percent": -0.663500515,
+          "topology": "pullback_resume",
+          "edge_kind": "pullback_resume",
+          "lot": 0.29,
+          "slot": "13:45:00",
           "leverage": 100.0
         }
       ],
@@ -5472,8 +5608,8 @@
       "day": "2026-03-10",
       "target_percent": 30.0,
       "max_daily_risk_percent": 3.0,
-      "pnl_percent": -0.07306284100000046,
-      "worst_case_loss_percent": 0.07306284100000046,
+      "pnl_percent": -0.0723685170000003,
+      "worst_case_loss_percent": 0.0723685170000003,
       "breach": false,
       "n_trades": 42,
       "retrain_steps": 0,
@@ -5514,15 +5650,15 @@
         "GBPUSD",
         "GBPUSD",
         "GBPUSD",
-        "GBPUSD",
-        "EURUSD",
-        "GBPUSD",
-        "EURUSD",
-        "EURUSD",
         "EURUSD",
         "EURUSD",
         "GBPUSD",
-        "GBPUSD",
+        "EURUSD",
+        "EURUSD",
+        "EURUSD",
+        "EURUSD",
+        "EURUSD",
+        "EURUSD",
         "EURUSD",
         "EURUSD",
         "EURUSD",
@@ -5759,13 +5895,13 @@
           "leverage": 100.0
         },
         {
-          "symbol": "GBPUSD",
+          "symbol": "EURUSD",
           "act": "long",
-          "size_risk_percent": 0.002249853678,
-          "pnl_percent": -0.001590080000000034,
+          "size_risk_percent": 0.0022497421680000005,
+          "pnl_percent": -0.001577103999999985,
           "topology": "pullback_resume",
           "edge_kind": "pullback_resume",
-          "lot": 37.19,
+          "lot": 42.96,
           "slot": "14:50:00",
           "leverage": 100.0
         },
@@ -5836,24 +5972,24 @@
           "leverage": 100.0
         },
         {
-          "symbol": "GBPUSD",
+          "symbol": "EURUSD",
           "act": "long",
-          "size_risk_percent": 0.0022499818740000003,
-          "pnl_percent": -0.0018868000000000014,
+          "size_risk_percent": 0.002249722836,
+          "pnl_percent": -0.0015728079999999568,
           "topology": "pullback_resume",
           "edge_kind": "pullback_resume",
-          "lot": 37.17,
+          "lot": 42.96,
           "slot": "16:20:00",
           "leverage": 100.0
         },
         {
-          "symbol": "GBPUSD",
+          "symbol": "EURUSD",
           "act": "long",
-          "size_risk_percent": 0.002249560494,
-          "pnl_percent": -0.0019272760000000214,
+          "size_risk_percent": 0.0022496648400000003,
+          "pnl_percent": -0.0015599199999999677,
           "topology": "pullback_resume",
           "edge_kind": "pullback_resume",
-          "lot": 37.160000000000004,
+          "lot": 42.96,
           "slot": "16:25:00",
           "leverage": 100.0
         },
@@ -7254,8 +7390,8 @@
       "day": "2026-03-20",
       "target_percent": 70.0,
       "max_daily_risk_percent": 2.0,
-      "pnl_percent": -0.0002324649999999771,
-      "worst_case_loss_percent": 0.0002324649999999771,
+      "pnl_percent": -0.00010580400000005722,
+      "worst_case_loss_percent": 0.00010580400000005722,
       "breach": false,
       "n_trades": 1,
       "retrain_steps": 0,
@@ -7282,12 +7418,12 @@
         {
           "symbol": "GBPUSD",
           "act": "long",
-          "size_risk_percent": 0.0022494086775000006,
-          "pnl_percent": -0.0002324649999999771,
+          "size_risk_percent": 0.0022499458380000003,
+          "pnl_percent": -0.00010580400000005722,
           "topology": "continuation",
           "edge_kind": "continuation",
-          "lot": 37.230000000000004,
-          "slot": "10:00:00",
+          "lot": 37.24,
+          "slot": "09:45:00",
           "leverage": 100.0
         }
       ],
@@ -7340,7 +7476,7 @@
       "day": "2026-03-24",
       "target_percent": 15.0,
       "max_daily_risk_percent": 3.0,
-      "pnl_percent": 0.9318042100000005,
+      "pnl_percent": 0.9319306140000004,
       "worst_case_loss_percent": 0.0,
       "breach": false,
       "n_trades": 11,
@@ -7348,7 +7484,7 @@
       "topology": "continuation,pullback_resume,pullback_resume,pullback_resume,pullback_resume,pullback_resume,pullback_resume,pullback_resume,pullback_resume,pullback_resume,pullback_resume",
       "act_summary": "long,short,short,short,short,short,short,short,short,short,short",
       "hit_target": false,
-      "goal_progress": 0.0621202806666667,
+      "goal_progress": 0.06212870760000003,
       "wait_subtype": "",
       "roles": [
         "force",
@@ -7378,12 +7514,12 @@
         {
           "symbol": "GBPUSD",
           "act": "long",
-          "size_risk_percent": 0.0022498560000000006,
-          "pnl_percent": -0.0006678400000000202,
+          "size_risk_percent": 0.002249507943,
+          "pnl_percent": -0.0005414360000000175,
           "topology": "continuation",
           "edge_kind": "continuation",
-          "lot": 37.2,
-          "slot": "09:15:00",
+          "lot": 37.22,
+          "slot": "09:10:00",
           "leverage": 100.0
         },
         {
@@ -7882,7 +8018,7 @@
       "day": "2026-03-30",
       "target_percent": 15.0,
       "max_daily_risk_percent": 1.0,
-      "pnl_percent": 9.935913897851481,
+      "pnl_percent": 9.93609491585148,
       "worst_case_loss_percent": 0.0,
       "breach": false,
       "n_trades": 22,
@@ -7890,7 +8026,7 @@
       "topology": "pullback_resume,pullback_resume,pullback_resume,continuation,pullback_resume,pullback_resume,pullback_resume,pullback_resume,pullback_resume,pullback_resume,pullback_resume,pullback_resume,pullback_resume,pullback_resume,pullback_resume,pullback_resume,pullback_resume,pullback_resume,pullback_resume,pullback_resume,pullback_resume,pullback_resume",
       "act_summary": "long,long,long,short,long,long,long,long,long,long,short,short,short,long,long,long,short,short,short,long,long,long",
       "hit_target": false,
-      "goal_progress": 0.6623942598567655,
+      "goal_progress": 0.662406327723432,
       "wait_subtype": "",
       "roles": [
         "force",
@@ -7964,12 +8100,12 @@
         {
           "symbol": "GBPUSD",
           "act": "short",
-          "size_risk_percent": 0.0022496003145000003,
-          "pnl_percent": -0.00025662599999998225,
+          "size_risk_percent": 0.002249683038,
+          "pnl_percent": -7.560800000005254e-05,
           "topology": "continuation",
           "edge_kind": "continuation",
-          "lot": 37.730000000000004,
-          "slot": "10:20:00",
+          "lot": 37.72,
+          "slot": "10:15:00",
           "leverage": 100.0
         },
         {
@@ -9062,12 +9198,12 @@
       "day": "2026-04-10",
       "target_percent": 70.0,
       "max_daily_risk_percent": 1.0,
-      "pnl_percent": -0.25000264000001277,
-      "worst_case_loss_percent": 0.25000264000001277,
+      "pnl_percent": -0.7937098849999998,
+      "worst_case_loss_percent": 0.7937098849999998,
       "breach": false,
       "n_trades": 2,
       "retrain_steps": 0,
-      "topology": "pullback_resume,continuation",
+      "topology": "pullback_resume,pullback_resume",
       "act_summary": "long,long",
       "hit_target": false,
       "goal_progress": 0.0,
@@ -9084,10 +9220,21 @@
       "n_pullback": 64,
       "n_continuation": 314,
       "symbols_traded": [
-        "EURUSD",
-        "XAUUSD"
+        "XAUUSD",
+        "EURUSD"
       ],
       "symbol_trades": [
+        {
+          "symbol": "XAUUSD",
+          "act": "long",
+          "size_risk_percent": 0.7936272449999999,
+          "pnl_percent": -0.7940272449999999,
+          "topology": "pullback_resume",
+          "edge_kind": "pullback_resume",
+          "lot": 0.37,
+          "slot": "07:00:00",
+          "leverage": 100.0
+        },
         {
           "symbol": "EURUSD",
           "act": "long",
@@ -9097,17 +9244,6 @@
           "edge_kind": "pullback_resume",
           "lot": 42.7,
           "slot": "12:20:00",
-          "leverage": 100.0
-        },
-        {
-          "symbol": "XAUUSD",
-          "act": "long",
-          "size_risk_percent": 0.9440897400000001,
-          "pnl_percent": -0.2503200000000128,
-          "topology": "continuation",
-          "edge_kind": "continuation",
-          "lot": 0.44,
-          "slot": "15:00:00",
           "leverage": 100.0
         }
       ],
@@ -12921,16 +13057,16 @@
       "day": "2026-05-21",
       "target_percent": 50.0,
       "max_daily_risk_percent": 2.0,
-      "pnl_percent": 0.0,
-      "worst_case_loss_percent": -0.0,
+      "pnl_percent": -0.7203399999999658,
+      "worst_case_loss_percent": 0.7203399999999658,
       "breach": false,
-      "n_trades": 0,
+      "n_trades": 1,
       "retrain_steps": 0,
-      "topology": "chop",
-      "act_summary": "wait",
+      "topology": "continuation",
+      "act_summary": "long",
       "hit_target": false,
       "goal_progress": 0.0,
-      "wait_subtype": "no_trade",
+      "wait_subtype": "",
       "roles": [
         "force",
         "inertia",
@@ -12942,8 +13078,22 @@
       "l2l_ok": true,
       "n_pullback": 66,
       "n_continuation": 110,
-      "symbols_traded": [],
-      "symbol_trades": [],
+      "symbols_traded": [
+        "XAUUSD"
+      ],
+      "symbol_trades": [
+        {
+          "symbol": "XAUUSD",
+          "act": "long",
+          "size_risk_percent": 1.59372603,
+          "pnl_percent": -0.7203399999999658,
+          "topology": "continuation",
+          "edge_kind": "continuation",
+          "lot": 0.78,
+          "slot": "12:20:00",
+          "leverage": 100.0
+        }
+      ],
       "leverage": 100.0
     },
     {

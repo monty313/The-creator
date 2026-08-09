@@ -2,7 +2,7 @@
 
 **Owner:** Creator  
 **Phase:** 1 of 2 (Law **A30**)  
-**Updated:** 2026-08-07 (A31/A32/A33 goal-relative axes)  
+**Updated:** 2026-08-08 (CASE-0037 path-state PROMOTE_NARROW; new a13 floor 64%)  
 **Scope:** Entire project — Court, meta_rl brain/path, laws, scoreboard, data, goal SSOT.  
 **Rule:** **Every row → full Court (A10+A15)** before closed.  
 **Gate:** Phase 2 (Mark) only when **all rows** terminal.  
@@ -10,7 +10,7 @@
 
 **Goal reminder:** any target×risk, no retrain at prove, breach **0**, climb clear%, scalper **8–400 trades/day**, L2L brain, **emergent senses drive decisions**, long-term performance.
 
-**Scoreboard floor (do not regress without measure):** CASE-0029 — hits 11 / low_hr 0.28 / a13 0.28 / breach 0.
+**Scoreboard floor (do not regress without measure):** CASE-0037 — hits 11 / low_hr 0.28 / a13 **0.64** / n_zero **18** / mean_tr 39.4 / breach 0.
 
 ---
 
@@ -24,10 +24,10 @@ Scaffolding and safety (breach 0) and multi-TF edges exist; the **brain is young
 
 | # | item_id | title | goal_axes | why_for_goal | proposed_work (Creator) | court_case | status |
 |--:|---------|-------|-----------|--------------|-------------------------|------------|--------|
-| 1 | **C-001** | **Close Watch→path→brain loop** | G-SIGHT, G-A13, G-TRAIN | A13 + good trades + L2L | Wire Opportunity Watch into `run_goal_path_day` / forward; log misses; feed miss labels into offline meta curriculum; measure London/NY miss-rate drop | CASE-0031 | **PENDING_COURT** |
-| 2 | **C-002** | **Real-bar / opportunity-labeled meta-train** | G-TRAIN, G-NO_RETRAIN, G-CLEAR | no-retrain quality + clear% | Historical M1 + Mark edge opportunity labels (London/NY); retrain champion; prove fingerprint stable across pairs | TBD | **PENDING_COURT** |
-| 3 | **C-003** | **A13 every-day density (London/NY no excuse)** | G-A13 | A13 MUST 8–400 | Measure trades/day distribution; brain_drives + clock ≥8 on active days without pad; promote only if a13_frac climbs without dual regression | ties 0034 | **PENDING_COURT** |
-| 4 | **C-004** | **Dual conversion (hits / low_hr / promote_ready)** | G-CLEAR, G-BREACH0 | clear% final boss | Goal-conditioned size + hold + residual under envelope so random [5–90]×[1–3] hits climb and low_hr gate; 100d seed matrix | ties 0033 | **PENDING_COURT** |
+| 1 | **C-001** | **Close Watch→path→brain loop** | G-SIGHT, G-A13, G-TRAIN | A13 + good trades + L2L | Wire Opportunity Watch into `run_goal_path_day` / forward; log misses; feed miss labels into offline meta curriculum; measure London/NY miss-rate drop | CASE-0031 | **PARTIAL** — path wire + labels **PROMOTED**; miss-rate 100d deferred |
+| 2 | **C-002** | **Real-bar / opportunity-labeled meta-train** | G-TRAIN, G-NO_RETRAIN, G-CLEAR | no-retrain quality + clear% | Packed path-state offline (CASE-0037); label API retained | CASE-C002 · 0035–0037 | **PARTIAL** — path-state train class **PROMOTED**; F-024/F-025 closed |
+| 3 | **C-003** | **A13 every-day density (London/NY no excuse)** | G-A13 | A13 MUST 8–400 | Path-state PROMOTED (a13 64% / n_zero 18); residual zero+partial days | CASE-0037 | **PARTIAL** |
+| 4 | **C-004** | **Dual conversion (hits / low_hr / promote_ready)** | G-CLEAR, G-BREACH0 | clear% final boss | Climb hits under new density without a13 regression | ties 0033 | **PENDING_COURT** (rank-1) |
 | 5 | **C-005** | **Senses drive the brain (A32 not probe-only)** | G-SIGHT, G-FEEL, G-TASTE, G-HEAR, G-L2L | L2L / A6 / A32 | Sight/feel/taste/hearing pack into state channels the brain trains on; CASE-0031–0034 complete with fail-mode tests | 0031–0034 | **PENDING_COURT** |
 | 6 | **C-006** | **Production path = brain only** | G-L2L, G-TRAIN | A29 purity | Audit `goal_path`: default brain_drives; quarantine decision-critical hard gates; unit pin | TBD | **PENDING_COURT** |
 | 7 | **C-007** | **High-target band (50–90) under risk 1–3** | G-CLEAR, G-TASTE | any-pair goal | Curriculum + path pressure for hard pairs; non-vacuous hit rates mid/high band | TBD | **PENDING_COURT** |

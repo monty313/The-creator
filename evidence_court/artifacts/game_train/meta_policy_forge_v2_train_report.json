@@ -1,0 +1,44 @@
+{
+  "track": "meta_policy_forge_v2",
+  "law": "A34_learn_decision_not_wait_copy",
+  "doctrine": "train_time_balanced_force_load_launch_not_inference_force_trade",
+  "start_src": "prior",
+  "n_unique_pack_examples": 907,
+  "pack_label_mix": {
+    "wait": 608,
+    "short": 154,
+    "long": 145
+  },
+  "bucket_sizes": {
+    "wait": 608,
+    "wait_load": 371,
+    "fire": 299,
+    "short": 154,
+    "long": 145,
+    "fire_launch": 226,
+    "fire_lnny": 203
+  },
+  "steps_requested": 4000,
+  "steps_applied": 4000,
+  "steps_before": 0,
+  "steps_after": 4000,
+  "fingerprint_before": "42:meta0:inf0:2a8a96170b4ebee7",
+  "fingerprint_after": "42:meta4000:inf0:d73872bf3fb429ab",
+  "mean_loss": 0.23737371323089831,
+  "applied_acts": {
+    "long": 1260,
+    "wait": 1486,
+    "short": 1254
+  },
+  "applied_sources": {
+    "pack": 2875,
+    "synth": 1125
+  },
+  "fire_frac": 0.45,
+  "synth_frac": 0.3,
+  "lr": 0.02,
+  "seed": 42,
+  "saved": "C:\\Users\\user\\OneDrive\\Desktop\\The Creator\\evidence_court\\artifacts\\game_train\\meta_policy_forge_v2.npz",
+  "champion_untouched": true,
+  "elapsed_note": "2026-08-08T10:04:33Z"
+}

@@ -1,0 +1,17 @@
+{
+  "seed": 42,
+  "meta_train_steps": 4000,
+  "trained": true,
+  "fingerprint": "42:meta4000:inf0:d73872bf3fb429ab",
+  "law": "A29_brain_l2l",
+  "format": 2,
+  "forge_v2_train": {
+    "steps": 4000,
+    "mean_loss": 0.23737371323089831,
+    "applied_acts": {
+      "long": 1260,
+      "wait": 1486,
+      "short": 1254
+    }
+  }
+}

@@ -535,6 +535,8 @@ def run_forward_eval(
     symbols: Optional[Sequence[str]] = None,
     pair_mode: str = "random",  # random | rotate — document final boss uses random targets
     use_goal_path: bool = True,
+    policy: Optional[FrozenMetaPolicy] = None,
+    champion_path: Optional[Path] = None,
 ) -> ForwardEvalReport:
     syms = list(symbols) if symbols else [s for s in DEFAULT_SYMBOLS if s in available_symbols()]
     if not syms:
@@ -632,7 +634,17 @@ def run_forward_eval(
         tf_cache_by_symbol[sym] = build_tf_cache(m1)
 
     # Permanent Law A14: trained meta-policy required; no weight update during forward
-    policy = load_or_train_champion(seed=seed, n_steps=2500)
+    # CASE-0035: optional shadow policy / champion_path for opportunity-curriculum measure
+    if policy is not None:
+        pol = policy
+        metadata["policy_source"] = "injected"
+    elif champion_path is not None:
+        pol = load_or_train_champion(path=Path(champion_path), seed=seed, n_steps=2500)
+        metadata["policy_source"] = f"path:{Path(champion_path).name}"
+    else:
+        pol = load_or_train_champion(seed=seed, n_steps=2500)
+        metadata["policy_source"] = "default_champion"
+    policy = pol
     policy.assert_frozen()
     fp0 = policy.weight_fingerprint()
     metadata["policy_trained"] = bool(policy.trained)

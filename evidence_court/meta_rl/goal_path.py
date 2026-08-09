@@ -26,6 +26,12 @@ from .edge import (
     side_permission_ok,
 )
 from .leverage import LEVERAGE, risk_legal_max_lot, stop_distance_price_from_pct
+from .opportunity_watch import (
+    OpportunityWatchAgent,
+    curriculum_labels_from_report,
+    session_band,
+    watch_day_summary,
+)
 from .policy import FrozenMetaPolicy, PolicyAction
 from .risk import (
     DailyRiskLedger,
@@ -381,12 +387,20 @@ def production_symbols_per_slot(
     *,
     multi_set_consensus: str = "incomplete",
     dual_on_agree: bool = True,
+    aggressive_capture: bool = False,
 ) -> int:
     """CASE-0021 base: 1 best symbol. CASE-0030: 2 when multi-set agrees (real dual book).
 
     Not residual thrash (F-017/F-019): dual only on agree_long/agree_short consensus.
     Incomplete/chop/conflict stay 1-sym (or kill path already filters conflict).
+
+    ``aggressive_capture`` (lab/shadow): up to 3 symbols so FX PB/cont are not
+    starved by XAU rank bias — still no pad; risk envelope hard.
     """
+    if aggressive_capture:
+        if dual_on_agree and str(multi_set_consensus) in ("agree_long", "agree_short"):
+            return 3
+        return 2
     if dual_on_agree and str(multi_set_consensus) in ("agree_long", "agree_short"):
         return 2
     return 1
@@ -816,12 +830,26 @@ def run_goal_path_day(
     friction: Optional[FrictionAssumptions] = None,
     tf_cache_by_symbol: Optional[Dict[str, Dict[str, List[dict]]]] = None,
     brain_drives: bool = True,
+    watch_enabled: bool = True,
+    collect_path_state_teachers: bool = False,
+    max_path_state_teachers: int = 80,
+    aggressive_capture: bool = False,
 ) -> Tuple[List[LegFill], DailyRiskLedger, Dict[str, Any]]:
     """Multi-slot scalping path. Law A29: brain decides; sensors feed state.
 
     ``brain_drives=True`` (default, permanent): Mark HTF+LTF opportunities are
     candidates; hard gate soup is off. Brain chooses wait/fire/size. Only risk
     envelope remains hard. London/NY opportunities must be capturable (≥8).
+
+    ``watch_enabled=True`` (default, A28/C-001): Opportunity Watch scans every
+    decision slot — logs misses + curriculum labels; does **not** force trades.
+
+    ``collect_path_state_teachers`` (CASE-0037 lab): when brain waits on a real
+    candidate, dump packed ``build_meta_rl_state`` + edge teacher_act for offline
+    train (anti F-025 synthetic-state rebuild). Never forces live trades.
+
+    ``aggressive_capture`` (shadow/lab): multi-symbol pick up to 3, no XAU rank
+    monopoly, cont/FX boosted in quality — risk envelope still hard; no pad.
 
     Default clock is PRODUCTION_SCALPING_SLOTS (CASE-0029 5m).
     """
@@ -832,6 +860,7 @@ def run_goal_path_day(
         friction=fr,
     )
     fills: List[LegFill] = []
+    path_state_teachers: List[Dict[str, Any]] = []
     meta: Dict[str, Any] = {
         "slots": list(slots),
         "n_slots_fired": 0,
@@ -848,6 +877,8 @@ def run_goal_path_day(
         "cont_hold_min_minutes": CONT_HOLD_MIN_MINUTES,
         "multiset_session_align_ease": True,
         "brain_drives": bool(brain_drives),
+        "watch_enabled": bool(watch_enabled),
+        "aggressive_capture": bool(aggressive_capture),
         "law": "A29_brain_l2l",
     }
     slot_list = list(slots)
@@ -856,6 +887,9 @@ def run_goal_path_day(
     l2l_ok = True
     roles_all: List[str] = []
     probed = False
+    # C-001 / A28: always-on Opportunity Watch → path meta + curriculum labels
+    watch_agent = OpportunityWatchAgent() if watch_enabled else None
+    watch_slot_reports: List[Any] = []
 
     caches: Dict[str, Dict[str, List[dict]]] = {}
     for sym in symbols:
@@ -881,6 +915,7 @@ def run_goal_path_day(
         end_time_fill = next_slot_end_time(slot, slot_list)
 
         candidates: List[Tuple[float, str, Any, str]] = []
+        slot_snaps: Dict[str, Any] = {}
         for sym in symbols:
             m1 = m1_by_symbol.get(sym, [])
             cache = caches.get(sym)
@@ -893,6 +928,7 @@ def run_goal_path_day(
                 asof_date=date,
                 asof_time=slot,
             )
+            slot_snaps[sym] = snap
             n_pb += snap.n_pullback
             n_ct += snap.n_continuation
             if not probed:
@@ -915,12 +951,20 @@ def run_goal_path_day(
                 multi_agree = snap.multi_set_consensus in ("agree_long", "agree_short")
                 n_side = count_actionable_side_agree(snap, best.act)
                 quality = abs(best.force) + (0.55 if topology == "pullback_resume" else 0.0)
+                # Aggressive: continuation is first-class in L/NY (Watch residual)
+                if aggressive_capture and topology == "continuation":
+                    quality += 0.45
                 quality += 0.15 * n_side
                 if multi_agree:
                     quality += 0.35
                 if is_prime_session_slot(slot):
                     quality += 0.40  # London/NY — no excuse band
-                if sym == "XAUUSD":
+                if aggressive_capture:
+                    # Kill XAU monopoly; lift FX so EURUSD cont reaches the brain
+                    if sym in ("EURUSD", "GBPUSD"):
+                        quality += 0.35
+                    # slight diversify: do not auto-prefer gold
+                elif sym == "XAUUSD":
                     quality += 0.20
                 candidates.append((quality, sym, snap, topology))
                 continue
@@ -982,8 +1026,26 @@ def run_goal_path_day(
                 quality += 0.25
             candidates.append((quality, sym, snap, topology))
 
+        # Symbol → act for fires completed this slot (Watch compares vs opportunities)
+        fired_this_slot: Dict[str, str] = {}
+
         if not candidates:
             # Mark: empty slot skip — no pad trades (allows_empty_slot_skip)
+            # C-001: still Watch — bot waited while sensors may have seen PB/cont
+            if watch_agent is not None and slot_snaps:
+                slot_reps = []
+                for sym, snap in slot_snaps.items():
+                    slot_reps.append(
+                        watch_agent.scan_snapshot(
+                            snap,
+                            asof_date=date,
+                            asof_time=slot,
+                            bot_act="wait",
+                            bot_fired=False,
+                            bot_symbol=None,
+                        )
+                    )
+                watch_slot_reports.append(watch_agent.merge_reports(slot_reps))
             continue
         candidates.sort(key=lambda x: -x[0])
         # CASE-0030: dual-sym only when multi-set agrees (best candidate sets tone)
@@ -1006,9 +1068,34 @@ def run_goal_path_day(
                 candidates = side_pool
         n_take = min(
             len(candidates),
-            production_symbols_per_slot(multi_set_consensus=top_consensus),
+            production_symbols_per_slot(
+                multi_set_consensus=top_consensus,
+                aggressive_capture=bool(aggressive_capture),
+            ),
         )
-        picked = candidates[:n_take]
+        # Aggressive diversity: guarantee FX symbols in pick when present (Watch residual)
+        if aggressive_capture and len(candidates) > n_take:
+            picked_list = list(candidates[:n_take])
+            have = {c[1] for c in picked_list}
+            for c in candidates[n_take:]:
+                if len(picked_list) >= max(n_take, 3):
+                    break
+                if c[1] not in have and c[1] in ("EURUSD", "GBPUSD"):
+                    # swap weakest gold if needed to free a slot for FX
+                    if len(picked_list) >= n_take:
+                        for j in range(len(picked_list) - 1, -1, -1):
+                            if picked_list[j][1] == "XAUUSD":
+                                picked_list[j] = c
+                                have = {x[1] for x in picked_list}
+                                break
+                        else:
+                            picked_list.append(c)
+                    else:
+                        picked_list.append(c)
+                        have.add(c[1])
+            picked = picked_list[: max(n_take, min(3, len(candidates)))]
+        else:
+            picked = candidates[:n_take]
 
         for quality, sym, snap, topology in picked:
             if ledger.realized_pnl_percent >= target_percent - 1e-9:
@@ -1069,6 +1156,41 @@ def run_goal_path_day(
                         st2[idx] = sign * 0.95
                 action = policy.forward(st2, ledger=ledger, topology="launch", roles=roles)
             if action.act not in ("long", "short"):
+                # CASE-0037: offline path-state teacher (brain waited on real candidate)
+                if (
+                    collect_path_state_teachers
+                    and brain_drives
+                    and best.act in ("long", "short")
+                    and len(path_state_teachers) < int(max_path_state_teachers)
+                ):
+                    band = session_band(slot)
+                    t_norm = (float(target_percent) - 5.0) / 85.0
+                    size_frac = float(
+                        np.clip(
+                            0.5
+                            + 0.35 * t_norm
+                            + (0.12 if band == "london_ny" else 0.0),
+                            0.25,
+                            0.95,
+                        )
+                    )
+                    path_state_teachers.append(
+                        {
+                            "state": [float(x) for x in np.asarray(state, dtype=np.float64).ravel()],
+                            "teacher_act": str(best.act),
+                            "teacher_size_frac": size_frac,
+                            "topology": str(topology),
+                            "session_band": band,
+                            "weight": 1.5 if band == "london_ny" else 1.0,
+                            "symbol": str(sym),
+                            "asof_date": str(date),
+                            "asof_time": str(slot),
+                            "force": float(best.force),
+                            "what_bot_did": str(action.act or "wait"),
+                            "source": "path_state_miss",
+                            "multi_set_consensus": str(snap.multi_set_consensus),
+                        }
+                    )
                 continue
             # Align with edge side when brain fires opposite (sensor truth)
             if brain_drives and action.act != best.act:
@@ -1170,12 +1292,108 @@ def run_goal_path_day(
                     lot=float(lot_info["lot"]),
                 )
             )
+            fired_this_slot[sym] = action_act
             meta["n_slots_fired"] += 1
             if pnl < 0:
                 wounded = True
             if ledger.realized_pnl_percent >= target_percent - 1e-9:
                 meta["locked_target"] = True
                 break
+
+        # C-001: Watch every decision clock (fires + waits on remaining symbols)
+        if watch_agent is not None and slot_snaps:
+            slot_reps = []
+            for sym, snap in slot_snaps.items():
+                act = fired_this_slot.get(sym)
+                slot_reps.append(
+                    watch_agent.scan_snapshot(
+                        snap,
+                        asof_date=date,
+                        asof_time=slot,
+                        bot_act=act if act else "wait",
+                        bot_fired=act is not None,
+                        bot_symbol=sym if act is not None else None,
+                    )
+                )
+            watch_slot_reports.append(watch_agent.merge_reports(slot_reps))
+            # Residual harvest: pack *real* path state at Watch miss (anti F-025 rebuild)
+            if collect_path_state_teachers:
+                progress = max(ledger.realized_pnl_percent, 0.0) / max(target_percent, 1e-6)
+                realized_risk = max(-ledger.realized_pnl_percent, 0.0)
+                sess = float(si / max(len(slot_list) - 1, 1))
+                for rep in slot_reps:
+                    for c in getattr(rep, "complaints", None) or []:
+                        if len(path_state_teachers) >= int(max_path_state_teachers):
+                            break
+                        side = str(getattr(c, "side", "") or "")
+                        topo = str(getattr(c, "topology", "") or "")
+                        if side not in ("long", "short"):
+                            continue
+                        if topo not in ("pullback_resume", "continuation"):
+                            continue
+                        csym = str(getattr(c, "symbol", "") or "")
+                        snap = slot_snaps.get(csym)
+                        if snap is None:
+                            continue
+                        official = edge_to_set_confluence(snap)
+                        eff_p = efficiency_proxy_from_edge(
+                            n_pullback=snap.n_pullback,
+                            n_continuation=snap.n_continuation,
+                            consensus_force=float(snap.consensus_force),
+                        )
+                        rid = regime_from_edge_sensors(
+                            multi_set_consensus=snap.multi_set_consensus,
+                            consensus_force=float(snap.consensus_force),
+                            efficiency=eff_p,
+                        )
+                        doctrine = encode_regime_doctrine(
+                            rid, force=float(snap.consensus_force), efficiency=eff_p
+                        )
+                        st = build_meta_rl_state(
+                            target_percent=target_percent,
+                            max_daily_risk_percent=max_daily_risk_percent,
+                            official=official,
+                            doctrine_vec=doctrine,
+                            structure=StructureFlags(
+                                pullback=topo == "pullback_resume",
+                                scale_conflict=False,
+                            ),
+                            progress_to_target=float(np.clip(progress, 0, 1.5)),
+                            realized_risk_percent=realized_risk,
+                            session_phase=sess,
+                        )
+                        band = session_band(slot)
+                        t_norm = (float(target_percent) - 5.0) / 85.0
+                        size_frac = float(
+                            np.clip(
+                                0.5
+                                + 0.35 * t_norm
+                                + (0.12 if band == "london_ny" else 0.0),
+                                0.25,
+                                0.95,
+                            )
+                        )
+                        path_state_teachers.append(
+                            {
+                                "state": [
+                                    float(x)
+                                    for x in np.asarray(st, dtype=np.float64).ravel()
+                                ],
+                                "teacher_act": side,
+                                "teacher_size_frac": size_frac,
+                                "topology": topo,
+                                "session_band": band,
+                                "weight": 1.5 if band == "london_ny" else 1.0,
+                                "symbol": csym,
+                                "asof_date": str(date),
+                                "asof_time": str(slot),
+                                "force": float(getattr(c, "force", 0.0) or 0.0),
+                                "what_bot_did": str(getattr(c, "what_bot_did", "wait") or "wait"),
+                                "source": "path_state_watch_miss",
+                                "multi_set_consensus": str(snap.multi_set_consensus),
+                                "set_id": int(getattr(c, "set_id", 0) or 0),
+                            }
+                        )
 
         if meta.get("locked_target"):
             break
@@ -1189,4 +1407,23 @@ def run_goal_path_day(
     meta["a13_ok"] = a13_trade_count_ok(len(fills))
     meta["max_fills"] = max_fills
     meta["roles"] = tuple(sorted(set(roles_all))) or ("force", "velocity")
+    # C-001 closed loop: Watch aggregates → meta for forward/curriculum
+    if watch_agent is not None:
+        merged = watch_agent.merge_reports(watch_slot_reports)
+        meta["watch"] = watch_day_summary(merged)
+        meta["watch_n_misses"] = int(merged.n_misses)
+        meta["watch_n_london_ny_misses"] = int(merged.n_london_ny_misses)
+        meta["watch_n_hits"] = int(merged.n_hits)
+        meta["watch_n_opportunities"] = int(merged.n_opportunities)
+        # Cap label payload for path speed/memory; counts stay full in watch summary
+        all_labs = curriculum_labels_from_report(merged)
+        meta["curriculum_labels_total"] = len(all_labs)
+        meta["curriculum_labels"] = all_labs[:200]
+    else:
+        meta["watch"] = {"always_on": False, "n_misses": 0, "n_curriculum_labels": 0}
+        meta["curriculum_labels"] = []
+        meta["curriculum_labels_total"] = 0
+    meta["path_state_teachers"] = path_state_teachers
+    meta["n_path_state_teachers"] = len(path_state_teachers)
+    meta["collect_path_state_teachers"] = bool(collect_path_state_teachers)
     return fills, ledger, meta

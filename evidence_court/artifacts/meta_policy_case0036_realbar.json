@@ -1,0 +1,8 @@
+{
+  "fingerprint": "42:meta4050:inf0:6d6ce7c566f61497",
+  "meta_train_steps": 4050,
+  "trained": true,
+  "n_labels": 300,
+  "n_london_ny": 237,
+  "harvest_days": 30
+}

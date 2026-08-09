@@ -411,6 +411,34 @@ SHA256: `001b72cae9d1c90353d03fc44b7039e186eceaa9efa5f5e7db931eb9726484e3`
 **Tests:** `tests/test_case0029_production_5m_clock.py`  
 **Case:** `cases/CASE-0029-production-5m-clock.md`
 
+## REJECTED — multi-set session min_align ease as dual lever (CASE-0030 / F-023)
+
+**Not PROMOTED.** `session_min_align_for_path(multi_set_agree=True)==0` unit-pinned; measure near-null vs A27 (hits 11 / a13 28% flat; mean_tr 7.27→7.38; n_zero 41→39). Helper may remain; **not** win law.
+
+**Code:** `session_min_align_for_path` · day-path wire  
+**Tests:** `tests/test_case0030_multiset_session_align.py`  
+**Case:** `cases/CASE-0030-multiset-session-align.md`  
+**SHA256:** `f6fc9b32788d4a85874b704f2fc8017aad794a99d998808f360a870e8fe6bdf4`
+
+## PROMOTED (narrow) — Packed path-state teachers (CASE-0037 / C-003 density)
+
+**Status: PROMOTED_NARROW (champion train class + artifact).**  
+Offline train on **exact** `build_meta_rl_state` vectors where brain waited on real Mark candidates — not label→synthetic official rebuild (F-024/F-025).
+
+| Field | Value |
+|-------|--------|
+| Harvest | `collect_path_state_teachers=True` (lab; default **False** on dual) |
+| Train | `path_state_harvest.train_path_state_a13_policy` |
+| Champion | `artifacts/meta_policy_champion.npz` fp `42:meta4275:…` |
+| Backup | `meta_policy_champion_pre0037.npz` |
+
+**Measured CASE-0037 (seed=42):** breach **0**, hits **11**, low_hr **0.28** (prefer held), a13_frac **64%**, n_zero **18**, mean_tr **39.4**, max_pnl **70**.  
+vs pre floor: a13 28%→64%, n_zero 39→18. Final boss / promote_ready **not** met (hits flat).  
+SHA256: `2e5533de02447d95149a04322a07f7c8030a1c6cfa6d1f1c3a669965db311515`  
+**Code:** `goal_path.collect_path_state_teachers` · `meta_rl/path_state_harvest.py`  
+**Tests:** `tests/test_case0037_path_state_teachers.py`  
+**Case:** `cases/CASE-0037-path-state-teachers.md`
+
 ## PERMANENT — Law A13 (2026-08-07) — Scalping cadence (**Monty overrules Judge**)
 
 **Status: PERMANENT OWNER LAW — hard mandate.**  

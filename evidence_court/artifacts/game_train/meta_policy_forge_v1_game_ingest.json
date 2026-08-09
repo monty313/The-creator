@@ -1,0 +1,10 @@
+{
+  "source_pack": "C:\\Users\\user\\OneDrive\\Desktop\\The Creator\\evidence_court\\artifacts\\game_train\\policy_forge_export_1786166495460.json",
+  "n_traj": 537,
+  "n_applied": 537,
+  "skipped": 0,
+  "meta_train_steps": 5888,
+  "fingerprint": "42:meta5888:inf0:19c658036a2576f0",
+  "from_prior": false,
+  "law": "A14_offline_game_ingest_not_inference_retrain"
+}

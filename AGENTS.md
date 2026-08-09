@@ -7,6 +7,7 @@
 **Mission SSOT (lab goal):** `mark_here/knowledge/lab/GOAL.md` + Court **`evidence_court/GOAL_LAW.md` (A31)** — one bot, any target/risk, **no retrain after final policy**, breach **0**, scalping **8–400/day**, **emergent senses drive the brain**.  
 **Court procedure SSOT:** `grok_cli_evidence_court_v2.md` + **`GOAL_RELATIVE_COURT_LAW.md` (A33)**  
 **Promoted laws:** `evidence_court/MASTER_ARCHITECTURE.md`  
+**Best / production policy SSOT:** `evidence_court/BEST_POLICY.md`  
 **Live docket:** `evidence_court/ISSUE_DOCKET.md` · checkpoint: `evidence_court/CONTINUATION_CHECKPOINT.md`
 
 ---

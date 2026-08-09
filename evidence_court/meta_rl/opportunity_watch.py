@@ -300,3 +300,54 @@ def watch_misses(
         bot_act=bot_act,
         bot_fired=bot_fired,
     )
+
+
+def curriculum_labels_from_report(
+    report: OpportunityWatchReport,
+    *,
+    london_ny_weight: float = 1.5,
+    other_weight: float = 1.0,
+) -> List[Dict[str, Any]]:
+    """Offline meta curriculum labels from Watch misses (C-001 → C-002 feed).
+
+    Each miss becomes a teacher fire on the opportunity side. London/NY misses
+    get higher weight (A28 session priority). Does not force live trades.
+    """
+    labels: List[Dict[str, Any]] = []
+    for c in report.complaints:
+        w = float(london_ny_weight if c.session_band == "london_ny" else other_weight)
+        labels.append(
+            {
+                "teacher_act": str(c.side),
+                "topology": str(c.topology),
+                "session_band": str(c.session_band),
+                "weight": w,
+                "symbol": str(c.symbol),
+                "set_id": int(c.set_id),
+                "sense_gap": str(c.sense_gap),
+                "what_bot_did": str(c.what_bot_did),
+                "asof_date": str(c.asof_date),
+                "asof_time": str(c.asof_time),
+                "force": float(c.force),
+                "complaint_id": str(c.complaint_id),
+            }
+        )
+    return labels
+
+
+def watch_day_summary(report: OpportunityWatchReport) -> Dict[str, Any]:
+    """Compact meta dict for goal_path / forward logs."""
+    labels = curriculum_labels_from_report(report)
+    sample = [c.to_dict() for c in report.complaints[:24]]
+    return {
+        "n_opportunities": int(report.n_opportunities),
+        "n_misses": int(report.n_misses),
+        "n_hits": int(report.n_hits),
+        "n_london_ny_misses": int(report.n_london_ny_misses),
+        "n_complaints": len(report.complaints),
+        "n_curriculum_labels": len(labels),
+        "curriculum_labels": labels,
+        "sample_complaints": sample,
+        "always_on": True,
+        "law": "A28",
+    }

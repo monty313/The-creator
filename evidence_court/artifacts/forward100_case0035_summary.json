@@ -1,0 +1,15 @@
+{
+  "policy_source": "path:meta_policy_case0035_opp.npz",
+  "policy_fingerprint": "42:meta3689:inf0:1b9503d1a537319d",
+  "meta_train_steps": 3689,
+  "n_days": 100,
+  "breach_count": 0,
+  "hits": 11,
+  "low_hr": 0.24,
+  "a13_frac": 0.38,
+  "n_zero": 45,
+  "mean_tr": 21.15,
+  "max_pnl": 70.0,
+  "promote_ready": false,
+  "out": "evidence_court\\artifacts\\forward100_report_case0035.json"
+}

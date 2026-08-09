@@ -45,6 +45,35 @@ def _pad_state(raw: Sequence[float]) -> np.ndarray:
     return out
 
 
+def _load_policy_for_ingest(
+    *,
+    out_path: Optional[Path],
+    champion_path: Optional[Path],
+    seed: int,
+    from_prior: bool,
+) -> MetaPolicy:
+    """Resolve which weights to continue from (never invent production retrain).
+
+    Priority:
+      1) existing out_path weights (sequential pack accumulation on a branch)
+      2) if from_prior and no out yet → untrained seed prior (new experimental track)
+      3) champion_path / default champion via load_or_train_champion
+      4) untrained prior fallback
+    """
+    if out_path is not None and out_path.exists():
+        try:
+            return MetaPolicy.load(out_path, freeze=True, require_serious=False)
+        except Exception:
+            pass
+    if from_prior:
+        return MetaPolicy.untrained_prior(seed=seed)
+    try:
+        pol = load_or_train_champion(champion_path, seed=seed, force_retrain=False)
+        return pol
+    except Exception:
+        return MetaPolicy.untrained_prior(seed=seed)
+
+
 def ingest_game_pack(
     pack_path: Path | str,
     *,
@@ -54,23 +83,31 @@ def ingest_game_pack(
     max_steps: Optional[int] = None,
     seed: int = 42,
     include_browser_brain_warmstart: bool = False,
+    from_prior: bool = False,
 ) -> IngestReport:
-    """Offline: unlock champion → meta_update on each trajectory → freeze → save.
+    """Offline: unlock policy → meta_update on each trajectory → freeze → save.
 
     This is **not** inference retrain. Target/risk remain context in state.
+    Uses **teacher_act** only (Coach doctrine) — not raw player act fields unless
+    they are the sole teacher_act source.
     """
     pack = load_pack(pack_path)
     trajs: List[Dict[str, Any]] = list(pack.get("trajectories") or [])
     if max_steps is not None:
         trajs = trajs[: int(max_steps)]
 
+    dest = Path(out_path) if out_path else (
+        Path(champion_path) if champion_path else Path("evidence_court/artifacts/meta_policy_champion.npz")
+    )
     champ_p = Path(champion_path) if champion_path else None
-    try:
-        pol = load_or_train_champion(champ_p, seed=seed, force_retrain=False)
-    except Exception:
-        pol = MetaPolicy.untrained_prior(seed=seed)
+    pol = _load_policy_for_ingest(
+        out_path=dest if out_path else None,
+        champion_path=champ_p,
+        seed=seed,
+        from_prior=from_prior,
+    )
 
-    # Optional: if pack embeds browser weights and champion is young, warm-start
+    # Optional: if pack embeds browser weights and policy is young, warm-start
     brain_snap = pack.get("brain")
     if (
         include_browser_brain_warmstart
@@ -103,7 +140,8 @@ def ingest_game_pack(
     applied = 0
     skipped = 0
     for row in trajs:
-        act = str(row.get("teacher_act") or row.get("act") or "wait")
+        # Coach doctrine: teacher_act / principle labels only (not player_act)
+        act = str(row.get("teacher_act") or "wait")
         if act not in ACTS:
             skipped += 1
             continue
@@ -124,12 +162,11 @@ def ingest_game_pack(
         losses.append(float(loss))
         applied += 1
 
+    if applied > 0 and not pol.brain.trained:
+        pol.brain.trained = True
     pol.freeze_for_inference()
     fp_after = pol.weight_fingerprint()
     saved: Optional[str] = None
-    dest = Path(out_path) if out_path else (
-        Path(champion_path) if champion_path else Path("evidence_court/artifacts/meta_policy_champion.npz")
-    )
     if applied > 0:
         saved = str(pol.save(dest))
         # also write sidecar pack receipt
@@ -143,6 +180,7 @@ def ingest_game_pack(
                     "skipped": skipped,
                     "meta_train_steps": pol.meta_train_steps,
                     "fingerprint": fp_after,
+                    "from_prior": from_prior,
                     "law": "A14_offline_game_ingest_not_inference_retrain",
                 },
                 indent=2,

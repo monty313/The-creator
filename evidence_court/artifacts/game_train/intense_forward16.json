@@ -1,0 +1,32 @@
+{
+  "n_days": 16,
+  "n_trades_per_day": [
+    11,
+    5,
+    28,
+    31,
+    18,
+    5,
+    7,
+    0,
+    67,
+    2,
+    0,
+    14,
+    3,
+    0,
+    13,
+    0
+  ],
+  "mean_trades": 12.75,
+  "n_zero": 4,
+  "a13_days": 7,
+  "a13_frac": 0.4375,
+  "hits": 1,
+  "hit_rate": 0.0625,
+  "breaches": 0,
+  "mean_pnl": 2.5675153600311904,
+  "fingerprint": "42:meta32000",
+  "goal_consistency_ok": false,
+  "no_retrain": true
+}

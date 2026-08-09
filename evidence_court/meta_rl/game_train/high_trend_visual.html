@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>High Trend — All Official Sets</title>
+<style>
+  :root {
+    --bg: #0a0e17;
+    --panel: #121a2b;
+    --line: #2a3548;
+    --text: #e8eef8;
+    --muted: #8b9bb4;
+    --up: #3dd68c;
+    --down: #ff6b7a;
+    --wait: #f0c14b;
+    --accent: #6ea8ff;
+    --load: #a78bfa;
+    --s1: #6ea8ff;
+    --s2: #3dd68c;
+    --s3: #f0c14b;
+    --s4: #ff8f6b;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: "Segoe UI", system-ui, sans-serif;
+    background: radial-gradient(1000px 520px at 12% -12%, #1a2744 0%, var(--bg) 52%);
+    color: var(--text);
+    line-height: 1.45;
+  }
+  header {
+    padding: 20px 24px 6px;
+    max-width: 1180px;
+    margin: 0 auto;
+  }
+  h1 { margin: 0 0 6px; font-size: 1.4rem; }
+  h1 span { color: var(--accent); }
+  .sub { color: var(--muted); font-size: 0.95rem; max-width: 78ch; }
+  main {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 8px 24px 40px;
+    display: grid;
+    gap: 14px;
+  }
+  .card {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 14px 16px;
+  }
+  .card h2 {
+    margin: 0 0 10px;
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+  .pill {
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 7px 12px;
+    font-size: 0.82rem;
+    color: var(--muted);
+    cursor: pointer;
+    background: #0d1524;
+  }
+  .pill:hover { border-color: #3d4f6e; }
+  .pill.on { border-color: var(--accent); color: var(--text); background: #152238; }
+  .pill.set1.on { border-color: var(--s1); color: var(--s1); }
+  .pill.set2.on { border-color: var(--s2); color: var(--s2); }
+  .pill.set3.on { border-color: var(--s3); color: var(--s3); }
+  .pill.set4.on { border-color: var(--s4); color: var(--s4); }
+  canvas.main {
+    width: 100%;
+    height: 260px;
+    background: #0a1220;
+    border-radius: 10px;
+    border: 1px solid var(--line);
+    display: block;
+    margin-top: 10px;
+  }
+  canvas.mini {
+    width: 100%;
+    height: 140px;
+    background: #0a1220;
+    border-radius: 10px;
+    border: 1px solid var(--line);
+    display: block;
+  }
+  .legend {
+    display: flex; flex-wrap: wrap; gap: 10px 14px;
+    margin-top: 10px; font-size: 0.8rem; color: var(--muted);
+  }
+  .dot {
+    width: 10px; height: 10px; border-radius: 50%;
+    display: inline-block; margin-right: 6px; vertical-align: middle;
+  }
+  .callout {
+    border-left: 3px solid var(--wait);
+    padding: 10px 14px;
+    background: #1a1608;
+    border-radius: 0 10px 10px 0;
+    color: var(--muted);
+    font-size: 0.9rem;
+    margin-top: 12px;
+  }
+  .callout strong { color: var(--wait); }
+  .callout.blue { border-left-color: var(--accent); background: #0e1624; }
+  .callout.blue strong { color: var(--accent); }
+  .grid4 {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+  }
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  @media (max-width: 960px) {
+    .grid4 { grid-template-columns: 1fr 1fr; }
+    .grid2 { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 560px) { .grid4 { grid-template-columns: 1fr; } }
+  .set-card {
+    background: #0a1220;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 10px;
+    cursor: pointer;
+    transition: border-color .15s;
+  }
+  .set-card:hover, .set-card.on { border-color: var(--accent); }
+  .set-card .tag {
+    font-size: 0.72rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 4px;
+  }
+  .set-card .name { font-weight: 700; font-size: 0.95rem; margin-bottom: 2px; }
+  .set-card .stack { color: var(--muted); font-size: 0.8rem; margin-bottom: 8px; }
+  .set-card .roles {
+    display: flex; gap: 4px; flex-wrap: wrap; margin-bottom: 8px;
+  }
+  .set-card .roles span {
+    font-size: 0.7rem;
+    padding: 2px 7px;
+    border-radius: 999px;
+    border: 1px solid var(--line);
+    color: var(--muted);
+  }
+  .set-card .roles .ltf { border-color: #3d5a8a; color: var(--accent); }
+  .set-card .roles .htf { border-color: #1f6b45; color: var(--up); }
+  .meta {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 12px;
+  }
+  @media (max-width: 900px) { .meta { grid-template-columns: 1fr; } }
+  .kv { font-size: 0.88rem; color: var(--muted); }
+  .kv b { color: var(--text); }
+  .do, .dont {
+    border-radius: 12px;
+    padding: 12px 14px;
+    border: 1px solid var(--line);
+  }
+  .do { background: #0f241a; border-color: #1f6b45; }
+  .dont { background: #2a1218; border-color: #7a2b3a; }
+  .do h3, .dont h3 { margin: 0 0 8px; font-size: 0.92rem; }
+  .do h3 { color: var(--up); }
+  .dont h3 { color: var(--down); }
+  ul { margin: 0; padding-left: 1.1rem; color: var(--muted); font-size: 0.88rem; }
+  li { margin: 4px 0; }
+  .consensus {
+    display: flex; gap: 8px; flex-wrap: wrap; align-items: center;
+  }
+  .chip {
+    min-width: 72px;
+    text-align: center;
+    padding: 10px 8px;
+    border-radius: 10px;
+    border: 1px solid var(--line);
+    background: #0a1220;
+    font-size: 0.8rem;
+  }
+  .chip .lbl { color: var(--muted); font-size: 0.7rem; text-transform: uppercase; letter-spacing: .05em; }
+  .chip .val { font-weight: 700; margin-top: 4px; }
+  .chip.up .val { color: var(--up); }
+  .chip.down .val { color: var(--down); }
+  .chip.mix .val { color: var(--wait); }
+  .chip.off .val { color: var(--muted); }
+  footer {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 24px 28px;
+    color: var(--muted);
+    font-size: 0.75rem;
+  }
+</style>
+</head>
+<body>
+<header>
+  <h1>High <span>trend</span> — all official Mark sets</h1>
+  <p class="sub">
+    Same principle on every set: <b style="color:var(--text)">HTF force</b> is the wind,
+    <b style="color:var(--text)">LTF load → launch</b> is the ride.
+    Sets differ by <b style="color:var(--text)">role / timeframe stack</b>, not by inventing different rules.
+    High trend is strongest when <b style="color:var(--text)">multi-set force agrees</b>.
+  </p>
+  <p class="sub" style="margin-top:8px">
+    <a href="high_trend_mastery.html" style="color:var(--accent);font-weight:700">→ Open HIGH TREND MASTERY gym (drills · levels · fail modes)</a>
+  </p>
+</header>
+
+<main>
+  <!-- Official 4 sets -->
+  <section class="card">
+    <h2>Official sets (MARK SETS LAW) — click one</h2>
+    <div class="grid4" id="setCards"></div>
+    <p class="callout blue" style="margin-top:12px">
+      <strong>Shared ladder idea:</strong> every set has LTF (entry timing) + two HTF supports (force / permission).
+      A 30m bar means the same 30m everywhere — Set1 uses it as HTF support; Set4 uses it as LTF entry. Role changes, price doesn’t.
+    </p>
+  </section>
+
+  <!-- Main interactive -->
+  <section class="card">
+    <h2>High trend on this set</h2>
+    <div class="row" id="dirRow">
+      <button class="pill on" data-dir="up">Uptrend force</button>
+      <button class="pill" data-dir="down">Downtrend force</button>
+      <button class="pill" data-dir="conflict">Conflict (sets disagree)</button>
+    </div>
+    <div class="meta" style="margin-top:10px">
+      <div>
+        <canvas class="main" id="mainChart" width="720" height="280"></canvas>
+        <div class="legend" id="legend"></div>
+      </div>
+      <div>
+        <div class="kv" id="setMeta"></div>
+        <div class="callout" id="story" style="margin-top:12px"></div>
+        <div style="margin-top:14px">
+          <div class="kv" style="margin-bottom:8px"><b>Multi-set consensus snapshot</b></div>
+          <div class="consensus" id="consensus"></div>
+          <p class="kv" id="consensusNote" style="margin-top:10px"></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- All four mini strips -->
+  <section class="card">
+    <h2>Same high-trend day — all four sets at once</h2>
+    <p class="kv" style="margin:0 0 10px">
+      When the market is truly trending hard, you want force aligned on as many sets as possible.
+      LTF pullbacks happen on each set’s own clock — but the wind is the same.
+    </p>
+    <div class="grid4" id="allStrips"></div>
+  </section>
+
+  <!-- Sense map per set -->
+  <section class="card">
+    <h2>4 senses · same questions on every set</h2>
+    <div class="grid2">
+      <div class="kv">
+        <b style="color:var(--accent)">SIGHT</b> — Do both HTF supports of <em>this</em> set show force the same way?<br/>
+        <b style="color:var(--load)">FEEL</b> — Is LTF loading against force or already launching with it?<br/>
+        <b style="color:var(--wait)">TASTE</b> — Is this pullback resume bread-and-butter, or a late chase on this stack?<br/>
+        <b style="color:var(--up)">HEARING</b> — Does the day story still say trend, or did structure break on HTF?
+      </div>
+      <div class="kv">
+        <b>Micro (1m)</b> — fastest loads; more noise; needs clean HTF 15m/30m.<br/>
+        <b>Intraday (5m)</b> — classic London/NY scalping rhythm.<br/>
+        <b>Swing (15m)</b> — fewer fires; cleaner legs; holds longer.<br/>
+        <b>Macro (30m)</b> — slowest; filters chop; when it loads, it’s heavy.
+      </div>
+    </div>
+  </section>
+
+  <!-- Do / don't multi-set -->
+  <section class="card">
+    <h2>Improve high-trend performance on all sets</h2>
+    <div class="grid2">
+      <div class="do">
+        <h3>DO (all sets)</h3>
+        <ul>
+          <li>Read force on <strong>both HTFs</strong> of the set before LTF timing</li>
+          <li>Fire only when LTF phase is resume/launch <em>with</em> that force</li>
+          <li>Prefer days where <strong>2+ sets agree</strong> on force direction</li>
+          <li>WAIT on slingshot_load even if other sets already fired</li>
+          <li>Size from risk remaining — multi-set density is not free risk</li>
+        </ul>
+      </div>
+      <div class="dont">
+        <h3>DON’T (all sets)</h3>
+        <ul>
+          <li>Mix rules: don’t use Set4 force to justify a blind Set1 chase</li>
+          <li>Average all TFs into one mush “force” (senses law forbids this)</li>
+          <li>Fade a multi-set uptrend just because micro looks extended</li>
+          <li>Require all four sets to fire the same second (roles differ)</li>
+          <li>Pad trades on quiet sets to “hit A13” — density must be real edges</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Training focus -->
+  <section class="card">
+    <h2>What to practice next (visual labels)</h2>
+    <div class="row">
+      <span class="pill on" style="cursor:default">Set force UP + load → LONG</span>
+      <span class="pill on" style="cursor:default">Set force DOWN + load → SHORT</span>
+      <span class="pill on" style="cursor:default">Load incomplete → WAIT</span>
+      <span class="pill on" style="cursor:default">Sets conflict → WAIT / reduce</span>
+      <span class="pill on" style="cursor:default">Multi-set agree → higher confidence</span>
+    </div>
+    <p class="callout" style="margin-top:12px">
+      <strong>Goal:</strong> improve high-trend judgment <em>on every official stack</em> — not only the one chart you stare at.
+      Same principle, four roles, multi-set consensus as taste/hearing boost.
+    </p>
+  </section>
+</main>
+
+<footer>
+  MARK SETS LAW: 1m·15m·30m · 5m·30m·1h · 15m·1h·4h · 30m·4h·1d ·
+  Principles not hard rules · A32 senses · A3 sets immutable · double-click this file anytime
+</footer>
+
+<script>
+(() => {
+  const UP = "#3dd68c", DOWN = "#ff6b7a", WAIT = "#f0c14b", LOAD = "#a78bfa", ACC = "#6ea8ff", MUTED = "#5a6a84";
+  const SET_COLORS = ["#6ea8ff", "#3dd68c", "#f0c14b", "#ff8f6b"];
+
+  // Official law
+  const SETS = [
+    {
+      id: 1, key: "micro", name: "Micro",
+      ltf: "1m", htfs: ["15m", "30m"], stack: "1m · 15m · 30m",
+      color: SET_COLORS[0],
+      role: "Fastest entry clock. HTF 15m+30m must already be trending or micro is noise.",
+      highTrend: "Many small loads per day. Only take 1m resumes when 15m/30m force is clear.",
+      period: 10,
+    },
+    {
+      id: 2, key: "intraday", name: "Intraday",
+      ltf: "5m", htfs: ["30m", "1h"], stack: "5m · 30m · 1h",
+      color: SET_COLORS[1],
+      role: "Core scalping set for London/NY. 5m timing under 30m/1h force.",
+      highTrend: "Best density set in a trend day — pullback resumes on 5m with 30m/1h wind.",
+      period: 18,
+    },
+    {
+      id: 3, key: "swing", name: "Swing",
+      ltf: "15m", htfs: ["1h", "4h"], stack: "15m · 1h · 4h",
+      color: SET_COLORS[2],
+      role: "Slower permission. Filters micro thrash. Fewer fires, cleaner legs.",
+      highTrend: "When 1h+4h force is strong, 15m loads are high-quality — don’t overtrade them.",
+      period: 28,
+    },
+    {
+      id: 4, key: "macro", name: "Macro",
+      ltf: "30m", htfs: ["4h", "1d"], stack: "30m · 4h · 1d",
+      color: SET_COLORS[3],
+      role: "Day/structure anchor. When macro force flips, smaller sets re-hear the story.",
+      highTrend: "4h+1d wind is heavy. 30m load→launch is rare and meaningful.",
+      period: 40,
+    },
+  ];
+
+  let activeSet = 0;
+  let dir = "up"; // up | down | conflict
+
+  function series(n, forceDir, period, noise = 0.28) {
+    // forceDir: +1 up, -1 down
+    const px = [];
+    let p = 100;
+    for (let i = 0; i < n; i++) {
+      const phase = i % period;
+      const loadStart = Math.floor(period * 0.62);
+      const launchStart = Math.floor(period * 0.82);
+      let d = forceDir * 0.5;
+      if (phase >= loadStart && phase < launchStart) d = -forceDir * 0.42; // load against
+      if (phase >= launchStart) d = forceDir * 0.95; // launch
+      p += d + (Math.random() - 0.5) * noise;
+      px.push(p);
+    }
+    return px;
+  }
+
+  function clear(ctx) {
+    ctx.fillStyle = "#0a1220";
+    ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+    ctx.strokeStyle = "#1a2438";
+    ctx.lineWidth = 1;
+    for (let i = 1; i < 4; i++) {
+      const y = (ctx.canvas.height / 4) * i;
+      ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(ctx.canvas.width, y); ctx.stroke();
+    }
+  }
+
+  function drawLine(ctx, px, color, w = 2) {
+    const W = ctx.canvas.width, H = ctx.canvas.height;
+    const min = Math.min(...px), max = Math.max(...px);
+    const span = Math.max(1e-6, max - min);
+    ctx.strokeStyle = color;
+    ctx.lineWidth = w;
+    ctx.beginPath();
+    px.forEach((p, i) => {
+      const x = (i / (px.length - 1)) * (W - 24) + 12;
+      const y = H - 18 - ((p - min) / span) * (H - 40);
+      if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+    });
+    ctx.stroke();
+    return { min, max, span, W, H };
+  }
+
+  function mark(ctx, px, idx, color, label) {
+    const W = ctx.canvas.width, H = ctx.canvas.height;
+    const min = Math.min(...px), max = Math.max(...px);
+    const span = Math.max(1e-6, max - min);
+    const x = (idx / (px.length - 1)) * (W - 24) + 12;
+    const y = H - 18 - ((px[idx] - min) / span) * (H - 40);
+    ctx.fillStyle = color;
+    ctx.beginPath();
+    ctx.arc(x, y, 5.5, 0, Math.PI * 2);
+    ctx.fill();
+    if (label) {
+      ctx.font = "11px Segoe UI";
+      ctx.fillText(label, x + 8, y - 6);
+    }
+  }
+
+  function forceMarks(ctx, px, period, forceDir) {
+    const color = forceDir > 0 ? UP : DOWN;
+    const act = forceDir > 0 ? "LONG" : "SHORT";
+    for (let base = 0; base < px.length - 2; base += period) {
+      const load = Math.min(px.length - 1, base + Math.floor(period * 0.72));
+      const fire = Math.min(px.length - 1, base + Math.floor(period * 0.88));
+      mark(ctx, px, load, LOAD, "load");
+      mark(ctx, px, fire, ACC, act);
+    }
+    ctx.fillStyle = color;
+    ctx.font = "bold 13px Segoe UI";
+    ctx.fillText(forceDir > 0 ? "FORCE ↑" : "FORCE ↓", 14, 20);
+  }
+
+  function renderMain() {
+    const set = SETS[activeSet];
+    const ctx = document.getElementById("mainChart").getContext("2d");
+    clear(ctx);
+    const legend = document.getElementById("legend");
+    const story = document.getElementById("story");
+    const meta = document.getElementById("setMeta");
+
+    meta.innerHTML = `
+      <div style="font-size:1.05rem;font-weight:700;color:${set.color}">Set ${set.id} · ${set.name}</div>
+      <div style="margin-top:6px"><b>Stack</b> ${set.stack}</div>
+      <div style="margin-top:4px"><b>LTF (timing)</b> ${set.ltf}</div>
+      <div style="margin-top:4px"><b>HTF (force)</b> ${set.htfs.join(" + ")}</div>
+      <div style="margin-top:10px">${set.role}</div>
+      <div style="margin-top:8px;color:${WAIT}">${set.highTrend}</div>
+    `;
+
+    if (dir === "conflict") {
+      // two forces fighting
+      const pxUp = series(90, +1, set.period, 0.35);
+      const pxDn = series(90, -1, Math.max(12, set.period - 4), 0.35);
+      // blend visual: draw up faded then down
+      drawLine(ctx, pxUp, "rgba(61,214,140,0.35)", 2);
+      drawLine(ctx, pxDn, "rgba(255,107,122,0.7)", 2.2);
+      ctx.fillStyle = WAIT;
+      ctx.font = "bold 13px Segoe UI";
+      ctx.fillText("SETS / HTF CONFLICT — WAIT", 14, 20);
+      legend.innerHTML = `
+        <span><i class="dot" style="background:${UP}"></i>Some force up</span>
+        <span><i class="dot" style="background:${DOWN}"></i>Some force down</span>
+        <span><i class="dot" style="background:${WAIT}"></i>No clean fire</span>`;
+      story.innerHTML = `<strong>Conflict:</strong> When HTFs inside a set disagree — or multi-set force splits —
+        Hearing says story is unclear. Default <strong>WAIT</strong>. Don’t invent a side on LTF alone.`;
+    } else {
+      const forceDir = dir === "up" ? +1 : -1;
+      const px = series(90, forceDir, set.period, 0.22);
+      drawLine(ctx, px, forceDir > 0 ? UP : DOWN, 2.5);
+      forceMarks(ctx, px, set.period, forceDir);
+      // label LTF/HTF roles on canvas
+      ctx.fillStyle = MUTED;
+      ctx.font = "11px Segoe UI";
+      ctx.fillText(`LTF ${set.ltf} timing  ·  HTF ${set.htfs.join("+")} force`, 14, ctx.canvas.height - 8);
+      legend.innerHTML = `
+        <span><i class="dot" style="background:${forceDir > 0 ? UP : DOWN}"></i>HTF force (${set.htfs.join("+")})</span>
+        <span><i class="dot" style="background:${LOAD}"></i>LTF ${set.ltf} load</span>
+        <span><i class="dot" style="background:${ACC}"></i>Launch / resume fire</span>`;
+      story.innerHTML = `<strong>Set ${set.id} ${set.name} high trend:</strong> Sight reads ${set.htfs.join(" + ")} force
+        ${forceDir > 0 ? "up" : "down"}. Feel waits ${set.ltf} load. Taste fires only on resume with force — not mid-leg chase.
+        Same movie on every set; only the clock speed changes.`;
+    }
+
+    renderConsensus();
+    renderStrips();
+    highlightCards();
+  }
+
+  function consensusState() {
+    // toy model for visual teaching
+    if (dir === "conflict") {
+      return [
+        { id: 1, s: "up" },
+        { id: 2, s: "down" },
+        { id: 3, s: "up" },
+        { id: 4, s: "mix" },
+      ];
+    }
+    const s = dir === "up" ? "up" : "down";
+    // high trend: all agree; slight noise on micro only as "loading"
+    return SETS.map((set, i) => ({
+      id: set.id,
+      s: (i === 0 && Math.random() < 0) ? "mix" : s,
+    }));
+  }
+
+  function renderConsensus() {
+    const rows = dir === "conflict"
+      ? [
+          { id: 1, s: "up" },
+          { id: 2, s: "down" },
+          { id: 3, s: "mix" },
+          { id: 4, s: "down" },
+        ]
+      : SETS.map((set) => ({ id: set.id, s: dir }));
+
+    const el = document.getElementById("consensus");
+    el.innerHTML = rows.map((r, i) => {
+      const set = SETS[i];
+      const cls = r.s === "up" ? "up" : r.s === "down" ? "down" : r.s === "mix" ? "mix" : "off";
+      const val = r.s === "up" ? "FORCE ↑" : r.s === "down" ? "FORCE ↓" : "MIX";
+      return `<div class="chip ${cls}" style="border-color:${set.color}55">
+        <div class="lbl">Set ${r.id}</div>
+        <div class="val">${val}</div>
+        <div class="lbl" style="margin-top:4px">${set.ltf}</div>
+      </div>`;
+    }).join("");
+
+    const note = document.getElementById("consensusNote");
+    if (dir === "conflict") {
+      note.innerHTML = `<b style="color:${WAIT}">Taste/Hearing:</b> multi-set disagree → cut size or WAIT. Don’t let one fast set veto a clear macro wind without reason — but don’t force a fire either.`;
+    } else {
+      note.innerHTML = `<b style="color:${UP}">High-trend bonus:</b> all four sets show the same force. Confidence rises.
+        Still time entries on <em>each</em> set’s LTF — agreement is permission, not a market order on every clock.`;
+    }
+  }
+
+  function renderStrips() {
+    const host = document.getElementById("allStrips");
+    host.innerHTML = "";
+    SETS.forEach((set, i) => {
+      const wrap = document.createElement("div");
+      wrap.className = "set-card" + (i === activeSet ? " on" : "");
+      wrap.innerHTML = `
+        <div class="tag" style="color:${set.color}">Set ${set.id}</div>
+        <div class="name">${set.name}</div>
+        <div class="stack">${set.stack}</div>
+        <canvas class="mini" width="260" height="140" id="strip${i}"></canvas>
+      `;
+      wrap.onclick = () => { activeSet = i; renderMain(); };
+      host.appendChild(wrap);
+      const ctx = wrap.querySelector("canvas").getContext("2d");
+      clear(ctx);
+      if (dir === "conflict") {
+        const a = series(50, i % 2 === 0 ? 1 : -1, set.period, 0.4);
+        drawLine(ctx, a, i % 2 === 0 ? UP : DOWN, 1.8);
+        ctx.fillStyle = WAIT;
+        ctx.font = "10px Segoe UI";
+        ctx.fillText("conflict", 8, 14);
+      } else {
+        const forceDir = dir === "up" ? 1 : -1;
+        const px = series(50, forceDir, Math.max(8, Math.floor(set.period * 0.6)), 0.2);
+        drawLine(ctx, px, forceDir > 0 ? UP : DOWN, 1.8);
+        const load = Math.floor(50 * 0.7);
+        const fire = Math.floor(50 * 0.85);
+        mark(ctx, px, load, LOAD, "");
+        mark(ctx, px, fire, ACC, "");
+        ctx.fillStyle = MUTED;
+        ctx.font = "10px Segoe UI";
+        ctx.fillText(set.ltf + " load→fire", 8, 14);
+      }
+    });
+  }
+
+  function highlightCards() {
+    document.querySelectorAll("#setCards .set-card").forEach((el, i) => {
+      el.classList.toggle("on", i === activeSet);
+    });
+  }
+
+  function buildSetCards() {
+    const host = document.getElementById("setCards");
+    host.innerHTML = SETS.map((set, i) => `
+      <div class="set-card ${i === 0 ? "on" : ""}" data-i="${i}">
+        <div class="tag" style="color:${set.color}">Set ${set.id} · ${set.key}</div>
+        <div class="name">${set.name}</div>
+        <div class="stack">${set.stack}</div>
+        <div class="roles">
+          <span class="ltf">LTF ${set.ltf}</span>
+          ${set.htfs.map(h => `<span class="htf">HTF ${h}</span>`).join("")}
+        </div>
+        <div class="kv" style="font-size:0.78rem">${set.role}</div>
+      </div>
+    `).join("");
+    host.querySelectorAll(".set-card").forEach((el) => {
+      el.addEventListener("click", () => {
+        activeSet = +el.dataset.i;
+        renderMain();
+      });
+    });
+  }
+
+  document.getElementById("dirRow").addEventListener("click", (e) => {
+    const b = e.target.closest(".pill");
+    if (!b || !b.dataset.dir) return;
+    dir = b.dataset.dir;
+    document.querySelectorAll("#dirRow .pill").forEach(p => p.classList.toggle("on", p === b));
+    renderMain();
+  });
+
+  buildSetCards();
+  renderMain();
+})();
+</script>
+</body>
+</html>

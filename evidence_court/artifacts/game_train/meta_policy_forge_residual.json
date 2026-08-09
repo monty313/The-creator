@@ -1,0 +1,7 @@
+{
+  "track": "forge_residual",
+  "meta_train_steps": 60000,
+  "fingerprint": "42:meta60000:inf0:da8fe9dac7af79fe",
+  "n_miss_labels": 520,
+  "champion_untouched": true
+}

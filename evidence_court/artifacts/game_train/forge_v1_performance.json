@@ -1,0 +1,743 @@
+{
+  "track": "meta_policy_forge_v1",
+  "law": "A34_performance_test",
+  "n_days_forward": 25,
+  "seed": 42,
+  "forge_fingerprint": "42:meta4814:inf0:d6c4f7289a7cd7ba",
+  "champion_fingerprint": "42:meta9600:inf0:f2b9be0dc2fe359e",
+  "champion_untouched": true,
+  "coach_latest_pack": {
+    "forge": {
+      "pack": "policy_forge_export_1786158849829.json",
+      "n": 370,
+      "coach_agreement": 0.772972972972973,
+      "mean_ce": 0.39365122419096127,
+      "fire_side_accuracy": 0.9767441860465116,
+      "fire_n": 43,
+      "pred_wait_frac": 0.6621621621621622,
+      "true_wait_frac": 0.8837837837837837,
+      "pred_dist": {
+        "wait": 245,
+        "short": 103,
+        "long": 22
+      },
+      "true_dist": {
+        "wait": 327,
+        "short": 23,
+        "long": 20
+      },
+      "by_session": {
+        "asia": {
+          "n": 355,
+          "agree": 0.7633802816901408
+        },
+        "london": {
+          "n": 15,
+          "agree": 1.0
+        }
+      },
+      "by_topology": {
+        "slingshot_load": {
+          "n": 225,
+          "agree": 0.6577777777777778
+        },
+        "collapse": {
+          "n": 52,
+          "agree": 0.9230769230769231
+        },
+        "chop": {
+          "n": 66,
+          "agree": 0.9545454545454546
+        },
+        "launch": {
+          "n": 13,
+          "agree": 1.0
+        },
+        "release": {
+          "n": 14,
+          "agree": 1.0
+        }
+      }
+    },
+    "champion": {
+      "pack": "policy_forge_export_1786158849829.json",
+      "n": 370,
+      "coach_agreement": 0.4810810810810811,
+      "mean_ce": 5.469514393540591,
+      "fire_side_accuracy": 0.7906976744186046,
+      "fire_n": 43,
+      "pred_wait_frac": 0.4,
+      "true_wait_frac": 0.8837837837837837,
+      "pred_dist": {
+        "long": 204,
+        "wait": 148,
+        "short": 18
+      },
+      "true_dist": {
+        "wait": 327,
+        "short": 23,
+        "long": 20
+      },
+      "by_session": {
+        "asia": {
+          "n": 355,
+          "agree": 0.4676056338028169
+        },
+        "london": {
+          "n": 15,
+          "agree": 0.8
+        }
+      },
+      "by_topology": {
+        "slingshot_load": {
+          "n": 225,
+          "agree": 0.3022222222222222
+        },
+        "collapse": {
+          "n": 52,
+          "agree": 0.7115384615384616
+        },
+        "chop": {
+          "n": 66,
+          "agree": 0.7878787878787878
+        },
+        "launch": {
+          "n": 13,
+          "agree": 0.8461538461538461
+        },
+        "release": {
+          "n": 14,
+          "agree": 0.7142857142857143
+        }
+      }
+    }
+  },
+  "opportunity_synthetic": {
+    "forge": {
+      "n": 400,
+      "london_ny_force_opp": true,
+      "coach_agreement": 0.365,
+      "fire_n": 378,
+      "fire_side_accuracy": 0.328042328042328,
+      "miss_rate_wait_on_fire": 0.671957671957672,
+      "pred_dist": {
+        "wait": 276,
+        "long": 121,
+        "short": 3
+      }
+    },
+    "champion": {
+      "n": 400,
+      "london_ny_force_opp": true,
+      "coach_agreement": 1.0,
+      "fire_n": 378,
+      "fire_side_accuracy": 1.0,
+      "miss_rate_wait_on_fire": 0.0,
+      "pred_dist": {
+        "long": 182,
+        "short": 196,
+        "wait": 22
+      }
+    }
+  },
+  "forward": {
+    "forge": {
+      "n_days": 25,
+      "breach_count": 0,
+      "no_retrain": true,
+      "promote_ready": false,
+      "l2l_day_path_ok": true,
+      "senses_day_path_ok": true,
+      "goal_consistency_ok": false,
+      "total_hits": 0,
+      "low_hit_rate": 0.0,
+      "mid_hit_rate": 0.0,
+      "mean_pnl": -0.03727733040000009,
+      "median_pnl": 0.0,
+      "total_trades": 6,
+      "mean_trades_per_day": 0.24,
+      "median_trades_per_day": 0.0,
+      "a13_day_frac": 0.0,
+      "a13_days": 0,
+      "zero_trade_days": 24,
+      "hit_days": 0,
+      "policy_fingerprint": "42:meta4814:inf0:d6c4f7289a7cd7ba",
+      "meta_train_steps": 4814,
+      "policy_source": "path:meta_policy_forge_v1.npz",
+      "window": {
+        "start": "2026-04-22",
+        "end": "2026-05-26"
+      },
+      "goal_consistency": {
+        "total_hits": 0,
+        "mean_goal_progress": 0.0,
+        "max_day_pnl_percent": 0.0,
+        "by_target": {
+          "5.0": {
+            "days": 5,
+            "hits": 0,
+            "hit_rate": 0.0,
+            "fire_rate": 0.0,
+            "mean_pnl": 0.0,
+            "mean_goal_progress": 0.0
+          },
+          "15.0": {
+            "days": 3,
+            "hits": 0,
+            "hit_rate": 0.0,
+            "fire_rate": 0.0,
+            "mean_pnl": 0.0,
+            "mean_goal_progress": 0.0
+          },
+          "30.0": {
+            "days": 4,
+            "hits": 0,
+            "hit_rate": 0.0,
+            "fire_rate": 0.25,
+            "mean_pnl": -0.23298331500000058,
+            "mean_goal_progress": 0.0
+          },
+          "50.0": {
+            "days": 5,
+            "hits": 0,
+            "hit_rate": 0.0,
+            "fire_rate": 0.0,
+            "mean_pnl": 0.0,
+            "mean_goal_progress": 0.0
+          },
+          "70.0": {
+            "days": 5,
+            "hits": 0,
+            "hit_rate": 0.0,
+            "fire_rate": 0.0,
+            "mean_pnl": 0.0,
+            "mean_goal_progress": 0.0
+          },
+          "90.0": {
+            "days": 3,
+            "hits": 0,
+            "hit_rate": 0.0,
+            "fire_rate": 0.0,
+            "mean_pnl": 0.0,
+            "mean_goal_progress": 0.0
+          }
+        },
+        "low_fire_rate": 0.0,
+        "high_fire_rate": 0.0,
+        "low_mean_goal_progress": 0.0,
+        "high_mean_goal_progress": 0.0,
+        "low_hits": 0,
+        "low_hit_rate": 0.0,
+        "mid_hits": 0,
+        "mid_hit_rate": 0.0,
+        "non_vacuous": false,
+        "behavior_conditioned": false,
+        "spectrum_ok": true,
+        "progress_consistent": true,
+        "consistent_spectrum": false,
+        "goal_consistency_ok": false
+      },
+      "pair_results": {
+        "5.0_3.0": {
+          "target": 5.0,
+          "risk": 3.0,
+          "days": 4,
+          "breaches": 0,
+          "hits": 0,
+          "hit_rate": 0.0,
+          "mean_pnl": 0.0,
+          "mean_goal_progress": 0.0,
+          "trades": 0,
+          "pullbacks": 164,
+          "continuations": 527
+        },
+        "50.0_2.0": {
+          "target": 50.0,
+          "risk": 2.0,
+          "days": 3,
+          "breaches": 0,
+          "hits": 0,
+          "hit_rate": 0.0,
+          "mean_pnl": 0.0,
+          "mean_goal_progress": 0.0,
+          "trades": 0,
+          "pullbacks": 137,
+          "continuations": 235
+        },
+        "30.0_3.0": {
+          "target": 30.0,
+          "risk": 3.0,
+          "days": 3,
+          "breaches": 0,
+          "hits": 0,
+          "hit_rate": 0.0,
+          "mean_pnl": 0.0,
+          "mean_goal_progress": 0.0,
+          "trades": 0,
+          "pullbacks": 227,
+          "continuations": 550
+        },
+        "15.0_1.0": {
+          "target": 15.0,
+          "risk": 1.0,
+          "days": 1,
+          "breaches": 0,
+          "hits": 0,
+          "hit_rate": 0.0,
+          "mean_pnl": 0.0,
+          "mean_goal_progress": 0.0,
+          "trades": 0,
+          "pullbacks": 0,
+          "continuations": 0
+        },
+        "50.0_3.0": {
+          "target": 50.0,
+          "risk": 3.0,
+          "days": 1,
+          "breaches": 0,
+          "hits": 0,
+          "hit_rate": 0.0,
+          "mean_pnl": 0.0,
+          "mean_goal_progress": 0.0,
+          "trades": 0,
+          "pullbacks": 13,
+          "continuations": 114
+        },
+        "70.0_3.0": {
+          "target": 70.0,
+          "risk": 3.0,
+          "days": 3,
+          "breaches": 0,
+          "hits": 0,
+          "hit_rate": 0.0,
+          "mean_pnl": 0.0,
+          "mean_goal_progress": 0.0,
+          "trades": 0,
+          "pullbacks": 36,
+          "continuations": 123
+        },
+        "50.0_1.0": {
+          "target": 50.0,
+          "risk": 1.0,
+          "days": 1,
+          "breaches": 0,
+          "hits": 0,
+          "hit_rate": 0.0,
+          "mean_pnl": 0.0,
+          "mean_goal_progress": 0.0,
+          "trades": 0,
+          "pullbacks": 22,
+          "continuations": 72
+        },
+        "90.0_2.0": {
+          "target": 90.0,
+          "risk": 2.0,
+          "days": 1,
+          "breaches": 0,
+          "hits": 0,
+          "hit_rate": 0.0,
+          "mean_pnl": 0.0,
+          "mean_goal_progress": 0.0,
+          "trades": 0,
+          "pullbacks": 108,
+          "continuations": 135
+        },
+        "15.0_3.0": {
+          "target": 15.0,
+          "risk": 3.0,
+          "days": 1,
+          "breaches": 0,
+          "hits": 0,
+          "hit_rate": 0.0,
+          "mean_pnl": 0.0,
+          "mean_goal_progress": 0.0,
+          "trades": 0,
+          "pullbacks": 66,
+          "continuations": 246
+        },
+        "70.0_2.0": {
+          "target": 70.0,
+          "risk": 2.0,
+          "days": 2,
+          "breaches": 0,
+          "hits": 0,
+          "hit_rate": 0.0,
+          "mean_pnl": 0.0,
+          "mean_goal_progress": 0.0,
+          "trades": 0,
+          "pullbacks": 102,
+          "continuations": 159
+        },
+        "30.0_1.0": {
+          "target": 30.0,
+          "risk": 1.0,
+          "days": 1,
+          "breaches": 0,
+          "hits": 0,
+          "hit_rate": 0.0,
+          "mean_pnl": -0.9319332600000023,
+          "mean_goal_progress": 0.0,
+          "trades": 6,
+          "pullbacks": 4,
+          "continuations": 8
+        },
+        "5.0_2.0": {
+          "target": 5.0,
+          "risk": 2.0,
+          "days": 1,
+          "breaches": 0,
+          "hits": 0,
+          "hit_rate": 0.0,
+          "mean_pnl": 0.0,
+          "mean_goal_progress": 0.0,
+          "trades": 0,
+          "pullbacks": 0,
+          "continuations": 0
+        },
+        "90.0_1.0": {
+          "target": 90.0,
+          "risk": 1.0,
+          "days": 1,
+          "breaches": 0,
+          "hits": 0,
+          "hit_rate": 0.0,
+          "mean_pnl": 0.0,
+          "mean_goal_progress": 0.0,
+          "trades": 0,
+          "pullbacks": 134,
+          "continuations": 800
+        },
+        "90.0_3.0": {
+          "target": 90.0,
+          "risk": 3.0,
+          "days": 1,
+          "breaches": 0,
+          "hits": 0,
+          "hit_rate": 0.0,
+          "mean_pnl": 0.0,
+          "mean_goal_progress": 0.0,
+          "trades": 0,
+          "pullbacks": 137,
+          "continuations": 168
+        },
+        "15.0_2.0": {
+          "target": 15.0,
+          "risk": 2.0,
+          "days": 1,
+          "breaches": 0,
+          "hits": 0,
+          "hit_rate": 0.0,
+          "mean_pnl": 0.0,
+          "mean_goal_progress": 0.0,
+          "trades": 0,
+          "pullbacks": 0,
+          "continuations": 0
+        }
+      }
+    },
+    "champion": {
+      "n_days": 25,
+      "breach_count": 0,
+      "no_retrain": true,
+      "promote_ready": false,
+      "l2l_day_path_ok": true,
+      "senses_day_path_ok": true,
+      "goal_consistency_ok": false,
+      "total_hits": 2,
+      "low_hit_rate": 0.25,
+      "mid_hit_rate": 0.0,
+      "mean_pnl": 3.696876249839992,
+      "median_pnl": 0.0,
+      "total_trades": 202,
+      "mean_trades_per_day": 8.08,
+      "median_trades_per_day": 2.0,
+      "a13_day_frac": 0.32,
+      "a13_days": 8,
+      "zero_trade_days": 12,
+      "hit_days": 2,
+      "policy_fingerprint": "42:meta9600:inf0:f2b9be0dc2fe359e",
+      "meta_train_steps": 9600,
+      "policy_source": "path:meta_policy_champion.npz",
+      "window": {
+        "start": "2026-04-22",
+        "end": "2026-05-26"
+      },
+      "goal_consistency": {
+        "total_hits": 2,
+        "mean_goal_progress": 0.14632952994666645,
+        "max_day_pnl_percent": 39.074615129999756,
+        "by_target": {
+          "5.0": {
+            "days": 5,
+            "hits": 1,
+            "hit_rate": 0.2,
+            "fire_rate": 0.4,
+            "mean_pnl": 0.6815342789999848,
+            "mean_goal_progress": 0.2
+          },
+          "15.0": {
+            "days": 3,
+            "hits": 1,
+            "hit_rate": 0.3333333333333333,
+            "fire_rate": 0.3333333333333333,
+            "mean_pnl": 5.0,
+            "mean_goal_progress": 0.3333333333333333
+          },
+          "30.0": {
+            "days": 4,
+            "hits": 0,
+            "hit_rate": 0.0,
+            "fire_rate": 0.75,
+            "mean_pnl": 3.9034514649999705,
+            "mean_goal_progress": 0.1391927173749992
+          },
+          "50.0": {
+            "days": 5,
+            "hits": 0,
+            "hit_rate": 0.0,
+            "fire_rate": 0.4,
+            "mean_pnl": 7.427279574999952,
+            "mean_goal_progress": 0.15629846051999902
+          },
+          "70.0": {
+            "days": 5,
+            "hits": 0,
+            "hit_rate": 0.0,
+            "fire_rate": 0.4,
+            "mean_pnl": 0.07301115100001665,
+            "mean_goal_progress": 0.0067002000000002376
+          },
+          "90.0": {
+            "days": 3,
+            "hits": 0,
+            "hit_rate": 0.0,
+            "fire_rate": 1.0,
+            "mean_pnl": 6.966325120333381,
+            "mean_goal_progress": 0.0954913588555561
+          }
+        },
+        "low_fire_rate": 0.375,
+        "high_fire_rate": 0.625,
+        "low_mean_goal_progress": 0.25,
+        "high_mean_goal_progress": 0.03999688457083368,
+        "low_hits": 2,
+        "low_hit_rate": 0.25,
+        "mid_hits": 0,
+        "mid_hit_rate": 0.0,
+        "non_vacuous": false,
+        "behavior_conditioned": true,
+        "spectrum_ok": true,
+        "progress_consistent": true,
+        "consistent_spectrum": false,
+        "goal_consistency_ok": false
+      },
+      "pair_results": {
+        "5.0_3.0": {
+          "target": 5.0,
+          "risk": 3.0,
+          "days": 4,
+          "breaches": 0,
+          "hits": 1,
+          "hit_rate": 0.25,
+          "mean_pnl": 0.851917848749981,
+          "mean_goal_progress": 0.25,
+          "trades": 16,
+          "pullbacks": 14,
+          "continuations": 34
+        },
+        "50.0_2.0": {
+          "target": 50.0,
+          "risk": 2.0,
+          "days": 3,
+          "breaches": 0,
+          "hits": 0,
+          "hit_rate": 0.0,
+          "mean_pnl": -0.646072418333333,
+          "mean_goal_progress": 0.0,
+          "trades": 6,
+          "pullbacks": 73,
+          "continuations": 167
+        },
+        "30.0_3.0": {
+          "target": 30.0,
+          "risk": 3.0,
+          "days": 3,
+          "breaches": 0,
+          "hits": 0,
+          "hit_rate": 0.0,
+          "mean_pnl": 5.493248179999956,
+          "mean_goal_progress": 0.18559028983333226,
+          "trades": 28,
+          "pullbacks": 76,
+          "continuations": 101
+        },
+        "15.0_1.0": {
+          "target": 15.0,
+          "risk": 1.0,
+          "days": 1,
+          "breaches": 0,
+          "hits": 0,
+          "hit_rate": 0.0,
+          "mean_pnl": 0.0,
+          "mean_goal_progress": 0.0,
+          "trades": 0,
+          "pullbacks": 0,
+          "continuations": 0
+        },
+        "50.0_3.0": {
+          "target": 50.0,
+          "risk": 3.0,
+          "days": 1,
+          "breaches": 0,
+          "hits": 0,
+          "hit_rate": 0.0,
+          "mean_pnl": 39.074615129999756,
+          "mean_goal_progress": 0.7814923025999951,
+          "trades": 56,
+          "pullbacks": 7,
+          "continuations": 49
+        },
+        "70.0_3.0": {
+          "target": 70.0,
+          "risk": 3.0,
+          "days": 3,
+          "breaches": 0,
+          "hits": 0,
+          "hit_rate": 0.0,
+          "mean_pnl": 0.7816900000000278,
+          "mean_goal_progress": 0.011167000000000397,
+          "trades": 18,
+          "pullbacks": 0,
+          "continuations": 54
+        },
+        "50.0_1.0": {
+          "target": 50.0,
+          "risk": 1.0,
+          "days": 1,
+          "breaches": 0,
+          "hits": 0,
+          "hit_rate": 0.0,
+          "mean_pnl": 0.0,
+          "mean_goal_progress": 0.0,
+          "trades": 0,
+          "pullbacks": 22,
+          "continuations": 72
+        },
+        "90.0_2.0": {
+          "target": 90.0,
+          "risk": 2.0,
+          "days": 1,
+          "breaches": 0,
+          "hits": 0,
+          "hit_rate": 0.0,
+          "mean_pnl": -1.9393414100000004,
+          "mean_goal_progress": 0.0,
+          "trades": 2,
+          "pullbacks": 2,
+          "continuations": 6
+        },
+        "15.0_3.0": {
+          "target": 15.0,
+          "risk": 3.0,
+          "days": 1,
+          "breaches": 0,
+          "hits": 1,
+          "hit_rate": 1.0,
+          "mean_pnl": 15.0,
+          "mean_goal_progress": 1.0,
+          "trades": 8,
+          "pullbacks": 30,
+          "continuations": 2
+        },
+        "70.0_2.0": {
+          "target": 70.0,
+          "risk": 2.0,
+          "days": 2,
+          "breaches": 0,
+          "hits": 0,
+          "hit_rate": 0.0,
+          "mean_pnl": -0.9900071225,
+          "mean_goal_progress": 0.0,
+          "trades": 4,
+          "pullbacks": 42,
+          "continuations": 51
+        },
+        "30.0_1.0": {
+          "target": 30.0,
+          "risk": 1.0,
+          "days": 1,
+          "breaches": 0,
+          "hits": 0,
+          "hit_rate": 0.0,
+          "mean_pnl": -0.8659386799999853,
+          "mean_goal_progress": 0.0,
+          "trades": 8,
+          "pullbacks": 4,
+          "continuations": 8
+        },
+        "5.0_2.0": {
+          "target": 5.0,
+          "risk": 2.0,
+          "days": 1,
+          "breaches": 0,
+          "hits": 0,
+          "hit_rate": 0.0,
+          "mean_pnl": 0.0,
+          "mean_goal_progress": 0.0,
+          "trades": 0,
+          "pullbacks": 0,
+          "continuations": 0
+        },
+        "90.0_1.0": {
+          "target": 90.0,
+          "risk": 1.0,
+          "days": 1,
+          "breaches": 0,
+          "hits": 0,
+          "hit_rate": 0.0,
+          "mean_pnl": 25.782666891000144,
+          "mean_goal_progress": 0.2864740765666683,
+          "trades": 53,
+          "pullbacks": 13,
+          "continuations": 186
+        },
+        "90.0_3.0": {
+          "target": 90.0,
+          "risk": 3.0,
+          "days": 1,
+          "breaches": 0,
+          "hits": 0,
+          "hit_rate": 0.0,
+          "mean_pnl": -2.94435012,
+          "mean_goal_progress": 0.0,
+          "trades": 3,
+          "pullbacks": 5,
+          "continuations": 0
+        },
+        "15.0_2.0": {
+          "target": 15.0,
+          "risk": 2.0,
+          "days": 1,
+          "breaches": 0,
+          "hits": 0,
+          "hit_rate": 0.0,
+          "mean_pnl": 0.0,
+          "mean_goal_progress": 0.0,
+          "trades": 0,
+          "pullbacks": 0,
+          "continuations": 0
+        }
+      }
+    }
+  },
+  "verdict": {
+    "coach_fit_strong": false,
+    "opp_fire_weak": true,
+    "forward_breach_ok": true,
+    "forward_a13_weak": true,
+    "beats_champ_hits": false,
+    "beats_champ_a13": false,
+    "promote_ready": false
+  },
+  "elapsed_s": 1299.133672952652
+}

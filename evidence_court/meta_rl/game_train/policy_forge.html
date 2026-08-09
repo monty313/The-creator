@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Policy Forge — A34 Game Train</title>
+<style>
+  :root {
+    --bg: #0b1020;
+    --panel: #121a2f;
+    --line: #24304d;
+    --text: #e8eefc;
+    --muted: #8b9bb8;
+    --good: #3dd68c;
+    --bad: #ff6b7a;
+    --warn: #f0c14b;
+    --accent: #6ea8ff;
+    --long: #3dd68c;
+    --short: #ff6b7a;
+    --wait: #8b9bb8;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; font-family: "Segoe UI", system-ui, sans-serif;
+    background: radial-gradient(1200px 600px at 20% -10%, #1a2748 0%, var(--bg) 55%);
+    color: var(--text); min-height: 100vh;
+  }
+  header {
+    display: flex; flex-wrap: wrap; gap: 12px; align-items: center;
+    justify-content: space-between; padding: 14px 18px;
+    border-bottom: 1px solid var(--line); background: rgba(10,14,28,.85);
+    position: sticky; top: 0; z-index: 5; backdrop-filter: blur(8px);
+  }
+  h1 { font-size: 1.05rem; margin: 0; letter-spacing: .02em; }
+  h1 span { color: var(--accent); font-weight: 600; }
+  .stats { display: flex; flex-wrap: wrap; gap: 10px 14px; font-size: .85rem; color: var(--muted); }
+  .stats b { color: var(--text); }
+  main {
+    display: grid; grid-template-columns: 1.4fr 1fr; gap: 14px;
+    padding: 14px; max-width: 1400px; margin: 0 auto;
+  }
+  @media (max-width: 980px) { main { grid-template-columns: 1fr; } }
+  .card {
+    background: var(--panel); border: 1px solid var(--line); border-radius: 12px;
+    padding: 12px 14px;
+  }
+  .card h2 {
+    margin: 0 0 10px; font-size: .78rem; text-transform: uppercase;
+    letter-spacing: .08em; color: var(--muted); font-weight: 600;
+  }
+  canvas#chart {
+    width: 100%; height: 280px; background: #0a1224; border-radius: 8px;
+    border: 1px solid var(--line); display: block;
+  }
+  .row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 8px 0; }
+  label { font-size: .8rem; color: var(--muted); }
+  select, input[type="number"], input[type="range"] {
+    background: #0a1224; color: var(--text); border: 1px solid var(--line);
+    border-radius: 8px; padding: 6px 8px;
+  }
+  button {
+    border: 1px solid var(--line); background: #18233d; color: var(--text);
+    border-radius: 10px; padding: 10px 14px; cursor: pointer; font-weight: 600;
+  }
+  button:hover { border-color: var(--accent); }
+  button.long { background: #123526; border-color: #1f6b45; color: var(--long); }
+  button.short { background: #3a1520; border-color: #7a2b3a; color: var(--short); }
+  button.wait { background: #1a2236; color: var(--wait); }
+  button.primary { background: #1a3a6e; border-color: #3d6db5; color: #d7e7ff; }
+  button.coach { background: #3a2f12; border-color: #8a7220; color: var(--warn); }
+  button:disabled { opacity: .45; cursor: not-allowed; }
+  .actions button { min-width: 96px; font-size: 1rem; }
+  .pill {
+    display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px;
+    border-radius: 999px; border: 1px solid var(--line); font-size: .78rem; color: var(--muted);
+  }
+  .pill.on { color: var(--text); border-color: var(--accent); }
+  .sense { margin: 6px 0; }
+  .sense .bar {
+    height: 8px; background: #0a1224; border-radius: 99px; overflow: hidden; border: 1px solid var(--line);
+  }
+  .sense .bar > i { display: block; height: 100%; background: linear-gradient(90deg, var(--accent), var(--good)); width: 0%; }
+  .sense .lbl { display: flex; justify-content: space-between; font-size: .78rem; color: var(--muted); margin-bottom: 3px; }
+  .log {
+    height: 160px; overflow: auto; font-family: ui-monospace, Consolas, monospace;
+    font-size: .72rem; color: var(--muted); background: #0a1224; border-radius: 8px;
+    border: 1px solid var(--line); padding: 8px;
+  }
+  .log div { margin: 2px 0; }
+  .log .ok { color: var(--good); }
+  .log .bad { color: var(--bad); }
+  .log .info { color: var(--accent); }
+  .hint {
+    font-size: .85rem; line-height: 1.4; color: var(--muted);
+    background: #0a1224; border-radius: 8px; border: 1px solid var(--line); padding: 10px;
+  }
+  .hint strong { color: var(--text); }
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .kv { font-size: .82rem; color: var(--muted); }
+  .kv b { color: var(--text); font-weight: 600; }
+  footer {
+    max-width: 1400px; margin: 0 auto; padding: 0 14px 18px; color: var(--muted); font-size: .75rem;
+  }
+  .toast {
+    position: fixed; right: 16px; bottom: 16px; background: #16233f; border: 1px solid var(--accent);
+    color: var(--text); padding: 10px 14px; border-radius: 10px; display: none; z-index: 20;
+  }
+</style>
+</head>
+<body>
+<header>
+  <div>
+    <h1>Policy Forge <span>A34</span> · principles not hard rules</h1>
+    <div class="stats" style="margin-top:6px">
+      <span>score <b id="scScore">0</b></span>
+      <span>high <b id="scHigh">0</b></span>
+      <span>steps <b id="scSteps">0</b></span>
+      <span>align <b id="scAlign">0%</b></span>
+      <span>fire dens <b id="scFire">0%</b></span>
+      <span>traj <b id="scTraj">0</b></span>
+      <span>day <b id="scDay">0</b></span>
+      <span>session <b id="scSess">asia</b></span>
+    </div>
+  </div>
+  <div class="row">
+    <span class="pill on" id="pillResume">resume: loading…</span>
+    <button class="primary" id="btnExport">Export pack</button>
+    <button id="btnLoad">Load pack / brain</button>
+    <input type="file" id="fileLoad" accept="application/json,.json" hidden />
+  </div>
+</header>
+
+<main>
+  <section>
+    <div class="card">
+      <h2>Market · multi-TF structure</h2>
+      <canvas id="chart" width="900" height="280"></canvas>
+      <div class="row">
+        <span class="pill" id="pillTopo">topo: —</span>
+        <span class="pill" id="pillMtf">mtf: —</span>
+        <span class="pill" id="pillEdge">edge: —</span>
+        <span class="pill" id="pillCoach">coach: —</span>
+        <span class="pill" id="pillBrain">brain: —</span>
+      </div>
+      <div class="row actions">
+        <button class="long" id="btnLong">Long (A)</button>
+        <button class="wait" id="btnWait">Wait (S)</button>
+        <button class="short" id="btnShort">Short (D)</button>
+        <button class="coach" id="btnCoach">Coach step (C)</button>
+        <button id="btnNext">Skip bar (N)</button>
+        <button id="btnAuto">Auto coach ×20</button>
+      </div>
+      <div class="row">
+        <label>Target % <input id="inTarget" type="number" min="5" max="90" value="15" style="width:70px" /></label>
+        <label>Risk % <input id="inRisk" type="number" min="1" max="3" step="0.5" value="2" style="width:70px" /></label>
+        <label>Session
+          <select id="inSession">
+            <option value="asia">Asia</option>
+            <option value="london" selected>London</option>
+            <option value="ny">New York</option>
+          </select>
+        </label>
+        <label>Fire bias
+          <select id="inFireBias">
+            <option value="normal">normal</option>
+            <option value="high" selected>high (B&amp;B pullbacks)</option>
+            <option value="london_ny">London/NY max</option>
+          </select>
+        </label>
+        <button id="btnNewDay">New day</button>
+      </div>
+      <div class="hint" id="playHint" style="margin-top:8px"></div>
+    </div>
+    <div class="card" style="margin-top:14px">
+      <h2>Event log</h2>
+      <div class="log" id="log"></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="card">
+      <h2>Emergent senses (A32)</h2>
+      <div class="sense"><div class="lbl"><span>Sight · structure / topology</span><b id="sSightV">0</b></div><div class="bar"><i id="sSight"></i></div></div>
+      <div class="sense"><div class="lbl"><span>Feel · force / load</span><b id="sFeelV">0</b></div><div class="bar"><i id="sFeel"></i></div></div>
+      <div class="sense"><div class="lbl"><span>Taste · goal pressure</span><b id="sTasteV">0</b></div><div class="bar"><i id="sTaste"></i></div></div>
+      <div class="sense"><div class="lbl"><span>Hearing · session / regime story</span><b id="sHearV">0</b></div><div class="bar"><i id="sHear"></i></div></div>
+    </div>
+    <div class="card" style="margin-top:14px">
+      <h2>Coach soft label (principles)</h2>
+      <div class="grid2 kv">
+        <div>Teacher <b id="kvTeach">—</b></div>
+        <div>Size frac <b id="kvSize">0</b></div>
+        <div>Soft wait <b id="kvPw">—</b></div>
+        <div>Soft long <b id="kvPl">—</b></div>
+        <div>Soft short <b id="kvPs">—</b></div>
+        <div>Reward scale <b id="kvRew">—</b></div>
+      </div>
+      <div class="hint" style="margin-top:10px" id="principleHint"></div>
+    </div>
+    <div class="card" style="margin-top:14px">
+      <h2>Train focus (from last handoff)</h2>
+      <div class="hint">
+        1. More <strong>fire days</strong> — LAUNCH/RELEASE pullbacks with HTF support.<br/>
+        2. Prefer <strong>London + NY</strong> (Asia was overplayed).<br/>
+        3. Bread-and-butter pullbacks after trend, not grind waits.<br/>
+        4. One export at end of a long run (avoid wait-bias multi re-exports).<br/>
+        5. Raise <strong>align_rate on fire bars</strong>, not only waits.
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  Law A34 · offline game-ingest only · never mutates production champion at prove ·
+  Export → <code>python -m evidence_court.meta_rl.cli game-ingest &lt;pack.json&gt; --out evidence_court/artifacts/game_train/meta_policy_forge_v1.npz --lr 0.02</code>
+</footer>
+<div class="toast" id="toast"></div>
+
+<script>
+(() => {
+  "use strict";
+
+  const META_RL_DIM = 176;
+  const H = 64;
+  const ACTS = ["wait", "long", "short"];
+  const GOAL_AXES = ["G-CLEAR","G-BREACH0","G-A13","G-SIGHT","G-FEEL","G-TASTE","G-HEAR","G-TRAIN","G-NO_RETRAIN"];
+  const PRINCIPLE_IDS = ["mtf_consensus","htf_force","ltf_phase","inertia","topology","edge","goal","risk"];
+  const TOPOS = ["launch","release","slingshot_load","chop","collapse"];
+
+  // ---------- math ----------
+  const clamp = (x, a, b) => Math.max(a, Math.min(b, x));
+  const rand = (a=0, b=1) => a + Math.random() * (b - a);
+  const choice = (arr) => arr[Math.floor(Math.random() * arr.length)];
+  const softmax = (z) => {
+    const m = Math.max(...z);
+    const e = z.map(v => Math.exp(clamp(v - m, -40, 40)));
+    const s = e.reduce((a,b)=>a+b, 0) + 1e-12;
+    return e.map(v => v / s);
+  };
+  const relu = (x) => x.map(v => Math.max(0, v));
+
+  // ---------- brain (MetaBrain format 2) ----------
+  function createBrain(seed = 42) {
+    // xavier-ish deterministic-ish with seed
+    let s = seed >>> 0;
+    const rng = () => {
+      s = (s * 1664525 + 1013904223) >>> 0;
+      return s / 0x100000000;
+    };
+    const nrm = (scale) => (rng() * 2 - 1) * scale;
+    const W1 = new Float64Array(H * META_RL_DIM);
+    const b1 = new Float64Array(H);
+    const W2 = new Float64Array(3 * H);
+    const b2 = new Float64Array([0.3, 0.0, 0.0]);
+    const W_size = new Float64Array(H);
+    for (let i = 0; i < W1.length; i++) W1[i] = nrm(Math.sqrt(2 / META_RL_DIM));
+    for (let i = 0; i < W2.length; i++) W2[i] = nrm(Math.sqrt(2 / H));
+    for (let i = 0; i < H; i++) W_size[i] = nrm(0.05);
+    // prior boost set dirs + allow_fire
+    for (const col of [0, 3, 6, 9]) {
+      for (let r = 0; r < H; r++) W1[r * META_RL_DIM + col] += 0.15;
+    }
+    const base = META_RL_DIM - 8;
+    for (let r = 0; r < H; r++) {
+      W1[r * META_RL_DIM + base + 7] += 0.2; // allow fire
+      W1[r * META_RL_DIM + base + 3] += 0.15; // goal pressure
+    }
+    return {
+      W1, b1, W2, b2, W_size, b_size: 0.0,
+      seed, meta_train_steps: 0, trained: false, format: 2, source: "policy_forge_browser"
+    };
+  }
+
+  function brainFromJson(bj) {
+    if (!bj || !bj.W1) return createBrain(42);
+    const b = createBrain(bj.seed || 42);
+    const copy = (dst, src) => {
+      const arr = Array.isArray(src) ? src : [];
+      for (let i = 0; i < Math.min(dst.length, arr.length); i++) dst[i] = +arr[i];
+    };
+    copy(b.W1, bj.W1); copy(b.b1, bj.b1); copy(b.W2, bj.W2); copy(b.b2, bj.b2); copy(b.W_size, bj.W_size);
+    b.b_size = +bj.b_size || 0;
+    b.meta_train_steps = +bj.meta_train_steps || 0;
+    b.trained = !!bj.trained || b.meta_train_steps > 0;
+    b.seed = +bj.seed || 42;
+    b.source = bj.source || "policy_forge_browser";
+    return b;
+  }
+
+  function brainToJson(b) {
+    return {
+      W1: Array.from(b.W1), b1: Array.from(b.b1),
+      W2: Array.from(b.W2), b2: Array.from(b.b2),
+      W_size: Array.from(b.W_size), b_size: b.b_size,
+      seed: b.seed, meta_train_steps: b.meta_train_steps,
+      trained: b.trained, format: 2, source: "policy_forge_browser"
+    };
+  }
+
+  function forward(b, state) {
+    const h = new Float64Array(H);
+    for (let r = 0; r < H; r++) {
+      let s = b.b1[r];
+      const off = r * META_RL_DIM;
+      for (let c = 0; c < META_RL_DIM; c++) s += b.W1[off + c] * state[c];
+      h[r] = Math.max(0, s);
+    }
+    const logits = [0, 0, 0];
+    for (let a = 0; a < 3; a++) {
+      let s = b.b2[a];
+      const off = a * H;
+      for (let r = 0; r < H; r++) s += b.W2[off + r] * h[r];
+      logits[a] = s;
+    }
+    let sizeLogit = b.b_size;
+    for (let r = 0; r < H; r++) sizeLogit += b.W_size[r] * h[r];
+    const probs = softmax(logits);
+    const idx = probs.indexOf(Math.max(...probs));
+    return { logits, probs, sizeLogit, h, act: ACTS[idx] };
+  }
+
+  function metaUpdate(b, state, teacherAct, lr = 0.02, reward = 1.0, teacherSizeFrac = null) {
+    const y = { wait: 0, long: 1, short: 2 }[teacherAct] ?? 0;
+    // forward with pre-relu
+    const hPre = new Float64Array(H);
+    const h = new Float64Array(H);
+    for (let r = 0; r < H; r++) {
+      let s = b.b1[r];
+      const off = r * META_RL_DIM;
+      for (let c = 0; c < META_RL_DIM; c++) s += b.W1[off + c] * state[c];
+      hPre[r] = s;
+      h[r] = Math.max(0, s);
+    }
+    const logits = [0, 0, 0];
+    for (let a = 0; a < 3; a++) {
+      let s = b.b2[a];
+      const off = a * H;
+      for (let r = 0; r < H; r++) s += b.W2[off + r] * h[r];
+      logits[a] = s;
+    }
+    const probs = softmax(logits);
+    let sizeLogit = b.b_size;
+    for (let r = 0; r < H; r++) sizeLogit += b.W_size[r] * h[r];
+
+    const dlogits = probs.map((p, i) => (p - (i === y ? 1 : 0)) * reward);
+    if (teacherSizeFrac == null) teacherSizeFrac = y === 0 ? 0 : 0.65;
+    const sizeSig = 1 / (1 + Math.exp(-sizeLogit));
+    const sizeErr = teacherSizeFrac - sizeSig;
+    const dSize = -reward * sizeErr;
+
+    // dW2, db2
+    for (let a = 0; a < 3; a++) {
+      b.b2[a] -= lr * dlogits[a];
+      const off = a * H;
+      for (let r = 0; r < H; r++) b.W2[off + r] = clamp(b.W2[off + r] - lr * dlogits[a] * h[r], -8, 8);
+    }
+    // dh
+    const dh = new Float64Array(H);
+    for (let r = 0; r < H; r++) {
+      let s = b.W_size[r] * dSize;
+      for (let a = 0; a < 3; a++) s += b.W2[a * H + r] * dlogits[a];
+      dh[r] = s * (hPre[r] > 0 ? 1 : 0);
+    }
+    for (let r = 0; r < H; r++) {
+      b.b1[r] -= lr * dh[r];
+      const off = r * META_RL_DIM;
+      for (let c = 0; c < META_RL_DIM; c++) {
+        b.W1[off + c] = clamp(b.W1[off + c] - lr * dh[r] * state[c], -8, 8);
+      }
+      b.W_size[r] = clamp(b.W_size[r] - lr * h[r] * dSize, -8, 8);
+    }
+    b.b_size -= lr * dSize;
+    b.meta_train_steps += 1;
+    b.trained = true;
+    return -Math.log(probs[y] + 1e-12);
+  }
+
+  // ---------- world / coach ----------
+  function sessionPhase(sess) {
+    if (sess === "london") return rand(0.35, 0.62);
+    if (sess === "ny") return rand(0.62, 0.9);
+    return rand(0.05, 0.35);
+  }
+
+  function encodeGoalRisk(target, risk, progress, realized) {
+    const out = new Float64Array(8);
+    out[0] = clamp((target - 5) / 85, 0, 1);
+    out[1] = clamp((risk - 1) / 2, 0, 1);
+    const hardness = target / Math.max(risk, 1e-6);
+    out[2] = clamp(Math.log1p(hardness) / Math.log1p(90 / 1), 0, 1);
+    out[3] = clamp(1 - progress, -1, 1);
+    out[4] = clamp(Math.max(risk - realized, 0) / Math.max(risk, 1e-6), 0, 1);
+    out[5] = target < 20 ? 0.33 : target < 50 ? 0.66 : 1.0;
+    out[6] = risk <= 1.5 ? 0.33 : risk <= 2.5 ? 0.66 : 1.0;
+    out[7] = out[4] >= 0.08 && progress < 1.05 ? 1.0 : 0.0;
+    return out;
+  }
+
+  function sampleSituation(G) {
+    const sess = G.session;
+    const bias = G.fireBias;
+    let fireP = 0.28;
+    if (bias === "high") fireP = 0.48;
+    if (bias === "london_ny" || sess === "london" || sess === "ny") fireP = Math.max(fireP, 0.55);
+    if (sess === "asia" && bias !== "london_ny") fireP *= 0.65;
+
+    const fire = Math.random() < fireP;
+    const side = Math.random() < 0.5 ? 1 : -1;
+    const strength = fire ? rand(0.45, 1.0) : rand(0.0, 0.45);
+
+    let topo;
+    if (!fire) topo = Math.random() < 0.55 ? "slingshot_load" : (Math.random() < 0.6 ? "chop" : "collapse");
+    else topo = Math.random() < 0.55 ? "launch" : "release";
+
+    // MTF consensus
+    let mtf;
+    const agreeRoll = Math.random();
+    if (!fire || strength < 0.3) mtf = agreeRoll < 0.35 ? "incomplete" : (agreeRoll < 0.7 ? "conflict" : (side > 0 ? "agree_long" : "agree_short"));
+    else if (agreeRoll < 0.12) mtf = "conflict";
+    else if (agreeRoll < 0.18) mtf = "incomplete";
+    else mtf = side > 0 ? "agree_long" : "agree_short";
+
+    const progress = G.progress;
+    const realized = G.realized;
+    const ctx = encodeGoalRisk(G.target, G.risk, progress, realized);
+    if (sess === "london" || sess === "ny") ctx[3] = Math.min(1, ctx[3] * 1.15);
+
+    const state = new Float64Array(META_RL_DIM);
+    // set dirs at 0,3,6,9 with companion flags like exports
+    for (let i = 0; i < 4; i++) {
+      const agree = mtf.startsWith("agree") ? 1 : (mtf === "conflict" ? (Math.random() < 0.5 ? -1 : 1) : 0);
+      const dir = side * strength * (agree === 0 ? 0.35 : agree);
+      const base = i * 3;
+      state[base] = dir;
+      state[base + 1] = fire ? (side > 0 ? 1 : -1) : (Math.random() < 0.5 ? 1 : -1);
+      state[base + 2] = fire ? 1 : (Math.random() < 0.4 ? 1 : 0);
+    }
+    // noise fill sparse mark channels
+    for (let i = 12; i < 160; i++) {
+      if (Math.random() < 0.08) state[i] = rand(-0.25, 0.25);
+    }
+    // structure / session-ish
+    state[40] = topo === "launch" || topo === "release" ? 0.8 : (topo === "slingshot_load" ? 0.45 : 0.1);
+    state[41] = sessionPhase(sess);
+    state[42] = strength;
+    state[43] = side;
+    // goal context last 8
+    for (let i = 0; i < 8; i++) state[META_RL_DIM - 8 + i] = ctx[i];
+
+    // coach soft label from principles (not hard recipe path)
+    const allow = ctx[7] >= 0.5 && ctx[4] >= 0.08;
+    const meanDir = (state[0] + state[3] + state[6] + state[9]) / 4;
+    const htfOk = Math.abs(meanDir) > 0.28 && (mtf === "agree_long" || mtf === "agree_short");
+    const phaseOk = topo === "launch" || topo === "release";
+    const loadOnly = topo === "slingshot_load";
+
+    let soft = { wait: 0.34, long: 0.33, short: 0.33 };
+    if (!allow || loadOnly || topo === "chop" || !htfOk || !phaseOk) {
+      soft = { wait: 0.62, long: 0.19, short: 0.19 };
+      if (meanDir > 0.2) soft = { wait: 0.58, long: 0.36, short: 0.06 };
+      if (meanDir < -0.2) soft = { wait: 0.58, long: 0.06, short: 0.36 };
+      if (topo === "collapse") {
+        soft = meanDir < 0
+          ? { wait: 0.35, long: 0.05, short: 0.60 }
+          : { wait: 0.35, long: 0.60, short: 0.05 };
+      }
+    } else {
+      if (meanDir > 0) soft = { wait: 0.18, long: 0.72, short: 0.10 };
+      else soft = { wait: 0.18, long: 0.10, short: 0.72 };
+      // session density boost
+      if (sess === "london" || sess === "ny") {
+        soft.wait *= 0.75;
+        const s = soft.wait + soft.long + soft.short;
+        soft.wait /= s; soft.long /= s; soft.short /= s;
+      }
+    }
+    // normalize
+    {
+      const s = soft.wait + soft.long + soft.short;
+      soft.wait /= s; soft.long /= s; soft.short /= s;
+    }
+
+    let teacher = "wait";
+    if (soft.long >= soft.wait && soft.long >= soft.short) teacher = "long";
+    else if (soft.short >= soft.wait && soft.short >= soft.long) teacher = "short";
+
+    let sizeFrac = 0;
+    if (teacher !== "wait") {
+      const tNorm = (G.target - 5) / 85;
+      sizeFrac = clamp(0.45 + 0.4 * tNorm + ((sess === "london" || sess === "ny") ? 0.1 : 0), 0.2, 0.95);
+    }
+
+    // senses 0..1
+    const sight = clamp((phaseOk ? 0.7 : 0.25) + (htfOk ? 0.25 : 0) + (topo === "chop" ? -0.2 : 0), 0, 1);
+    const feel = clamp(strength * (loadOnly ? 0.55 : 0.9), 0, 1);
+    const taste = clamp(ctx[3] * 0.7 + (teacher !== "wait" ? 0.25 : 0), 0, 1);
+    const hearing = clamp((sess === "london" || sess === "ny" ? 0.75 : 0.35) + (mtf.startsWith("agree") ? 0.2 : 0), 0, 1);
+
+    // synthetic price path for chart
+    const px = [];
+    let p = 100 + meanDir * 2;
+    for (let i = 0; i < 60; i++) {
+      p += meanDir * 0.08 + rand(-0.35, 0.35) + (fire && i > 40 ? meanDir * 0.15 : 0);
+      px.push(p);
+    }
+
+    return {
+      state, teacher, sizeFrac, soft, topo, mtf, side, strength, fire,
+      senses: { sight, feel, taste, hearing },
+      prices: px,
+      edge: fire && phaseOk && htfOk ? (teacher === "wait" ? "wait_edge" : teacher + "_edge") : "no_edge",
+      session: sess,
+      day_index: G.day,
+    };
+  }
+
+  // ---------- game state ----------
+  const G = {
+    brain: createBrain(42),
+    traj: [],
+    score: 0,
+    high: 0,
+    aligns: 0,
+    decides: 0,
+    firesCoach: 0,
+    firesPlayerAlign: 0,
+    day: 0,
+    bar: 0,
+    session: "london",
+    target: 15,
+    risk: 2,
+    progress: 0.12,
+    realized: 0.1,
+    fireBias: "high",
+    sit: null,
+    resumeLabel: "fresh prior",
+  };
+
+  // ---------- UI ----------
+  const $ = (id) => document.getElementById(id);
+  const logEl = $("log");
+  function log(msg, cls = "info") {
+    const d = document.createElement("div");
+    d.className = cls;
+    d.textContent = msg;
+    logEl.prepend(d);
+  }
+  function toast(msg) {
+    const t = $("toast");
+    t.textContent = msg;
+    t.style.display = "block";
+    setTimeout(() => { t.style.display = "none"; }, 2200);
+  }
+  function setBar(id, v) {
+    $(id).style.width = `${Math.round(clamp(v,0,1)*100)}%`;
+    $(id + "V").textContent = v.toFixed(2);
+  }
+  function refreshHud() {
+    $("scScore").textContent = Math.round(G.score);
+    $("scHigh").textContent = Math.round(G.high);
+    $("scSteps").textContent = G.brain.meta_train_steps;
+    const ar = G.decides ? G.aligns / G.decides : 0;
+    $("scAlign").textContent = `${(ar * 100).toFixed(1)}%`;
+    const fd = G.traj.length ? G.firesCoach / G.traj.length : 0;
+    $("scFire").textContent = `${(fd * 100).toFixed(1)}%`;
+    $("scTraj").textContent = G.traj.length;
+    $("scDay").textContent = G.day;
+    $("scSess").textContent = G.session;
+    $("pillResume").textContent = `resume: ${G.resumeLabel}`;
+  }
+
+  function drawChart(sit) {
+    const c = $("chart");
+    const ctx = c.getContext("2d");
+    const w = c.width, h = c.height;
+    ctx.clearRect(0, 0, w, h);
+    ctx.fillStyle = "#0a1224";
+    ctx.fillRect(0, 0, w, h);
+    const px = sit.prices;
+    const min = Math.min(...px), max = Math.max(...px);
+    const span = Math.max(1e-6, max - min);
+    ctx.strokeStyle = sit.side > 0 ? "#3dd68c" : "#ff6b7a";
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    px.forEach((p, i) => {
+      const x = (i / (px.length - 1)) * (w - 20) + 10;
+      const y = h - 20 - ((p - min) / span) * (h - 40);
+      if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+    });
+    ctx.stroke();
+    // coach marker
+    ctx.fillStyle = sit.teacher === "long" ? "#3dd68c" : sit.teacher === "short" ? "#ff6b7a" : "#8b9bb8";
+    ctx.fillRect(w - 18, 12, 8, 8);
+    ctx.fillStyle = "#8b9bb8";
+    ctx.font = "12px Segoe UI";
+    ctx.fillText(`${sit.topo} · ${sit.mtf} · ${sit.session}`, 12, 18);
+  }
+
+  function showSit() {
+    const sit = G.sit;
+    if (!sit) return;
+    drawChart(sit);
+    $("pillTopo").textContent = `topo: ${sit.topo}`;
+    $("pillMtf").textContent = `mtf: ${sit.mtf}`;
+    $("pillEdge").textContent = `edge: ${sit.edge}`;
+    $("pillCoach").textContent = `coach: ${sit.teacher}`;
+    const pred = forward(G.brain, sit.state);
+    $("pillBrain").textContent = `brain: ${pred.act}`;
+    setBar("sSight", sit.senses.sight);
+    setBar("sFeel", sit.senses.feel);
+    setBar("sTaste", sit.senses.taste);
+    setBar("sHear", sit.senses.hearing);
+    $("kvTeach").textContent = sit.teacher;
+    $("kvSize").textContent = sit.sizeFrac.toFixed(2);
+    $("kvPw").textContent = sit.soft.wait.toFixed(2);
+    $("kvPl").textContent = sit.soft.long.toFixed(2);
+    $("kvPs").textContent = sit.soft.short.toFixed(2);
+    const rew = rewardFor(sit, sit.teacher);
+    $("kvRew").textContent = rew.toFixed(2);
+    $("principleHint").innerHTML =
+      `Principles: <strong>mtf=${sit.mtf}</strong>, topology=<strong>${sit.topo}</strong>, ` +
+      `htf force |meanDir| — coach soft probs drive CE, not frozen if/then.`;
+    $("playHint").innerHTML =
+      sit.teacher === "wait"
+        ? `Coach says <strong>WAIT</strong> (${sit.topo}). Avoid thrash. Sense load/chop before firing.`
+        : `Coach leans <strong>${sit.teacher.toUpperCase()}</strong> on ${sit.topo} with ${sit.mtf}. Match for align + score.`;
+    refreshHud();
+  }
+
+  function rewardFor(sit, playerAct) {
+    // higher reward when aligned on fire bars
+    let r = 1.0;
+    if (playerAct === sit.teacher) {
+      r = sit.teacher === "wait" ? 1.15 : 1.55;
+      if (sit.session === "london" || sit.session === "ny") r += 0.12;
+      if (sit.topo === "launch" || sit.topo === "release") r += 0.1;
+    } else {
+      r = sit.teacher === "wait" ? 0.85 : 0.55;
+      // thrash penalty if fire against coach
+      if (sit.teacher === "wait" && playerAct !== "wait") r = 0.45;
+      if (sit.teacher !== "wait" && playerAct === "wait") r = 0.7;
+      if (sit.teacher !== "wait" && playerAct !== "wait" && playerAct !== sit.teacher) r = 0.35;
+    }
+    return r;
+  }
+
+  function nextBar() {
+    G.session = $("inSession").value;
+    G.target = clamp(+$("inTarget").value || 15, 5, 90);
+    G.risk = clamp(+$("inRisk").value || 2, 1, 3);
+    G.fireBias = $("inFireBias").value;
+    G.progress = clamp(G.progress + rand(-0.02, 0.04), 0, 0.95);
+    G.realized = clamp(G.realized + rand(-0.05, 0.08), 0, G.risk * 0.9);
+    G.sit = sampleSituation(G);
+    G.bar += 1;
+    showSit();
+  }
+
+  function decide(playerAct) {
+    const sit = G.sit;
+    if (!sit) return;
+    const rew = rewardFor(sit, playerAct);
+    // train on teacher (Coach doctrine) — not raw player
+    metaUpdate(G.brain, sit.state, sit.teacher, 0.02, rew, sit.sizeFrac);
+    G.decides += 1;
+    if (playerAct === sit.teacher) {
+      G.aligns += 1;
+      G.score += 40 * rew + (sit.teacher !== "wait" ? 25 : 5);
+    } else {
+      G.score += 8 * rew;
+    }
+    if (sit.teacher !== "wait") G.firesCoach += 1;
+    if (playerAct === sit.teacher && sit.teacher !== "wait") G.firesPlayerAlign += 1;
+    G.high = Math.max(G.high, G.score);
+
+    const pred = forward(G.brain, sit.state);
+    const ok = playerAct === sit.teacher;
+    log(
+      `D${G.day} ${sit.session} ${sit.topo} player=${playerAct} coach=${sit.teacher} brain→${pred.act} rew=${rew.toFixed(2)} steps=${G.brain.meta_train_steps}`,
+      ok ? "ok" : "bad"
+    );
+
+    G.traj.push({
+      ts: new Date().toISOString(),
+      source: "policy_forge",
+      state: Array.from(sit.state),
+      teacher_act: sit.teacher,
+      teacher_size_frac: sit.sizeFrac,
+      player_act: playerAct,
+      reward: rew,
+      target_percent: G.target,
+      max_daily_risk_percent: G.risk,
+      sense_topology: sit.topo,
+      session: sit.session,
+      day_index: G.day,
+      goal_axes: GOAL_AXES.slice(),
+      principle_ids: PRINCIPLE_IDS.slice(),
+      soft_probs: { ...sit.soft },
+      label_style: "principle_soft",
+      mtf_consensus: sit.mtf,
+    });
+
+    // persist lightweight resume
+    try {
+      localStorage.setItem("policy_forge_resume_v1", JSON.stringify({
+        score: G.score, high: G.high, day: G.day, session: G.session,
+        aligns: G.aligns, decides: G.decides, firesCoach: G.firesCoach,
+        brain: brainToJson(G.brain),
+        // keep last 400 traj to avoid huge storage
+        traj: G.traj.slice(-400),
+      }));
+    } catch (_) {}
+
+    // advance day every ~40 bars
+    if (G.bar > 0 && G.bar % 40 === 0) {
+      G.day += 1;
+      log(`— day ${G.day} — rotate sessions toward London/NY density`, "info");
+      if (G.day % 3 === 1) $("inSession").value = "london";
+      else if (G.day % 3 === 2) $("inSession").value = "ny";
+      else $("inSession").value = "asia";
+    }
+    nextBar();
+  }
+
+  function exportPack() {
+    const ar = G.decides ? G.aligns / G.decides : 0;
+    const pack = {
+      format: "policy_forge_game_train_v1",
+      law: "A34_principle_soft_labels",
+      doctrine: "principles_not_hard_rules_mtf_structure",
+      repo: "monty313/The-creator",
+      meta_rl_dim: META_RL_DIM,
+      brain: brainToJson(G.brain),
+      trajectories: G.traj,
+      scoreboard: {
+        high_score: Math.round(G.high),
+        meta_train_steps: G.brain.meta_train_steps,
+        align_rate: ar,
+      },
+    };
+    const blob = new Blob([JSON.stringify(pack)], { type: "application/json" });
+    const a = document.createElement("a");
+    const ts = Date.now();
+    a.href = URL.createObjectURL(blob);
+    a.download = `policy_forge_export_${ts}.json`;
+    a.click();
+    URL.revokeObjectURL(a.href);
+    toast(`Exported ${G.traj.length} traj · steps ${G.brain.meta_train_steps}`);
+    log(`EXPORT ${a.download} traj=${G.traj.length} align=${(ar*100).toFixed(1)}%`, "info");
+  }
+
+  function applyResume(obj, label) {
+    if (obj.brain) G.brain = brainFromJson(obj.brain);
+    if (obj.scoreboard) {
+      G.high = +obj.scoreboard.high_score || G.high;
+      // scoreboard steps may lag brain
+    }
+    if (typeof obj.score === "number") G.score = obj.score;
+    if (typeof obj.high === "number") G.high = obj.high;
+    if (typeof obj.day === "number") G.day = obj.day;
+    if (obj.session) { G.session = obj.session; $("inSession").value = obj.session; }
+    if (typeof obj.aligns === "number") G.aligns = obj.aligns;
+    if (typeof obj.decides === "number") G.decides = obj.decides;
+    if (typeof obj.firesCoach === "number") G.firesCoach = obj.firesCoach;
+    if (Array.isArray(obj.traj)) G.traj = obj.traj;
+    if (Array.isArray(obj.trajectories) && !obj.traj) {
+      // full export pack
+      G.traj = obj.trajectories.slice();
+      G.decides = G.traj.length;
+      G.aligns = G.traj.filter(t => t.player_act === t.teacher_act).length;
+      G.firesCoach = G.traj.filter(t => t.teacher_act !== "wait").length;
+      if (obj.scoreboard) {
+        G.high = +obj.scoreboard.high_score || G.high;
+        G.score = G.high;
+      }
+    }
+    G.resumeLabel = label;
+    refreshHud();
+    log(`Resumed brain steps=${G.brain.meta_train_steps} from ${label}`, "ok");
+  }
+
+  async function tryLoadServerResume() {
+    // when served: artifacts sibling or same folder
+    const candidates = [
+      "./resume_brain.json",
+      "resume_brain.json",
+      "../../artifacts/game_train/resume_brain.json",
+    ];
+    for (const url of candidates) {
+      try {
+        const r = await fetch(url, { cache: "no-store" });
+        if (!r.ok) continue;
+        const j = await r.json();
+        applyResume(j, j.from_pack || url);
+        return true;
+      } catch (_) {}
+    }
+    // localStorage
+    try {
+      const raw = localStorage.getItem("policy_forge_resume_v1");
+      if (raw) {
+        applyResume(JSON.parse(raw), "localStorage");
+        return true;
+      }
+    } catch (_) {}
+    G.resumeLabel = "fresh prior (seed 42)";
+    refreshHud();
+    return false;
+  }
+
+  // wiring
+  $("btnLong").onclick = () => decide("long");
+  $("btnWait").onclick = () => decide("wait");
+  $("btnShort").onclick = () => decide("short");
+  $("btnCoach").onclick = () => decide(G.sit ? G.sit.teacher : "wait");
+  $("btnNext").onclick = () => nextBar();
+  $("btnAuto").onclick = () => {
+    for (let i = 0; i < 20; i++) decide(G.sit.teacher);
+    toast("Auto-coach ×20");
+  };
+  $("btnNewDay").onclick = () => {
+    G.day += 1;
+    G.progress = rand(0.05, 0.2);
+    G.realized = rand(0, 0.2);
+    log(`New day ${G.day}`, "info");
+    nextBar();
+  };
+  $("btnExport").onclick = exportPack;
+  $("btnLoad").onclick = () => $("fileLoad").click();
+  $("fileLoad").onchange = async (e) => {
+    const f = e.target.files && e.target.files[0];
+    if (!f) return;
+    try {
+      const j = JSON.parse(await f.text());
+      applyResume(j, f.name);
+      nextBar();
+      toast(`Loaded ${f.name}`);
+    } catch (err) {
+      toast("Load failed");
+      log(String(err), "bad");
+    }
+  };
+
+  window.addEventListener("keydown", (e) => {
+    if (e.target && ["INPUT","SELECT","TEXTAREA"].includes(e.target.tagName)) return;
+    const k = e.key.toLowerCase();
+    if (k === "a") decide("long");
+    if (k === "s") decide("wait");
+    if (k === "d") decide("short");
+    if (k === "c") decide(G.sit ? G.sit.teacher : "wait");
+    if (k === "n") nextBar();
+    if (k === "e") exportPack();
+  });
+
+  (async () => {
+    await tryLoadServerResume();
+    // default to London high-fire for training quality
+    $("inSession").value = "london";
+    $("inFireBias").value = "high";
+    G.session = "london";
+    G.fireBias = "high";
+    nextBar();
+    log("Policy Forge ready. Keys: A long · S wait · D short · C coach · N next · E export", "info");
+  })();
+})();
+</script>
+</body>
+</html>

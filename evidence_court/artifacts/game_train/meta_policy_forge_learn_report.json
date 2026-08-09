@@ -1,0 +1,109 @@
+{
+  "track": "meta_policy_forge_learn",
+  "law": "A34_learn_not_memorize",
+  "doctrine": "unique_teachers_heldout_augment_l2l_goal_context_no_multihit",
+  "start_src": "learn_continue",
+  "n_unique_path": 900,
+  "n_train_path": 780,
+  "n_hold_path": 120,
+  "train_dates": [
+    "2026-03-17",
+    "2026-03-18",
+    "2026-03-24",
+    "2026-03-26",
+    "2026-03-27",
+    "2026-03-30",
+    "2026-03-31",
+    "2026-04-06",
+    "2026-04-07",
+    "2026-04-08",
+    "2026-04-09",
+    "2026-04-10",
+    "2026-04-13",
+    "2026-04-15",
+    "2026-04-23"
+  ],
+  "hold_dates": [
+    "2026-04-24",
+    "2026-04-30",
+    "2026-05-04",
+    "2026-05-05",
+    "2026-05-06"
+  ],
+  "steps_requested": 20000,
+  "steps_applied": 20000,
+  "steps_before": 30000,
+  "steps_after": 50000,
+  "fingerprint_before": "42:meta30000:inf0:5b2894c92fb99756",
+  "fingerprint_after": "42:meta50000:inf0:45672a52e7d746f6",
+  "mean_loss": 0.032359485508879196,
+  "applied_acts": {
+    "short": 8277,
+    "wait": 3843,
+    "long": 7880
+  },
+  "fire_share_applied": 0.80785,
+  "applied_tags": {
+    "pack_aug": 5000,
+    "aug": 7500,
+    "wait_aug": 1134,
+    "synth": 6366
+  },
+  "mix": {
+    "fire_frac": 0.55,
+    "path_frac": 0.4,
+    "synth_frac": 0.28,
+    "wait_frac": 0.15,
+    "noise": 0.05,
+    "holdout_frac": 0.25,
+    "multi_hit": 0
+  },
+  "agreement": {
+    "train_exact_before": {
+      "n": 200.0,
+      "agree": 1.0,
+      "fire_agree": 1.0,
+      "fire_n": 200.0
+    },
+    "hold_exact_before": {
+      "n": 120.0,
+      "agree": 1.0,
+      "fire_agree": 1.0,
+      "fire_n": 120.0
+    },
+    "train_exact_after": {
+      "n": 200.0,
+      "agree": 1.0,
+      "fire_agree": 1.0,
+      "fire_n": 200.0
+    },
+    "hold_exact_after": {
+      "n": 120.0,
+      "agree": 1.0,
+      "fire_agree": 1.0,
+      "fire_n": 120.0
+    },
+    "train_aug_after": {
+      "n": 200.0,
+      "agree": 1.0,
+      "fire_agree": 1.0,
+      "fire_n": 200.0
+    },
+    "hold_aug_after": {
+      "n": 120.0,
+      "agree": 1.0,
+      "fire_agree": 1.0,
+      "fire_n": 120.0
+    },
+    "memorization_gap_train_minus_hold": 0.0,
+    "aug_sensitivity_train_exact_minus_aug": 0.0
+  },
+  "generalization_ok": true,
+  "lr": 0.015,
+  "seed": 42,
+  "saved": "C:\\Users\\user\\OneDrive\\Desktop\\The Creator\\evidence_court\\artifacts\\game_train\\meta_policy_forge_learn.npz",
+  "champion_untouched": true,
+  "inference_force_pad": false,
+  "elapsed_note": "2026-08-08T12:29:34Z",
+  "measure": "holdout_agree + forward mean_trades/n_zero/a13 \u2014 not coach CE"
+}
