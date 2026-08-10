@@ -1,0 +1,1245 @@
+{
+  "counts": {
+    "mt_names": 95,
+    "note_files": 42,
+    "total_families": 137,
+    "total_collapse_entries": 0,
+    "mt_index_parsed": 95,
+    "note_files_listed": 42
+  },
+  "families": [
+    {
+      "family_id": "mt__FTMO_DQN",
+      "kind": "mt",
+      "title": "@@FTMO_DQN@@",
+      "source": "strategies/language/01_METATRADER_INDEX.md :: @@FTMO_DQN@@ (.mq5)",
+      "adapter_profile": "rl_proxy",
+      "fidelity": "low",
+      "collapses": []
+    },
+    {
+      "family_id": "mt__agent_teacher",
+      "kind": "mt",
+      "title": "agent teacher",
+      "source": "strategies/language/01_METATRADER_INDEX.md :: agent teacher (.mq5)",
+      "adapter_profile": "mark_rsi_bb",
+      "fidelity": "medium",
+      "collapses": []
+    },
+    {
+      "family_id": "mt__ATI_FTMO_EA",
+      "kind": "mt",
+      "title": "ATI_FTMO_EA",
+      "source": "strategies/language/01_METATRADER_INDEX.md :: ATI_FTMO_EA (.mq5)",
+      "adapter_profile": "challenge",
+      "fidelity": "medium",
+      "collapses": []
+    },
+    {
+      "family_id": "mt__AutoGKCloseIntegral",
+      "kind": "mt",
+      "title": "AutoGKCloseIntegral",
+      "source": "strategies/language/01_METATRADER_INDEX.md :: AutoGKCloseIntegral (.mq5)",
+      "adapter_profile": "ma_sample",
+      "fidelity": "low",
+      "collapses": []
+    },
+    {
+      "family_id": "mt__AutoTradingBot_RF",
+      "kind": "mt",
+      "title": "AutoTradingBot_RF",
+      "source": "strategies/language/01_METATRADER_INDEX.md :: AutoTradingBot_RF (.mq5)",
+      "adapter_profile": "rl_proxy",
+      "fidelity": "low",
+      "collapses": []
+    },
+    {
+      "family_id": "mt__cci_gravity_scalp_ftmo",
+      "kind": "mt",
+      "title": "cci_gravity_scalp_ftmo",
+      "source": "strategies/language/01_METATRADER_INDEX.md :: cci_gravity_scalp_ftmo (.mq5)",
+      "adapter_profile": "cci_gravity",
+      "fidelity": "medium",
+      "collapses": []
+    },
+    {
+      "family_id": "mt__cci_gravity_scalp_ftmo_v6_perplexity",
+      "kind": "mt",
+      "title": "cci_gravity_scalp_ftmo_v6_perplexity",
+      "source": "strategies/language/01_METATRADER_INDEX.md :: cci_gravity_scalp_ftmo_v6_perplexity (.mq5)",
+      "adapter_profile": "cci_gravity",
+      "fidelity": "medium",
+      "collapses": []
+    },
+    {
+      "family_id": "mt__cci_gravity_scalp_v1_full",
+      "kind": "mt",
+      "title": "cci_gravity_scalp_v1_full",
+      "source": "strategies/language/01_METATRADER_INDEX.md :: cci_gravity_scalp_v1_full (.mq5)",
+      "adapter_profile": "cci_gravity",
+      "fidelity": "medium",
+      "collapses": []
+    },
+    {
+      "family_id": "mt__cci_gravity_scalp_v5_full",
+      "kind": "mt",
+      "title": "cci_gravity_scalp_v5_full",
+      "source": "strategies/language/01_METATRADER_INDEX.md :: cci_gravity_scalp_v5_full (.mq5)",
+      "adapter_profile": "cci_gravity",
+      "fidelity": "medium",
+      "collapses": []
+    },
+    {
+      "family_id": "mt__CCI_ShiftedSMA_Signal_3D",
+      "kind": "mt",
+      "title": "CCI_ShiftedSMA_Signal_3D",
+      "source": "strategies/language/01_METATRADER_INDEX.md :: CCI_ShiftedSMA_Signal_3D (.mq5)",
+      "adapter_profile": "ati_sma",
+      "fidelity": "medium",
+      "collapses": []
+    },
+    {
+      "family_id": "mt__CoolBollingerTrendEA",
+      "kind": "mt",
+      "title": "CoolBollingerTrendEA",
+      "source": "strategies/language/01_METATRADER_INDEX.md :: CoolBollingerTrendEA (.mq5)",
+      "adapter_profile": "cool_bb",
+      "fidelity": "medium",
+      "collapses": []
+    },
+    {
+      "family_id": "mt__coolboolinger",
+      "kind": "mt",
+      "title": "coolboolinger",
+      "source": "strategies/language/01_METATRADER_INDEX.md :: coolboolinger (.mq5)",
+      "adapter_profile": "cool_bb",
+      "fidelity": "medium",
+      "collapses": []
+    },
+    {
+      "family_id": "mt__crossenteopy",
+      "kind": "mt",
+      "title": "crossenteopy",
+      "source": "strategies/language/01_METATRADER_INDEX.md :: crossenteopy (.mq5)",
+      "adapter_profile": "macd",
+      "fidelity": "medium",
+      "collapses": []
+    },
+    {
+      "family_id": "mt__ErrorRatePlot",
+      "kind": "mt",
+      "title": "ErrorRatePlot",
+      "source": "strategies/language/01_METATRADER_INDEX.md :: ErrorRatePlot (.mq5)",
+      "adapter_profile": "ma_sample",
+      "fidelity": "low",
+      "collapses": []
+    },
+    {
+      "family_id": "mt__fasg_trendday_ea",
+      "kind": "mt",
+      "title": "fasg_trendday_ea",
+      "source": "strategies/language/01_METATRADER_INDEX.md :: fasg_trendday_ea (.mq5)",
+      "adapter_profile": "fasg",
+      "fidelity": "medium",
+      "collapses": []
+    },
+    {
+      "family_id": "mt__fixed_FTMO_BB_MTF_EA_Strategy4_v2_20260705_1323",
+      "kind": "mt",
+      "title": "fixed_FTMO_BB_MTF_EA_Strategy4_v2_20260705_1323",
+      "source": "strategies/language/01_METATRADER_INDEX.md :: fixed_FTMO_BB_MTF_EA_Strategy4_v2_20260705_1323 (.mq5)",
+      "adapter_profile": "bb_mtf",
+      "fidelity": "medium",
+      "collapses": []
+    },
+    {
+      "family_id": "mt__ftmo_ultra",
+      "kind": "mt",
+      "title": "ftmo ultra",
+      "source": "strategies/language/01_METATRADER_INDEX.md :: ftmo ultra (.mq5)",
+      "adapter_profile": "momentum",
+      "fidelity": "medium",
+      "collapses": []
+    },
+    {
+      "family_id": "mt__ftmo_all_assets_momentum_scalper",
+      "kind": "mt",
+      "title": "ftmo_all_assets_momentum_scalper",
+      "source": "strategies/language/01_METATRADER_INDEX.md :: ftmo_all_assets_momentum_scalper (.mq5)",
+      "adapter_profile": "momentum",
+      "fidelity": "medium",
+      "collapses": []
+    },
+    {
+      "family_id": "mt__FTMO_BB_MTF_EA_Strategy4",
+      "kind": "mt",
+      "title": "FTMO_BB_MTF_EA_Strategy4",
+      "source": "strategies/language/01_METATRADER_INDEX.md :: FTMO_BB_MTF_EA_Strategy4 (.mq5)",
+      "adapter_profile": "bb_mtf",
+      "fidelity": "medium",
+      "collapses": []
+    },
+    {
+      "family_id": "mt__FTMO_BB_MTF_EA_Strategy4_20260705_1210",
+      "kind": "mt",
+      "title": "FTMO_BB_MTF_EA_Strategy4_20260705_1210",
+      "source": "strategies/language/01_METATRADER_INDEX.md :: FTMO_BB_MTF_EA_Strategy4_20260705_1210 (.mq5)",
+      "adapter_profile": "bb_mtf",
+      "fidelity": "medium",
+      "collapses": []
+    },
+    {
+      "family_id": "mt__FTMO_BB_MTF_EA_Strategy4_v2_20260705_1323",
+      "kind": "mt",
+      "title": "FTMO_BB_MTF_EA_Strategy4_v2_20260705_1323",
+      "source": "strategies/language/01_METATRADER_INDEX.md :: FTMO_BB_MTF_EA_Strategy4_v2_20260705_1323 (.mq5)",
+      "adapter_profile": "bb_mtf",
+      "fidelity": "medium",
+      "collapses": []
+    },
+    {
+      "family_id": "mt__FTMO_BB_MTF_EA_Strategy4_v5",
+      "kind": "mt",
+      "title": "FTMO_BB_MTF_EA_Strategy4_v5",
+      "source": "strategies/language/01_METATRADER_INDEX.md :: FTMO_BB_MTF_EA_Strategy4_v5 (.mq5)",
+      "adapter_profile": "bb_mtf",
+      "fidelity": "medium",
+      "collapses": []
+    },
+    {
+      "family_id": "mt__FTMO_BB_MTF_EA_Strategy4_v6",
+      "kind": "mt",
+      "title": "FTMO_BB_MTF_EA_Strategy4_v6",
+      "source": "strategies/language/01_METATRADER_INDEX.md :: FTMO_BB_MTF_EA_Strategy4_v6 (.mq5)",
+      "adapter_profile": "bb_mtf",
+      "fidelity": "medium",
+      "collapses": []
+    },
+    {
+      "family_id": "mt__FTMO_BB_MTF_EA_Strategy4_v7",
+      "kind": "mt",
+      "title": "FTMO_BB_MTF_EA_Strategy4_v7",
+      "source": "strategies/language/01_METATRADER_INDEX.md :: FTMO_BB_MTF_EA_Strategy4_v7 (.mq5)",
+      "adapter_profile": "bb_mtf",
+      "fidelity": "medium",
+      "collapses": []
+    },
+    {
+      "family_id": "mt__FTMO_CCI_MTF_BB_EA_Part2",
+      "kind": "mt",
+      "title": "FTMO_CCI_MTF_BB_EA_Part2",
+      "source": "strategies/language/01_METATRADER_INDEX.md :: FTMO_CCI_MTF_BB_EA_Part2 (.mq5)",
+      "adapter_profile": "bb_mtf",
+      "fidelity": "medium",
+      "collapses": []
+    },
+    {
+      "family_id": "mt__FTMO_CCI_MTF_BB_EA_PART3",
+      "kind": "mt",
+      "title": "FTMO_CCI_MTF_BB_EA_PART3",
+      "source": "strategies/language/01_METATRADER_INDEX.md :: FTMO_CCI_MTF_BB_EA_PART3 (.mq5)",
+      "adapter_profile": "bb_mtf",
+      "fidelity": "medium",
+      "collapses": []
+    },
+    {
+      "family_id": "mt__FTMO_Challenge_EA",
+      "kind": "mt",
+      "title": "FTMO_Challenge_EA",
+      "source": "strategies/language/01_METATRADER_INDEX.md :: FTMO_Challenge_EA (.mq5)",
+      "adapter_profile": "challenge",
+      "fidelity": "medium",
+      "collapses": []
+    },
+    {
+      "family_id": "mt__FTMO_Challenge_EA_FULL",
+      "kind": "mt",
+      "title": "FTMO_Challenge_EA_FULL",
+      "source": "strategies/language/01_METATRADER_INDEX.md :: FTMO_Challenge_EA_FULL (.mq5)",
+      "adapter_profile": "challenge",
+      "fidelity": "medium",
+      "collapses": []
+    },
+    {
+      "family_id": "mt__ftmo_challenge_ea_v3",
+      "kind": "mt",
+      "title": "ftmo_challenge_ea_v3",
+      "source": "strategies/language/01_METATRADER_INDEX.md :: ftmo_challenge_ea_v3 (.mq5)",
+      "adapter_profile": "challenge",
+      "fidelity": "medium",
+      "collapses": []
+    },
+    {
+      "family_id": "mt__FTMO_Challenge_v4",
+      "kind": "mt",
+      "title": "FTMO_Challenge_v4",
+      "source": "strategies/language/01_METATRADER_INDEX.md :: FTMO_Challenge_v4 (.mq5)",
+      "adapter_profile": "challenge",
+      "fidelity": "medium",
+      "collapses": []
+    },
+    {
+      "family_id": "mt__FTMO_DQN_2",
+      "kind": "mt",
+      "title": "FTMO_DQN",
+      "source": "strategies/language/01_METATRADER_INDEX.md :: FTMO_DQN (.mq5)",
+      "adapter_profile": "rl_proxy",
+      "fidelity": "low",
+      "collapses": []
+    },
+    {
+      "family_id": "mt__FTMO_SMA_Scalper",
+      "kind": "mt",
+      "title": "FTMO_SMA_Scalper",
+      "source": "strategies/language/01_METATRADER_INDEX.md :: FTMO_SMA_Scalper (.mq5)",
+      "adapter_profile": "sma_scalp",
+      "fidelity": "medium",
+      "collapses": []
+    },
+    {
+      "family_id": "mt__FtmoDecisionTree",
+      "kind": "mt",
+      "title": "FtmoDecisionTree",
+      "source": "strategies/language/01_METATRADER_INDEX.md :: FtmoDecisionTree (.mq5)",
+      "adapter_profile": "challenge",
+      "fidelity": "medium",
+      "collapses": []
+    },
+    {
+      "family_id": "mt__HurstX",
+      "kind": "mt",
+      "title": "HurstX",
+      "source": "strategies/language/01_METATRADER_INDEX.md :: HurstX (.mq5)",
+      "adapter_profile": "momentum",
+      "fidelity": "medium",
+      "collapses": []
+    },
+    {
+      "family_id": "mt__JordanMomentumScreener_v10",
+      "kind": "mt",
+      "title": "JordanMomentumScreener_v10",
+      "source": "strategies/language/01_METATRADER_INDEX.md :: JordanMomentumScreener_v10 (.mq5)",
+      "adapter_profile": "jordan",
+      "fidelity": "medium",
+      "collapses": []
+    },
+    {
+      "family_id": "mt__JordanMomentumScreener_v11",
+      "kind": "mt",
+      "title": "JordanMomentumScreener_v11",
+      "source": "strategies/language/01_METATRADER_INDEX.md :: JordanMomentumScreener_v11 (.mq5)",
+      "adapter_profile": "jordan",
+      "fidelity": "medium",
+      "collapses": []
+    },
+    {
+      "family_id": "mt__JordanMomentumScreener_v2_MT5",
+      "kind": "mt",
+      "title": "JordanMomentumScreener_v2_MT5",
+      "source": "strategies/language/01_METATRADER_INDEX.md :: JordanMomentumScreener_v2_MT5 (.mq5)",
+      "adapter_profile": "jordan",
+      "fidelity": "medium",
+      "collapses": []
+    },
+    {
+      "family_id": "mt__JordanMomentumScreener_v4_MT5",
+      "kind": "mt",
+      "title": "JordanMomentumScreener_v4_MT5",
+      "source": "strategies/language/01_METATRADER_INDEX.md :: JordanMomentumScreener_v4_MT5 (.mq5)",
+      "adapter_profile": "jordan",
+      "fidelity": "medium",
+      "collapses": []
+    },
+    {
+      "family_id": "mt__JordanMomentumScreener_v5_MT5",
+      "kind": "mt",
+      "title": "JordanMomentumScreener_v5_MT5",
+      "source": "strategies/language/01_METATRADER_INDEX.md :: JordanMomentumScreener_v5_MT5 (.mq5)",
+      "adapter_profile": "jordan",
+      "fidelity": "medium",
+      "collapses": []
+    },
+    {
+      "family_id": "mt__JordanMomentumScreener_v7_HUD",
+      "kind": "mt",
+      "title": "JordanMomentumScreener_v7_HUD",
+      "source": "strategies/language/01_METATRADER_INDEX.md :: JordanMomentumScreener_v7_HUD (.mq5)",
+      "adapter_profile": "jordan",
+      "fidelity": "medium",
+      "collapses": []
+    },
+    {
+      "family_id": "mt__JordanMomentumScreener_v8_HUD",
+      "kind": "mt",
+      "title": "JordanMomentumScreener_v8_HUD",
+      "source": "strategies/language/01_METATRADER_INDEX.md :: JordanMomentumScreener_v8_HUD (.mq5)",
+      "adapter_profile": "jordan",
+      "fidelity": "medium",
+      "collapses": []
+    },
+    {
+      "family_id": "mt__JordanMomentumScreener_v9_HUD",
+      "kind": "mt",
+      "title": "JordanMomentumScreener_v9_HUD",
+      "source": "strategies/language/01_METATRADER_INDEX.md :: JordanMomentumScreener_v9_HUD (.mq5)",
+      "adapter_profile": "jordan",
+      "fidelity": "medium",
+      "collapses": []
+    },
+    {
+      "family_id": "mt__JordanMomentumScreener_v9_Wave",
+      "kind": "mt",
+      "title": "JordanMomentumScreener_v9_Wave",
+      "source": "strategies/language/01_METATRADER_INDEX.md :: JordanMomentumScreener_v9_Wave (.mq5)",
+      "adapter_profile": "jordan",
+      "fidelity": "medium",
+      "collapses": []
+    },
+    {
+      "family_id": "mt__KineticEdgeEA",
+      "kind": "mt",
+      "title": "KineticEdgeEA",
+      "source": "strategies/language/01_METATRADER_INDEX.md :: KineticEdgeEA (.mq5)",
+      "adapter_profile": "kinetic",
+      "fidelity": "medium",
+      "collapses": []
+    },
+    {
+      "family_id": "mt__kmeans",
+      "kind": "mt",
+      "title": "kmeans",
+      "source": "strategies/language/01_METATRADER_INDEX.md :: kmeans (.mq5)",
+      "adapter_profile": "macd",
+      "fidelity": "medium",
+      "collapses": []
+    },
+    {
+      "family_id": "mt__Linear_Regression_Screener",
+      "kind": "mt",
+      "title": "Linear_Regression_Screener",
+      "source": "strategies/language/01_METATRADER_INDEX.md :: Linear_Regression_Screener (.mq5)",
+      "adapter_profile": "linreg",
+      "fidelity": "medium",
+      "collapses": []
+    },
+    {
+      "family_id": "mt__LinearRegressionLine",
+      "kind": "mt",
+      "title": "LinearRegressionLine",
+      "source": "strategies/language/01_METATRADER_INDEX.md :: LinearRegressionLine (.mq5)",
+      "adapter_profile": "linreg",
+      "fidelity": "medium",
+      "collapses": []
+    },
+    {
+      "family_id": "mt__LinearRegressionRSI_EA",
+      "kind": "mt",
+      "title": "LinearRegressionRSI_EA",
+      "source": "strategies/language/01_METATRADER_INDEX.md :: LinearRegressionRSI_EA (.mq5)",
+      "adapter_profile": "linreg",
+      "fidelity": "medium",
+      "collapses": []
+    },
+    {
+      "family_id": "mt__MA_ribbon_filled_Alerts",
+      "kind": "mt",
+      "title": "MA ribbon filled_Alerts",
+      "source": "strategies/language/01_METATRADER_INDEX.md :: MA ribbon filled_Alerts (.mq4)",
+      "adapter_profile": "ma_ribbon",
+      "fidelity": "medium",
+      "collapses": []
+    },
+    {
+      "family_id": "mt__MACD_Sample",
+      "kind": "mt",
+      "title": "MACD Sample",
+      "source": "strategies/language/01_METATRADER_INDEX.md :: MACD Sample (.mq4)",
+      "adapter_profile": "macd",
+      "fidelity": "medium",
+      "collapses": []
+    },
+    {
+      "family_id": "mt__MetaLearningEA",
+      "kind": "mt",
+      "title": "MetaLearningEA",
+      "source": "strategies/language/01_METATRADER_INDEX.md :: MetaLearningEA (.mq5)",
+      "adapter_profile": "rl_proxy",
+      "fidelity": "low",
+      "collapses": []
+    },
+    {
+      "family_id": "mt__Momentum",
+      "kind": "mt",
+      "title": "Momentum",
+      "source": "strategies/language/01_METATRADER_INDEX.md :: Momentum (.mq5)",
+      "adapter_profile": "momentum",
+      "fidelity": "medium",
+      "collapses": []
+    },
+    {
+      "family_id": "mt__Momentum_Matrix_Screener",
+      "kind": "mt",
+      "title": "Momentum_Matrix_Screener",
+      "source": "strategies/language/01_METATRADER_INDEX.md :: Momentum_Matrix_Screener (.mq5)",
+      "adapter_profile": "jordan",
+      "fidelity": "medium",
+      "collapses": []
+    },
+    {
+      "family_id": "mt__Moving_Average",
+      "kind": "mt",
+      "title": "Moving Average",
+      "source": "strategies/language/01_METATRADER_INDEX.md :: Moving Average (.mq4)",
+      "adapter_profile": "ma_sample",
+      "fidelity": "medium",
+      "collapses": []
+    },
+    {
+      "family_id": "mt__MQL5_RL_EA",
+      "kind": "mt",
+      "title": "MQL5 RL EA",
+      "source": "strategies/language/01_METATRADER_INDEX.md :: MQL5 RL EA (.mq5)",
+      "adapter_profile": "cci_gravity",
+      "fidelity": "medium",
+      "collapses": []
+    },
+    {
+      "family_id": "mt__MultiTimeframe_LRL_BB_CCI_Screener",
+      "kind": "mt",
+      "title": "MultiTimeframe_LRL_BB_CCI_Screener",
+      "source": "strategies/language/01_METATRADER_INDEX.md :: MultiTimeframe_LRL_BB_CCI_Screener (.mq5)",
+      "adapter_profile": "rl_proxy",
+      "fidelity": "low",
+      "collapses": []
+    },
+    {
+      "family_id": "mt__MultiTimeframe_LRL_BB_CCI_Screener_v2",
+      "kind": "mt",
+      "title": "MultiTimeframe_LRL_BB_CCI_Screener_v2",
+      "source": "strategies/language/01_METATRADER_INDEX.md :: MultiTimeframe_LRL_BB_CCI_Screener_v2 (.mq5)",
+      "adapter_profile": "rl_proxy",
+      "fidelity": "low",
+      "collapses": []
+    },
+    {
+      "family_id": "mt__MultiTimeframe_NN_EA",
+      "kind": "mt",
+      "title": "MultiTimeframe_NN_EA",
+      "source": "strategies/language/01_METATRADER_INDEX.md :: MultiTimeframe_NN_EA (.mq5)",
+      "adapter_profile": "rl_proxy",
+      "fidelity": "low",
+      "collapses": []
+    },
+    {
+      "family_id": "mt__MultiTimeframe_NN_EA_v2",
+      "kind": "mt",
+      "title": "MultiTimeframe_NN_EA_v2",
+      "source": "strategies/language/01_METATRADER_INDEX.md :: MultiTimeframe_NN_EA_v2 (.mq5)",
+      "adapter_profile": "mark_rsi_bb",
+      "fidelity": "low",
+      "collapses": []
+    },
+    {
+      "family_id": "mt__NeuralNetworkScreener",
+      "kind": "mt",
+      "title": "NeuralNetworkScreener",
+      "source": "strategies/language/01_METATRADER_INDEX.md :: NeuralNetworkScreener (.mq5)",
+      "adapter_profile": "rl_proxy",
+      "fidelity": "low",
+      "collapses": []
+    },
+    {
+      "family_id": "mt__NeuralNetworkScreener_Simple",
+      "kind": "mt",
+      "title": "NeuralNetworkScreener_Simple",
+      "source": "strategies/language/01_METATRADER_INDEX.md :: NeuralNetworkScreener_Simple (.mq5)",
+      "adapter_profile": "rl_proxy",
+      "fidelity": "low",
+      "collapses": []
+    },
+    {
+      "family_id": "mt__NeuralNetworkScreener_Simple_Updated",
+      "kind": "mt",
+      "title": "NeuralNetworkScreener_Simple_Updated",
+      "source": "strategies/language/01_METATRADER_INDEX.md :: NeuralNetworkScreener_Simple_Updated (.mq5)",
+      "adapter_profile": "rl_proxy",
+      "fidelity": "low",
+      "collapses": []
+    },
+    {
+      "family_id": "mt__NN_CCI_Screener",
+      "kind": "mt",
+      "title": "NN_CCI_Screener",
+      "source": "strategies/language/01_METATRADER_INDEX.md :: NN_CCI_Screener (.mq5)",
+      "adapter_profile": "rl_proxy",
+      "fidelity": "low",
+      "collapses": []
+    },
+    {
+      "family_id": "mt__NN_CCI_Screener_Simple",
+      "kind": "mt",
+      "title": "NN_CCI_Screener_Simple",
+      "source": "strategies/language/01_METATRADER_INDEX.md :: NN_CCI_Screener_Simple (.mq5)",
+      "adapter_profile": "rl_proxy",
+      "fidelity": "low",
+      "collapses": []
+    },
+    {
+      "family_id": "mt__OnlineLearnerEA",
+      "kind": "mt",
+      "title": "OnlineLearnerEA",
+      "source": "strategies/language/01_METATRADER_INDEX.md :: OnlineLearnerEA (.mq5)",
+      "adapter_profile": "rl_proxy",
+      "fidelity": "low",
+      "collapses": []
+    },
+    {
+      "family_id": "mt__OnlineLearnerEA_v5_Fixed",
+      "kind": "mt",
+      "title": "OnlineLearnerEA_v5_Fixed",
+      "source": "strategies/language/01_METATRADER_INDEX.md :: OnlineLearnerEA_v5_Fixed (.mq5)",
+      "adapter_profile": "rl_proxy",
+      "fidelity": "low",
+      "collapses": []
+    },
+    {
+      "family_id": "mt__PDF_MultiStrategy_MTF_EA_v1",
+      "kind": "mt",
+      "title": "PDF_MultiStrategy_MTF_EA_v1",
+      "source": "strategies/language/01_METATRADER_INDEX.md :: PDF_MultiStrategy_MTF_EA_v1 (.mq5)",
+      "adapter_profile": "rl_proxy",
+      "fidelity": "low",
+      "collapses": []
+    },
+    {
+      "family_id": "mt__PDF_MultiStrategy_MTF_EA_v2",
+      "kind": "mt",
+      "title": "PDF_MultiStrategy_MTF_EA_v2",
+      "source": "strategies/language/01_METATRADER_INDEX.md :: PDF_MultiStrategy_MTF_EA_v2 (.mq5)",
+      "adapter_profile": "rl_proxy",
+      "fidelity": "low",
+      "collapses": []
+    },
+    {
+      "family_id": "mt__PDF_MultiStrategy_VotingForest_EA_v4",
+      "kind": "mt",
+      "title": "PDF_MultiStrategy_VotingForest_EA_v4",
+      "source": "strategies/language/01_METATRADER_INDEX.md :: PDF_MultiStrategy_VotingForest_EA_v4 (.mq5)",
+      "adapter_profile": "rl_proxy",
+      "fidelity": "low",
+      "collapses": []
+    },
+    {
+      "family_id": "mt__PerceptronEA",
+      "kind": "mt",
+      "title": "PerceptronEA",
+      "source": "strategies/language/01_METATRADER_INDEX.md :: PerceptronEA (.mq5)",
+      "adapter_profile": "macd",
+      "fidelity": "medium",
+      "collapses": []
+    },
+    {
+      "family_id": "mt__play_4_2",
+      "kind": "mt",
+      "title": "play 4.2",
+      "source": "strategies/language/01_METATRADER_INDEX.md :: play 4.2 (.mq5)",
+      "adapter_profile": "jordan",
+      "fidelity": "medium",
+      "collapses": []
+    },
+    {
+      "family_id": "mt__play_4_3",
+      "kind": "mt",
+      "title": "play 4.3",
+      "source": "strategies/language/01_METATRADER_INDEX.md :: play 4.3 (.mq5)",
+      "adapter_profile": "jordan",
+      "fidelity": "medium",
+      "collapses": []
+    },
+    {
+      "family_id": "mt__Pure_CCI_Screener",
+      "kind": "mt",
+      "title": "Pure_CCI_Screener",
+      "source": "strategies/language/01_METATRADER_INDEX.md :: Pure_CCI_Screener (.mq5)",
+      "adapter_profile": "cci_gravity",
+      "fidelity": "medium",
+      "collapses": []
+    },
+    {
+      "family_id": "mt__Q-learning",
+      "kind": "mt",
+      "title": "Q-learning",
+      "source": "strategies/language/01_METATRADER_INDEX.md :: Q-learning (.mq5)",
+      "adapter_profile": "macd",
+      "fidelity": "medium",
+      "collapses": []
+    },
+    {
+      "family_id": "mt__RegressionlineEA",
+      "kind": "mt",
+      "title": "RegressionlineEA",
+      "source": "strategies/language/01_METATRADER_INDEX.md :: RegressionlineEA (.mq5)",
+      "adapter_profile": "mark_rsi_bb",
+      "fidelity": "low",
+      "collapses": []
+    },
+    {
+      "family_id": "mt__RL_PropTrader_Final",
+      "kind": "mt",
+      "title": "RL_PropTrader_Final",
+      "source": "strategies/language/01_METATRADER_INDEX.md :: RL_PropTrader_Final (.mq5)",
+      "adapter_profile": "rl_proxy",
+      "fidelity": "low",
+      "collapses": []
+    },
+    {
+      "family_id": "mt__RL_PropTrader_MVP_v2",
+      "kind": "mt",
+      "title": "RL_PropTrader_MVP_v2",
+      "source": "strategies/language/01_METATRADER_INDEX.md :: RL_PropTrader_MVP_v2 (.mq5)",
+      "adapter_profile": "rl_proxy",
+      "fidelity": "low",
+      "collapses": []
+    },
+    {
+      "family_id": "mt__rsi_bb_extreme",
+      "kind": "mt",
+      "title": "rsi_bb_extreme",
+      "source": "strategies/language/01_METATRADER_INDEX.md :: rsi_bb_extreme (.mq5)",
+      "adapter_profile": "mark_rsi_bb",
+      "fidelity": "medium",
+      "collapses": []
+    },
+    {
+      "family_id": "mt__S11_Runner",
+      "kind": "mt",
+      "title": "S11_Runner",
+      "source": "strategies/language/01_METATRADER_INDEX.md :: S11_Runner (.mq5)",
+      "adapter_profile": "challenge",
+      "fidelity": "medium",
+      "collapses": []
+    },
+    {
+      "family_id": "mt__Simple_scalper",
+      "kind": "mt",
+      "title": "Simple scalper",
+      "source": "strategies/language/01_METATRADER_INDEX.md :: Simple scalper (.mq5)",
+      "adapter_profile": "momentum",
+      "fidelity": "medium",
+      "collapses": []
+    },
+    {
+      "family_id": "mt__Slope_Screener",
+      "kind": "mt",
+      "title": "Slope_Screener",
+      "source": "strategies/language/01_METATRADER_INDEX.md :: Slope_Screener (.mq5)",
+      "adapter_profile": "ma_sample",
+      "fidelity": "low",
+      "collapses": []
+    },
+    {
+      "family_id": "mt__Slope_Screener_Fixed",
+      "kind": "mt",
+      "title": "Slope_Screener_Fixed",
+      "source": "strategies/language/01_METATRADER_INDEX.md :: Slope_Screener_Fixed (.mq5)",
+      "adapter_profile": "ma_sample",
+      "fidelity": "low",
+      "collapses": []
+    },
+    {
+      "family_id": "mt__SMA_Fan_MTF_BBExit_v1",
+      "kind": "mt",
+      "title": "SMA_Fan_MTF_BBExit_v1",
+      "source": "strategies/language/01_METATRADER_INDEX.md :: SMA_Fan_MTF_BBExit_v1 (.mq5)",
+      "adapter_profile": "sma_scalp",
+      "fidelity": "medium",
+      "collapses": []
+    },
+    {
+      "family_id": "mt__some_bs",
+      "kind": "mt",
+      "title": "some bs",
+      "source": "strategies/language/01_METATRADER_INDEX.md :: some bs (.mq5)",
+      "adapter_profile": "macd",
+      "fidelity": "medium",
+      "collapses": []
+    },
+    {
+      "family_id": "mt__some_bullshit",
+      "kind": "mt",
+      "title": "some bullshit",
+      "source": "strategies/language/01_METATRADER_INDEX.md :: some bullshit (.mq5)",
+      "adapter_profile": "macd",
+      "fidelity": "medium",
+      "collapses": []
+    },
+    {
+      "family_id": "mt__StrikeGate",
+      "kind": "mt",
+      "title": "StrikeGate",
+      "source": "strategies/language/01_METATRADER_INDEX.md :: StrikeGate (.mq5)",
+      "adapter_profile": "cci_gravity",
+      "fidelity": "medium",
+      "collapses": []
+    },
+    {
+      "family_id": "mt__Swarm",
+      "kind": "mt",
+      "title": "Swarm",
+      "source": "strategies/language/01_METATRADER_INDEX.md :: Swarm (.mq5)",
+      "adapter_profile": "cci_gravity",
+      "fidelity": "medium",
+      "collapses": []
+    },
+    {
+      "family_id": "mt__swarm3_0",
+      "kind": "mt",
+      "title": "swarm3.0",
+      "source": "strategies/language/01_METATRADER_INDEX.md :: swarm3.0 (.mq5)",
+      "adapter_profile": "cci_gravity",
+      "fidelity": "medium",
+      "collapses": []
+    },
+    {
+      "family_id": "mt__to_opimize_ea",
+      "kind": "mt",
+      "title": "to opimize ea",
+      "source": "strategies/language/01_METATRADER_INDEX.md :: to opimize ea (.mq5)",
+      "adapter_profile": "rl_proxy",
+      "fidelity": "low",
+      "collapses": []
+    },
+    {
+      "family_id": "mt__TriTF_SMA_Shift_Optimizer_EA",
+      "kind": "mt",
+      "title": "TriTF_SMA_Shift_Optimizer_EA",
+      "source": "strategies/language/01_METATRADER_INDEX.md :: TriTF_SMA_Shift_Optimizer_EA (.mq5)",
+      "adapter_profile": "sma_scalp",
+      "fidelity": "medium",
+      "collapses": []
+    },
+    {
+      "family_id": "mt__Unity_Play",
+      "kind": "mt",
+      "title": "Unity Play",
+      "source": "strategies/language/01_METATRADER_INDEX.md :: Unity Play (.mq5)",
+      "adapter_profile": "jordan",
+      "fidelity": "medium",
+      "collapses": []
+    },
+    {
+      "family_id": "mt__US30_ExpansionTrigger_v1",
+      "kind": "mt",
+      "title": "US30_ExpansionTrigger_v1",
+      "source": "strategies/language/01_METATRADER_INDEX.md :: US30_ExpansionTrigger_v1 (.mq5)",
+      "adapter_profile": "momentum",
+      "fidelity": "medium",
+      "collapses": []
+    },
+    {
+      "family_id": "mt__ZeroLineRadar",
+      "kind": "mt",
+      "title": "ZeroLineRadar",
+      "source": "strategies/language/01_METATRADER_INDEX.md :: ZeroLineRadar (.mq5)",
+      "adapter_profile": "cci_gravity",
+      "fidelity": "medium",
+      "collapses": []
+    },
+    {
+      "family_id": "mt__ZeroLineRadar0works",
+      "kind": "mt",
+      "title": "ZeroLineRadar0works",
+      "source": "strategies/language/01_METATRADER_INDEX.md :: ZeroLineRadar0works (.mq5)",
+      "adapter_profile": "cci_gravity",
+      "fidelity": "medium",
+      "collapses": []
+    },
+    {
+      "family_id": "mt__Zerolineradar1",
+      "kind": "mt",
+      "title": "Zerolineradar1",
+      "source": "strategies/language/01_METATRADER_INDEX.md :: Zerolineradar1 (.mq5)",
+      "adapter_profile": "cci_gravity",
+      "fidelity": "medium",
+      "collapses": []
+    },
+    {
+      "family_id": "note__local_desktop_factory_full_GV-014-XAU-L1_md",
+      "kind": "note",
+      "title": "GV-014-XAU-L1.md",
+      "source": "C:\\Users\\user\\OneDrive\\Desktop\\The Creator\\strategies\\local_desktop\\factory_full\\GV-014-XAU-L1.md",
+      "adapter_profile": "gv014",
+      "fidelity": "medium",
+      "collapses": []
+    },
+    {
+      "family_id": "note__local_desktop_new_trading_strategies_1_md",
+      "kind": "note",
+      "title": "new_trading_strategies (1).md",
+      "source": "C:\\Users\\user\\OneDrive\\Desktop\\The Creator\\strategies\\local_desktop\\new_trading_strategies (1).md",
+      "adapter_profile": "mark_rsi_bb",
+      "fidelity": "medium",
+      "collapses": []
+    },
+    {
+      "family_id": "note__local_desktop_new_trading_strategies_md",
+      "kind": "note",
+      "title": "new_trading_strategies.md",
+      "source": "C:\\Users\\user\\OneDrive\\Desktop\\The Creator\\strategies\\local_desktop\\new_trading_strategies.md",
+      "adapter_profile": "mark_rsi_bb",
+      "fidelity": "medium",
+      "collapses": []
+    },
+    {
+      "family_id": "note__local_desktop_rsi_bb_strategy_txt",
+      "kind": "note",
+      "title": "rsi + bb strategy.txt",
+      "source": "C:\\Users\\user\\OneDrive\\Desktop\\The Creator\\strategies\\local_desktop\\rsi + bb strategy.txt",
+      "adapter_profile": "mark_rsi_bb",
+      "fidelity": "high",
+      "collapses": []
+    },
+    {
+      "family_id": "note__local_desktop_section-1_md",
+      "kind": "note",
+      "title": "section-1.md",
+      "source": "C:\\Users\\user\\OneDrive\\Desktop\\The Creator\\strategies\\local_desktop\\section-1.md",
+      "adapter_profile": "mark_rsi_bb",
+      "fidelity": "medium",
+      "collapses": []
+    },
+    {
+      "family_id": "note__local_desktop_section-2_md",
+      "kind": "note",
+      "title": "section-2.md",
+      "source": "C:\\Users\\user\\OneDrive\\Desktop\\The Creator\\strategies\\local_desktop\\section-2.md",
+      "adapter_profile": "mark_rsi_bb",
+      "fidelity": "medium",
+      "collapses": []
+    },
+    {
+      "family_id": "note__local_desktop_section-3_md",
+      "kind": "note",
+      "title": "section-3.md",
+      "source": "C:\\Users\\user\\OneDrive\\Desktop\\The Creator\\strategies\\local_desktop\\section-3.md",
+      "adapter_profile": "mark_rsi_bb",
+      "fidelity": "medium",
+      "collapses": []
+    },
+    {
+      "family_id": "note__local_desktop_section-4_md",
+      "kind": "note",
+      "title": "section-4.md",
+      "source": "C:\\Users\\user\\OneDrive\\Desktop\\The Creator\\strategies\\local_desktop\\section-4.md",
+      "adapter_profile": "mark_rsi_bb",
+      "fidelity": "medium",
+      "collapses": []
+    },
+    {
+      "family_id": "note__local_desktop_section-5_md",
+      "kind": "note",
+      "title": "section-5.md",
+      "source": "C:\\Users\\user\\OneDrive\\Desktop\\The Creator\\strategies\\local_desktop\\section-5.md",
+      "adapter_profile": "mark_rsi_bb",
+      "fidelity": "medium",
+      "collapses": []
+    },
+    {
+      "family_id": "note__local_desktop_section-6_md",
+      "kind": "note",
+      "title": "section-6.md",
+      "source": "C:\\Users\\user\\OneDrive\\Desktop\\The Creator\\strategies\\local_desktop\\section-6.md",
+      "adapter_profile": "mark_rsi_bb",
+      "fidelity": "medium",
+      "collapses": []
+    },
+    {
+      "family_id": "note__local_desktop_section-8_md",
+      "kind": "note",
+      "title": "section-8.md",
+      "source": "C:\\Users\\user\\OneDrive\\Desktop\\The Creator\\strategies\\local_desktop\\section-8.md",
+      "adapter_profile": "mark_rsi_bb",
+      "fidelity": "medium",
+      "collapses": []
+    },
+    {
+      "family_id": "note__army_library_strategy_copy_new_trading_strategies_1_md",
+      "kind": "note",
+      "title": "new_trading_strategies (1).md",
+      "source": "C:\\Users\\user\\OneDrive\\Desktop\\The Creator\\strategies\\army_library_strategy_copy\\new_trading_strategies (1).md",
+      "adapter_profile": "mark_rsi_bb",
+      "fidelity": "medium",
+      "collapses": []
+    },
+    {
+      "family_id": "note__army_library_strategy_copy_new_trading_strategies_md",
+      "kind": "note",
+      "title": "new_trading_strategies.md",
+      "source": "C:\\Users\\user\\OneDrive\\Desktop\\The Creator\\strategies\\army_library_strategy_copy\\new_trading_strategies.md",
+      "adapter_profile": "mark_rsi_bb",
+      "fidelity": "medium",
+      "collapses": []
+    },
+    {
+      "family_id": "note__army_library_strategy_copy_rsi_bb_strategy_txt",
+      "kind": "note",
+      "title": "rsi + bb strategy.txt",
+      "source": "C:\\Users\\user\\OneDrive\\Desktop\\The Creator\\strategies\\army_library_strategy_copy\\rsi + bb strategy.txt",
+      "adapter_profile": "mark_rsi_bb",
+      "fidelity": "high",
+      "collapses": []
+    },
+    {
+      "family_id": "note__army_library_strategy_copy_section-1_md",
+      "kind": "note",
+      "title": "section-1.md",
+      "source": "C:\\Users\\user\\OneDrive\\Desktop\\The Creator\\strategies\\army_library_strategy_copy\\section-1.md",
+      "adapter_profile": "mark_rsi_bb",
+      "fidelity": "medium",
+      "collapses": []
+    },
+    {
+      "family_id": "note__army_library_strategy_copy_section-2_md",
+      "kind": "note",
+      "title": "section-2.md",
+      "source": "C:\\Users\\user\\OneDrive\\Desktop\\The Creator\\strategies\\army_library_strategy_copy\\section-2.md",
+      "adapter_profile": "mark_rsi_bb",
+      "fidelity": "medium",
+      "collapses": []
+    },
+    {
+      "family_id": "note__army_library_strategy_copy_section-3_md",
+      "kind": "note",
+      "title": "section-3.md",
+      "source": "C:\\Users\\user\\OneDrive\\Desktop\\The Creator\\strategies\\army_library_strategy_copy\\section-3.md",
+      "adapter_profile": "mark_rsi_bb",
+      "fidelity": "medium",
+      "collapses": []
+    },
+    {
+      "family_id": "note__army_library_strategy_copy_section-4_md",
+      "kind": "note",
+      "title": "section-4.md",
+      "source": "C:\\Users\\user\\OneDrive\\Desktop\\The Creator\\strategies\\army_library_strategy_copy\\section-4.md",
+      "adapter_profile": "mark_rsi_bb",
+      "fidelity": "medium",
+      "collapses": []
+    },
+    {
+      "family_id": "note__army_library_strategy_copy_section-5_md",
+      "kind": "note",
+      "title": "section-5.md",
+      "source": "C:\\Users\\user\\OneDrive\\Desktop\\The Creator\\strategies\\army_library_strategy_copy\\section-5.md",
+      "adapter_profile": "mark_rsi_bb",
+      "fidelity": "medium",
+      "collapses": []
+    },
+    {
+      "family_id": "note__army_library_strategy_copy_section-6_md",
+      "kind": "note",
+      "title": "section-6.md",
+      "source": "C:\\Users\\user\\OneDrive\\Desktop\\The Creator\\strategies\\army_library_strategy_copy\\section-6.md",
+      "adapter_profile": "mark_rsi_bb",
+      "fidelity": "medium",
+      "collapses": []
+    },
+    {
+      "family_id": "note__army_library_strategy_copy_section-8_md",
+      "kind": "note",
+      "title": "section-8.md",
+      "source": "C:\\Users\\user\\OneDrive\\Desktop\\The Creator\\strategies\\army_library_strategy_copy\\section-8.md",
+      "adapter_profile": "mark_rsi_bb",
+      "fidelity": "medium",
+      "collapses": []
+    },
+    {
+      "family_id": "note__army_snap8_STRATEGY_md",
+      "kind": "note",
+      "title": "STRATEGY.md",
+      "source": "C:\\Users\\user\\OneDrive\\Desktop\\The Creator\\strategies\\army_snap8\\STRATEGY.md",
+      "adapter_profile": "snap8",
+      "fidelity": "high",
+      "collapses": []
+    },
+    {
+      "family_id": "note__mark_doctrine_refs_RSI_BB_L2L_SKILL_md",
+      "kind": "note",
+      "title": "RSI_BB_L2L_SKILL.md",
+      "source": "C:\\Users\\user\\OneDrive\\Desktop\\The Creator\\strategies\\mark_doctrine_refs\\RSI_BB_L2L_SKILL.md",
+      "adapter_profile": "mark_rsi_bb",
+      "fidelity": "high",
+      "collapses": []
+    },
+    {
+      "family_id": "note__the_truth_main_extra_ADR-0004-strategies_md",
+      "kind": "note",
+      "title": "ADR-0004-strategies.md",
+      "source": "C:\\Users\\user\\OneDrive\\Desktop\\The Creator\\strategies\\the_truth_main_extra\\ADR-0004-strategies.md",
+      "adapter_profile": "truth_s1_cci",
+      "fidelity": "medium",
+      "collapses": []
+    },
+    {
+      "family_id": "note__the_truth_main_extra_strategy_S1_cci_slingshot_md",
+      "kind": "note",
+      "title": "strategy_S1_cci_slingshot.md",
+      "source": "C:\\Users\\user\\OneDrive\\Desktop\\The Creator\\strategies\\the_truth_main_extra\\strategy_S1_cci_slingshot.md",
+      "adapter_profile": "truth_s1_cci",
+      "fidelity": "high",
+      "collapses": []
+    },
+    {
+      "family_id": "note__the_truth_main_extra_strategy_S2_bb_trend_reversion_md",
+      "kind": "note",
+      "title": "strategy_S2_bb_trend_reversion.md",
+      "source": "C:\\Users\\user\\OneDrive\\Desktop\\The Creator\\strategies\\the_truth_main_extra\\strategy_S2_bb_trend_reversion.md",
+      "adapter_profile": "truth_s2_bb",
+      "fidelity": "high",
+      "collapses": []
+    },
+    {
+      "family_id": "note__the_truth_main_extra_strategy_S3_envelope_breakout_md",
+      "kind": "note",
+      "title": "strategy_S3_envelope_breakout.md",
+      "source": "C:\\Users\\user\\OneDrive\\Desktop\\The Creator\\strategies\\the_truth_main_extra\\strategy_S3_envelope_breakout.md",
+      "adapter_profile": "truth_s3_env",
+      "fidelity": "high",
+      "collapses": []
+    },
+    {
+      "family_id": "note__the_truth_main_extra_strategy_S4_rsi_tension_snap_md",
+      "kind": "note",
+      "title": "strategy_S4_rsi_tension_snap.md",
+      "source": "C:\\Users\\user\\OneDrive\\Desktop\\The Creator\\strategies\\the_truth_main_extra\\strategy_S4_rsi_tension_snap.md",
+      "adapter_profile": "truth_s4_rsi_snap",
+      "fidelity": "high",
+      "collapses": []
+    },
+    {
+      "family_id": "note__algo_guide_14_s01_ma_crossover_md",
+      "kind": "note",
+      "title": "s01_ma_crossover.md",
+      "source": "C:\\Users\\user\\OneDrive\\Desktop\\The Creator\\strategies\\algo_guide_14\\s01_ma_crossover.md",
+      "adapter_profile": "guide_s01_ma_cross",
+      "fidelity": "high",
+      "collapses": []
+    },
+    {
+      "family_id": "note__algo_guide_14_s02_breakout_trading_md",
+      "kind": "note",
+      "title": "s02_breakout_trading.md",
+      "source": "C:\\Users\\user\\OneDrive\\Desktop\\The Creator\\strategies\\algo_guide_14\\s02_breakout_trading.md",
+      "adapter_profile": "guide_s02_breakout",
+      "fidelity": "high",
+      "collapses": []
+    },
+    {
+      "family_id": "note__algo_guide_14_s03_donchian_turtle_md",
+      "kind": "note",
+      "title": "s03_donchian_turtle.md",
+      "source": "C:\\Users\\user\\OneDrive\\Desktop\\The Creator\\strategies\\algo_guide_14\\s03_donchian_turtle.md",
+      "adapter_profile": "guide_s03_donchian_turtle",
+      "fidelity": "high",
+      "collapses": []
+    },
+    {
+      "family_id": "note__algo_guide_14_s04_adx_directional_md",
+      "kind": "note",
+      "title": "s04_adx_directional.md",
+      "source": "C:\\Users\\user\\OneDrive\\Desktop\\The Creator\\strategies\\algo_guide_14\\s04_adx_directional.md",
+      "adapter_profile": "guide_s04_adx_di",
+      "fidelity": "high",
+      "collapses": []
+    },
+    {
+      "family_id": "note__algo_guide_14_s05_roc_momentum_md",
+      "kind": "note",
+      "title": "s05_roc_momentum.md",
+      "source": "C:\\Users\\user\\OneDrive\\Desktop\\The Creator\\strategies\\algo_guide_14\\s05_roc_momentum.md",
+      "adapter_profile": "guide_s05_roc",
+      "fidelity": "high",
+      "collapses": []
+    },
+    {
+      "family_id": "note__algo_guide_14_s06_parabolic_sar_md",
+      "kind": "note",
+      "title": "s06_parabolic_sar.md",
+      "source": "C:\\Users\\user\\OneDrive\\Desktop\\The Creator\\strategies\\algo_guide_14\\s06_parabolic_sar.md",
+      "adapter_profile": "guide_s06_psar",
+      "fidelity": "high",
+      "collapses": []
+    },
+    {
+      "family_id": "note__algo_guide_14_s07_ema_ribbon_md",
+      "kind": "note",
+      "title": "s07_ema_ribbon.md",
+      "source": "C:\\Users\\user\\OneDrive\\Desktop\\The Creator\\strategies\\algo_guide_14\\s07_ema_ribbon.md",
+      "adapter_profile": "guide_s07_ema_ribbon",
+      "fidelity": "high",
+      "collapses": []
+    },
+    {
+      "family_id": "note__algo_guide_14_s08_bb_mean_reversion_md",
+      "kind": "note",
+      "title": "s08_bb_mean_reversion.md",
+      "source": "C:\\Users\\user\\OneDrive\\Desktop\\The Creator\\strategies\\algo_guide_14\\s08_bb_mean_reversion.md",
+      "adapter_profile": "guide_s08_bb_mr",
+      "fidelity": "high",
+      "collapses": []
+    },
+    {
+      "family_id": "note__algo_guide_14_s09_rsi_reversion_md",
+      "kind": "note",
+      "title": "s09_rsi_reversion.md",
+      "source": "C:\\Users\\user\\OneDrive\\Desktop\\The Creator\\strategies\\algo_guide_14\\s09_rsi_reversion.md",
+      "adapter_profile": "guide_s09_rsi_mr",
+      "fidelity": "high",
+      "collapses": []
+    },
+    {
+      "family_id": "note__algo_guide_14_s10_vwap_reversion_md",
+      "kind": "note",
+      "title": "s10_vwap_reversion.md",
+      "source": "C:\\Users\\user\\OneDrive\\Desktop\\The Creator\\strategies\\algo_guide_14\\s10_vwap_reversion.md",
+      "adapter_profile": "guide_s10_vwap_mr",
+      "fidelity": "high",
+      "collapses": []
+    },
+    {
+      "family_id": "note__algo_guide_14_s11_keltner_reversion_md",
+      "kind": "note",
+      "title": "s11_keltner_reversion.md",
+      "source": "C:\\Users\\user\\OneDrive\\Desktop\\The Creator\\strategies\\algo_guide_14\\s11_keltner_reversion.md",
+      "adapter_profile": "guide_s11_keltner_mr",
+      "fidelity": "high",
+      "collapses": []
+    },
+    {
+      "family_id": "note__algo_guide_14_s12_zscore_reversion_md",
+      "kind": "note",
+      "title": "s12_zscore_reversion.md",
+      "source": "C:\\Users\\user\\OneDrive\\Desktop\\The Creator\\strategies\\algo_guide_14\\s12_zscore_reversion.md",
+      "adapter_profile": "guide_s12_zscore_mr",
+      "fidelity": "high",
+      "collapses": []
+    },
+    {
+      "family_id": "note__algo_guide_14_s13_stochastic_reversion_md",
+      "kind": "note",
+      "title": "s13_stochastic_reversion.md",
+      "source": "C:\\Users\\user\\OneDrive\\Desktop\\The Creator\\strategies\\algo_guide_14\\s13_stochastic_reversion.md",
+      "adapter_profile": "guide_s13_stoch_mr",
+      "fidelity": "high",
+      "collapses": []
+    },
+    {
+      "family_id": "note__algo_guide_14_s14_williams_r_reversion_md",
+      "kind": "note",
+      "title": "s14_williams_r_reversion.md",
+      "source": "C:\\Users\\user\\OneDrive\\Desktop\\The Creator\\strategies\\algo_guide_14\\s14_williams_r_reversion.md",
+      "adapter_profile": "guide_s14_willr_mr",
+      "fidelity": "high",
+      "collapses": []
+    }
+  ]
+}

@@ -1,0 +1,192 @@
+{
+  "law": "L2L_P10_RESIDUAL_DENSITY",
+  "case": "CASE-L2L-P10-residual",
+  "ts": "2026-08-09T15:40:38.749609+00:00",
+  "goal_axes": [
+    "G-A13",
+    "G-CLEAR",
+    "G-TRAIN",
+    "G-NO_RETRAIN",
+    "G-L2L",
+    "G-BREACH0"
+  ],
+  "recipe": "warmstart\u2192light_density_process\u2192path_reanchor_last",
+  "warmstart_fp": "42:meta4275:inf0:bcfe6c74f68b7623",
+  "warmstart_meta_steps": 4275,
+  "n_path_teachers": 900,
+  "process_curriculum": {
+    "train_steps": 680,
+    "holdout_steps": 120,
+    "mean_loss": 0.5059273027930776,
+    "hold_mean_loss": 0.09991798862902167,
+    "tag_counts": {
+      "P2_sight": 612,
+      "P3_feel_collapse": 78,
+      "P4_density_fire_override": 445,
+      "P6_multi_sense_agree": 445,
+      "P2_P3_P4_fire_process": 445,
+      "P3_feel_load": 89,
+      "P2_sight_incomplete": 68
+    },
+    "meta_train_steps": 5075,
+    "density_mode": true,
+    "fire_frac": 0.65625,
+    "n_fire": 525,
+    "n_wait": 275,
+    "law": "L2L_P2_P7_process_curriculum"
+  },
+  "path_updates": 5760,
+  "path_reanchor_last": true,
+  "fingerprint": "42:meta10835:inf0:441555412cf1e3ae",
+  "shadow_path": "evidence_court\\artifacts\\meta_policy_l2l_p10_residual.npz",
+  "dual_residual": {
+    "n_days": 30,
+    "hits": 3,
+    "hit_rate": 0.1,
+    "breach_count": 0,
+    "breach": false,
+    "a13_every_day": false,
+    "a13_frac": 0.3333333333333333,
+    "n_zero": 11,
+    "mean_tr": 7.733333333333333,
+    "mean_pnl": 2.7881175423333246,
+    "n_pullback_signals": 99,
+    "n_continuation_signals": 273,
+    "both_pb_and_cont": true,
+    "weights_frozen": true,
+    "fingerprint": "42:meta10835:inf0:441555412cf1e3ae",
+    "eval_start": "2026-04-15",
+    "eval_end": "2026-05-26",
+    "meta_train_steps": 10835
+  },
+  "dual_champion": {
+    "n_days": 30,
+    "hits": 3,
+    "hit_rate": 0.1,
+    "breach_count": 0,
+    "breach": false,
+    "a13_every_day": false,
+    "a13_frac": 0.26666666666666666,
+    "n_zero": 11,
+    "mean_tr": 7.266666666666667,
+    "mean_pnl": 2.8146985976666574,
+    "n_pullback_signals": 96,
+    "n_continuation_signals": 258,
+    "both_pb_and_cont": true,
+    "weights_frozen": true,
+    "fingerprint": "42:meta4275:inf0:bcfe6c74f68b7623",
+    "eval_start": "2026-04-15",
+    "eval_end": "2026-05-26",
+    "meta_train_steps": 4275
+  },
+  "promote_decision": {
+    "promote": true,
+    "reason": "beats_champion_dual",
+    "residual": {
+      "a13_frac": 0.3333333333333333,
+      "hits": 3,
+      "hit_rate": 0.1,
+      "n_zero": 11,
+      "breach_count": 0
+    },
+    "champion": {
+      "a13_frac": 0.26666666666666666,
+      "hits": 3,
+      "hit_rate": 0.1,
+      "n_zero": 11,
+      "breach_count": 0
+    },
+    "floor_100d_reference": {
+      "hits": 11,
+      "low_hr": 0.28,
+      "a13_frac": 0.64,
+      "n_zero": 18,
+      "breach": 0
+    },
+    "note": "100d multi-seed still required for L2L \u00a77 final gate even if promote true"
+  },
+  "final_promote_gate": {
+    "ready": false,
+    "note": "L2L \u00a77 multi-seed 100d still required for mission PROMOTE",
+    "measured_dual_days": 30
+  },
+  "lab_promote_path": "evidence_court\\artifacts\\meta_policy_l2l_p10_residual_LAB_PROMOTE.npz",
+  "production_champion_replaced": false,
+  "production_note": "beats same-window champion dual; production still CASE-0037 until Full Court PROMOTE + 100d floor hold",
+  "dual_residual_100d": {
+    "n_days": 100,
+    "hits": 7,
+    "hit_rate": 0.07,
+    "breach_count": 0,
+    "breach": false,
+    "a13_every_day": false,
+    "a13_frac": 0.42,
+    "n_zero": 35,
+    "mean_tr": 10.37,
+    "mean_pnl": 2.9729236135999972,
+    "n_pullback_signals": 342,
+    "n_continuation_signals": 1310,
+    "both_pb_and_cont": true,
+    "weights_frozen": true,
+    "fingerprint": "42:meta10835:inf0:441555412cf1e3ae",
+    "eval_start": "2026-01-06",
+    "eval_end": "2026-05-26",
+    "meta_train_steps": 10835
+  },
+  "dual_champion_100d": {
+    "n_days": 100,
+    "hits": 7,
+    "hit_rate": 0.07,
+    "breach_count": 0,
+    "breach": false,
+    "a13_every_day": false,
+    "a13_frac": 0.41,
+    "n_zero": 35,
+    "mean_tr": 10.08,
+    "mean_pnl": 3.011072487099998,
+    "n_pullback_signals": 333,
+    "n_continuation_signals": 1277,
+    "both_pb_and_cont": true,
+    "weights_frozen": true,
+    "fingerprint": "42:meta4275:inf0:bcfe6c74f68b7623",
+    "eval_start": "2026-01-06",
+    "eval_end": "2026-05-26",
+    "meta_train_steps": 4275
+  },
+  "promote_decision_100d": {
+    "promote": true,
+    "reason": "beats_champion_dual",
+    "residual": {
+      "a13_frac": 0.42,
+      "hits": 7,
+      "hit_rate": 0.07,
+      "n_zero": 35,
+      "breach_count": 0
+    },
+    "champion": {
+      "a13_frac": 0.41,
+      "hits": 7,
+      "hit_rate": 0.07,
+      "n_zero": 35,
+      "breach_count": 0
+    },
+    "floor_100d_reference": {
+      "hits": 11,
+      "low_hr": 0.28,
+      "a13_frac": 0.64,
+      "n_zero": 18,
+      "breach": 0
+    },
+    "note": "100d multi-seed still required for L2L \u00a77 final gate even if promote true"
+  },
+  "floor_100d_hold": {
+    "hits_ok": false,
+    "a13_ok": false,
+    "n_zero_ok": false,
+    "breach_ok": true
+  },
+  "production_replace": false,
+  "judge_ruling": "ACCEPT_NARROW_LAB",
+  "production_champion": "CASE-0037 meta4275",
+  "p10_full": false
+}

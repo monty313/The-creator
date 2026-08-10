@@ -1,0 +1,17 @@
+{
+  "cont_hold": 10,
+  "pb_hold": 15,
+  "champ": {
+    "pnl": 0.23346521200001671,
+    "n_trades": 61,
+    "hit": false
+  },
+  "lab_balanced": {
+    "pnl": 0.23346521200001671,
+    "n_trades": 61,
+    "hit": false,
+    "breach": false,
+    "fp": "42:meta10962:inf0:b7bdd77ea43b0f50"
+  },
+  "note": "scalp holds + progressive size; balanced method+reclaim seal"
+}

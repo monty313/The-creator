@@ -18,13 +18,16 @@ Packed path-state teachers at brain-wait
 
 ---
 
-## Read these three files (in order)
+## Read these files (in order)
 
 | # | File | What you get |
 |---|------|----------------|
 | 1 | **`01_HOW_IT_WORKS.md`** | What the process is (plain words) |
 | 2 | **`02_HOW_TO_USE_IT.md`** | How to run it yourself |
-| 3 | **`03_IMPROVEMENTS_BEFORE_AFTER.md`** | What got better after we used it |
+| 3 | **`03_IMPROVEMENTS_BEFORE_AFTER.md`** | CASE-0037 before/after (champion) |
+| 4 | **`04_MONTY_BLEND_RETRAIN_RESULT.md`** | Lab: path-state + Monty HTF blend retrain |
+| 5 | **`05_HTF_ACTIVE_YEAR.md`** | Year train: only HTF-active moments → dual → promote if beats |
+| 6 | **`06_TRADE_MENTAL_REPLAY.md`** | Policy 3-TF × before/during/after self-observation (lab) |
 
 ---
 
@@ -58,6 +61,8 @@ Hits (target wins) stayed the same — still work to do.
 |------|------|
 | Harvest + train code | `evidence_court/meta_rl/path_state_harvest.py` |
 | Day path flag | `collect_path_state_teachers` in `goal_path.py` |
+| Mental replay (3×3 mind) | `evidence_court/meta_rl/trade_mental_replay.py` |
+| Day path mental flag | `collect_mental_replay` in `goal_path.py` (auto-on with path teachers) |
 | Court case | `evidence_court/cases/CASE-0037-path-state-teachers.md` |
 | Champion SSOT | `evidence_court/BEST_POLICY.md` |
 | Teacher pack (saved) | `evidence_court/artifacts/path_state_teachers_case0037.json` |

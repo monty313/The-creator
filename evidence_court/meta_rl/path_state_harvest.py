@@ -13,7 +13,11 @@ from typing import Any, Dict, List, Optional, Sequence
 import numpy as np
 
 from .edge import build_tf_cache
-from .goal_path import run_goal_path_day
+from .goal_path import (
+    PRODUCTION_SCALPING_SLOTS_15M,
+    build_scalping_cadence_slots,
+    run_goal_path_day,
+)
 from .policy import (
     FrozenMetaPolicy,
     load_or_train_champion,
@@ -32,8 +36,17 @@ def filter_path_state_teachers(
     examples: Sequence[Dict[str, Any]],
     *,
     max_examples: int = 400,
+    require_htf_active: bool = True,
+    allow_wait: bool = False,
 ) -> List[Dict[str, Any]]:
-    """Keep only full-dim state + long/short teachers + PB/cont topology."""
+    """Keep full-dim path teachers + PB/cont topology.
+
+    Default: long/short only (density/path-state clone path).
+    ``allow_wait`` (conversion mode): also keep wait teachers so dead-R /
+    thrash lessons are not filtered out before conversion remap.
+    ``require_htf_active`` (default True): drop examples with no live HTF set.
+    """
+    allowed_acts = ("long", "short", "wait") if allow_wait else ("long", "short")
     out: List[Dict[str, Any]] = []
     for ex in examples:
         if not isinstance(ex, dict):
@@ -47,24 +60,69 @@ def filter_path_state_teachers(
         if not np.all(np.isfinite(arr)):
             continue
         act = str(ex.get("teacher_act") or "")
-        if act not in ("long", "short"):
+        if act not in allowed_acts:
             continue
         topo = str(ex.get("topology") or "")
-        if topo not in ACTIONABLE:
+        # wait teachers may carry chop/load topology for dead-R lessons
+        if act in ("long", "short") and topo not in ACTIONABLE:
             continue
+        if act == "wait" and topo and topo not in ACTIONABLE and topo not in (
+            "chop",
+            "slingshot_load",
+            "load",
+            "collapse",
+        ):
+            # still allow empty / unknown topology on wait
+            if topo not in ("", "unknown", "none"):
+                pass  # keep wait anyway — conversion labels it
         src = str(ex.get("source") or "")
-        if src not in ("path_state_miss", "path_state", "path_state_watch_miss"):
+        allowed_src = (
+            "path_state_miss",
+            "path_state",
+            "path_state_watch_miss",
+            "path_state_htf_active",
+            "path_state_side_miss",
+            "path_state_conversion",
+            "path_state_dead",
+            "path_state_clear",
+            "path_state_near_breach",
+            # Trade Mental Replay (3TF × before/during/after) offline teachers
+            "path_state_mental_replay",
+            "path_state_mental_replay_dead",
+            "path_state_mental_replay_hold",
+            "path_state_mental_replay_clear",
+        )
+        if src not in allowed_src:
             # allow explicit path sources only (anti synthetic smuggle)
             if "path_state" not in src:
+                continue
+        n_act = int(ex.get("n_htf_active") or 0)
+        if require_htf_active:
+            # Strict: must carry collector-set n_htf_active >= 1 (no stamp-launder)
+            if n_act < 1:
                 continue
         row = dict(ex)
         row["state"] = [float(x) for x in arr]
         row["teacher_act"] = act
         row["source"] = src if "path_state" in src else "path_state_miss"
+        row["n_htf_active"] = n_act
+        if require_htf_active:
+            row["htf_active"] = True
+        elif n_act >= 1:
+            row["htf_active"] = True
+        else:
+            row["htf_active"] = bool(ex.get("htf_active") is True)
         out.append(row)
-        if len(out) >= int(max_examples):
-            break
-    return out
+    # Prefer high-weight (L/NY, multi-HTF active) when capping
+    out.sort(
+        key=lambda r: (
+            float(r.get("weight") or 1.0),
+            int(r.get("n_htf_active") or 0),
+            1 if str(r.get("session_band")) == "london_ny" else 0,
+        ),
+        reverse=True,
+    )
+    return out[: int(max_examples)]
 
 
 def apply_path_state_teachers_to_brain(
@@ -114,11 +172,22 @@ def harvest_path_state_teachers(
     policy: Optional[FrozenMetaPolicy] = None,
     symbols: Optional[Sequence[str]] = None,
     monty_htf_blend: bool = False,
+    require_htf_active: bool = True,
+    checkpoint_every: int = 25,
+    checkpoint_path: Optional[Path | str] = None,
+    resume_from_partial: bool = True,
+    harvest_slots: Optional[Sequence[str]] = None,
+    watch_enabled: bool = False,
 ) -> Dict[str, Any]:
     """Run real path with collect_path_state_teachers; return packed examples.
 
     ``monty_htf_blend=True``: harvest under Monty slope+CCI/RSI HTF force so
     teacher states include real source flags (doctrine 12–14) and blend force.
+
+    ``require_htf_active``: keep only moments where ≥1 official HTF set is live.
+    ``resume_from_partial``: if checkpoint exists with days_done, skip those days.
+    ``harvest_slots``: default 15m cadence (faster year harvest; dual still uses 5m).
+    ``watch_enabled``: default False on harvest (speed; teachers from path collect).
     """
     syms = list(symbols) if symbols else [
         s for s in ("XAUUSD", "EURUSD", "GBPUSD") if s in available_symbols()
@@ -166,10 +235,40 @@ def harvest_path_state_teachers(
 
     raw: List[Dict[str, Any]] = []
     day_stats: List[Dict[str, Any]] = []
+    start_i = 0
+    ckpt = Path(checkpoint_path) if checkpoint_path else None
+    if resume_from_partial and ckpt is not None and ckpt.exists():
+        try:
+            prev = json.loads(ckpt.read_text(encoding="utf-8"))
+            # Prefer full raw list if present; else examples only
+            if isinstance(prev.get("raw"), list) and prev["raw"]:
+                raw = list(prev["raw"])
+            elif isinstance(prev.get("examples"), list):
+                raw = list(prev["examples"])
+            start_i = int(prev.get("days_done") or 0)
+            start_i = max(0, min(start_i, len(eval_dates)))
+            print(f"  resume harvest from day index {start_i}/{len(eval_dates)} raw={len(raw)}", flush=True)
+        except Exception as exc:
+            print(f"  resume partial failed ({exc}); starting fresh", flush=True)
+            raw = []
+            start_i = 0
     rng = np.random.default_rng(seed)
+    # advance rng to match skipped days (even i: fixed t=15, only risk draw; odd: both)
+    for j in range(start_i):
+        if j % 2:
+            _ = float(rng.choice([5.0, 15.0, 30.0, 50.0, 70.0]))
+        _ = float(rng.choice([1.0, 2.0, 3.0]))
     for i, date in enumerate(eval_dates):
+        if i < start_i:
+            continue
         t = float(rng.choice([5.0, 15.0, 30.0, 50.0, 70.0])) if i % 2 else 15.0
         r = float(rng.choice([1.0, 2.0, 3.0]))
+        if harvest_slots is not None:
+            slots = list(harvest_slots)
+        else:
+            # Year harvest default: 30m grid (~27 slots) for throughput; dual uses 5m.
+            slots = list(build_scalping_cadence_slots(interval_minutes=30))  # kw-only
+        # Multi-symbol path still; cache lookup per sym
         fills, ledger, gmeta = run_goal_path_day(
             pol,
             date=date,
@@ -178,49 +277,92 @@ def harvest_path_state_teachers(
             max_daily_risk_percent=r,
             symbols=list(m1_by_sym.keys()),
             tf_cache_by_symbol=tf_cache_by_symbol,
+            slots=slots,
             brain_drives=True,
-            watch_enabled=True,
+            watch_enabled=bool(watch_enabled),
             collect_path_state_teachers=True,
             max_path_state_teachers=int(max_per_day),
             monty_htf_blend=bool(monty_htf_blend),
         )
         exs = list(gmeta.get("path_state_teachers") or [])
+        day_pnl = float(ledger.realized_pnl_percent)
+        from .path_learning import stamp_path_teacher_day_outcome
+
         for ex in exs:
             if isinstance(ex, dict):
-                row = dict(ex)
-                row["harvest_day_target"] = t
-                row["harvest_day_risk"] = r
-                row["harvest_day_n_trades"] = len(fills)
+                row = stamp_path_teacher_day_outcome(
+                    ex,
+                    day_pnl=day_pnl,
+                    target_percent=t,
+                    max_daily_risk_percent=r,
+                    n_trades=len(fills),
+                )
+                row["asof_date"] = str(date)
                 raw.append(row)
         day_stats.append(
             {
                 "date": date,
                 "n_trades": len(fills),
                 "n_teachers": len(exs),
-                "pnl": float(ledger.realized_pnl_percent),
+                "pnl": day_pnl,
                 "target": t,
                 "risk": r,
+                "hit": day_pnl >= t - 1e-9,
+                "breach": day_pnl < -r - 1e-9,
             }
         )
+        if ckpt and checkpoint_every > 0 and (i + 1) % int(checkpoint_every) == 0:
+            partial = filter_path_state_teachers(
+                raw, max_examples=max_examples, require_htf_active=require_htf_active
+            )
+            ckpt.parent.mkdir(parents=True, exist_ok=True)
+            ckpt.write_text(
+                json.dumps(
+                    {
+                        "partial": True,
+                        "days_done": i + 1,
+                        "n_raw": len(raw),
+                        "n_examples": len(partial),
+                        "examples": partial,
+                        "raw": raw,  # full list for resume
+                    }
+                ),
+                encoding="utf-8",
+            )
+            print(
+                f"  harvest ckpt day {i+1}/{len(eval_dates)} raw={len(raw)} kept={len(partial)}",
+                flush=True,
+            )
 
-    filtered = filter_path_state_teachers(raw, max_examples=max_examples)
+    filtered = filter_path_state_teachers(
+        raw, max_examples=max_examples, require_htf_active=require_htf_active
+    )
     n_ln = sum(1 for x in filtered if str(x.get("session_band")) == "london_ny")
     n_zero = sum(1 for d in day_stats if int(d["n_trades"]) == 0)
+    n_htf = sum(1 for x in filtered if int(x.get("n_htf_active") or 0) >= 1)
     # dim integrity sample
     dims_ok = all(len(x["state"]) == META_RL_DIM for x in filtered)
+    if require_htf_active and filtered:
+        bad = [i for i, x in enumerate(filtered) if int(x.get("n_htf_active") or 0) < 1]
+        if bad:
+            raise ValueError(
+                f"HTF-active pack integrity fail: {len(bad)} rows missing n_htf_active>=1"
+            )
     return {
         "examples": filtered,
         "n_days": len(eval_dates),
         "n_raw": len(raw),
         "n_examples": len(filtered),
         "n_london_ny": n_ln,
+        "n_htf_active_teachers": n_htf,
         "n_zero_trade_days": n_zero,
         "dims_ok": dims_ok,
         "meta_rl_dim": META_RL_DIM,
         "day_stats_head": day_stats[:8],
         "source": "path_state_miss",
-        "law": "A28_C003_CASE0037",
+        "law": "A28_C003_CASE0037_htf_active",
         "monty_htf_blend": bool(monty_htf_blend),
+        "require_htf_active": bool(require_htf_active),
         "policy_fingerprint": pol.weight_fingerprint(),
         "symbols": list(m1_by_sym.keys()),
         "window_start": eval_dates[0] if eval_dates else None,
@@ -248,7 +390,9 @@ def train_path_state_a13_policy(
     n_passes: int = 2,
 ) -> MetaPolicy:
     """Base meta-train (or warmstart) + offline path-state teacher mix. Shadow only."""
-    labs = filter_path_state_teachers(examples, max_examples=max(50, len(examples)))
+    labs = filter_path_state_teachers(
+        examples, max_examples=max(50, len(examples)), require_htf_active=True
+    )
     if not labs:
         raise ValueError("no path-state teachers to train on")
     if warmstart_path is not None and Path(warmstart_path).exists():

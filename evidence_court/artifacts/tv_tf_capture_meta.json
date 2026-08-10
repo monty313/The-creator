@@ -1,0 +1,28 @@
+[
+  {
+    "tf": "1",
+    "path": "evidence_court\\artifacts\\tv_xau_tf_1m.png",
+    "bytes": 140794,
+    "info": {}
+  },
+  {
+    "tf": "15",
+    "path": "evidence_court\\artifacts\\tv_xau_tf_15m.png",
+    "bytes": 150517,
+    "info": {
+      "symbol": "OANDA:AUDUSD",
+      "resolution": "15",
+      "tf": "15"
+    }
+  },
+  {
+    "tf": "30",
+    "path": "evidence_court\\artifacts\\tv_xau_tf_30m.png",
+    "bytes": 145097,
+    "info": {
+      "symbol": "OANDA:AUDUSD",
+      "resolution": "30",
+      "tf": "30"
+    }
+  }
+]

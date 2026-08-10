@@ -41,7 +41,7 @@ from .risk import (
     size_position_risk_percent,
 )
 from .roles import evaluate_understanding, novel_composition, rename_sensors, swap_family
-from .senses import MarketSenseInput, probe_all_senses
+from .senses import MarketSenseInput, encode_sense_report, probe_all_senses
 from .regimes import (
     day_path_regime_skip_new_risk,
     efficiency_proxy_from_edge,
@@ -49,6 +49,11 @@ from .regimes import (
     regime_from_edge_sensors,
 )
 from .state import build_meta_rl_state
+from .trade_mental_replay import (
+    build_trade_mental_replay,
+    mid_time as tmr_mid_time,
+    teachers_from_mental_replay,
+)
 from .types import StructureFlags
 
 # Law A13 (Monty overrules Judge): production day MUST land 8–400 trades.
@@ -267,8 +272,17 @@ def next_slot_end_after_minutes(
     return eod
 
 
-# CASE-0028: cont path min hold (minutes) — restores R clipped by 10m next-slot (A25)
-CONT_HOLD_MIN_MINUTES = 30
+# ---------------------------------------------------------------------------
+# SCALPING HOLD LAW (Monty 2026-08-10 overrule — A13 identity)
+# This is a **scalping** meta-RL bot. Trade life is short.
+# Conversion = many quality scalps + progressive size-up — NOT multi-hour holds.
+# Prior CASE-0028 30m cont / EOD pullback was swing-like; too long for scalp class.
+# ---------------------------------------------------------------------------
+CONT_HOLD_MIN_MINUTES = 10  # continuation scalp window (was 30 — too long)
+PB_HOLD_MIN_MINUTES = 15  # pullback scalp runner (was EOD — not scalping)
+# method_hold: NEVER extend past scalp window (was 120m — forbidden for scalp class)
+METHOD_HOLD_CONT_MINUTES = CONT_HOLD_MIN_MINUTES
+METHOD_HOLD_SIZE_R_ARM = 1.0  # scalp: bank at 1R; progressive size carries conversion
 
 
 def fill_hold_end_time(
@@ -278,16 +292,18 @@ def fill_hold_end_time(
     *,
     eod: str = "23:59:59",
     cont_hold_min_minutes: int = CONT_HOLD_MIN_MINUTES,
+    pb_hold_min_minutes: int = PB_HOLD_MIN_MINUTES,
 ) -> str:
-    """CASE-0012/0028: asymmetric hold — pullback runners to EOD; cont min path hold.
+    """Scalp hold windows — short for both topologies (Monty scalp law).
 
-    F-017: clipping pullback_resume at short windows on dense grid killed R.
-    CASE-0028: continuation holds until first slot ≥ entry + cont_hold_min_minutes
-    (default 30m) so A25 10m clock does not force 10m cont scratches.
-    On 30m lab grid, +30m equals next slot (0012 pin). Last slot → EOD both.
+    Continuation: ``cont_hold_min_minutes`` (default **10m**).
+    Pullback resume: ``pb_hold_min_minutes`` (default **15m**) — not EOD.
+    Last slot → EOD for both (no look-ahead past day).
     """
     if str(topology) == "pullback_resume":
-        return eod
+        return next_slot_end_after_minutes(
+            slot, slots, int(pb_hold_min_minutes), eod=eod
+        )
     return next_slot_end_after_minutes(
         slot, slots, int(cont_hold_min_minutes), eod=eod
     )
@@ -727,6 +743,112 @@ def goal_path_size_for_clear(
     return float(max(size, 0.0))
 
 
+# Monty executive order: intelligent size-up toward clear (still breach-0 rail).
+INTELLIGENT_SIZE_UP = True
+
+
+def intelligent_size_toward_clear(
+    *,
+    ledger: DailyRiskLedger,
+    target_percent: float,
+    topology: str,
+    brain_size: float = 0.0,
+    wounded: bool = False,
+    edge_quality: float = 1.0,
+    conf: float = 0.55,
+) -> float:
+    """Progressive size-up toward target + hard size-down near breach (scalp EO).
+
+    Monty law (2026-08-10):
+    - **Progressive size UP** when far from target and edge is live (reach clear).
+    - **Size DOWN** when close to breach (thin remaining risk skin).
+    - Brain head **blends** into legal progressive size (method binds; not pure max).
+    - Never past remaining worst-case budget (breach 0).
+
+    Scalping identity: conversion via many short legs × growing size — not one giant lot.
+    """
+    rem_goal = remaining_to_target(ledger, target_percent)
+    rem_risk = ledger.remaining_risk_budget_percent()
+    max_r = float(ledger.max_daily_risk_percent)
+    if rem_risk <= 0.05 or rem_goal <= 0:
+        return 0.0
+
+    clear_sz = goal_path_size_for_clear(
+        ledger=ledger,
+        target_percent=target_percent,
+        topology=topology,
+        wounded=wounded,
+    )
+    brain = max(float(brain_size), 0.0)
+    expect_r = clear_expect_r(topology, target_percent)
+    # Scalp windows capture less path R → slightly softer R for size math when conf high
+    eq = float(np.clip(edge_quality, 0.0, 1.5))
+    cf = float(np.clip(conf, 0.0, 1.0))
+    soft_r = max(expect_r * (1.0 - 0.30 * cf * min(eq, 1.0)), 0.45)
+    progress = 1.0 - float(np.clip(rem_goal / max(float(target_percent), 1e-6), 0.0, 1.0))
+    risk_skin = float(np.clip(rem_risk / max(max_r, 1e-6), 0.0, 1.0))  # 1=full, 0=empty
+    high_q = cf >= 0.58 and eq >= 0.70
+    mid_q = cf >= 0.45 and eq >= 0.50
+
+    # --- Near breach: HARD size-down (Monty) ---
+    if risk_skin < 0.22 or rem_risk < 0.35:
+        tiny = min(rem_risk * 0.22, max(brain * 0.35, 0.08), clear_sz * 0.35)
+        if wounded:
+            tiny *= 0.85
+        if tiny <= 0.05 or ledger.would_breach(tiny):
+            return 0.0
+        return float(max(tiny, 0.0))
+
+    # --- Progressive size-UP toward target (far → larger share of rem_risk) ---
+    # Leave room for later A13 legs when not high-q; open the throttle when far+clean.
+    if high_q and progress < 0.30:
+        budget_frac = 0.82  # progressive open: far from target, clean edge
+    elif high_q and progress < 0.55:
+        budget_frac = 0.70
+    elif high_q and progress < 0.80:
+        budget_frac = 0.58
+    elif mid_q and progress < 0.40:
+        budget_frac = 0.62  # medium edge still sizes up when far
+    elif progress < 0.50:
+        budget_frac = 0.48
+    else:
+        budget_frac = 0.38  # near clear — ease off, bank risk for protect
+    if risk_skin < 0.40:
+        budget_frac *= 0.72  # approach breach zone — taper
+    if wounded:
+        budget_frac *= 0.82
+
+    progressive = min(rem_goal / soft_r, rem_risk * budget_frac)
+    progressive *= float(np.clip(0.55 + 0.50 * cf * min(eq, 1.0), 0.50, 1.15))
+    # Floor progressive near clear_sz when far from target so we actually climb
+    if progress < 0.45:
+        progressive = max(progressive, clear_sz * (1.05 if high_q else 0.95))
+
+    # --- Brain blend (method binds) — not pure max(brain, clear, aggressive) ---
+    # size = blend so size_down/up teachers and progressive both matter
+    if brain > 0.05:
+        # Weight brain more when conf high (method reclaim); progressive when far
+        w_brain = float(np.clip(0.25 + 0.35 * cf, 0.25, 0.60))
+        w_prog = 1.0 - w_brain
+        size = w_brain * brain + w_prog * progressive
+        # Far from target + high quality: never let tiny brain starve progressive up
+        if progress < 0.40 and high_q:
+            size = max(size, progressive * 0.90)
+    else:
+        size = progressive
+
+    single_cap = rem_risk * (0.80 if high_q and progress < 0.45 else 0.62)
+    day_cap = max_r * (0.85 if high_q and progress < 0.5 else 0.72)
+    size = min(size, single_cap, day_cap, rem_risk * 0.92)
+    if wounded:
+        size *= 0.88
+    if size <= 0.05 or ledger.would_breach(size):
+        size = min(max(clear_sz * 0.7, brain * 0.5), rem_risk * 0.85)
+        if size <= 0.05 or ledger.would_breach(size):
+            return 0.0
+    return float(max(size, 0.0))
+
+
 def goal_conditioned_size(
     *,
     ledger: DailyRiskLedger,
@@ -755,33 +877,15 @@ def goal_conditioned_size(
     return float(min(size, rem_risk * 0.95))
 
 
-def _sense_l2l_once(snap, target: float, risk: float) -> Tuple[bool, bool, Tuple[str, ...]]:
-    sensors = edge_sensors(snap)
-    role_base = evaluate_understanding(sensors)
-    renamed = evaluate_understanding(rename_sensors(sensors, prefix="HO_"))
-    swapped = evaluate_understanding(swap_family(sensors, "rsi"))
-    novel = evaluate_understanding(
-        novel_composition(
-            "macd",
-            "stochastic",
-            force_val=float(snap.consensus_force),
-            velocity_val=float(sensors[1].value),
-            inertia_val=float(sensors[2].value),
-        )
-    )
-    l2l_ok = (
-        role_base.topology == renamed.topology
-        and role_base.act == renamed.act
-        and role_base.topology == swapped.topology
-        and novel.chain_ok
-    )
+def sense_input_from_snap(snap, target: float, risk: float) -> MarketSenseInput:
+    """Build MarketSenseInput from a SymbolEdgeSnapshot (shared by probe + state pack)."""
     forces = [e.force for e in snap.set_edges]
     while len(forces) < 8:
         forces.append(0.0)
     vels = [(e.ltf_rsi - 50.0) / 50.0 for e in snap.set_edges] or [0.0]
     while len(vels) < 4:
         vels.append(0.0)
-    sense_inp = MarketSenseInput(
+    return MarketSenseInput(
         htf_force=forces[:8],
         ltf_velocity=vels[:4],
         inertia=[f * 0.85 for f in forces[:4]],
@@ -805,6 +909,29 @@ def _sense_l2l_once(snap, target: float, risk: float) -> Tuple[bool, bool, Tuple
         cross_family_agree=snap.multi_set_consensus in ("agree_long", "agree_short"),
         set_conflict=snap.multi_set_consensus == "conflict",
     )
+
+
+def _sense_l2l_once(snap, target: float, risk: float) -> Tuple[bool, bool, Tuple[str, ...]]:
+    sensors = edge_sensors(snap)
+    role_base = evaluate_understanding(sensors)
+    renamed = evaluate_understanding(rename_sensors(sensors, prefix="HO_"))
+    swapped = evaluate_understanding(swap_family(sensors, "rsi"))
+    novel = evaluate_understanding(
+        novel_composition(
+            "macd",
+            "stochastic",
+            force_val=float(snap.consensus_force),
+            velocity_val=float(sensors[1].value),
+            inertia_val=float(sensors[2].value),
+        )
+    )
+    l2l_ok = (
+        role_base.topology == renamed.topology
+        and role_base.act == renamed.act
+        and role_base.topology == swapped.topology
+        and novel.chain_ok
+    )
+    sense_inp = sense_input_from_snap(snap, target, risk)
     sense_rep = probe_all_senses(sense_inp)
     senses_ok = (
         "topology_class" in sense_rep.sight
@@ -833,8 +960,11 @@ def run_goal_path_day(
     watch_enabled: bool = True,
     collect_path_state_teachers: bool = False,
     max_path_state_teachers: int = 80,
+    collect_mental_replay: bool = False,
+    max_mental_replays: int = 80,
     aggressive_capture: bool = False,
     monty_htf_blend: bool = False,
+    method_hold_while_force: bool = False,
 ) -> Tuple[List[LegFill], DailyRiskLedger, Dict[str, Any]]:
     """Multi-slot scalping path. Law A29: brain decides; sensors feed state.
 
@@ -849,6 +979,11 @@ def run_goal_path_day(
     candidate, dump packed ``build_meta_rl_state`` + edge teacher_act for offline
     train (anti F-025 synthetic-state rebuild). Never forces live trades.
 
+    ``collect_mental_replay`` (lab): after each closed fill, build a 3-TF ×
+    before/during/after Trade Mental Replay card (Policy self-observation).
+    Also auto-on when ``collect_path_state_teachers`` so conversion teachers can
+    use outcome tags. Offline only — no inference retrain (A14).
+
     ``aggressive_capture`` (shadow/lab): multi-symbol pick up to 3, no XAU rank
     monopoly, cont/FX boosted in quality — risk envelope still hard; no pad.
 
@@ -856,6 +991,11 @@ def run_goal_path_day(
     blended with Monty CCI+BB / RSI+BB on both HTFs; packs slope_on/cci_on/rsi_on
     into doctrine[12:15] so the brain can learn wind source. Production champ
     stays slope-only until Court PROMOTE + retrain.
+
+    ``method_hold_while_force`` (lab/shadow, default **False**): Aaron t4 —
+    when multi-set Force agrees and brain fires with confidence, extend cont hold
+    and raise size-R arm so winners are not scratched at +1R / 30m. Production
+    path stays CASE-0028 defaults until Court PROMOTE.
 
     Default clock is PRODUCTION_SCALPING_SLOTS (CASE-0029 5m).
     """
@@ -867,9 +1007,14 @@ def run_goal_path_day(
     )
     fills: List[LegFill] = []
     path_state_teachers: List[Dict[str, Any]] = []
+    mental_replays: List[Dict[str, Any]] = []
+    # Path teachers imply mental replay so AFTER outcomes can label conversion
+    want_mental = bool(collect_mental_replay or collect_path_state_teachers)
     meta: Dict[str, Any] = {
         "slots": list(slots),
         "n_slots_fired": 0,
+        "n_method_hold_legs": 0,
+        "method_hold_while_force": bool(method_hold_while_force),
         "locked_target": False,
         "path": "goal_conditioned_scalping_cadence_a30_ms_session",
         "a13_slots_capacity": len(slots),
@@ -1117,6 +1262,7 @@ def run_goal_path_day(
             assert best is not None
             m1 = m1_by_symbol[sym]
             # CASE-0012/0028: pullback → EOD; cont → min hold path (default 30m)
+            # Method hold applied after brain forward (needs conf) — placeholder first
             end_time_fill = fill_hold_end_time(topology, slot, slot_list)
             pol_topo = "launch" if topology == "pullback_resume" else "release"
 
@@ -1141,6 +1287,15 @@ def run_goal_path_day(
                 cci_on=float(getattr(snap, "cci_on", 0.0) or 0.0),
                 rsi_on=float(getattr(snap, "rsi_on", 0.0) or 0.0),
             )
+            # L2L Proposal 1: pack living senses into state (not probe-only)
+            sense_inp = sense_input_from_snap(
+                snap,
+                float(target_percent),
+                float(max_daily_risk_percent),
+            )
+            sense_inp.progress_to_target = float(np.clip(progress, 0, 1.5))
+            sense_inp.realized_risk_percent = max(-ledger.realized_pnl_percent, 0.0)
+            sense_rep = probe_all_senses(sense_inp)
             state = build_meta_rl_state(
                 target_percent=target_percent,
                 max_daily_risk_percent=max_daily_risk_percent,
@@ -1150,12 +1305,15 @@ def run_goal_path_day(
                     pullback=topology == "pullback_resume",
                     scale_conflict=False,
                 ),
+                sense_report=sense_rep,
                 progress_to_target=float(np.clip(progress, 0, 1.5)),
                 realized_risk_percent=max(-ledger.realized_pnl_percent, 0.0),
                 session_phase=float(si / max(len(slot_list) - 1, 1)),
             )
             meta["last_regime"] = rid.value
             meta["regime_channel"] = "a17_doctrine"
+            meta["senses_packed"] = True
+            meta["sense_pack"] = [float(x) for x in encode_sense_report(sense_rep)]
             meta["htf_source"] = {
                 "slope_on": float(getattr(snap, "slope_on", 0.0) or 0.0),
                 "cci_on": float(getattr(snap, "cci_on", 0.0) or 0.0),
@@ -1174,42 +1332,63 @@ def run_goal_path_day(
                     if idx < st2.size:
                         st2[idx] = sign * 0.95
                 action = policy.forward(st2, ledger=ledger, topology="launch", roles=roles)
+            # HTF-active curriculum: pack every visited state where ≥1 set has HTF agree
+            # and Mark has long/short — not only waits (dense champs rarely wait).
+            n_htf_active = sum(
+                1 for e in (snap.set_edges or []) if bool(getattr(e, "htf_agree", False))
+            )
+            if (
+                collect_path_state_teachers
+                and brain_drives
+                and best.act in ("long", "short")
+                and bool(getattr(best, "htf_agree", False))
+                and n_htf_active >= 1
+                and len(path_state_teachers) < int(max_path_state_teachers)
+            ):
+                band = session_band(slot)
+                t_norm = (float(target_percent) - 5.0) / 85.0
+                size_frac = float(
+                    np.clip(
+                        0.5
+                        + 0.35 * t_norm
+                        + (0.12 if band == "london_ny" else 0.0),
+                        0.25,
+                        0.95,
+                    )
+                )
+                w = 1.0 + 0.25 * float(n_htf_active)
+                if band == "london_ny":
+                    w += 0.5
+                bot = str(action.act or "wait")
+                if bot not in ("long", "short"):
+                    src = "path_state_miss"
+                elif bot == str(best.act):
+                    src = "path_state_htf_active"
+                else:
+                    src = "path_state_side_miss"
+                path_state_teachers.append(
+                    {
+                        "state": [float(x) for x in np.asarray(state, dtype=np.float64).ravel()],
+                        "teacher_act": str(best.act),
+                        "teacher_size_frac": size_frac,
+                        "topology": str(topology),
+                        "session_band": band,
+                        "weight": float(w),
+                        "symbol": str(sym),
+                        "asof_date": str(date),
+                        "asof_time": str(slot),
+                        "force": float(best.force),
+                        "what_bot_did": bot,
+                        "source": src,
+                        "multi_set_consensus": str(snap.multi_set_consensus),
+                        "n_htf_active": int(n_htf_active),
+                        "htf_active": True,
+                        "slope_on": float(getattr(snap, "slope_on", 0.0) or 0.0),
+                        "cci_on": float(getattr(snap, "cci_on", 0.0) or 0.0),
+                        "rsi_on": float(getattr(snap, "rsi_on", 0.0) or 0.0),
+                    }
+                )
             if action.act not in ("long", "short"):
-                # CASE-0037: offline path-state teacher (brain waited on real candidate)
-                if (
-                    collect_path_state_teachers
-                    and brain_drives
-                    and best.act in ("long", "short")
-                    and len(path_state_teachers) < int(max_path_state_teachers)
-                ):
-                    band = session_band(slot)
-                    t_norm = (float(target_percent) - 5.0) / 85.0
-                    size_frac = float(
-                        np.clip(
-                            0.5
-                            + 0.35 * t_norm
-                            + (0.12 if band == "london_ny" else 0.0),
-                            0.25,
-                            0.95,
-                        )
-                    )
-                    path_state_teachers.append(
-                        {
-                            "state": [float(x) for x in np.asarray(state, dtype=np.float64).ravel()],
-                            "teacher_act": str(best.act),
-                            "teacher_size_frac": size_frac,
-                            "topology": str(topology),
-                            "session_band": band,
-                            "weight": 1.5 if band == "london_ny" else 1.0,
-                            "symbol": str(sym),
-                            "asof_date": str(date),
-                            "asof_time": str(slot),
-                            "force": float(best.force),
-                            "what_bot_did": str(action.act or "wait"),
-                            "source": "path_state_miss",
-                            "multi_set_consensus": str(snap.multi_set_consensus),
-                        }
-                    )
                 continue
             # Align with edge side when brain fires opposite (sensor truth)
             if brain_drives and action.act != best.act:
@@ -1242,7 +1421,31 @@ def run_goal_path_day(
                     )
 
             rem_goal = remaining_to_target(ledger, target_percent)
-            if brain_drives and action.size_risk_percent > 0.05:
+            # Edge quality from snapshot consensus / force (for intelligent size-up)
+            _eq = 0.5
+            if snap.multi_set_consensus in ("agree_long", "agree_short"):
+                _eq = 0.85 + 0.15 * min(abs(float(snap.consensus_force or 0.0)), 1.0)
+            elif abs(float(getattr(best, "force", 0.0) or 0.0)) >= 0.35:
+                _eq = 0.7
+            if brain_drives and INTELLIGENT_SIZE_UP:
+                # Monty EO: max(brain, clear-path, intelligent aggressor) under envelope
+                _conf = 0.55
+                if "conf=" in str(action.reason or ""):
+                    try:
+                        _conf = float(str(action.reason).split("conf=")[1].split()[0])
+                    except (IndexError, ValueError):
+                        _conf = 0.55
+                size = intelligent_size_toward_clear(
+                    ledger=ledger,
+                    target_percent=target_percent,
+                    topology=topology,
+                    brain_size=float(action.size_risk_percent or 0.0),
+                    wounded=wounded,
+                    edge_quality=float(_eq),
+                    conf=float(_conf),
+                )
+                size = float(size) * production_leg_size_scale(len(fills))
+            elif brain_drives and action.size_risk_percent > 0.05:
                 size = float(action.size_risk_percent)
             else:
                 size = goal_path_size_for_clear(
@@ -1257,6 +1460,38 @@ def run_goal_path_day(
             meta["path_geometry"] = (
                 "a29_brain_drives" if brain_drives else "a21_one_sym_full_scale"
             )
+
+            # Aaron method for SCALPER (lab): Force agree → re-commit same side at
+            # **scalp** window only (never 30–120m). "Hold" = thesis continuity across
+            # short legs + progressive size, not long bag-holding.
+            size_r_arm = 1.0
+            method_hold_leg = False
+            if method_hold_while_force and brain_drives:
+                _conf_h = 0.55
+                if "conf=" in str(action.reason or ""):
+                    try:
+                        _conf_h = float(str(action.reason).split("conf=")[1].split()[0])
+                    except (IndexError, ValueError):
+                        _conf_h = 0.55
+                force_live = snap.multi_set_consensus in ("agree_long", "agree_short")
+                same_side = (
+                    (snap.multi_set_consensus == "agree_long" and action.act == "long")
+                    or (snap.multi_set_consensus == "agree_short" and action.act == "short")
+                    or (force_live and action.act in ("long", "short"))
+                )
+                if force_live and same_side and _conf_h >= 0.55:
+                    method_hold_leg = True
+                    # Explicit scalp window only (METHOD_HOLD_CONT == CONT_HOLD = 10m)
+                    end_time_fill = fill_hold_end_time(
+                        topology,
+                        slot,
+                        slot_list,
+                        cont_hold_min_minutes=METHOD_HOLD_CONT_MINUTES,
+                        pb_hold_min_minutes=PB_HOLD_MIN_MINUTES,
+                    )
+                    size_r_arm = float(METHOD_HOLD_SIZE_R_ARM)
+                    meta["method_hold_while_force"] = True
+                    meta["path_geometry"] = "a29_brain_scalp_method"
 
             window = m1_window(m1, date=date, start_time=slot, end_time=end_time_fill)
             if len(window) < 5:
@@ -1285,7 +1520,8 @@ def run_goal_path_day(
                     notional_pct=size / max(stop_distance_pct, 1e-6) * 100.0,
                 )
             )
-            # CASE-0008: size-R floor @1.0R + secondary 50% rem_goal; no full BE (F-011)
+            # CASE-0008: size-R floor @1.0R default; method hold raises arm (lab)
+            # secondary 50% rem_goal; no full BE (F-011)
             pnl = simulate_fill_m1_path(
                 side=side,
                 bars=window,
@@ -1295,8 +1531,10 @@ def run_goal_path_day(
                 trail=False,
                 goal_lock_pnl_percent=rem_goal if rem_goal > 0 else None,
                 partial_lock_frac=0.5,
-                size_r_arm_r=1.0,
+                size_r_arm_r=float(size_r_arm),
             )
+            if method_hold_leg:
+                meta["n_method_hold_legs"] = int(meta.get("n_method_hold_legs") or 0) + 1
             apply_trade_result(ledger, pnl_percent=pnl, closed_risk_percent=size)
             ledger.positions.clear()
             fills.append(
@@ -1313,6 +1551,90 @@ def run_goal_path_day(
             )
             fired_this_slot[sym] = action_act
             meta["n_slots_fired"] += 1
+            # --- Trade Mental Replay: 3 TF × before/during/after (Policy mind) ---
+            if want_mental and len(mental_replays) < int(max_mental_replays):
+                try:
+                    cache = (tf_cache_by_symbol or {}).get(sym)
+                    if cache is None:
+                        cache = build_tf_cache(m1)
+                    mid_t = tmr_mid_time(slot, end_time_fill)
+                    during_snap = scan_all_sets(
+                        m1,
+                        sym,
+                        tf_cache=cache,
+                        asof_date=date,
+                        asof_time=mid_t,
+                        monty_htf_blend=bool(monty_htf_blend),
+                    )
+                    after_snap = scan_all_sets(
+                        m1,
+                        sym,
+                        tf_cache=cache,
+                        asof_date=date,
+                        asof_time=end_time_fill,
+                        monty_htf_blend=bool(monty_htf_blend),
+                    )
+                    # ledger already includes this fill's pnl
+                    pre_realized = float(ledger.realized_pnl_percent) - float(pnl)
+                    progress_after = max(ledger.realized_pnl_percent, 0.0) / max(
+                        target_percent, 1e-6
+                    )
+                    risk_after = max(-ledger.realized_pnl_percent, 0.0)
+                    risk_before = max(-pre_realized, 0.0)
+                    sense_during = probe_all_senses(
+                        sense_input_from_snap(
+                            during_snap,
+                            float(target_percent),
+                            float(max_daily_risk_percent),
+                        )
+                    )
+                    sense_after = probe_all_senses(
+                        sense_input_from_snap(
+                            after_snap,
+                            float(target_percent),
+                            float(max_daily_risk_percent),
+                        )
+                    )
+                    n_htf_here = sum(
+                        1
+                        for e in (snap.set_edges or [])
+                        if bool(getattr(e, "htf_agree", False))
+                    )
+                    card = build_trade_mental_replay(
+                        trade_index=len(fills),
+                        symbol=sym,
+                        date=date,
+                        side=str(action_act),
+                        size_risk_percent=float(size),
+                        entry_slot=str(slot),
+                        exit_time=str(end_time_fill),
+                        topology=str(topology),
+                        set_id=int(getattr(best, "set_id", 0) or 0),
+                        pnl_percent=float(pnl),
+                        before_snap=snap,
+                        during_snap=during_snap,
+                        after_snap=after_snap,
+                        brain_act=str(action_act),
+                        sense_rep_before=sense_rep,
+                        sense_rep_during=sense_during,
+                        sense_rep_after=sense_after,
+                        progress_before=float(np.clip(progress, 0, 1.5)),
+                        progress_after=float(np.clip(progress_after, 0, 1.5)),
+                        risk_before=float(risk_before),
+                        risk_after=float(risk_after),
+                        packed_state_before=state,
+                        lot=float(lot_info["lot"]),
+                        n_htf_active=int(n_htf_here),
+                    )
+                    # Compact journal in meta (full state only inside teacher export)
+                    mental_replays.append(card.to_dict(include_state=False))
+                    if collect_path_state_teachers:
+                        for trow in teachers_from_mental_replay(card):
+                            if len(path_state_teachers) >= int(max_path_state_teachers):
+                                break
+                            path_state_teachers.append(trow)
+                except Exception as _tmr_exc:  # never break the day path
+                    meta["mental_replay_last_error"] = str(_tmr_exc)[:200]
             if pnl < 0:
                 wounded = True
             if ledger.realized_pnl_percent >= target_percent - 1e-9:
@@ -1336,6 +1658,7 @@ def run_goal_path_day(
                 )
             watch_slot_reports.append(watch_agent.merge_reports(slot_reps))
             # Residual harvest: pack *real* path state at Watch miss (anti F-025 rebuild)
+            # HTF-active gate: ≥1 official set htf_agree (same as brain-wait teachers)
             if collect_path_state_teachers:
                 progress = max(ledger.realized_pnl_percent, 0.0) / max(target_percent, 1e-6)
                 realized_risk = max(-ledger.realized_pnl_percent, 0.0)
@@ -1353,6 +1676,13 @@ def run_goal_path_day(
                         csym = str(getattr(c, "symbol", "") or "")
                         snap = slot_snaps.get(csym)
                         if snap is None:
+                            continue
+                        n_htf_active = sum(
+                            1
+                            for e in (snap.set_edges or [])
+                            if bool(getattr(e, "htf_agree", False))
+                        )
+                        if n_htf_active < 1:
                             continue
                         official = edge_to_set_confluence(snap)
                         eff_p = efficiency_proxy_from_edge(
@@ -1373,6 +1703,12 @@ def run_goal_path_day(
                             cci_on=float(getattr(snap, "cci_on", 0.0) or 0.0),
                             rsi_on=float(getattr(snap, "rsi_on", 0.0) or 0.0),
                         )
+                        si = sense_input_from_snap(
+                            snap, float(target_percent), float(max_daily_risk_percent)
+                        )
+                        si.progress_to_target = float(np.clip(progress, 0, 1.5))
+                        si.realized_risk_percent = float(realized_risk)
+                        srep = probe_all_senses(si)
                         st = build_meta_rl_state(
                             target_percent=target_percent,
                             max_daily_risk_percent=max_daily_risk_percent,
@@ -1382,6 +1718,7 @@ def run_goal_path_day(
                                 pullback=topo == "pullback_resume",
                                 scale_conflict=False,
                             ),
+                            sense_report=srep,
                             progress_to_target=float(np.clip(progress, 0, 1.5)),
                             realized_risk_percent=realized_risk,
                             session_phase=sess,
@@ -1397,6 +1734,9 @@ def run_goal_path_day(
                                 0.95,
                             )
                         )
+                        w = 1.0 + 0.25 * float(n_htf_active)
+                        if band == "london_ny":
+                            w += 0.5
                         path_state_teachers.append(
                             {
                                 "state": [
@@ -1407,7 +1747,7 @@ def run_goal_path_day(
                                 "teacher_size_frac": size_frac,
                                 "topology": topo,
                                 "session_band": band,
-                                "weight": 1.5 if band == "london_ny" else 1.0,
+                                "weight": float(w),
                                 "symbol": csym,
                                 "asof_date": str(date),
                                 "asof_time": str(slot),
@@ -1416,6 +1756,11 @@ def run_goal_path_day(
                                 "source": "path_state_watch_miss",
                                 "multi_set_consensus": str(snap.multi_set_consensus),
                                 "set_id": int(getattr(c, "set_id", 0) or 0),
+                                "n_htf_active": int(n_htf_active),
+                                "htf_active": True,
+                                "slope_on": float(getattr(snap, "slope_on", 0.0) or 0.0),
+                                "cci_on": float(getattr(snap, "cci_on", 0.0) or 0.0),
+                                "rsi_on": float(getattr(snap, "rsi_on", 0.0) or 0.0),
                             }
                         )
 
@@ -1450,4 +1795,8 @@ def run_goal_path_day(
     meta["path_state_teachers"] = path_state_teachers
     meta["n_path_state_teachers"] = len(path_state_teachers)
     meta["collect_path_state_teachers"] = bool(collect_path_state_teachers)
+    meta["mental_replays"] = mental_replays
+    meta["n_mental_replays"] = len(mental_replays)
+    meta["collect_mental_replay"] = bool(want_mental)
+    meta["mental_replay_grid"] = "3tf_x_3phase"
     return fills, ledger, meta

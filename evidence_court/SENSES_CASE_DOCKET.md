@@ -41,7 +41,22 @@ Must hear: regime shifts; dual-clock tension vs launch; full-body tunnel (not wi
 
 ## Case queue
 
-### CASE-0031 — Sight + Opportunity Watch (**OPEN NEXT**)
+### CASE-L2L-P1 — Senses pack into state (**CLOSED ACCEPT 2026-08-09**)
+
+**item_id:** C-005 / L2L-P1  
+**goal_axes:** G-SIGHT, G-FEEL, G-TASTE, G-HEAR, G-L2L  
+**Ruling:** **ACCEPT** — `encode_sense_report` 16-d pack into agent_votes; META_RL_DIM=176; logits react to sense-only delta.  
+**Case file:** `cases/CASE-L2L-P1-senses-drive-brain.md`
+
+### CASE-L2L-P2 — Sight becomes alive (**OPEN NEXT** under L2L order)
+
+**item_id:** L2L-P2 / C-005  
+**goal_axes:** G-SIGHT, G-L2L, G-CLEAR  
+**Question:** Reward good structure reading on 4 Mark sets for **both** pullbacks and continuations without handing final trade labels.  
+**Accept when:** not flat on ordinary B&B PB/cont days.  
+**Instruction:** `L2L_PROJECT__ONE_BOT_100_DAYS.md` §6 Proposal 2.
+
+### CASE-0031 — Sight + Opportunity Watch (**WIRE PROMOTED narrow**)
 
 **item_id:** C-001 (+ C-005 sight)  
 **goal_axes:** G-SIGHT, G-A13, G-TRAIN  

@@ -1,0 +1,107 @@
+{
+  "law": "AARON_COHERENT_DUAL_CLOSEOUT",
+  "package": "Aaron_here/packages/PKG-005_meta_rl_method_first_policy.md",
+  "method_first": true,
+  "protocol": "forward100 seed=42 goal_path (king pinned window_end=2026-05-26; challenger light_touch same seed)",
+  "king_fp": "42:meta4275:inf0:bcfe6c74f68b7623",
+  "challenger_fp": "42:meta5639:inf0:a75d31a20865369b",
+  "challenger_meta_train_steps": 5639,
+  "shadow_path": "C:\\Users\\user\\OneDrive\\Desktop\\The Creator\\evidence_court\\artifacts\\meta_policy_aaron_reason.npz",
+  "density_fail_backup": "C:\\Users\\user\\OneDrive\\Desktop\\The Creator\\evidence_court\\artifacts\\meta_policy_aaron_reason_density_fail_meta11950.npz",
+  "density_fail_note": "meta11950 dual hits=2 a13=0.80 n_zero=18 \u2014 density killed hits; restored meta5639 best attempt",
+  "king_dual_floor": {
+    "protocol": "forward100_class",
+    "n_days": 100,
+    "hits": 12,
+    "hit_rate": 0.12,
+    "low_hr": 0.32,
+    "a13_frac": 0.61,
+    "n_zero": 18,
+    "breach_count": 0,
+    "mean_tr": 39.84,
+    "mean_pnl": 5.012701576446192,
+    "weights_frozen": true,
+    "fingerprint": "42:meta4275:inf0:bcfe6c74f68b7623",
+    "window_start": "2026-01-06",
+    "window_end": "2026-05-26",
+    "window_mode": "pinned_end_common_chronological_with_warmup",
+    "source": "measured_this_session_pinned_dual"
+  },
+  "dual_floor": {
+    "protocol": "forward100_class",
+    "n_days": 100,
+    "hits": 12,
+    "hit_rate": 0.12,
+    "low_hr": 0.32,
+    "a13_frac": 0.61,
+    "n_zero": 18,
+    "breach_count": 0,
+    "mean_tr": 39.84,
+    "mean_pnl": 5.012701576446192,
+    "weights_frozen": true,
+    "fingerprint": "42:meta5639:inf0:a75d31a20865369b",
+    "source": "measured_this_session_light_touch_dual_meta5639",
+    "note": "exact dual metrics from light_touch floor dual of this fingerprint"
+  },
+  "dethrone_decision": {
+    "dethrone": false,
+    "beats_hits": true,
+    "holds_a13": false,
+    "holds_n_zero": true,
+    "breach0": true,
+    "frozen": true,
+    "blockers": [
+      "a13 0.610<0.64"
+    ],
+    "floor": {
+      "hits": 11,
+      "low_hr": 0.28,
+      "a13_frac": 0.64,
+      "n_zero": 18,
+      "breach": 0
+    },
+    "lab": {
+      "hits": 12,
+      "a13_frac": 0.61,
+      "n_zero": 18,
+      "breach_count": 0
+    }
+  },
+  "beats_king_same_window": false,
+  "holds_historical_BEST_POLICY_floor": false,
+  "production_replace": false,
+  "floor_100d_documented": {
+    "hits": 11,
+    "low_hr": 0.28,
+    "a13_frac": 0.64,
+    "n_zero": 18,
+    "breach": 0
+  },
+  "honest_close": {
+    "outcome": "non_dethrone",
+    "reason": "Challenger dual=12/0.61/18 fp=42:meta5639:inf0:a75d31a20865369b; live king dual=12/0.61/18; tie not beat; historical FLOOR a13>=0.64 blockers=['a13 0.610<0.64']; production_replace=false; density meta11950 discarded (hits collapse)"
+  },
+  "iterations_summary": [
+    {
+      "fp": "meta5639",
+      "hits": 12,
+      "a13": 0.61,
+      "n_zero": 18,
+      "note": "best \u2014 tie king"
+    },
+    {
+      "fp": "meta14376",
+      "hits": 12,
+      "a13": 0.6,
+      "n_zero": 19,
+      "note": "worse n_zero"
+    },
+    {
+      "fp": "meta11950",
+      "hits": 2,
+      "a13": 0.8,
+      "n_zero": 18,
+      "note": "density killed hits"
+    }
+  ]
+}

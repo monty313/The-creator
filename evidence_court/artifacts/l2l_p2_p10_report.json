@@ -1,0 +1,65 @@
+{
+  "law": "L2L_PROJECT_ONE_BOT_100_DAYS",
+  "ts": "2026-08-09T15:22:47.613034+00:00",
+  "proposals": {
+    "P2_P7_curriculum": {
+      "train_steps": 4000,
+      "holdout_steps": 1000,
+      "mean_loss": 0.03715980229380228,
+      "hold_mean_loss": 0.0008738669761307429,
+      "tag_counts": {
+        "P2_sight": 3341,
+        "P2_P3_P4_fire_process": 1968,
+        "P6_multi_sense_agree": 1968,
+        "P2_sight_incomplete": 659,
+        "P3_feel_collapse": 676,
+        "P3_feel_load": 697
+      },
+      "meta_train_steps": 9275,
+      "law": "L2L_P2_P7_process_curriculum"
+    },
+    "P8_lock": {
+      "frozen": true,
+      "fingerprint": "42:meta9275:inf0:f498641f9e3b07eb",
+      "meta_update_forbidden": true
+    },
+    "P9_breach0": {
+      "accept": true,
+      "breach_count": 0
+    },
+    "P10_a13_clear": {
+      "a13_every_day": false,
+      "a13_frac": 0.13333333333333333,
+      "hit_rate": 0.03333333333333333,
+      "both_pb_and_cont": true,
+      "accept_partial": false
+    }
+  },
+  "warmstart_fp": "42:meta4275:inf0:bcfe6c74f68b7623",
+  "dual": {
+    "n_days": 30,
+    "hits": 1,
+    "hit_rate": 0.03333333333333333,
+    "breach_count": 0,
+    "breach": false,
+    "a13_every_day": false,
+    "a13_frac": 0.13333333333333333,
+    "n_zero": 22,
+    "mean_tr": 2.933333333333333,
+    "mean_pnl": 0.31447902866666433,
+    "n_pullback_signals": 186,
+    "n_continuation_signals": 473,
+    "both_pb_and_cont": true,
+    "weights_frozen": true,
+    "fingerprint": "42:meta9275:inf0:f498641f9e3b07eb",
+    "eval_start": "2026-04-15",
+    "eval_end": "2026-05-26",
+    "meta_train_steps": 9275
+  },
+  "final_promote_gate": {
+    "ready": false,
+    "note": "Full 100d multi-seed still required for production PROMOTE per L2L \u00a77",
+    "measured_dual_days": 30
+  },
+  "shadow_path": "evidence_court\\artifacts\\meta_policy_l2l_p2_p10.npz"
+}

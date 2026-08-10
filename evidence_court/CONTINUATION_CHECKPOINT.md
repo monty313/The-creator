@@ -1,6 +1,6 @@
 # CONTINUATION CHECKPOINT — Evidence Court Meta-RL
 
-**Updated:** 2026-08-08 (CASE-0037 PROMOTE_NARROW path-state; new a13 floor)  
+**Updated:** 2026-08-09 (CASE-L2L-P10-residual ACCEPT_NARROW_LAB; champion still 0037)  
 **Do not re-run completed greenfield CASE-0001 / 0002.**
 
 ---
@@ -45,10 +45,11 @@ One bot · any target% [5–90] × risk% [1–3] · no retrain after final polic
 
 | Field | Value |
 |-------|--------|
-| **CASE-0037** | **PROMOTE_NARROW** — path-state teachers → champion meta4275 |
-| **C-003** | **PARTIAL** — a13 64% / n_zero 18; not every-day yet |
-| **rank-1 next** | **C-004** dual conversion (hits still 11) **or** C-003 residual (zero/partial days) |
-| **Forbidden** | F-024/F-025 label→synthetic-state densify |
+| **CASE-0037** | **PROMOTE_NARROW** — production champion meta4275 |
+| **CASE-L2L-P10-residual** | **ACCEPT_NARROW_LAB** — meta10835 shadow; no production replace |
+| **C-003** | **PARTIAL** — a13 64% floor on forward100; north-star dual weaker |
+| **rank-1 next** | **L2L-P10 / C-004** — a13_every_day + hits→11 under one dual SSOT |
+| **Forbidden** | F-024/F-025; process washout as champion; pad thrash |
 
 Full table: `ISSUE_DOCKET.md`.
 
@@ -63,6 +64,12 @@ Full table: `ISSUE_DOCKET.md`.
 Prior floor (pre-0037): hits 11 / low_hr 0.28 / a13 0.28 / n_zero 39 / mean_tr 7.38  
 
 **BEST POLICY SSOT:** `BEST_POLICY.md` (read first — champion identity + floor)  
+**Legal dethrone path:** `DETHRONE_THE_KING.md` (how to replace king — not yet done)  
+**Learn-not-copy road:** `00_PATH_LEARNING/` · CASE-PATH-LEARNING ACCEPT_NARROW · lab `meta_policy_path_learning.npz`  
+**2× dethrone arbitration:** `ARBITRATION_2X_DETHRONE.md` (unanimous method; king still meta4275)  
+**2× execute lab:** forward100 hits 11 / a13 0.64 (floor match; Milestone A miss) · `execute_2x_clear_road_report.json`  
+**Day-12 arbitration:** `ARBITRATION_DAY12_CLEAR.md` — personified Policy + counsel; 15%/3% miss; **DAY-12 CLEAR ROAD**  
+**Learn phase:** Teacher→Counsel compact · 20d **any better** a13 0.25→0.35 · `ARBITRATION_LEARN_PHASE.md`  
 Champion: `artifacts/meta_policy_champion.npz` fp `42:meta4275:inf0:bcfe6c74f68b7623`  
 Backup: `artifacts/meta_policy_champion_pre0037.npz`
 

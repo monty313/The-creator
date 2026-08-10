@@ -51,7 +51,7 @@ Each time it can:
 
 Mark’s edge says things like:
 
-- **pullback resume** (load then launch with the trend)
+- **pullback resume** (pullback against force, then resume with the trend)
 - **continuation** (trend keeps going)
 
 Those are **good** trade types.
@@ -220,7 +220,7 @@ real misses → real states → offline practice → better density.
 
 ## Related skill gym (human + future train)
 
-For **high trend** principles (force → load → launch on all sets):
+For **high trend** principles (force → pullback → resume on all sets):
 
 `evidence_court/meta_rl/game_train/00_HIGH_TREND_MASTERY.html`
 

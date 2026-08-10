@@ -1,0 +1,173 @@
+{
+  "law": "AARON_METHOD_HOLD_TRAIN",
+  "teacher": "Aaron_here/AARON.md \u00a73.7\u20133.11 + PKG-002/005",
+  "method": "Force\u2192Load\u2192Reclaim\u2192HoldWhileForce\u2192ExitWhenForceDies",
+  "reward_priority": "method first, goal second, never WR alone",
+  "ts": "2026-08-10T11:18:14.927232+00:00",
+  "production_replace": false,
+  "warmstart_fp": "42:meta4275:inf0:bcfe6c74f68b7623",
+  "curriculum": {
+    "shape_counts": {
+      "thrash_wait": 1011,
+      "dip_chase_wait": 1076,
+      "hold_while_force": 2533,
+      "reclaim_fire": 992,
+      "force_exit_wait": 366,
+      "kill_wait": 22
+    },
+    "stages": {
+      "force_wait_steps": 720,
+      "load_wait_steps": 900,
+      "reclaim_fire_steps": 1680,
+      "hold_while_force_steps": 1680,
+      "force_exit_penalty_steps": 600,
+      "mixed_steps": 420,
+      "method_rich": true
+    },
+    "has_hold_shape": true,
+    "penalty_counts": {
+      "penalty_fire_no_force": 1011,
+      "penalty_fire_on_load": 557
+    },
+    "mean_loss": 0.02719067234927868,
+    "method": "Force\u2192Load\u2192Reclaim\u2192HoldWhileForce method-rich (Aaron \u00a73.7\u20133.11)"
+  },
+  "conversion_apply": {
+    "n_updates": 1164,
+    "class_counts": {
+      "wait_risk": 380,
+      "size_down": 556,
+      "wait_load": 188,
+      "fire_edge": 40
+    },
+    "bucket_counts": {
+      "near_breach": 356,
+      "progress": 556,
+      "dead": 212,
+      "clear": 40
+    },
+    "has_wait": true,
+    "has_hold_convert": false,
+    "has_size_down": true
+  },
+  "seal": {
+    "shape_counts": {
+      "thrash_wait": 80,
+      "dip_chase_wait": 120,
+      "reclaim_fire": 466,
+      "hold_while_force": 334
+    },
+    "n_reanchor": 291
+  },
+  "hold_seal": {
+    "shape_counts": {
+      "thrash_wait": 248,
+      "dip_chase_wait": 262,
+      "reclaim_fire": 250,
+      "hold_while_force": 632,
+      "force_exit_wait": 101,
+      "kill_wait": 7
+    },
+    "has_hold_shape": true
+  },
+  "shadow_fp": "42:meta14230:inf0:6ee31babd2ec4607",
+  "shadow_path": "evidence_court\\artifacts\\meta_policy_aaron_method_hold.npz",
+  "dual_lab": {
+    "hits": 2,
+    "a13_frac": 0.25,
+    "n_zero": 6,
+    "breach_count": 0,
+    "mean_pnl": 1.2029245600000065,
+    "weights_frozen": true
+  },
+  "dual_champ": {
+    "hits": 2,
+    "a13_frac": 0.25,
+    "n_zero": 5,
+    "breach_count": 0,
+    "mean_pnl": 0.9692035837500036
+  },
+  "guard": {
+    "promote_lab": false,
+    "production_replace": false,
+    "floor_hold": false,
+    "beats_champ_window": false,
+    "process_washout": true,
+    "path_only_clone": false,
+    "reasons": [
+      "process_washout_or_a13<0.3"
+    ],
+    "floor": {
+      "hits": 11,
+      "low_hr": 0.28,
+      "a13_frac": 0.64,
+      "n_zero": 18,
+      "breach": 0
+    },
+    "lab": {
+      "a13_frac": 0.25,
+      "hits": 2,
+      "n_zero": 6,
+      "breach_count": 0
+    },
+    "note": "production_replace requires floor_hold AND court_promote; lab shadow only otherwise"
+  },
+  "dethrone": {
+    "dethrone": false,
+    "beats_hits": false,
+    "holds_a13": false,
+    "holds_n_zero": true,
+    "breach0": true,
+    "frozen": true,
+    "blockers": [
+      "hits 2<=11",
+      "a13 0.250<0.64"
+    ],
+    "floor": {
+      "hits": 11,
+      "low_hr": 0.28,
+      "a13_frac": 0.64,
+      "n_zero": 18,
+      "breach": 0
+    },
+    "lab": {
+      "hits": 2,
+      "a13_frac": 0.25,
+      "n_zero": 6,
+      "breach_count": 0
+    }
+  },
+  "day12": {
+    "champ_no_method_hold": {
+      "pnl": 1.2898435730000517,
+      "n_trades": 25,
+      "hit": false,
+      "breach": false,
+      "n_method_hold_legs": 0,
+      "method_hold_while_force": false,
+      "progress": 0.08598957153333678,
+      "fingerprint": "42:meta4275:inf0:bcfe6c74f68b7623"
+    },
+    "lab_no_method_hold": {
+      "pnl": 1.5057787310000579,
+      "n_trades": 19,
+      "hit": false,
+      "breach": false,
+      "n_method_hold_legs": 0,
+      "method_hold_while_force": false,
+      "progress": 0.10038524873333719,
+      "fingerprint": "42:meta14230:inf0:6ee31babd2ec4607"
+    },
+    "lab_method_hold": {
+      "pnl": -2.817738379999974,
+      "n_trades": 9,
+      "hit": false,
+      "breach": false,
+      "n_method_hold_legs": 3,
+      "method_hold_while_force": true,
+      "progress": -0.1878492253333316,
+      "fingerprint": "42:meta14230:inf0:6ee31babd2ec4607"
+    },
+    "note": "method_hold is lab path geometry (Aaron t4); not production default"
+  }
+}

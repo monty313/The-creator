@@ -74,7 +74,7 @@ def test_mark_new_a27_a26_geometry_preserved():
     """Mark counter NEW: A27 5m + A26 hold + dual-on-agree + empty skip preserved."""
     assert PRODUCTION_CADENCE_INTERVAL_MIN == 5
     assert len(PRODUCTION_SCALPING_SLOTS) >= 8
-    assert CONT_HOLD_MIN_MINUTES == 30
+    assert CONT_HOLD_MIN_MINUTES == 10
     assert allows_empty_slot_skip() is True
     assert production_symbols_per_slot(multi_set_consensus="agree_long") == 2
     assert production_symbols_per_slot(multi_set_consensus="incomplete") == 1

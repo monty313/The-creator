@@ -1,0 +1,127 @@
+{
+  "law": "PATH_LEARNING",
+  "case": "CASE-PATH-LEARNING",
+  "ts": "2026-08-09T16:51:31.129074+00:00",
+  "goal_axes": [
+    "G-TRAIN",
+    "G-L2L",
+    "G-A13",
+    "G-CLEAR",
+    "G-NO_RETRAIN",
+    "G-BREACH0"
+  ],
+  "recipe": "warmstart\u2192goal/conversion/outcome primary\u2192light process\u2192path reanchor last\u2192freeze\u2192dual\u2192guard",
+  "warmstart_fp": "42:meta4275:inf0:bcfe6c74f68b7623",
+  "n_path_anchors": 900,
+  "curriculum": {
+    "law": "PATH_LEARNING_CURRICULUM",
+    "steps": 2500,
+    "train_main": 2125,
+    "holdout_steps": 375,
+    "counts": {
+      "conversion": 1909,
+      "path_anchor": 379,
+      "process": 212,
+      "holdout": 375,
+      "outcome_shaped": 2500
+    },
+    "class_counts": {
+      "wait_load": 727,
+      "hold_convert": 393,
+      "wait_risk": 410,
+      "size_down": 222,
+      "fire_edge": 157
+    },
+    "path_anchor_frac_realized": 0.1516,
+    "mean_loss": 0.3401565995712255,
+    "hold_mean_loss": 0.10086930131832976,
+    "meta_train_steps": 6775,
+    "path_only_clone": false,
+    "has_outcome_shaping": true,
+    "has_conversion": true,
+    "has_holdout": true
+  },
+  "process": {
+    "fire_frac": 0.6683333333333333,
+    "n_fire": 401,
+    "n_wait": 199,
+    "density_mode": true
+  },
+  "path_reanchor_updates": 1800,
+  "path_reanchor_last": true,
+  "fingerprint": "42:meta9625:inf0:f7d02a98e2a3aaa8",
+  "shadow_path": "evidence_court\\artifacts\\meta_policy_path_learning.npz",
+  "dual_lab": {
+    "n_days": 30,
+    "hits": 3,
+    "hit_rate": 0.1,
+    "breach_count": 0,
+    "breach": false,
+    "a13_every_day": false,
+    "a13_frac": 0.3,
+    "n_zero": 11,
+    "mean_tr": 7.333333333333333,
+    "mean_pnl": 2.8269307208333245,
+    "n_pullback_signals": 96,
+    "n_continuation_signals": 260,
+    "both_pb_and_cont": true,
+    "weights_frozen": true,
+    "fingerprint": "42:meta9625:inf0:f7d02a98e2a3aaa8",
+    "eval_start": "2026-04-15",
+    "eval_end": "2026-05-26",
+    "meta_train_steps": 9625
+  },
+  "dual_champ": {
+    "n_days": 30,
+    "hits": 3,
+    "hit_rate": 0.1,
+    "breach_count": 0,
+    "breach": false,
+    "a13_every_day": false,
+    "a13_frac": 0.26666666666666666,
+    "n_zero": 11,
+    "mean_tr": 7.266666666666667,
+    "mean_pnl": 2.8146985976666574,
+    "n_pullback_signals": 96,
+    "n_continuation_signals": 258,
+    "both_pb_and_cont": true,
+    "weights_frozen": true,
+    "fingerprint": "42:meta4275:inf0:bcfe6c74f68b7623",
+    "eval_start": "2026-04-15",
+    "eval_end": "2026-05-26",
+    "meta_train_steps": 4275
+  },
+  "dual_protocol": "north_star_random_TxR_XAU_15m",
+  "promote_guard": {
+    "promote_lab": true,
+    "production_replace": false,
+    "floor_hold": false,
+    "beats_champ_window": true,
+    "process_washout": false,
+    "path_only_clone": false,
+    "reasons": [],
+    "floor": {
+      "hits": 11,
+      "low_hr": 0.28,
+      "a13_frac": 0.64,
+      "n_zero": 18,
+      "breach": 0
+    },
+    "lab": {
+      "a13_frac": 0.3,
+      "hits": 3,
+      "n_zero": 11,
+      "breach_count": 0
+    },
+    "note": "production_replace requires floor_hold AND court_promote; lab shadow only otherwise"
+  },
+  "production_replace": false,
+  "production_champion_unchanged": true,
+  "floor_100d_reference": {
+    "hits": 11,
+    "low_hr": 0.28,
+    "a13_frac": 0.64,
+    "n_zero": 18,
+    "breach": 0
+  }
+}

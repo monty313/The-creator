@@ -1,0 +1,117 @@
+{
+  "package_id": "PKG-001",
+  "title": "strategies_folder_stage1_3_labeled_windows",
+  "teacher": "Aaron_here",
+  "source_fuel": "strategies/",
+  "deploy_list": false,
+  "stage_recommendation": "stage1_force_only",
+  "curriculum": [
+    "stage1_force_only",
+    "stage2_load",
+    "stage3_reclaim"
+  ],
+  "method": {
+    "force": "Dual HTF agreement on official 2HTF+1LTF sets; side only from HTF",
+    "load": "LTF stretch against force; wait; not fire",
+    "reclaim": "LTF return with force; preferred fire",
+    "objective_note": "Lab first-breath TP/SL is hit-rate costume, not edge to copy"
+  },
+  "sensor_roles": {
+    "force_candidates": [
+      "dual_HTF_price_vs_mid_or_SMA",
+      "dual_HTF_M_line_sign_and_strength",
+      "dual_HTF_structure_slope_agreement"
+    ],
+    "load_detectors": [
+      "LTF_M_against_force",
+      "LTF_RSI_BB_stretch_against_force",
+      "LTF_mid_ribbon_touch_with_HTF_force",
+      "retest_wait_after_break_with_force"
+    ],
+    "reclaim_detectors": [
+      "LTF_M_cross_back_through_zero_with_force",
+      "LTF_RSI_release_back_through_band",
+      "retest_bounce_with_force"
+    ]
+  },
+  "shape_pointers_positive": [
+    {"profile": "mcflurry", "family_examples": ["sauce__mcflurry_eddy_scalp"], "use": "force_load_reclaim_eddy"},
+    {"profile": "cci_gravity", "family_examples": ["mt__cci_gravity_scalp_ftmo", "mt__ZeroLineRadar"], "use": "reclaim_only_under_dual_htf"},
+    {"profile": "mark_rsi_bb", "family_examples": ["note__mark_doctrine_refs_RSI_BB_L2L_SKILL_md"], "use": "load_release_under_mass"}
+  ],
+  "shape_pointers_negative": [
+    {"pattern": "thrash_high_n_high_p_loss", "family_examples": ["note__algo_guide_14_s07_ema_ribbon_md", "mt__MA_ribbon_filled_Alerts"], "use": "W-S3-NEG-THRASH-RIBBON"},
+    {"pattern": "vanity_wr_weak_mc", "family_examples": ["note__algo_guide_14_s10_vwap_reversion_md", "note__algo_guide_14_s02_breakout_trading_md"], "use": "W-S3-NEG-VANITY-WR"},
+    {"pattern": "challenge_spam", "family_examples": ["mt__FTMO_Challenge_EA", "mt__S11_Runner"], "use": "W-S3-NEG-NO-FORCE-FIRE"}
+  ],
+  "state_schema": [
+    "force_sign",
+    "force_strength",
+    "load_flag",
+    "load_depth",
+    "bars_since_load",
+    "reclaim_flag",
+    "bars_since_reclaim",
+    "position",
+    "bars_in_trade",
+    "stage_id",
+    "label_window_id"
+  ],
+  "actions": ["WAIT", "FIRE_LONG", "FIRE_SHORT", "EXIT"],
+  "reward_sketch": {
+    "stage1": "+wait_force0, -ltf_as_side, -thrash_force0",
+    "stage2": "+wait_during_load, -fire_on_load_bottom, -load_without_force",
+    "stage3": "+fire_on_reclaim_under_force, -dip_chase, -fire_force0, -anti_force, pnl_scaled_secondary_only"
+  },
+  "positive_windows": [
+    {"id": "W-S1-POS-DUAL-BULL", "stage": 1, "tag": "FORCE_OK_LONG"},
+    {"id": "W-S1-POS-DUAL-BEAR", "stage": 1, "tag": "FORCE_OK_SHORT"},
+    {"id": "W-S1-POS-NONE-FLAT", "stage": 1, "tag": "FORCE_NONE_WAIT"},
+    {"id": "W-S2-POS-EDDY-LONG", "stage": 2, "tag": "LOAD_WAIT_LONG"},
+    {"id": "W-S2-POS-EDDY-SHORT", "stage": 2, "tag": "LOAD_WAIT_SHORT"},
+    {"id": "W-S2-POS-RETEST-WAIT", "stage": 2, "tag": "LOAD_RETEST_WAIT"},
+    {"id": "W-S3-POS-M-RECLAIM-LONG", "stage": 3, "tag": "RECLAIM_FIRE_LONG"},
+    {"id": "W-S3-POS-M-RECLAIM-SHORT", "stage": 3, "tag": "RECLAIM_FIRE_SHORT"},
+    {"id": "W-S3-POS-BB-RSI-RELEASE", "stage": 3, "tag": "RECLAIM_FIRE"},
+    {"id": "W-S3-POS-RETEST-BOUNCE", "stage": 3, "tag": "RECLAIM_FIRE"},
+    {"id": "T-POS-FLR", "stage": 3, "tag": "SYNTH_FULL_GOOD_LONG"}
+  ],
+  "negative_windows": [
+    {"id": "W-S1-NEG-LTF-SIDE", "stage": 1, "tag": "FORCE_VIOLATION"},
+    {"id": "W-S1-NEG-ONE-HTF", "stage": 1, "tag": "WEAK_PERMISSION"},
+    {"id": "W-S1-NEG-STALE-FORCE", "stage": 1, "tag": "STALE_FORCE"},
+    {"id": "W-S2-NEG-DIP-CHASE", "stage": 2, "tag": "DIP_CHASE"},
+    {"id": "W-S2-NEG-LOAD-NO-FORCE", "stage": 2, "tag": "INVALID_LOAD"},
+    {"id": "W-S2-NEG-LOAD-FLIP-SIDE", "stage": 2, "tag": "LOAD_FLIP_SIDE"},
+    {"id": "W-S3-NEG-FIRST-TOUCH", "stage": 3, "tag": "NO_RECLAIM"},
+    {"id": "W-S3-NEG-THRASH-RIBBON", "stage": 3, "tag": "THRASH"},
+    {"id": "W-S3-NEG-NO-FORCE-FIRE", "stage": 3, "tag": "NO_FORCE_FIRE"},
+    {"id": "W-S3-NEG-ANTI-FORCE", "stage": 3, "tag": "ANTI_FORCE"},
+    {"id": "W-S3-NEG-VANITY-WR", "stage": 3, "tag": "VANITY_ACCURACY"},
+    {"id": "T-NEG-DIP", "stage": 2, "tag": "SYNTH_DIP_CHASE"},
+    {"id": "T-NEG-MUD", "stage": 1, "tag": "SYNTH_MUD_WAIT"}
+  ],
+  "compliance_report_template": [
+    "force_violation_rate",
+    "dip_chase_rate",
+    "anti_force_rate",
+    "good_reclaim_fire_rate",
+    "wait_during_load_rate",
+    "window_hit_rate_secondary",
+    "mc_median_honesty_optional",
+    "p_loss_honesty_optional"
+  ],
+  "stage_gates": {
+    "s1_to_s2": "low thrash in force=0; side matches force when acting",
+    "s2_to_s3": "almost no fire on load bottom; waits through load",
+    "s3_solid": "fires mostly reclaim-shaped; dip-chase and no-force near zero"
+  },
+  "notes_for_student": "Mine shapes and counter-examples from strategies/; advance curriculum on labeled windows only. No deploy list. Names are pointers to geometry. High WR with high MC P(loss) is a negative teacher.",
+  "related_docs": [
+    "Aaron_here/AARON.md",
+    "Learning-How_to/0000_RL_Learning strategy.md",
+    "Learning-How_to/0001_RL_From_Zero_State_Action_Reward.md",
+    "strategies/LLM_INSTRUCTIONS.md",
+    "strategies/MONTE_CARLO_BY_FILE.md"
+  ]
+}

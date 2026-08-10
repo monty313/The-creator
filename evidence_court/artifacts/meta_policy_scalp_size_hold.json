@@ -1,0 +1,8 @@
+{
+  "seed": 42,
+  "meta_train_steps": 10962,
+  "trained": true,
+  "fingerprint": "42:meta10962:inf0:b7bdd77ea43b0f50",
+  "law": "A29_brain_l2l",
+  "format": 2
+}

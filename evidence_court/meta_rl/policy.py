@@ -223,16 +223,26 @@ class MetaPolicy:
 
         target = 5.0 + target_norm * 85.0
         # Size from brain head + goal pressure
+        # Monty EO: intelligent size-up — higher aggression under goal pressure,
+        # still clamped by envelope in size_position_risk_percent (breach 0).
         sig = 1.0 / (1.0 + np.exp(-size_logit))
-        aggression = float(np.clip(0.35 + 0.55 * sig + 0.15 * target_norm, 0.2, 1.0))
+        pressure = float(ctx[IDX_GOAL_PRESSURE]) if ctx.size > IDX_GOAL_PRESSURE else 0.5
+        # High pressure / remaining risk → more of budget per leg (legal)
+        aggression = float(
+            np.clip(
+                0.45 + 0.50 * sig + 0.22 * target_norm + 0.25 * pressure * risk_rem,
+                0.25,
+                1.0,
+            )
+        )
         size = size_position_risk_percent(
             max_daily_risk_percent=max_risk,
             remaining_budget_percent=remaining,
             stop_distance_pct=0.35,
             target_percent=target,
             aggression=aggression,
-            max_single_fraction=0.95,
-            friction_reserve_percent=0.04,
+            max_single_fraction=0.98,  # EO: nearly full remaining budget when needed
+            friction_reserve_percent=0.03,
         )
         if size <= 0:
             return PolicyAction(

@@ -15,14 +15,15 @@ from evidence_court.meta_rl.goal_path import (
 )
 
 
-def test_creator_new_pullback_holds_eod():
-    """Creator NEW: pullback_resume holds to EOD; continuation to next slot."""
+def test_creator_new_pullback_scalp_not_eod():
+    """Monty scalp: pullback short runner; cont short hold (30m lab → next slot)."""
     slots = SCALPING_CADENCE_SLOTS
-    # mid grid slot
     mid = slots[len(slots) // 2]
     nxt = slots[slots.index(mid) + 1]
-    assert fill_hold_end_time("pullback_resume", mid, slots) == "23:59:59"
+    # On 30m lab grid, +10m cont and +15m pb both land on next 30m slot
+    assert fill_hold_end_time("pullback_resume", mid, slots) == nxt
     assert fill_hold_end_time("continuation", mid, slots) == nxt
+    assert fill_hold_end_time("pullback_resume", mid, slots) != "23:59:59"
 
 
 def test_mark_new_one_symbol_per_slot():

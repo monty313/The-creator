@@ -1,0 +1,398 @@
+{
+  "law": "TEACHER_DAY12_CONVERSION",
+  "arbitration": "ARBITRATION_DAY12_CLEAR",
+  "rule": "miss under risk rail \u2192 multi-day clear/dead/near-breach harvest; wait/hold_convert/size_down; dual gate; no fire-only same-day clone",
+  "ts": "2026-08-10T09:26:50.511898+00:00",
+  "day": "2026-01-21",
+  "target": 15.0,
+  "risk": 3.0,
+  "max_rounds": 8,
+  "rounds": [
+    {
+      "round": 1,
+      "pnl": 1.2898435730000517,
+      "n_trades": 25,
+      "n_pos": 10,
+      "n_neg": 15,
+      "hit": false,
+      "breach": false,
+      "day_bucket": "progress",
+      "progress": 0.08598957153333678,
+      "teach_summary": {
+        "mode": "conversion_not_fire_clone",
+        "fire_only_same_day": false,
+        "conversion_classes": {
+          "size_down": 616,
+          "wait_risk": 380,
+          "wait_load": 208,
+          "fire_edge": 40,
+          "hold_convert": 20
+        },
+        "buckets": {
+          "progress": 656,
+          "near_breach": 356,
+          "dead": 212,
+          "clear": 40
+        },
+        "has_wait": true,
+        "has_hold_convert": true,
+        "has_size_down": true,
+        "curriculum_path_only_clone": false
+      },
+      "fingerprint": "42:meta9518:inf0:395954cc096a4011"
+    },
+    {
+      "round": 2,
+      "pnl": 1.2702435730000503,
+      "n_trades": 25,
+      "n_pos": 10,
+      "n_neg": 15,
+      "hit": false,
+      "breach": false,
+      "day_bucket": "progress",
+      "progress": 0.08468290486667002,
+      "teach_summary": {
+        "mode": "conversion_not_fire_clone",
+        "fire_only_same_day": false,
+        "conversion_classes": {
+          "wait_risk": 570,
+          "wait_load": 342,
+          "size_down": 1014,
+          "fire_edge": 60,
+          "hold_convert": 60
+        },
+        "buckets": {
+          "dead": 318,
+          "near_breach": 534,
+          "progress": 1134,
+          "clear": 60
+        },
+        "has_wait": true,
+        "has_hold_convert": true,
+        "has_size_down": true,
+        "curriculum_path_only_clone": false
+      },
+      "fingerprint": "42:meta15773:inf0:8231a2a211e8405d",
+      "dual": {
+        "hits": 1,
+        "a13_frac": 0.25,
+        "n_zero": 5,
+        "breach_count": 0,
+        "mean_pnl": 1.4190214203749933
+      },
+      "guard": {
+        "promote_lab": false,
+        "production_replace": false,
+        "floor_hold": false,
+        "reasons": [
+          "process_washout_or_a13<0.3"
+        ]
+      },
+      "promote_ready": false
+    },
+    {
+      "round": 3,
+      "pnl": 1.2702435730000503,
+      "n_trades": 25,
+      "n_pos": 10,
+      "n_neg": 15,
+      "hit": false,
+      "breach": false,
+      "day_bucket": "progress",
+      "progress": 0.08468290486667002,
+      "teach_summary": {
+        "mode": "conversion_not_fire_clone",
+        "fire_only_same_day": false,
+        "conversion_classes": {
+          "wait_load": 372,
+          "size_down": 1104,
+          "hold_convert": 90,
+          "wait_risk": 570,
+          "fire_edge": 60
+        },
+        "buckets": {
+          "dead": 318,
+          "progress": 1284,
+          "near_breach": 534,
+          "clear": 60
+        },
+        "has_wait": true,
+        "has_hold_convert": true,
+        "has_size_down": true,
+        "curriculum_path_only_clone": false
+      },
+      "fingerprint": "42:meta22408:inf0:380cdbb4bfac5705"
+    },
+    {
+      "round": 4,
+      "pnl": 1.2786435730000507,
+      "n_trades": 25,
+      "n_pos": 10,
+      "n_neg": 15,
+      "hit": false,
+      "breach": false,
+      "day_bucket": "progress",
+      "progress": 0.08524290486667005,
+      "teach_summary": {
+        "mode": "conversion_not_fire_clone",
+        "fire_only_same_day": false,
+        "conversion_classes": {
+          "hold_convert": 144,
+          "wait_risk": 760,
+          "size_down": 1488,
+          "wait_load": 496,
+          "fire_edge": 80
+        },
+        "buckets": {
+          "progress": 1752,
+          "near_breach": 712,
+          "dead": 424,
+          "clear": 80
+        },
+        "has_wait": true,
+        "has_hold_convert": true,
+        "has_size_down": true,
+        "curriculum_path_only_clone": false
+      },
+      "fingerprint": "42:meta30045:inf0:3d1a73ea75d94af7",
+      "dual": {
+        "hits": 1,
+        "a13_frac": 0.3,
+        "n_zero": 7,
+        "breach_count": 0,
+        "mean_pnl": 2.8181129359999937
+      },
+      "guard": {
+        "promote_lab": false,
+        "production_replace": false,
+        "floor_hold": false,
+        "reasons": []
+      },
+      "promote_ready": false
+    },
+    {
+      "round": 5,
+      "pnl": 0.8147554330000513,
+      "n_trades": 40,
+      "n_pos": 8,
+      "n_neg": 32,
+      "hit": false,
+      "breach": false,
+      "day_bucket": "progress",
+      "progress": 0.054317028866670086,
+      "teach_summary": {
+        "mode": "conversion_not_fire_clone",
+        "fire_only_same_day": false,
+        "conversion_classes": {
+          "size_down": 1488,
+          "wait_load": 496,
+          "wait_risk": 760,
+          "fire_edge": 80,
+          "hold_convert": 144
+        },
+        "buckets": {
+          "progress": 1752,
+          "dead": 424,
+          "near_breach": 712,
+          "clear": 80
+        },
+        "has_wait": true,
+        "has_hold_convert": true,
+        "has_size_down": true,
+        "curriculum_path_only_clone": false
+      },
+      "fingerprint": "42:meta37912:inf0:bd5def2fcfde0097"
+    },
+    {
+      "round": 6,
+      "pnl": 1.2870435730000516,
+      "n_trades": 25,
+      "n_pos": 10,
+      "n_neg": 15,
+      "hit": false,
+      "breach": false,
+      "day_bucket": "progress",
+      "progress": 0.08580290486667011,
+      "teach_summary": {
+        "mode": "conversion_not_fire_clone",
+        "fire_only_same_day": false,
+        "conversion_classes": {
+          "size_down": 1860,
+          "wait_load": 620,
+          "wait_risk": 950,
+          "hold_convert": 180,
+          "fire_edge": 100
+        },
+        "buckets": {
+          "progress": 2190,
+          "dead": 530,
+          "near_breach": 890,
+          "clear": 100
+        },
+        "has_wait": true,
+        "has_hold_convert": true,
+        "has_size_down": true,
+        "curriculum_path_only_clone": false
+      },
+      "fingerprint": "42:meta46751:inf0:4d27aa3c42602f4d",
+      "dual": {
+        "hits": 1,
+        "a13_frac": 0.2,
+        "n_zero": 7,
+        "breach_count": 0,
+        "mean_pnl": 1.2750772007499958
+      },
+      "guard": {
+        "promote_lab": false,
+        "production_replace": false,
+        "floor_hold": false,
+        "reasons": [
+          "process_washout_or_a13<0.3"
+        ]
+      },
+      "promote_ready": false
+    },
+    {
+      "round": 7,
+      "pnl": 1.2786435730000507,
+      "n_trades": 25,
+      "n_pos": 10,
+      "n_neg": 15,
+      "hit": false,
+      "breach": false,
+      "day_bucket": "progress",
+      "progress": 0.08524290486667005,
+      "teach_summary": {
+        "mode": "conversion_not_fire_clone",
+        "fire_only_same_day": false,
+        "conversion_classes": {
+          "wait_risk": 950,
+          "size_down": 1860,
+          "wait_load": 620,
+          "fire_edge": 100,
+          "hold_convert": 180
+        },
+        "buckets": {
+          "near_breach": 890,
+          "progress": 2190,
+          "dead": 530,
+          "clear": 100
+        },
+        "has_wait": true,
+        "has_hold_convert": true,
+        "has_size_down": true,
+        "curriculum_path_only_clone": false
+      },
+      "fingerprint": "42:meta55820:inf0:19f86c811bb106a0"
+    },
+    {
+      "round": 8,
+      "pnl": 1.1905796830000543,
+      "n_trades": 27,
+      "n_pos": 10,
+      "n_neg": 17,
+      "hit": false,
+      "breach": false,
+      "day_bucket": "progress",
+      "progress": 0.07937197886667029,
+      "teach_summary": {
+        "mode": "conversion_not_fire_clone",
+        "fire_only_same_day": false,
+        "conversion_classes": {
+          "wait_risk": 950,
+          "size_down": 1860,
+          "wait_load": 620,
+          "hold_convert": 180,
+          "fire_edge": 100
+        },
+        "buckets": {
+          "near_breach": 890,
+          "progress": 2190,
+          "dead": 530,
+          "clear": 100
+        },
+        "has_wait": true,
+        "has_hold_convert": true,
+        "has_size_down": true,
+        "curriculum_path_only_clone": false
+      },
+      "fingerprint": "42:meta65119:inf0:a485c4cf073b2aca",
+      "dual": {
+        "hits": 2,
+        "a13_frac": 0.25,
+        "n_zero": 5,
+        "breach_count": 0,
+        "mean_pnl": 2.0259989422499927
+      },
+      "guard": {
+        "promote_lab": false,
+        "production_replace": false,
+        "floor_hold": false,
+        "reasons": [
+          "process_washout_or_a13<0.3"
+        ]
+      },
+      "promote_ready": false
+    }
+  ],
+  "production_replace": false,
+  "production_champion_unchanged": true,
+  "multi_day_bucket_counts": {
+    "progress": 836,
+    "near_breach": 89,
+    "dead": 256,
+    "clear": 10
+  },
+  "n_multi_day_labs": 1191,
+  "symbols": [
+    "XAUUSD",
+    "EURUSD",
+    "GBPUSD"
+  ],
+  "warmstart_fp": "42:meta4275:inf0:bcfe6c74f68b7623",
+  "baseline": {
+    "date": "2026-01-21",
+    "target": 15.0,
+    "risk": 3.0,
+    "pnl": 1.2898435730000517,
+    "n_trades": 25,
+    "n_pos": 10,
+    "n_neg": 15,
+    "hit": false,
+    "breach": false,
+    "day_bucket": "progress",
+    "progress": 0.08598957153333678,
+    "n_teachers": 25,
+    "fingerprint": "42:meta4275:inf0:bcfe6c74f68b7623"
+  },
+  "dual_champ": {
+    "hits": 2,
+    "a13_frac": 0.25,
+    "n_zero": 5,
+    "breach_count": 0,
+    "low_hr": null,
+    "weights_frozen": true,
+    "mean_pnl": 0.9692035837500036
+  },
+  "passed_day12": false,
+  "promote_ready": false,
+  "dual_lab": {
+    "hits": 2,
+    "a13_frac": 0.25,
+    "n_zero": 5,
+    "breach_count": 0,
+    "mean_pnl": 2.0259989422499927
+  },
+  "guard": {
+    "promote_lab": false,
+    "production_replace": false,
+    "floor_hold": false,
+    "reasons": [
+      "process_washout_or_a13<0.3"
+    ]
+  },
+  "stop_reason": "max_rounds_conversion_incomplete",
+  "best_day12_pnl": 1.2898435730000517,
+  "best_dual_hits": 2,
+  "shadow_path": "evidence_court\\artifacts\\meta_policy_day12_teacher.npz"
+}

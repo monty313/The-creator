@@ -67,11 +67,10 @@ def test_creator_new_10m_still_gated_no_pad_1sym():
     assert production_symbols_per_slot() == 1
 
 
-def test_mark_new_hold_on_10m_grid_next_slot():
-    """Mark counter NEW: pullback EOD; cont path hold 30m on A25 10m pin grid."""
+def test_mark_new_hold_on_10m_grid_scalp():
+    """Monty scalp: cont 10m / pb 15m on A25 10m pin grid (not 30m / EOD)."""
     slots = PRODUCTION_SCALPING_SLOTS_10M
     assert "07:00:00" in slots and "07:10:00" in slots
-    # CASE-0028 min 30m path
-    assert fill_hold_end_time("continuation", "07:00:00", slots) == "07:30:00"
-    assert fill_hold_end_time("pullback_resume", "07:00:00", slots) == "23:59:59"
-    assert fill_hold_end_time("continuation", "13:00:00", slots) == "13:30:00"
+    assert fill_hold_end_time("continuation", "07:00:00", slots) == "07:10:00"
+    assert fill_hold_end_time("pullback_resume", "07:00:00", slots) == "07:20:00"
+    assert fill_hold_end_time("continuation", "13:00:00", slots) == "13:10:00"

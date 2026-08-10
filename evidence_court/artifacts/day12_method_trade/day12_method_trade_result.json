@@ -1,0 +1,110 @@
+{
+  "day": "2026-01-21",
+  "symbol": "XAUUSD",
+  "mode": "METHOD_PATH_NOT_THRASH",
+  "target_percent": 15.0,
+  "max_daily_risk_percent": 3.0,
+  "n_trades": 2,
+  "fills": [
+    {
+      "name": "FIRE_1_RESUME_LAUNCH",
+      "side": "long",
+      "entry_t": "08:15:00",
+      "exit_t": "08:30:00",
+      "entry_px": 4871.58,
+      "size_risk_percent": 1.1837939400000004,
+      "lot": 0.54,
+      "pnl_percent": 0.6659600000000082,
+      "hold_minutes": 15.0,
+      "note": "Hold launch; next 15m is NO thrash re-fire"
+    },
+    {
+      "name": "FIRE_2_RESUME_PULLBACK",
+      "side": "long",
+      "entry_t": "09:15:00",
+      "exit_t": "09:50:00",
+      "entry_px": 4837.19,
+      "size_risk_percent": 1.1972045250000003,
+      "lot": 0.55,
+      "pnl_percent": 0.7520000000000163,
+      "hold_minutes": 35.0,
+      "note": "Second cycle only; then day is WAIT"
+    }
+  ],
+  "pnl_percent": 1.4179600000000245,
+  "hit_target": false,
+  "breach": false,
+  "worst_case_loss_percent": 0.0,
+  "wait_phases": [
+    {
+      "name": "FORCE_WAIT",
+      "t0": "07:00:00",
+      "t1": "08:15:00",
+      "why": "Force on \u2014 wait for resume, no densify"
+    },
+    {
+      "name": "NO_THRASH",
+      "t0": "08:30:00",
+      "t1": "08:45:00",
+      "why": "After fire#1 \u2014 FLAT, no re-fire (bot thrash zone)"
+    },
+    {
+      "name": "PULLBACK_WAIT",
+      "t0": "08:45:00",
+      "t1": "09:15:00",
+      "why": "Pullback vs Force \u2014 wait, no dip-chase"
+    },
+    {
+      "name": "DONE_WAIT",
+      "t0": "09:50:00",
+      "t1": "23:59:59",
+      "why": "Method complete for day \u2014 no metronome entries"
+    }
+  ],
+  "method_legs_planned": [
+    {
+      "id": 1,
+      "name": "FIRE_1_RESUME_LAUNCH",
+      "phase": "resume",
+      "side": "long",
+      "entry_t": "08:15:00",
+      "exit_t": "08:30:00",
+      "hold_note": "Hold launch; next 15m is NO thrash re-fire",
+      "aggression": 0.85,
+      "size_r_arm_r": 1.5
+    },
+    {
+      "id": 2,
+      "name": "FIRE_2_RESUME_PULLBACK",
+      "phase": "resume",
+      "side": "long",
+      "entry_t": "09:15:00",
+      "exit_t": "09:50:00",
+      "hold_note": "Second cycle only; then day is WAIT",
+      "aggression": 0.75,
+      "size_r_arm_r": 1.25
+    }
+  ],
+  "policy_log": [
+    "I am the Policy trading 2026-01-21 under METHOD (not thrash densify).",
+    "Target=15.0%  Risk envelope=3.0%  breach must stay 0.",
+    "Plan: 2 resume fires only. Wait Force / pullback / post-fire / done.",
+    "WAIT [07:00:00\u201308:15:00]: Force on \u2014 wait for resume, no densify",
+    "FIRE FIRE_1_RESUME_LAUNCH: long @08:15:00\u219208:30:00 hold=15m size_risk=1.184% lot=0.54 pnl=+0.666%  day_pnl=+0.666%",
+    "  note: Hold launch; next 15m is NO thrash re-fire",
+    "WAIT [08:30\u201308:45]: NO thrash re-fire (method hard rule).",
+    "WAIT [08:45\u201309:15]: pullback vs Force \u2014 still WAIT.",
+    "FIRE FIRE_2_RESUME_PULLBACK: long @09:15:00\u219209:50:00 hold=35m size_risk=1.197% lot=0.55 pnl=+0.752%  day_pnl=+1.418%",
+    "  note: Second cycle only; then day is WAIT",
+    "WAIT [09:50\u2013EOD]: method day complete \u2014 no more entries."
+  ],
+  "compare_bot_class": {
+    "bot_thrash_n_trades": "50\u201397 (reaudit)",
+    "bot_thrash_pnl_approx": "~+2.9% to +3.2%",
+    "bot_hit": false,
+    "method_n_trades": 2,
+    "method_pnl": 1.4179600000000245,
+    "method_hit": false
+  },
+  "not_production_promote": true
+}

@@ -1,0 +1,12 @@
+{
+  "fingerprint": "42:meta10565:inf0:4bc3068206a725d8",
+  "meta_train_steps": 10565,
+  "trained": true,
+  "n_examples": 2005,
+  "require_htf_active": true,
+  "path_mix": 0.55,
+  "n_passes": 3,
+  "warmstart_fp": "42:meta4275:inf0:bcfe6c74f68b7623",
+  "law": "htf_active_year_path_state",
+  "promote": false
+}

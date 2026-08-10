@@ -120,9 +120,9 @@ def test_mark_new_a27_a26_geometry_preserved():
     """Mark counter NEW: A27 5m + A26 hold + 1-sym + empty skip preserved."""
     assert PRODUCTION_CADENCE_INTERVAL_MIN == 5
     assert "07:05:00" in PRODUCTION_SCALPING_SLOTS
-    assert CONT_HOLD_MIN_MINUTES == 30
+    assert CONT_HOLD_MIN_MINUTES == 10
     assert fill_hold_end_time(
         "continuation", "07:00:00", PRODUCTION_SCALPING_SLOTS
-    ) == "07:30:00"
+    ) == "07:10:00"  # Monty scalp 10m cont
     assert production_symbols_per_slot() == 1
     assert allows_empty_slot_skip() is True

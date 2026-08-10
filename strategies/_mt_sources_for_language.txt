@@ -1,0 +1,119 @@
+C:\Users\user\AppData\Roaming\MetaQuotes\Terminal\2EE1ACDEF626D3E231D9BFDEC7E0C417\MQL5\Experts\MultiTimeframe_NN_EA\MultiTimeframe_NN_EA.mq5
+C:\Users\user\AppData\Roaming\MetaQuotes\Terminal\2EE1ACDEF626D3E231D9BFDEC7E0C417\MQL5\Experts\MultiTimeframe_NN_EA_v2\MultiTimeframe_NN_EA_v2.mq5
+C:\Users\user\AppData\Roaming\MetaQuotes\Terminal\2EE1ACDEF6A0F9C2BD4CE1CCEC3B3174\MQL5\Experts\MultiTimeframe_NN_EA\MultiTimeframe_NN_EA.mq5
+C:\Users\user\AppData\Roaming\MetaQuotes\Terminal\2EE1ACDEF6A0F9C2BD4CE1CCEC3B3174\MQL5\Experts\MultiTimeframe_NN_EA_v2\MultiTimeframe_NN_EA_v2.mq5
+C:\Users\user\AppData\Roaming\MetaQuotes\Terminal\49CDDEAA95A409ED22BD2287BB67CB9C\MQL5\Experts\@@FTMO_DQN@@.mq5
+C:\Users\user\AppData\Roaming\MetaQuotes\Terminal\49CDDEAA95A409ED22BD2287BB67CB9C\MQL5\Experts\agent teacher.mq5
+C:\Users\user\AppData\Roaming\MetaQuotes\Terminal\49CDDEAA95A409ED22BD2287BB67CB9C\MQL5\Experts\agent teacher\agent teacher.mq5
+C:\Users\user\AppData\Roaming\MetaQuotes\Terminal\49CDDEAA95A409ED22BD2287BB67CB9C\MQL5\Experts\cci_gravity_scalp_ftmo.mq5
+C:\Users\user\AppData\Roaming\MetaQuotes\Terminal\49CDDEAA95A409ED22BD2287BB67CB9C\MQL5\Experts\cci_gravity_scalp_ftmo_v6_perplexity.mq5
+C:\Users\user\AppData\Roaming\MetaQuotes\Terminal\49CDDEAA95A409ED22BD2287BB67CB9C\MQL5\Experts\cci_gravity_scalp_v1_full.mq5
+C:\Users\user\AppData\Roaming\MetaQuotes\Terminal\49CDDEAA95A409ED22BD2287BB67CB9C\MQL5\Experts\cci_gravity_scalp_v5_full.mq5
+C:\Users\user\AppData\Roaming\MetaQuotes\Terminal\49CDDEAA95A409ED22BD2287BB67CB9C\MQL5\Experts\coolboolinger.mq5
+C:\Users\user\AppData\Roaming\MetaQuotes\Terminal\49CDDEAA95A409ED22BD2287BB67CB9C\MQL5\Experts\fixed_FTMO_BB_MTF_EA_Strategy4_v2_20260705_1323.mq5
+C:\Users\user\AppData\Roaming\MetaQuotes\Terminal\49CDDEAA95A409ED22BD2287BB67CB9C\MQL5\Experts\FTMO CUSTOM EA\CoolBollingerTrendEA.mq5
+C:\Users\user\AppData\Roaming\MetaQuotes\Terminal\49CDDEAA95A409ED22BD2287BB67CB9C\MQL5\Experts\FTMO CUSTOM EA\FTMO_SMA_Scalper.mq5
+C:\Users\user\AppData\Roaming\MetaQuotes\Terminal\49CDDEAA95A409ED22BD2287BB67CB9C\MQL5\Experts\ftmo ultra.mq5
+C:\Users\user\AppData\Roaming\MetaQuotes\Terminal\49CDDEAA95A409ED22BD2287BB67CB9C\MQL5\Experts\ftmo_all_assets_momentum_scalper.mq5
+C:\Users\user\AppData\Roaming\MetaQuotes\Terminal\49CDDEAA95A409ED22BD2287BB67CB9C\MQL5\Experts\FTMO_BB_MTF_EA_Strategy4.mq5
+C:\Users\user\AppData\Roaming\MetaQuotes\Terminal\49CDDEAA95A409ED22BD2287BB67CB9C\MQL5\Experts\FTMO_BB_MTF_EA_Strategy4_20260705_1210.mq5
+C:\Users\user\AppData\Roaming\MetaQuotes\Terminal\49CDDEAA95A409ED22BD2287BB67CB9C\MQL5\Experts\FTMO_BB_MTF_EA_Strategy4_v2_20260705_1323.mq5
+C:\Users\user\AppData\Roaming\MetaQuotes\Terminal\49CDDEAA95A409ED22BD2287BB67CB9C\MQL5\Experts\FTMO_BB_MTF_EA_Strategy4_v5.mq5
+C:\Users\user\AppData\Roaming\MetaQuotes\Terminal\49CDDEAA95A409ED22BD2287BB67CB9C\MQL5\Experts\FTMO_BB_MTF_EA_Strategy4_v6.mq5
+C:\Users\user\AppData\Roaming\MetaQuotes\Terminal\49CDDEAA95A409ED22BD2287BB67CB9C\MQL5\Experts\FTMO_BB_MTF_EA_Strategy4_v7.mq5
+C:\Users\user\AppData\Roaming\MetaQuotes\Terminal\49CDDEAA95A409ED22BD2287BB67CB9C\MQL5\Experts\FTMO_CCI_MTF_BB_EA_Part2.mq5
+C:\Users\user\AppData\Roaming\MetaQuotes\Terminal\49CDDEAA95A409ED22BD2287BB67CB9C\MQL5\Experts\FTMO_CCI_MTF_BB_EA_PART3.mq5
+C:\Users\user\AppData\Roaming\MetaQuotes\Terminal\49CDDEAA95A409ED22BD2287BB67CB9C\MQL5\Experts\FTMO_Challenge_EA.mq5
+C:\Users\user\AppData\Roaming\MetaQuotes\Terminal\49CDDEAA95A409ED22BD2287BB67CB9C\MQL5\Experts\FTMO_Challenge_EA_FULL.mq5
+C:\Users\user\AppData\Roaming\MetaQuotes\Terminal\49CDDEAA95A409ED22BD2287BB67CB9C\MQL5\Experts\ftmo_challenge_ea_v3.mq5
+C:\Users\user\AppData\Roaming\MetaQuotes\Terminal\49CDDEAA95A409ED22BD2287BB67CB9C\MQL5\Experts\FTMO_Challenge_v4.mq5
+C:\Users\user\AppData\Roaming\MetaQuotes\Terminal\49CDDEAA95A409ED22BD2287BB67CB9C\MQL5\Experts\FTMO_DQN.mq5
+C:\Users\user\AppData\Roaming\MetaQuotes\Terminal\49CDDEAA95A409ED22BD2287BB67CB9C\MQL5\Experts\FTMO_SMA_Scalper.mq5
+C:\Users\user\AppData\Roaming\MetaQuotes\Terminal\49CDDEAA95A409ED22BD2287BB67CB9C\MQL5\Experts\KineticEdgeEA.mq5
+C:\Users\user\AppData\Roaming\MetaQuotes\Terminal\49CDDEAA95A409ED22BD2287BB67CB9C\MQL5\Experts\LinearRegressionRSI_EA.mq5
+C:\Users\user\AppData\Roaming\MetaQuotes\Terminal\49CDDEAA95A409ED22BD2287BB67CB9C\MQL5\Experts\Momentum.mq5
+C:\Users\user\AppData\Roaming\MetaQuotes\Terminal\49CDDEAA95A409ED22BD2287BB67CB9C\MQL5\Experts\MQL5 RL EA.mq5
+C:\Users\user\AppData\Roaming\MetaQuotes\Terminal\49CDDEAA95A409ED22BD2287BB67CB9C\MQL5\Experts\MultiTimeframe_NN_EA\MultiTimeframe_NN_EA.mq5
+C:\Users\user\AppData\Roaming\MetaQuotes\Terminal\49CDDEAA95A409ED22BD2287BB67CB9C\MQL5\Experts\MultiTimeframe_NN_EA_v2\MultiTimeframe_NN_EA_v2.mq5
+C:\Users\user\AppData\Roaming\MetaQuotes\Terminal\49CDDEAA95A409ED22BD2287BB67CB9C\MQL5\Experts\NeuralNetworkScreener.mq5
+C:\Users\user\AppData\Roaming\MetaQuotes\Terminal\49CDDEAA95A409ED22BD2287BB67CB9C\MQL5\Experts\NeuralNetworkScreener_Simple.mq5
+C:\Users\user\AppData\Roaming\MetaQuotes\Terminal\49CDDEAA95A409ED22BD2287BB67CB9C\MQL5\Experts\NeuralNetworkScreener_Simple_Updated.mq5
+C:\Users\user\AppData\Roaming\MetaQuotes\Terminal\49CDDEAA95A409ED22BD2287BB67CB9C\MQL5\Experts\NN_CCI_Screener.mq5
+C:\Users\user\AppData\Roaming\MetaQuotes\Terminal\49CDDEAA95A409ED22BD2287BB67CB9C\MQL5\Experts\NN_CCI_Screener_Simple.mq5
+C:\Users\user\AppData\Roaming\MetaQuotes\Terminal\49CDDEAA95A409ED22BD2287BB67CB9C\MQL5\Experts\OnlineLearnerEA.mq5
+C:\Users\user\AppData\Roaming\MetaQuotes\Terminal\49CDDEAA95A409ED22BD2287BB67CB9C\MQL5\Experts\OnlineLearnerEA_v5_Fixed.mq5
+C:\Users\user\AppData\Roaming\MetaQuotes\Terminal\49CDDEAA95A409ED22BD2287BB67CB9C\MQL5\Experts\PDF_MultiStrategy_MTF_EA_v2.mq5
+C:\Users\user\AppData\Roaming\MetaQuotes\Terminal\49CDDEAA95A409ED22BD2287BB67CB9C\MQL5\Experts\PDF_MultiStrategy_VotingForest_EA_v4.mq5
+C:\Users\user\AppData\Roaming\MetaQuotes\Terminal\49CDDEAA95A409ED22BD2287BB67CB9C\MQL5\Experts\PerceptronEA.mq5
+C:\Users\user\AppData\Roaming\MetaQuotes\Terminal\49CDDEAA95A409ED22BD2287BB67CB9C\MQL5\Experts\Pure_CCI_Screener.mq5
+C:\Users\user\AppData\Roaming\MetaQuotes\Terminal\49CDDEAA95A409ED22BD2287BB67CB9C\MQL5\Experts\Q-learning.mq5
+C:\Users\user\AppData\Roaming\MetaQuotes\Terminal\49CDDEAA95A409ED22BD2287BB67CB9C\MQL5\Experts\RandomForest_Project\AutoTradingBot_RF.mq5
+C:\Users\user\AppData\Roaming\MetaQuotes\Terminal\49CDDEAA95A409ED22BD2287BB67CB9C\MQL5\Experts\RegressionlineEA.mq5
+C:\Users\user\AppData\Roaming\MetaQuotes\Terminal\49CDDEAA95A409ED22BD2287BB67CB9C\MQL5\Experts\RL_PropTrader_Final.mq5
+C:\Users\user\AppData\Roaming\MetaQuotes\Terminal\49CDDEAA95A409ED22BD2287BB67CB9C\MQL5\Experts\RL_PropTrader_MVP_v2.mq5
+C:\Users\user\AppData\Roaming\MetaQuotes\Terminal\49CDDEAA95A409ED22BD2287BB67CB9C\MQL5\Experts\rsi_bb_extreme.mq5
+C:\Users\user\AppData\Roaming\MetaQuotes\Terminal\49CDDEAA95A409ED22BD2287BB67CB9C\MQL5\Experts\S11_Runner.mq5
+C:\Users\user\AppData\Roaming\MetaQuotes\Terminal\49CDDEAA95A409ED22BD2287BB67CB9C\MQL5\Experts\Simple scalper.mq5
+C:\Users\user\AppData\Roaming\MetaQuotes\Terminal\49CDDEAA95A409ED22BD2287BB67CB9C\MQL5\Experts\SMA_Fan_MTF_BBExit_v1.mq5
+C:\Users\user\AppData\Roaming\MetaQuotes\Terminal\49CDDEAA95A409ED22BD2287BB67CB9C\MQL5\Experts\some bullshit.mq5
+C:\Users\user\AppData\Roaming\MetaQuotes\Terminal\49CDDEAA95A409ED22BD2287BB67CB9C\MQL5\Experts\StrikeGate.mq5
+C:\Users\user\AppData\Roaming\MetaQuotes\Terminal\49CDDEAA95A409ED22BD2287BB67CB9C\MQL5\Experts\Swarm.mq5
+C:\Users\user\AppData\Roaming\MetaQuotes\Terminal\49CDDEAA95A409ED22BD2287BB67CB9C\MQL5\Experts\swarm3.0.mq5
+C:\Users\user\AppData\Roaming\MetaQuotes\Terminal\49CDDEAA95A409ED22BD2287BB67CB9C\MQL5\Experts\The _Meta-Learning_ EA\MetaLearningEA.mq5
+C:\Users\user\AppData\Roaming\MetaQuotes\Terminal\49CDDEAA95A409ED22BD2287BB67CB9C\MQL5\Experts\TriTF_SMA_Shift_Optimizer_EA.mq5
+C:\Users\user\AppData\Roaming\MetaQuotes\Terminal\49CDDEAA95A409ED22BD2287BB67CB9C\MQL5\Experts\US30_ExpansionTrigger_v1.mq5
+C:\Users\user\AppData\Roaming\MetaQuotes\Terminal\49CDDEAA95A409ED22BD2287BB67CB9C\MQL5\Experts\ZeroLineRadar.mq5
+C:\Users\user\AppData\Roaming\MetaQuotes\Terminal\49CDDEAA95A409ED22BD2287BB67CB9C\MQL5\Experts\ZeroLineRadar0works.mq5
+C:\Users\user\AppData\Roaming\MetaQuotes\Terminal\49CDDEAA95A409ED22BD2287BB67CB9C\MQL5\Experts\Zerolineradar1.mq5
+C:\Users\user\AppData\Roaming\MetaQuotes\Terminal\49CDDEAA95A409ED22BD2287BB67CB9C\MQL5\Indicators\AutoGKCloseIntegral.mq5
+C:\Users\user\AppData\Roaming\MetaQuotes\Terminal\49CDDEAA95A409ED22BD2287BB67CB9C\MQL5\Indicators\CCI_ShiftedSMA_Signal_3D.mq5
+C:\Users\user\AppData\Roaming\MetaQuotes\Terminal\49CDDEAA95A409ED22BD2287BB67CB9C\MQL5\Indicators\ErrorRatePlot.mq5
+C:\Users\user\AppData\Roaming\MetaQuotes\Terminal\49CDDEAA95A409ED22BD2287BB67CB9C\MQL5\Indicators\HurstX.mq5
+C:\Users\user\AppData\Roaming\MetaQuotes\Terminal\49CDDEAA95A409ED22BD2287BB67CB9C\MQL5\Indicators\JordanMomentumScreener_v10.mq5
+C:\Users\user\AppData\Roaming\MetaQuotes\Terminal\49CDDEAA95A409ED22BD2287BB67CB9C\MQL5\Indicators\JordanMomentumScreener_v11.mq5
+C:\Users\user\AppData\Roaming\MetaQuotes\Terminal\49CDDEAA95A409ED22BD2287BB67CB9C\MQL5\Indicators\JordanMomentumScreener_v2_MT5.mq5
+C:\Users\user\AppData\Roaming\MetaQuotes\Terminal\49CDDEAA95A409ED22BD2287BB67CB9C\MQL5\Indicators\JordanMomentumScreener_v4_MT5.mq5
+C:\Users\user\AppData\Roaming\MetaQuotes\Terminal\49CDDEAA95A409ED22BD2287BB67CB9C\MQL5\Indicators\JordanMomentumScreener_v5_MT5.mq5
+C:\Users\user\AppData\Roaming\MetaQuotes\Terminal\49CDDEAA95A409ED22BD2287BB67CB9C\MQL5\Indicators\JordanMomentumScreener_v7_HUD.mq5
+C:\Users\user\AppData\Roaming\MetaQuotes\Terminal\49CDDEAA95A409ED22BD2287BB67CB9C\MQL5\Indicators\JordanMomentumScreener_v8_HUD.mq5
+C:\Users\user\AppData\Roaming\MetaQuotes\Terminal\49CDDEAA95A409ED22BD2287BB67CB9C\MQL5\Indicators\JordanMomentumScreener_v9_Wave.mq5
+C:\Users\user\AppData\Roaming\MetaQuotes\Terminal\49CDDEAA95A409ED22BD2287BB67CB9C\MQL5\Indicators\LinearRegressionLine.mq5
+C:\Users\user\AppData\Roaming\MetaQuotes\Terminal\49CDDEAA95A409ED22BD2287BB67CB9C\MQL5\Indicators\Pure_CCI_Screener.mq5
+C:\Users\user\AppData\Roaming\MetaQuotes\Terminal\49CDDEAA95A409ED22BD2287BB67CB9C\MQL5\Indicators\screeners\JordanMomentumScreener_v8_HUD.mq5
+C:\Users\user\AppData\Roaming\MetaQuotes\Terminal\49CDDEAA95A409ED22BD2287BB67CB9C\MQL5\Indicators\screeners\Linear_Regression_Screener.mq5
+C:\Users\user\AppData\Roaming\MetaQuotes\Terminal\49CDDEAA95A409ED22BD2287BB67CB9C\MQL5\Indicators\screeners\LinearRegressionLine.mq5
+C:\Users\user\AppData\Roaming\MetaQuotes\Terminal\49CDDEAA95A409ED22BD2287BB67CB9C\MQL5\Indicators\screeners\Momentum_Matrix_Screener.mq5
+C:\Users\user\AppData\Roaming\MetaQuotes\Terminal\49CDDEAA95A409ED22BD2287BB67CB9C\MQL5\Indicators\screeners\MultiTimeframe_LRL_BB_CCI_Screener.mq5
+C:\Users\user\AppData\Roaming\MetaQuotes\Terminal\49CDDEAA95A409ED22BD2287BB67CB9C\MQL5\Indicators\screeners\MultiTimeframe_LRL_BB_CCI_Screener_v2.mq5
+C:\Users\user\AppData\Roaming\MetaQuotes\Terminal\49CDDEAA95A409ED22BD2287BB67CB9C\MQL5\Indicators\screeners\play 4.2.mq5
+C:\Users\user\AppData\Roaming\MetaQuotes\Terminal\49CDDEAA95A409ED22BD2287BB67CB9C\MQL5\Indicators\screeners\play 4.3.mq5
+C:\Users\user\AppData\Roaming\MetaQuotes\Terminal\49CDDEAA95A409ED22BD2287BB67CB9C\MQL5\Indicators\screeners\Slope_Screener.mq5
+C:\Users\user\AppData\Roaming\MetaQuotes\Terminal\49CDDEAA95A409ED22BD2287BB67CB9C\MQL5\Indicators\screeners\Slope_Screener_Fixed.mq5
+C:\Users\user\AppData\Roaming\MetaQuotes\Terminal\49CDDEAA95A409ED22BD2287BB67CB9C\MQL5\Indicators\screeners\Unity Play.mq5
+C:\Users\user\AppData\Roaming\MetaQuotes\Terminal\49CDDEAA95A409ED22BD2287BB67CB9C\MQL5\Indicators\Unity Play.mq5
+C:\Users\user\AppData\Roaming\MetaQuotes\Terminal\49CDDEAA95A409ED22BD2287BB67CB9C\MQL5\MQL5-Neural-Network-Library-main\MultiTimeframe_NN_EA.mq5
+C:\Users\user\AppData\Roaming\MetaQuotes\Terminal\49CDDEAA95A409ED22BD2287BB67CB9C\MQL5\Package_MultiTimeframe_NN_EA_v2\MultiTimeframe_NN_EA_v2.mq5
+C:\Users\user\Downloads\_CODE\FTMO_BB_MTF_EA_Strategy4_v7.mq5
+C:\Users\user\Downloads\_CODE\JordanMomentumScreener_v4_MT5.mq5
+C:\Users\user\Downloads\_CODE\JordanMomentumScreener_v9_HUD.mq5
+C:\Users\user\Downloads\_CODE\PDF_MultiStrategy_MTF_EA_v1.mq5
+C:\Users\user\Downloads\_OTHER_PROJECTS\ATI_FTMO_project\ati_ftmo\mql5\ATI_FTMO_EA.mq5
+C:\Users\user\FableAutonomousStrategyGenerator\fasg\export\fasg_trendday_ea.mq5
+C:\Users\user\OneDrive\Desktop\ARMY\00_DROP_GOALS_AND_IDEAS_HERE\_library\02_mq5_and_trading\LinearRegressionLine.mq5
+C:\Users\user\OneDrive\Desktop\ARMY\00_DROP_GOALS_AND_IDEAS_HERE\_library\02_mq5_and_trading\Q-learning.mq5
+C:\Users\user\OneDrive\Desktop\ARMY\00_DROP_GOALS_AND_IDEAS_HERE\_library\09_trading_templates_ex4\MA ribbon filled_Alerts.mq4
+C:\Users\user\OneDrive\Desktop\ARMY\00_DROP_GOALS_AND_IDEAS_HERE\_library\2024\jordan 2.0\crossenteopy.mq5
+C:\Users\user\OneDrive\Desktop\ARMY\00_DROP_GOALS_AND_IDEAS_HERE\_library\2024\jordan 2.0\kmeans.mq5
+C:\Users\user\OneDrive\Desktop\ARMY\00_DROP_GOALS_AND_IDEAS_HERE\_library\2026 files\FTMO EA V4\cci_gravity_scalp_v5_full.mq5
+C:\Users\user\OneDrive\Desktop\ARMY\00_DROP_GOALS_AND_IDEAS_HERE\_library\2026 files\FTMO EA V4\ftmo_all_assets_momentum_scalper.mq5
+C:\Users\user\OneDrive\Desktop\ARMY\00_DROP_GOALS_AND_IDEAS_HERE\_library\2026 files\FTMO EA V4\FTMO_Challenge_v4.mq5
+C:\Users\user\OneDrive\Desktop\ARMY\00_DROP_GOALS_AND_IDEAS_HERE\_library\2026 files\FTMO EA\ftmo ultra.mq5
+C:\Users\user\OneDrive\Desktop\ARMY\00_DROP_GOALS_AND_IDEAS_HERE\_library\2026 files\FTMO EA\Momentum.mq5
+C:\Users\user\OneDrive\Desktop\ARMY\00_DROP_GOALS_AND_IDEAS_HERE\_library\2026 files\FTMO EA\PerceptronEA.mq5
+C:\Users\user\OneDrive\Desktop\ARMY\00_DROP_GOALS_AND_IDEAS_HERE\_library\2026 files\FTMO EA\RL_PropTrader_Final.mq5
+C:\Users\user\OneDrive\Desktop\ARMY\00_DROP_GOALS_AND_IDEAS_HERE\_library\2026 files\FTMO EA\Simple Scalper.mq5
+C:\Users\user\OneDrive\Desktop\ARMY\00_DROP_GOALS_AND_IDEAS_HERE\_library\2026 files\FTMO EA\some bs.mq5
+C:\Users\user\OneDrive\Desktop\ARMY\00_DROP_GOALS_AND_IDEAS_HERE\_library\2026 files\FTMO EA\to opimize ea.mq5
+C:\Users\user\OneDrive\Desktop\ARMY\00_DROP_GOALS_AND_IDEAS_HERE\_library\2026 files\FTMO EA\TriTF_SMA_Shift_Optimizer_EA.mq5
+C:\Users\user\OneDrive\Desktop\ARMY\01_SYSTEM\labs\decision_tree\ftmo_dt_bot\ftmo_dt_bot\ea\FtmoDecisionTree.mq5
+C:\Users\user\OneDrive\Desktop\ARMY\01_SYSTEM\labs\decision_tree\S11_Runner.mq5

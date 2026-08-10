@@ -1,0 +1,201 @@
+{
+  "window": "2026-06-10 03:48:00 \u2192 2026-07-17 22:27:00 (40000 M1)",
+  "data": "C:\\Users\\user\\Downloads\\_OTHER_PROJECTS\\ATI_FTMO_project\\gravity_engine\\data\\EURUSD_M1_export.csv",
+  "vectorbt": "1.1.0",
+  "mcflurry": {
+    "tp": 0.00025,
+    "sl": 0.001,
+    "win_rate": 80.00050448996065,
+    "total_return": 0.09839248526855954,
+    "profit_factor": 9.227813780656804,
+    "trades": 212,
+    "max_drawdown": 0.38638398035549976,
+    "sharpe": 0.6808644720441369,
+    "score": 922.7831745558601,
+    "rows": [
+      {
+        "set": "set1_1m_15m_30m",
+        "mode": "pullback",
+        "trades": 87,
+        "win_rate": 81.60919540229885,
+        "total_return": 0.5387686528296944,
+        "pf": 1.3812538131107597,
+        "sharpe": 4.098779713399001,
+        "max_dd": 0.6097858987453753
+      },
+      {
+        "set": "set1_1m_15m_30m",
+        "mode": "continuation",
+        "trades": 56,
+        "win_rate": 83.63636363636363,
+        "total_return": 0.24193277433649202,
+        "pf": 1.2746446508239158,
+        "sharpe": 2.0566569537556973,
+        "max_dd": 0.2711425831206712
+      },
+      {
+        "set": "set2_5m_30m_1h",
+        "mode": "pullback",
+        "trades": 35,
+        "win_rate": 76.47058823529412,
+        "total_return": 0.24141740353110433,
+        "pf": 1.3689037381032954,
+        "sharpe": 1.7400821288590873,
+        "max_dd": 0.44368284426351173
+      },
+      {
+        "set": "set2_5m_30m_1h",
+        "mode": "continuation",
+        "trades": 14,
+        "win_rate": 78.57142857142857,
+        "total_return": -0.03038581868271649,
+        "pf": 0.9265165978720924,
+        "sharpe": -0.3779480935330105,
+        "max_dd": 0.2902396614120101
+      },
+      {
+        "set": "set3_15m_1h_4h",
+        "mode": "pullback",
+        "trades": 17,
+        "win_rate": 64.70588235294117,
+        "total_return": -0.4968719140036228,
+        "pf": 0.415563884030766,
+        "sharpe": -6.230924284935774,
+        "max_dd": 0.6156563678870267
+      },
+      {
+        "set": "set3_15m_1h_4h",
+        "mode": "continuation",
+        "trades": 3,
+        "win_rate": 100.0,
+        "total_return": 0.0954938136004057,
+        "pf": 50.0,
+        "sharpe": 2.798540414719822,
+        "max_dd": 0.08779652670440363
+      },
+      {
+        "set": "set4_30m_4h_1d",
+        "mode": "pullback",
+        "trades": 0,
+        "win_rate": 0.0,
+        "total_return": 0.0,
+        "pf": 0.0
+      },
+      {
+        "set": "set4_30m_4h_1d",
+        "mode": "continuation",
+        "trades": 0,
+        "win_rate": 0.0,
+        "total_return": 0.0,
+        "pf": 0.0
+      }
+    ]
+  },
+  "cci_gravity_upgraded": {
+    "tp": 0.00028,
+    "sl": 0.00115,
+    "win_rate": 100.0,
+    "total_return": 0.21772817087347596,
+    "profit_factor": 50.0,
+    "trades": 44,
+    "max_drawdown": 0.04400602122263251,
+    "sharpe": 5.874728353356644,
+    "score": 5000.206726665568,
+    "rows": [
+      {
+        "set": "set1_1m_15m_30m",
+        "mode": "pullback",
+        "trades": 19,
+        "win_rate": 100.0,
+        "total_return": 0.5014785831431254,
+        "pf": 50.0,
+        "sharpe": 7.260770390923732,
+        "max_dd": 0.1203966770330652
+      },
+      {
+        "set": "set1_1m_15m_30m",
+        "mode": "continuation",
+        "trades": 19,
+        "win_rate": 100.0,
+        "total_return": 0.5014785831431254,
+        "pf": 50.0,
+        "sharpe": 7.260770390923732,
+        "max_dd": 0.1203966770330652
+      },
+      {
+        "set": "set2_5m_30m_1h",
+        "mode": "pullback",
+        "trades": 2,
+        "win_rate": 100.0,
+        "total_return": 0.11468116124951848,
+        "pf": 50.0,
+        "sharpe": 7.019241439219563,
+        "max_dd": 0.008621456633335372
+      },
+      {
+        "set": "set2_5m_30m_1h",
+        "mode": "continuation",
+        "trades": 2,
+        "win_rate": 100.0,
+        "total_return": 0.11468116124951848,
+        "pf": 50.0,
+        "sharpe": 7.019241439219563,
+        "max_dd": 0.008621456633335372
+      },
+      {
+        "set": "set3_15m_1h_4h",
+        "mode": "pullback",
+        "trades": 1,
+        "win_rate": 100.0,
+        "total_return": 0.03702476822778408,
+        "pf": 50.0,
+        "sharpe": 3.344173229926636,
+        "max_dd": 0.0029999300014969775
+      },
+      {
+        "set": "set3_15m_1h_4h",
+        "mode": "continuation",
+        "trades": 1,
+        "win_rate": 100.0,
+        "total_return": 0.03702476822778408,
+        "pf": 50.0,
+        "sharpe": 3.344173229926636,
+        "max_dd": 0.0029999300014969775
+      },
+      {
+        "set": "set4_30m_4h_1d",
+        "mode": "pullback",
+        "trades": 0,
+        "win_rate": 0.0,
+        "total_return": 0.0,
+        "pf": 0.0
+      },
+      {
+        "set": "set4_30m_4h_1d",
+        "mode": "continuation",
+        "trades": 0,
+        "win_rate": 0.0,
+        "total_return": 0.0,
+        "pf": 0.0
+      }
+    ]
+  },
+  "beats_mcflurry_win_rate": true,
+  "beats_mcflurry_return": true,
+  "beats_mcflurry_pf": true,
+  "success": true,
+  "cci_family_ids": [
+    "mt__cci_gravity_scalp_ftmo",
+    "mt__cci_gravity_scalp_ftmo_v6_perplexity",
+    "mt__cci_gravity_scalp_v1_full",
+    "mt__cci_gravity_scalp_v5_full",
+    "mt__MQL5_RL_EA",
+    "mt__Pure_CCI_Screener",
+    "mt__StrikeGate",
+    "mt__Swarm",
+    "mt__swarm3_0",
+    "mt__ZeroLineRadar",
+    "mt__ZeroLineRadar0works",
+    "mt__Zerolineradar1"
+  ]
+}

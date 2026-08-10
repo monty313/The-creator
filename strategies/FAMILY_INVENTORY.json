@@ -1,0 +1,369 @@
+[
+  {
+    "family_id": "mark_rsi_bb_l2l",
+    "title": "Mark RSI(5)+BB on RSI under HTF BB mass",
+    "sources": [
+      "strategies/mark_doctrine_refs/RSI_BB_L2L_SKILL.md",
+      "strategies/local_desktop/rsi + bb strategy.txt"
+    ],
+    "collapses": [
+      "rsi_bb_extreme (related)",
+      "doctrine shift variants +2/+5"
+    ],
+    "fidelity": "high \u2014 direct doctrine re-expression"
+  },
+  {
+    "family_id": "truth_s1_cci_slingshot",
+    "title": "S1 Dual CCI shifted-SMA slingshot",
+    "sources": [
+      "strategies/the_truth_main_extra/strategy_S1_cci_slingshot.md"
+    ],
+    "collapses": [],
+    "fidelity": "high \u2014 from S1 language"
+  },
+  {
+    "family_id": "truth_s2_bb_trend_reversion",
+    "title": "S2 Dual Bollinger trend reversion / dip inside tunnel",
+    "sources": [
+      "strategies/the_truth_main_extra/strategy_S2_bb_trend_reversion.md"
+    ],
+    "collapses": [],
+    "fidelity": "high"
+  },
+  {
+    "family_id": "truth_s3_envelope_breakout",
+    "title": "S3 Shifted high/low envelope breakout",
+    "sources": [
+      "strategies/the_truth_main_extra/strategy_S3_envelope_breakout.md"
+    ],
+    "collapses": [
+      "shifted_sma channel (ATI cousin)"
+    ],
+    "fidelity": "high"
+  },
+  {
+    "family_id": "truth_s4_rsi_tension_snap",
+    "title": "S4 RSI Bollinger tension snap",
+    "sources": [
+      "strategies/the_truth_main_extra/strategy_S4_rsi_tension_snap.md"
+    ],
+    "collapses": [],
+    "fidelity": "high"
+  },
+  {
+    "family_id": "cci_gravity_scalp",
+    "title": "CCI gravity scalp (FTMO family)",
+    "sources": [
+      "language/01_METATRADER.md#cci_gravity_scalp_ftmo",
+      "MT5 Experts/cci_gravity_scalp_*.mq5"
+    ],
+    "collapses": [
+      "cci_gravity_scalp_ftmo",
+      "cci_gravity_scalp_ftmo_v6_perplexity",
+      "cci_gravity_scalp_v1_full",
+      "cci_gravity_scalp_v5_full",
+      "StrikeGate"
+    ],
+    "fidelity": "medium \u2014 language tags CCI+gravity+session; fixed params"
+  },
+  {
+    "family_id": "ftmo_bb_mtf_strategy4",
+    "title": "FTMO BB multi-TF Strategy4 family",
+    "sources": [
+      "language/01_METATRADER.md \u2014 FTMO_BB_MTF_EA_Strategy4*"
+    ],
+    "collapses": [
+      "FTMO_BB_MTF_EA_Strategy4 v1\u2013v7",
+      "fixed_FTMO_BB_MTF_EA_Strategy4_v2",
+      "FTMO_CCI_MTF_BB_EA Part2/3",
+      "agent teacher"
+    ],
+    "fidelity": "medium \u2014 BB+CCI MTF tags collapsed"
+  },
+  {
+    "family_id": "cool_bollinger_trend",
+    "title": "Cool Bollinger trend / breakout",
+    "sources": [
+      "language CoolBollingerTrendEA / coolboolinger"
+    ],
+    "collapses": [
+      "CoolBollingerTrendEA",
+      "coolboolinger"
+    ],
+    "fidelity": "medium"
+  },
+  {
+    "family_id": "ftmo_sma_scalper",
+    "title": "FTMO SMA cascade scalper + RSI exit language",
+    "sources": [
+      "language FTMO_SMA_Scalper"
+    ],
+    "collapses": [
+      "FTMO_SMA_Scalper",
+      "SMA_Fan_MTF_BBExit_v1",
+      "TriTF_SMA_Shift_Optimizer_EA"
+    ],
+    "fidelity": "medium"
+  },
+  {
+    "family_id": "kinetic_edge_bb_cci",
+    "title": "KineticEdge BB breakout + triple CCI momentum",
+    "sources": [
+      "language KineticEdgeEA"
+    ],
+    "collapses": [],
+    "fidelity": "medium"
+  },
+  {
+    "family_id": "jordan_momentum_matrix",
+    "title": "Jordan momentum matrix (CCI / BB / SMA channel)",
+    "sources": [
+      "language JordanMomentumScreener_v2\u2026v11"
+    ],
+    "collapses": [
+      "JordanMomentumScreener_v2",
+      "JordanMomentumScreener_v4",
+      "JordanMomentumScreener_v5",
+      "JordanMomentumScreener_v7",
+      "JordanMomentumScreener_v8",
+      "JordanMomentumScreener_v9",
+      "JordanMomentumScreener_v10",
+      "JordanMomentumScreener_v11",
+      "play 4.2",
+      "play 4.3",
+      "Unity Play",
+      "Momentum_Matrix_Screener"
+    ],
+    "fidelity": "medium \u2014 matrix collapsed to CCI+BB+SMA channel filter stack"
+  },
+  {
+    "family_id": "zero_line_radar_cci",
+    "title": "ZeroLineRadar multi-TF CCI zero-line",
+    "sources": [
+      "language ZeroLineRadar*"
+    ],
+    "collapses": [
+      "ZeroLineRadar",
+      "ZeroLineRadar0works",
+      "Zerolineradar1",
+      "Pure_CCI_Screener",
+      "NN_CCI_Screener"
+    ],
+    "fidelity": "medium"
+  },
+  {
+    "family_id": "fasg_trendday",
+    "title": "FASG trendday pullback/breakout",
+    "sources": [
+      "language fasg_trendday_ea",
+      "FableAutonomousStrategyGenerator/fasg"
+    ],
+    "collapses": [],
+    "fidelity": "medium"
+  },
+  {
+    "family_id": "snap8_nested_pullback",
+    "title": "SNAP-8 nested EMA ribbon + RSI reclaim",
+    "sources": [
+      "strategies/army_snap8/STRATEGY.md"
+    ],
+    "collapses": [],
+    "fidelity": "high \u2014 from SNAP-8 doc (mapped onto 2HTF of each official set)"
+  },
+  {
+    "family_id": "gv014_gravity_snap",
+    "title": "GV-014 Gravity Snap (factory)",
+    "sources": [
+      "strategies/local_desktop/factory_full/GV-014-XAU-L1.md"
+    ],
+    "collapses": [
+      "gravity_engine strategy language"
+    ],
+    "fidelity": "low-medium \u2014 name/theme only from notes"
+  },
+  {
+    "family_id": "gv015_tunnel_rider",
+    "title": "GV-015 Tunnel Rider (factory)",
+    "sources": [
+      "strategies/local_desktop/factory_full (GV015_tunnel_rider.pine name)"
+    ],
+    "collapses": [],
+    "fidelity": "low-medium \u2014 theme: ride BB tunnel"
+  },
+  {
+    "family_id": "ati_shifted_sma_channel",
+    "title": "ATI shifted SMA channel",
+    "sources": [
+      "language 02_MACHINE ATI shifted_sma"
+    ],
+    "collapses": [
+      "shifted_sma.py",
+      "wave_and_cci partial"
+    ],
+    "fidelity": "medium"
+  },
+  {
+    "family_id": "ati_gold_orb",
+    "title": "Gold / session ORB language",
+    "sources": [
+      "language gold_orb_sc.py"
+    ],
+    "collapses": [
+      "London_Breakout public cousin"
+    ],
+    "fidelity": "medium \u2014 opening range on LTF session proxy"
+  },
+  {
+    "family_id": "public_london_breakout",
+    "title": "Public London breakout idea (je-suis-tm)",
+    "sources": [
+      "language/03_PUBLIC_SOURCES.md \u2014 je-suis-tm London Breakout",
+      "https://github.com/je-suis-tm/quant-trading"
+    ],
+    "collapses": [],
+    "fidelity": "medium \u2014 session range proxy not true London calendar"
+  },
+  {
+    "family_id": "public_dual_thrust",
+    "title": "Public Dual Thrust range breakout",
+    "sources": [
+      "https://github.com/je-suis-tm/quant-trading Dual_Thrust"
+    ],
+    "collapses": [],
+    "fidelity": "medium"
+  },
+  {
+    "family_id": "public_supertrend",
+    "title": "Public Supertrend filter idea",
+    "sources": [
+      "language/03_PUBLIC_SOURCES.md Supertrend",
+      "freqtrade Supertrend.py",
+      "vectorbt supertrend"
+    ],
+    "collapses": [
+      "freqtrade Supertrend"
+    ],
+    "fidelity": "medium \u2014 ATR channel direction proxy"
+  },
+  {
+    "family_id": "public_donchian",
+    "title": "Public Donchian channel breakout",
+    "sources": [
+      "language/03_PUBLIC_SOURCES.md donchian_backtest",
+      "https://github.com/polakowo/vectorbt"
+    ],
+    "collapses": [],
+    "fidelity": "high-medium \u2014 classic Donchian"
+  },
+  {
+    "family_id": "public_bband_rsi",
+    "title": "Public BbandRsi / freqtrade mean-reversion style",
+    "sources": [
+      "language/03_PUBLIC_SOURCES.md BbandRsi",
+      "https://github.com/freqtrade/freqtrade-strategies"
+    ],
+    "collapses": [
+      "Bandtastic",
+      "Low_BB",
+      "MultiRSI",
+      "BbandRsi"
+    ],
+    "fidelity": "medium \u2014 RSI14+BB20 classic not Mark RSI5"
+  },
+  {
+    "family_id": "macd_sample",
+    "title": "MT4 MACD Sample language",
+    "sources": [
+      "language MACD Sample.mq4"
+    ],
+    "collapses": [],
+    "fidelity": "high-medium \u2014 classic MACD sample"
+  },
+  {
+    "family_id": "moving_average_sample",
+    "title": "MT4 Moving Average sample",
+    "sources": [
+      "language Moving Average.mq4"
+    ],
+    "collapses": [],
+    "fidelity": "high-medium"
+  },
+  {
+    "family_id": "linear_regression_rsi",
+    "title": "Linear regression + RSI language",
+    "sources": [
+      "language LinearRegressionRSI_EA",
+      "Linear_Regression_Screener"
+    ],
+    "collapses": [
+      "LinearRegressionLine",
+      "RegressionlineEA",
+      "Linear_Regression_Screener"
+    ],
+    "fidelity": "medium \u2014 linreg slope proxy via SMA slope"
+  },
+  {
+    "family_id": "ma_ribbon_mt4",
+    "title": "MA ribbon filled alerts (MT4 template)",
+    "sources": [
+      "language MA ribbon filled_Alerts.mq4"
+    ],
+    "collapses": [],
+    "fidelity": "medium"
+  },
+  {
+    "family_id": "rl_blackbox_proxy",
+    "title": "RL/NN EA blackbox proxy (RSI+HTF mass)",
+    "sources": [
+      "language @@FTMO_DQN@@, OnlineLearnerEA, MultiTimeframe_NN_EA, PerceptronEA, Q-learning, MetaLearningEA, RL_PropTrader_*"
+    ],
+    "collapses": [
+      "@@FTMO_DQN@@",
+      "FTMO_DQN",
+      "OnlineLearnerEA*",
+      "MultiTimeframe_NN_EA*",
+      "PerceptronEA",
+      "Q-learning",
+      "MetaLearningEA",
+      "RL_PropTrader_*",
+      "MQL5 RL EA",
+      "NeuralNetworkScreener*",
+      "AutoTradingBot_RF",
+      "PDF_MultiStrategy*"
+    ],
+    "fidelity": "low \u2014 weights unavailable; proxy is Mark-like RSI-BB under mass (teaching baseline only)"
+  },
+  {
+    "family_id": "momentum_mtf_generic",
+    "title": "Generic MTF momentum EA language",
+    "sources": [
+      "language Momentum.mq5",
+      "ftmo_all_assets_momentum_scalper",
+      "ftmo ultra"
+    ],
+    "collapses": [
+      "Momentum",
+      "ftmo_all_assets_momentum_scalper",
+      "ftmo ultra",
+      "Simple scalper",
+      "US30_ExpansionTrigger_v1"
+    ],
+    "fidelity": "medium"
+  },
+  {
+    "family_id": "challenge_ea_stack",
+    "title": "FTMO Challenge EA multi-step stack (BB+CCI+SMA)",
+    "sources": [
+      "language FTMO_Challenge_*"
+    ],
+    "collapses": [
+      "FTMO_Challenge_EA",
+      "FTMO_Challenge_EA_FULL",
+      "ftmo_challenge_ea_v3",
+      "FTMO_Challenge_v4",
+      "FtmoDecisionTree",
+      "S11_Runner"
+    ],
+    "fidelity": "medium \u2014 combined stack approximation"
+  }
+]

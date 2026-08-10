@@ -1,0 +1,10 @@
+{
+  "fingerprint": "42:meta10835:inf0:441555412cf1e3ae",
+  "meta_train_steps": 10835,
+  "trained": true,
+  "law": "L2L_P10_RESIDUAL_DENSITY",
+  "promote": false,
+  "warmstart": "42:meta4275:inf0:bcfe6c74f68b7623",
+  "n_path_teachers": 900,
+  "process_fire_frac": 0.65625
+}

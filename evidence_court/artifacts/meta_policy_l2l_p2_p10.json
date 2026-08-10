@@ -1,0 +1,8 @@
+{
+  "fingerprint": "42:meta9275:inf0:f498641f9e3b07eb",
+  "meta_train_steps": 9275,
+  "trained": true,
+  "law": "L2L_P2_P10",
+  "l2l_steps": 5000,
+  "promote": false
+}

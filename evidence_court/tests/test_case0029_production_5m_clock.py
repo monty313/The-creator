@@ -51,7 +51,7 @@ def test_mark_new_10m_15m_30m_pins_and_a26_hold():
         interval_minutes=15
     )
     assert SCALPING_CADENCE_SLOTS == build_scalping_cadence_slots(interval_minutes=30)
-    assert CONT_HOLD_MIN_MINUTES == 30
+    assert CONT_HOLD_MIN_MINUTES == 10
     assert len(SCALPING_CADENCE_SLOTS) < len(PRODUCTION_SCALPING_SLOTS_15M)
     assert len(PRODUCTION_SCALPING_SLOTS_15M) < len(PRODUCTION_SCALPING_SLOTS_10M)
     assert len(PRODUCTION_SCALPING_SLOTS_10M) < len(PRODUCTION_SCALPING_SLOTS)
@@ -70,10 +70,11 @@ def test_creator_new_5m_still_gated_1sym_no_pad():
     assert production_symbols_per_slot() == 1
 
 
-def test_mark_new_cont_hold_30m_on_5m_grid():
-    """Mark counter NEW: A26 cont min 30m on 5m production grid; pb EOD."""
+def test_mark_new_cont_hold_scalp_on_5m_grid():
+    """Monty scalp: cont 10m on 5m grid; pb 15m runner (not EOD)."""
     slots = PRODUCTION_SCALPING_SLOTS
     assert "07:05:00" in slots
-    assert fill_hold_end_time("continuation", "07:00:00", slots) == "07:30:00"
-    assert fill_hold_end_time("continuation", "13:00:00", slots) == "13:30:00"
-    assert fill_hold_end_time("pullback_resume", "07:00:00", slots) == "23:59:59"
+    assert fill_hold_end_time("continuation", "07:00:00", slots) == "07:10:00"
+    assert fill_hold_end_time("continuation", "13:00:00", slots) == "13:10:00"
+    # pb short runner — not day bag
+    assert fill_hold_end_time("pullback_resume", "07:00:00", slots) == "07:15:00"

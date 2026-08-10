@@ -537,7 +537,14 @@ def run_forward_eval(
     use_goal_path: bool = True,
     policy: Optional[FrozenMetaPolicy] = None,
     champion_path: Optional[Path] = None,
+    trail_calendar_days: Optional[int] = None,
+    window_end_date: Optional[str] = None,
 ) -> ForwardEvalReport:
+    """Forward dual.
+
+    ``window_end_date`` (YYYY-MM-DD): pin eval window to end on this calendar day
+    (CASE-0037 floor used ``2026-05-26``). Requires enough ``trail_calendar_days``.
+    """
     syms = list(symbols) if symbols else [s for s in DEFAULT_SYMBOLS if s in available_symbols()]
     if not syms:
         syms = ["XAUUSD"]
@@ -569,6 +576,7 @@ def run_forward_eval(
         "warmup_days": warmup_days,
         "pair_mode": pair_mode,
         "goal_path_multi_leg": bool(use_goal_path),
+        "window_end_date": window_end_date,
     }
 
     unit_l2l = _l2l_unit_check()
@@ -577,7 +585,10 @@ def run_forward_eval(
     daily_by_sym: Dict[str, List[dict]] = {}
     m1_by_sym: Dict[str, List[dict]] = {}
 
-    trail = max(n_days + warmup_days + 5, 130)
+    # CASE-0037 floor window needs ~220+ calendar days when end-pinned to 2026-05-26
+    trail = int(trail_calendar_days) if trail_calendar_days else max(n_days + warmup_days + 5, 130)
+    if window_end_date:
+        trail = max(trail, n_days + warmup_days + 80)
     for sym in syms:
         path = SYMBOL_FILES.get(sym)
         if path is None or not path.exists():
@@ -610,15 +621,24 @@ def run_forward_eval(
     if len(common) < need:
         metadata["warning"] = f"only {len(common)} common calendar days; need {need}"
         window_dates = common
+    elif window_end_date and window_end_date in common:
+        # Pin window to end on documented floor dual day (CASE-0037)
+        end_i = common.index(window_end_date)
+        start_i = max(0, end_i + 1 - (n_days + warmup_days))
+        window_dates = common[start_i : end_i + 1]
+        metadata["window"] = "pinned_end_common_chronological_with_warmup"
     else:
         window_dates = common[-(n_days + warmup_days) :]
+        if window_end_date and window_end_date not in common:
+            metadata["window_end_date_missing"] = window_end_date
 
     eval_dates = window_dates[warmup_days:] if len(window_dates) > warmup_days else window_dates[1:]
     if len(eval_dates) > n_days:
         eval_dates = eval_dates[-n_days:]
 
     if eval_dates:
-        metadata["window"] = "last_n_common_chronological_with_warmup"
+        if "window" not in metadata:
+            metadata["window"] = "last_n_common_chronological_with_warmup"
         metadata["window_start"] = eval_dates[0]
         metadata["window_end"] = eval_dates[-1]
         metadata["warmup_start"] = window_dates[0]

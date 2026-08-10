@@ -1,0 +1,86 @@
+{
+  "law": "htf_active_year_path_state",
+  "process": "00_PATH_STATE_TEACHERS + require \u22651 HTF set active",
+  "harvest_days_requested": 252,
+  "dual_days": 30,
+  "floor": {
+    "hits": 11,
+    "low_hr": 0.28,
+    "a13_frac": 0.64,
+    "n_zero": 18,
+    "breach": 0
+  },
+  "auto_promote": true,
+  "monty_htf_blend": false,
+  "harvest": {
+    "source": "fresh",
+    "path": "evidence_court\\artifacts\\path_state_teachers_htf_active_year.json",
+    "n_days": 252,
+    "n_raw": 2005,
+    "n_examples": 2005,
+    "n_london_ny": 1576,
+    "n_htf_active_teachers": 2005,
+    "dims_ok": true,
+    "window_start": "2025-06-04",
+    "window_end": "2026-05-26",
+    "require_htf_active": true
+  },
+  "train": {
+    "shadow": "evidence_court\\artifacts\\meta_policy_htf_active_year.npz",
+    "fp_before": "42:meta4275:inf0:bcfe6c74f68b7623",
+    "fp_after": "42:meta10565:inf0:4bc3068206a725d8",
+    "meta_train_steps": 10565,
+    "n_examples": 2005,
+    "weights_changed": true
+  },
+  "dual_shadow": {
+    "n_days": 30,
+    "hits": 3,
+    "hit_rate": 0.1,
+    "low_hr": 0.25,
+    "a13_frac": 0.3,
+    "n_zero": 11,
+    "mean_tr": 7.333333333333333,
+    "mean_pnl": 2.778534913666659,
+    "green_frac": 0.3,
+    "breach_count": 0,
+    "breach": false,
+    "max_pnl": 30.0,
+    "min_pnl": -2.9652086,
+    "total_trades": 220,
+    "eval_start": "2026-04-15",
+    "eval_end": "2026-05-26",
+    "policy_fp": "42:meta10565:inf0:4bc3068206a725d8",
+    "meta_train_steps": 10565
+  },
+  "dual_champion": {
+    "source": "BEST_POLICY_FLOOR",
+    "hits": 11,
+    "low_hr": 0.28,
+    "a13_frac": 0.64,
+    "n_zero": 18,
+    "breach_count": 0
+  },
+  "promote_decision": {
+    "beats": false,
+    "hold_floor": false,
+    "improved": [
+      "n_zero"
+    ],
+    "fail": [
+      "hits<11",
+      "low_hr<0.28",
+      "a13<0.64"
+    ],
+    "ok": []
+  },
+  "promoted": false,
+  "promote_result": {
+    "promoted": false,
+    "reason": [
+      "hits<11",
+      "low_hr<0.28",
+      "a13<0.64"
+    ]
+  }
+}

@@ -1,0 +1,196 @@
+{
+  "law": "ARBITRATION_2X_CLEAR_ROAD",
+  "doc": "evidence_court/ARBITRATION_2X_DETHRONE.md",
+  "ts": "2026-08-09T17:22:02.400313+00:00",
+  "recipe": "warmstart0037\u2192outcome_path_primary+conversion\u2192light_process\u2192path_reanchor_last\u2192freeze\u2192forward100",
+  "milestone_A": {
+    "hits": 15,
+    "a13_frac": 0.64
+  },
+  "target_2x": {
+    "hits": 22,
+    "low_hr": 0.5,
+    "a13_frac": 0.85,
+    "n_zero": 9,
+    "breach": 0
+  },
+  "floor_100d": {
+    "hits": 11,
+    "low_hr": 0.28,
+    "a13_frac": 0.64,
+    "n_zero": 18,
+    "breach": 0
+  },
+  "warmstart_fp": "42:meta4275:inf0:bcfe6c74f68b7623",
+  "n_path_outcome": 291,
+  "n_outcome_tagged": 291,
+  "outcome_path_apply": {
+    "n_updates": 873,
+    "n_examples": 291,
+    "n_tagged": 873,
+    "mean_outcome_score": 0.07724011394049932,
+    "law": "PATH_OUTCOME_TAGGED_APPLY"
+  },
+  "curriculum": {
+    "law": "PATH_LEARNING_CURRICULUM",
+    "steps": 2800,
+    "train_main": 2380,
+    "holdout_steps": 420,
+    "counts": {
+      "conversion": 2325,
+      "path_anchor": 311,
+      "process": 164,
+      "holdout": 420,
+      "outcome_shaped": 2800
+    },
+    "class_counts": {
+      "hold_convert": 470,
+      "fire_edge": 202,
+      "wait_risk": 456,
+      "wait_load": 940,
+      "size_down": 257
+    },
+    "path_anchor_frac_realized": 0.11107142857142857,
+    "mean_loss": 0.32275843790582304,
+    "hold_mean_loss": 0.08350340179650488,
+    "meta_train_steps": 7948,
+    "path_only_clone": false,
+    "has_outcome_shaping": true,
+    "has_conversion": true,
+    "has_holdout": true
+  },
+  "process_fire_frac": 0.682,
+  "path_reanchor_updates": 582,
+  "path_reanchor_last": true,
+  "outcome_reanchor": {
+    "n_updates": 291,
+    "n_examples": 291,
+    "n_tagged": 291,
+    "mean_outcome_score": 0.07724011394049932,
+    "law": "PATH_OUTCOME_TAGGED_APPLY"
+  },
+  "fingerprint": "42:meta9321:inf0:a4a3f04bea94b55f",
+  "shadow_path": "evidence_court\\artifacts\\meta_policy_2x_clear_road.npz",
+  "dual": {
+    "protocol": "forward100_class",
+    "n_days": 100,
+    "hits": 11,
+    "hit_rate": 0.11,
+    "low_hr": 0.28,
+    "a13_frac": 0.64,
+    "a13_every_day": false,
+    "n_zero": 18,
+    "breach_count": 0,
+    "breach": false,
+    "mean_tr": 39.97,
+    "mean_pnl": 5.2555570271666845,
+    "green_days": 46,
+    "weights_frozen": true,
+    "no_retrain": true,
+    "fingerprint": "42:meta9321:inf0:a4a3f04bea94b55f",
+    "goal_consistency": {
+      "total_hits": 11,
+      "mean_goal_progress": 0.17945956093231166,
+      "max_day_pnl_percent": 70.0,
+      "by_target": {
+        "5.0": {
+          "days": 15,
+          "hits": 3,
+          "hit_rate": 0.2,
+          "fire_rate": 0.9333333333333333,
+          "mean_pnl": 0.8426369812977607,
+          "mean_goal_progress": 0.2498042397333332
+        },
+        "15.0": {
+          "days": 10,
+          "hits": 4,
+          "hit_rate": 0.4,
+          "fire_rate": 0.9,
+          "mean_pnl": 9.139205726985157,
+          "mean_goal_progress": 0.6235810254190104
+        },
+        "30.0": {
+          "days": 21,
+          "hits": 2,
+          "hit_rate": 0.09523809523809523,
+          "fire_rate": 0.7619047619047619,
+          "mean_pnl": 2.8934670704977603,
+          "mean_goal_progress": 0.10201893754951188
+        },
+        "50.0": {
+          "days": 17,
+          "hits": 1,
+          "hit_rate": 0.058823529411764705,
+          "fire_rate": 0.7647058823529411,
+          "mean_pnl": 6.489460038761555,
+          "mean_goal_progress": 0.13471619075671287
+        },
+        "70.0": {
+          "days": 20,
+          "hits": 1,
+          "hit_rate": 0.05,
+          "fire_rate": 0.85,
+          "mean_pnl": 9.712976525069404,
+          "mean_goal_progress": 0.1410252527659915
+        },
+        "90.0": {
+          "days": 17,
+          "hits": 0,
+          "hit_rate": 0.0,
+          "fire_rate": 0.7647058823529411,
+          "mean_pnl": 3.3047606521507618,
+          "mean_goal_progress": 0.04176495625396269
+        }
+      },
+      "low_fire_rate": 0.92,
+      "high_fire_rate": 0.8108108108108109,
+      "low_mean_goal_progress": 0.39931495400760414,
+      "high_mean_goal_progress": 0.0954191705847891,
+      "low_hits": 7,
+      "low_hit_rate": 0.28,
+      "mid_hits": 3,
+      "mid_hit_rate": 0.07894736842105263,
+      "non_vacuous": true,
+      "behavior_conditioned": true,
+      "spectrum_ok": true,
+      "progress_consistent": true,
+      "consistent_spectrum": false,
+      "goal_consistency_ok": false
+    }
+  },
+  "dual_protocol": "forward100_class_goal_path_multi_sym",
+  "promote_guard": {
+    "promote_lab": true,
+    "production_replace": false,
+    "floor_hold": true,
+    "beats_champ_window": true,
+    "process_washout": false,
+    "path_only_clone": false,
+    "reasons": [],
+    "floor": {
+      "hits": 11,
+      "low_hr": 0.28,
+      "a13_frac": 0.64,
+      "n_zero": 18,
+      "breach": 0
+    },
+    "lab": {
+      "a13_frac": 0.64,
+      "hits": 11,
+      "n_zero": 18,
+      "breach_count": 0
+    },
+    "note": "production_replace requires floor_hold AND court_promote; lab shadow only otherwise"
+  },
+  "milestone_A_hit": false,
+  "target_2x_hit": false,
+  "production_replace": false,
+  "production_champion_unchanged": true,
+  "king_floor_ref": {
+    "hits": 11,
+    "low_hr": 0.28,
+    "a13_frac": 0.64,
+    "n_zero": 18,
+    "breach": 0
+  }
+}

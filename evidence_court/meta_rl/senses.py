@@ -266,3 +266,102 @@ def probe_all_senses(inp: MarketSenseInput) -> SenseReport:
         taste=probe_taste(inp),
         hearing=probe_hearing(inp),
     )
+
+
+# Fixed sense pack for MetaBrain state (L2L Proposal 1).
+# Packed into Mark agent_votes slots [0:SENSE_PACK_DIM] so META_RL_DIM stays 176
+# (frozen-weight contract / champion load path unchanged).
+SENSE_PACK_DIM = 16
+# Mark-full layout: channel1 32 + doctrine 16 + majority 12 + agent 92 + self 16
+SENSE_AGENT_SLOT_START = 0  # offset within agent_votes (state index 60+start)
+
+
+def _b01(x: object) -> float:
+    return 1.0 if bool(x) else 0.0
+
+
+def _topo_code(topo: object) -> float:
+    m = {
+        "chop": 0.0,
+        "slingshot_load": 0.25,
+        "release": 0.5,
+        "launch": 0.75,
+        "collapse": 1.0,
+    }
+    return float(m.get(str(topo or "chop"), 0.0))
+
+
+def _wait_code(subtype: object) -> float:
+    m = {
+        "": 0.0,
+        "loaded_not_yet": 0.33,
+        "no_trade": 0.66,
+        "kill": 1.0,
+    }
+    return float(m.get(str(subtype or ""), 0.0))
+
+
+def encode_sense_report(report: SenseReport) -> "np.ndarray":
+    """Encode four sense reports into a fixed SENSE_PACK_DIM float vector.
+
+    Layout (16):
+      0  mean HTF force sign-magnitude (sight)
+      1  multi-set consensus: -1 short / 0 incomplete-conflict / +1 long
+      2  topology code
+      3  fraction LTF phases against force
+      4  feel load (max_tension)
+      5  feel launch
+      6  feel collapse
+      7  efficiency regime 0/0.5/1
+      8  taste conviction
+      9  taste allow_fire
+      10 taste patience_preferred
+      11 taste risk_remaining_frac
+      12 hearing wait_subtype code
+      13 hearing day_story_coherent
+      14 hearing regime_shift_detected
+      15 dual_clock: quiet=0 divergence=0.5 co_alignment=1
+    """
+    import numpy as np
+
+    s, f, t, h = report.sight, report.feel, report.taste, report.hearing
+    forces = list(s.get("htf_force_per_set") or [])
+    mean_f = float(np.mean(forces)) if forces else 0.0
+    cons = str(s.get("multi_set_consensus") or "incomplete")
+    cons_v = 1.0 if cons == "agree_long" else (-1.0 if cons == "agree_short" else 0.0)
+    phases = list(s.get("ltf_velocity_phase") or [])
+    against_frac = (
+        float(sum(1 for p in phases if p == "against") / max(len(phases), 1))
+        if phases
+        else 0.0
+    )
+    eff = str(f.get("efficiency_regime") or "tradable")
+    eff_v = 0.0 if eff == "nothing" else (1.0 if eff == "great_movement" else 0.5)
+    dual = str(h.get("dual_clock") or "quiet")
+    dual_v = (
+        1.0
+        if dual == "co_alignment"
+        else (0.5 if dual == "divergence" else 0.0)
+    )
+    out = np.zeros(SENSE_PACK_DIM, dtype=np.float32)
+    out[0] = float(np.clip(mean_f, -1.0, 1.0))
+    out[1] = cons_v
+    out[2] = _topo_code(s.get("topology_class"))
+    out[3] = against_frac
+    out[4] = _b01(f.get("max_tension_load_building"))
+    out[5] = _b01(f.get("launch"))
+    out[6] = _b01(f.get("collapse"))
+    out[7] = eff_v
+    out[8] = float(np.clip(float(t.get("conviction") or 0.0), 0.0, 1.0))
+    out[9] = _b01(t.get("allow_fire"))
+    out[10] = _b01(t.get("patience_preferred"))
+    out[11] = float(np.clip(float(t.get("risk_remaining_frac") or 0.0), 0.0, 1.0))
+    out[12] = _wait_code(h.get("wait_subtype"))
+    out[13] = _b01(h.get("day_story_coherent"))
+    out[14] = _b01(h.get("regime_shift_detected"))
+    out[15] = dual_v
+    return out
+
+
+def encode_senses_from_input(inp: MarketSenseInput) -> "np.ndarray":
+    return encode_sense_report(probe_all_senses(inp))

@@ -204,7 +204,7 @@ Do **more of this class**, not the rejected class.
 |-----------|------------------|
 | More path-state harvest on remaining zero / 1–7 days | **Yes** |
 | Teachers with better size / hold toward target | **Yes** (careful measure) |
-| High-trend load→launch teachers on all 4 sets | **Yes** (align with mastery gym) |
+| High-trend pullback→resume teachers on all 4 sets | **Yes** (align with mastery gym) |
 | Synthetic densify only | **No** |
 | Rebuilt fake states | **No** |
 | Live force-pad | **No** |

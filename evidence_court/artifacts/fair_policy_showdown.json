@@ -1,0 +1,120 @@
+{
+  "law": "fair_policy_showdown_proven_vs_court0037",
+  "completed": "2026-08-09",
+  "score_definition": {
+    "clear": "day_pnl >= target AND not breach",
+    "breach": "loss or worst-case exceeds risk floor",
+    "green": "day_pnl > 0"
+  },
+  "bands": {
+    "court_legal": "target [5,90] x risk [1,3]",
+    "mark_yardstick": "3.0 / 3.5 (PROVEN-native only)",
+    "primary_shared_pair": "5.0 / 3.0"
+  },
+  "caveats": [
+    "Different fill models and feature stacks — cannot share weights.",
+    "PROVEN: XAUUSD curriculum FastSim ~90 days (the-truth prove_it).",
+    "Court: goal_path MetaBrain, last 60 trailing days XAU (and multi on 5/3).",
+    "Same metric DEFINITION; windows not identical calendar lists.",
+    "Pair 3.0/3.5 cannot run on Court natively (target min 5, risk max 3)."
+  ],
+  "pairs": [
+    {
+      "target": 5.0,
+      "risk": 3.0,
+      "court_legal": true,
+      "primary": true,
+      "proven": {
+        "engine": "the-truth FastSim prove_it",
+        "brain": "PROVEN_SPRINT_row04_clear24_2026-07-20",
+        "n_days": 90,
+        "clear_rate": 0.10,
+        "breach_rate": 0.0,
+        "symbol": "XAUUSD"
+      },
+      "court_xau_only": {
+        "engine": "court goal_path MetaBrain",
+        "brain": "meta_policy_champion.npz",
+        "n_days": 60,
+        "clear_rate": 0.31666666666666665,
+        "breach_rate": 0.0,
+        "symbols": ["XAUUSD"]
+      },
+      "court_multi": {
+        "engine": "court goal_path MetaBrain",
+        "brain": "meta_policy_champion.npz",
+        "n_days": 60,
+        "clear_rate": 0.3333333333333333,
+        "breach_rate": 0.0,
+        "symbols": ["XAUUSD", "EURUSD", "GBPUSD"]
+      },
+      "winner_vs_xau": {
+        "winner": "COURT_0037",
+        "reason": "higher_clear_rate_breach_0",
+        "clear_proven": 0.10,
+        "clear_court": 0.3167,
+        "delta_clear_court_minus_proven": 0.2167
+      },
+      "winner_vs_multi": {
+        "winner": "COURT_0037",
+        "reason": "higher_clear_rate_breach_0",
+        "clear_proven": 0.10,
+        "clear_court": 0.3333,
+        "delta_clear_court_minus_proven": 0.2333
+      }
+    },
+    {
+      "target": 15.0,
+      "risk": 2.0,
+      "court_legal": true,
+      "proven": {
+        "n_days": 90,
+        "clear_rate": 0.0,
+        "breach_rate": 0.0
+      },
+      "court_xau_only": {
+        "n_days": 60,
+        "clear_rate": 0.18333333333333332,
+        "breach_rate": 0.0
+      },
+      "winner_vs_xau": {
+        "winner": "COURT_0037",
+        "reason": "higher_clear_rate_breach_0",
+        "clear_proven": 0.0,
+        "clear_court": 0.1833
+      }
+    },
+    {
+      "target": 3.0,
+      "risk": 3.5,
+      "court_legal": false,
+      "note": "Mark yardstick — Court band illegal",
+      "proven": {
+        "n_days": 90,
+        "clear_rate": 0.24,
+        "breach_rate": 0.0,
+        "source": "prove_it same session (prior complete run)"
+      },
+      "court_xau_only": {
+        "error": "court_band_illegal"
+      },
+      "winner_vs_xau": {
+        "winner": "PROVEN",
+        "reason": "court_cannot_run_pair_mark_yardstick_only"
+      }
+    }
+  ],
+  "headline": {
+    "primary_shared_pair": {"target": 5.0, "risk": 3.0},
+    "winner_primary": "COURT_0037",
+    "proven_clear_5_3": 0.10,
+    "court_xau_clear_5_3": 0.3167,
+    "court_multi_clear_5_3": 0.3333,
+    "proven_clear_15_2": 0.0,
+    "court_xau_clear_15_2": 0.1833,
+    "mark_yardstick_3_3p5_proven_only_clear": 0.24,
+    "all_breach": 0.0
+  },
+  "overall_best": "COURT_0037",
+  "overall_reason": "On every pair both engines can run (5/3 and 15/2), Court 0037 clears more days with breach 0. PROVEN still owns Mark-only yardstick 3.0/3.5 (~24% clear) where Court cannot compete natively."
+}

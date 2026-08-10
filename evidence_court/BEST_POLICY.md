@@ -65,6 +65,8 @@ Day trade buckets: **0:** 18 · **1–7:** 18 · **8–400:** 64 · **>400:** 0
 | `meta_policy_champion_pre0037.npz` | **Backup only** (pre-promote, fp meta9600) | Not production |
 | `meta_policy_case0035_opp.npz` | Synthetic opp shadow | **REJECT F-024** |
 | `meta_policy_case0036_realbar.npz` | Real-bar label shadow | **REJECT F-025** |
+| `meta_policy_l2l_p2_p10.npz` | Process-only L2L washout | **REJECT full P10** (lab only) |
+| `meta_policy_l2l_p10_residual.npz` | Density residual lab (meta10835) | **ACCEPT_NARROW_LAB** — not production (floor not held) |
 | `artifacts/game_train/*.npz` | A34 game-ingest / lab | Not dual-promoted champion |
 | Old `forward100_report.json` (meta2862) | Prior dual snapshot | Superseded floor |
 
@@ -146,6 +148,13 @@ python -m evidence_court.meta_rl.cli forward100 --days 100 --out evidence_court/
 
 **Replace champion weights only after:** Court case + dual vs this floor + update **this file** (fp + steps + report hash).
 
+**Legal dethrone path (how, not done):** `DETHRONE_THE_KING.md` — gates G1–G7, dual SSOT rule, forbidden shortcuts, ranked do-next (L2L-P10 / C-004).
+
+**Learn-not-copy road (lab):** `00_PATH_LEARNING/` · CASE-PATH-LEARNING **ACCEPT_NARROW** · shadow `meta_policy_path_learning.npz` — **not production** until floor + PROMOTE.
+
+**All-seats arbitration (2× dethrone method):** `ARBITRATION_2X_DETHRONE.md` — unanimous **2× CLEAR ROAD** (hits 11→22 target; conversion-first).
+
+**2× CLEAR ROAD execute (lab, 2026-08-09):** shadow `meta_policy_2x_clear_road.npz` · report `execute_2x_clear_road_report.json` · forward100 dual **hits 11 / a13 0.64 / n_zero 18 / breach 0** (floor match; Milestone A / 2× **not** hit; **not production**).
 ### Learning checklist (before claiming “smarter bot”)
 
 - [ ] Teachers are **path-packed states** (176-dim), not names-only labels  
