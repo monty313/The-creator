@@ -3,10 +3,13 @@ from __future__ import annotations
 
 from pathlib import Path
 
+# artifacts/ is parent of scripts/
+ARTIFACTS = Path(__file__).resolve().parent.parent
+
 import cv2
 import numpy as np
 
-OUT = Path(__file__).resolve().parent / "policy_principles_cv2"
+OUT = ARTIFACTS / "charts" / "policy_principles_cv2"
 OUT.mkdir(parents=True, exist_ok=True)
 
 # palette (BGR)

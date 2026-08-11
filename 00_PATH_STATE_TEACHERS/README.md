@@ -65,7 +65,7 @@ Hits (target wins) stayed the same — still work to do.
 | Day path mental flag | `collect_mental_replay` in `goal_path.py` (auto-on with path teachers) |
 | Court case | `evidence_court/cases/CASE-0037-path-state-teachers.md` |
 | Champion SSOT | `evidence_court/BEST_POLICY.md` |
-| Teacher pack (saved) | `evidence_court/artifacts/path_state_teachers_case0037.json` |
+| Teacher pack (saved) | `evidence_court/artifacts/teachers/path_state_teachers_case0037.json` |
 | Current champ weights | `evidence_court/artifacts/meta_policy_champion.npz` |
 
 ---

@@ -18,11 +18,11 @@
 | **Seed** | 42 |
 | **Law class** | A14 trained meta-policy · A29 brain · frozen at inference |
 | **Case file** | `cases/CASE-0037-path-state-teachers.md` |
-| **Report** | `artifacts/forward100_report_case0037.json` |
+| **Report** | `artifacts/reports/forward100_report_case0037.json` |
 | **Report SHA256** | `2e5533de02447d95149a04322a07f7c8030a1c6cfa6d1f1c3a669965db311515` |
 
 **Same weights also saved as:**  
-`artifacts/meta_policy_case0037_pathstate.npz` (source of promote; identical fingerprint).
+`artifacts/policies_lab/meta_policy_case0037_pathstate.npz` (source of promote; identical fingerprint).
 
 **Load path (code):** `load_or_train_champion()` → `meta_policy_champion.npz`  
 **CLI:** `python -m evidence_court.meta_rl.cli prove 15 2`

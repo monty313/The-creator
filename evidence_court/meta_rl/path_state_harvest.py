@@ -27,8 +27,10 @@ from .policy import (
 from .price_io import SYMBOL_FILES, available_symbols, bars_to_daily, load_m1_trailing_calendar_days
 from .state import META_RL_DIM
 
-DEFAULT_PACK_OUT = Path("evidence_court/artifacts/path_state_teachers_case0037.json")
-DEFAULT_SHADOW_OUT = Path("evidence_court/artifacts/meta_policy_case0037_pathstate.npz")
+DEFAULT_PACK_OUT = Path("evidence_court/artifacts/teachers/path_state_teachers_case0037.json")
+DEFAULT_SHADOW_OUT = Path(
+    "evidence_court/artifacts/policies_lab/meta_policy_case0037_pathstate.npz"
+)
 ACTIONABLE = frozenset({"pullback_resume", "continuation"})
 
 

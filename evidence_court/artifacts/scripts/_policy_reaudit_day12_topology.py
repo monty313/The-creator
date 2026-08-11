@@ -8,6 +8,9 @@ from __future__ import annotations
 import json
 from collections import Counter
 from pathlib import Path
+
+# artifacts/ is parent of scripts/
+ARTIFACTS = Path(__file__).resolve().parent.parent
 from typing import Any, Dict, List
 
 import cv2
@@ -21,8 +24,8 @@ from evidence_court.meta_rl.goal_path import (
 from evidence_court.meta_rl.policy import FrozenMetaPolicy, load_or_train_champion
 from evidence_court.meta_rl.price_io import SYMBOL_FILES, load_m1_trailing_calendar_days
 
-ART = Path(__file__).resolve().parent
-OUT_DIR = ART / "policy_reaudit_day12"
+ART = ARTIFACTS
+OUT_DIR = ARTIFACTS / "day12" / "policy_reaudit_day12"
 OUT_DIR.mkdir(parents=True, exist_ok=True)
 
 DAY = "2026-01-21"
@@ -202,9 +205,9 @@ def render_verdict_board(summary: Dict[str, Any], monologue: str) -> Path:
 
 
 def annotate_tv_if_present(summary: Dict[str, Any]) -> Path | None:
-    src = ART / "tv_day12_chart_view.png"
+    src = ARTIFACTS / "day12" / "tv_day12_chart_view.png"
     if not src.is_file():
-        src = ART / "tv_xau_tf_15m.png"
+        src = ARTIFACTS / "charts" / "tv_xau_tf_15m.png"
     if not src.is_file():
         return None
     img = cv2.imread(str(src))

@@ -16,7 +16,7 @@ from .goal_path import run_goal_path_day
 from .policy import load_or_train_champion
 from .price_io import SYMBOL_FILES, available_symbols, bars_to_daily, load_m1_trailing_calendar_days
 
-DEFAULT_OUT = Path("evidence_court/artifacts/htf_blend_dual_compare.json")
+DEFAULT_OUT = Path("evidence_court/artifacts/reports/htf_blend_dual_compare.json")
 DEFAULT_TARGETS = (5.0, 15.0, 30.0, 50.0, 70.0, 90.0)
 DEFAULT_RISKS = (1.0, 2.0, 3.0)
 

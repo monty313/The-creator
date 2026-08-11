@@ -14,6 +14,9 @@ from __future__ import annotations
 import json
 from dataclasses import asdict, dataclass
 from pathlib import Path
+
+# artifacts/ is parent of scripts/
+ARTIFACTS = Path(__file__).resolve().parent.parent
 from typing import Any, Dict, List, Optional, Sequence
 
 import cv2
@@ -38,7 +41,7 @@ DAY = "2026-01-21"
 SYMBOL = "XAUUSD"
 TARGET = 15.0
 RISK = 3.0
-OUT = Path(__file__).resolve().parent / "day12_method_trade"
+OUT = ARTIFACTS / "day12" / "method_trade"
 OUT.mkdir(parents=True, exist_ok=True)
 
 # Method-legal plan for day 12 only (Court exhibit times)

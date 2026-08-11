@@ -22,8 +22,12 @@ from .policy import (
 from .price_io import SYMBOL_FILES, available_symbols, bars_to_daily, load_m1_trailing_calendar_days
 
 ACTIONABLE = frozenset({"pullback_resume", "continuation"})
-DEFAULT_HARVEST_OUT = Path("evidence_court/artifacts/real_bar_opp_labels_case0036.json")
-DEFAULT_SHADOW_OUT = Path("evidence_court/artifacts/meta_policy_case0036_realbar.npz")
+DEFAULT_HARVEST_OUT = Path(
+    "evidence_court/artifacts/teachers/real_bar_opp_labels_case0036.json"
+)
+DEFAULT_SHADOW_OUT = Path(
+    "evidence_court/artifacts/policies_lab/meta_policy_case0036_realbar.npz"
+)
 
 
 def filter_real_bar_a13_labels(

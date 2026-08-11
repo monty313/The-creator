@@ -324,7 +324,7 @@ async def main() -> None:
         shot = await send("Page.captureScreenshot", {"format": "png", "fromSurface": True})
         b64 = shot.get("result", {}).get("data")
         if b64:
-            out = Path("evidence_court/artifacts/tv_day12_policy_flr_markup.png")
+            out = Path("evidence_court/artifacts/day12/tv_day12_policy_flr_markup.png")
             out.write_bytes(base64.b64decode(b64))
             print("SHOT", out, out.stat().st_size)
         else:

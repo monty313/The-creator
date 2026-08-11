@@ -7,7 +7,7 @@ import json
 import urllib.request
 from pathlib import Path
 
-OUT_DIR = Path("evidence_court/artifacts")
+OUT_DIR = Path("evidence_court/artifacts/charts")
 TFS = ("1", "15", "30")
 
 

@@ -3,7 +3,7 @@
 **Status: PERMANENT COURT LAW (A10)** — not optional.  
 **Full permanent law:** `ADVERSARIAL_ROUNDS_LAW.md` · pin `ADVERSARIAL_ROUNDS_LAW.json`  
 **Master:** `MASTER_ARCHITECTURE.md` → Law A10  
-**Canonical detail:** `../grok_cli_evidence_court_v2.md` §1 roles, §2 items 2a–2b, §3 case schema, §4 mandatory loop.  
+**Canonical detail:** `../docs/grok_cli_evidence_court_v2.md` §1 roles, §2 items 2a–2b, §3 case schema, §4 mandatory loop.  
 **Mark presentation:** `../mark_here/ESQUIRE.md`  
 **Auto-load:** `../AGENTS.md` · `../.grok/rules/00_adversarial_rounds.md`  
 **Test:** `tests/test_adversarial_rounds_law.py`

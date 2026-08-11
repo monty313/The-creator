@@ -8,6 +8,9 @@ Uses real M1 prices for that calendar day only.
 from __future__ import annotations
 
 from pathlib import Path
+
+# artifacts/ is parent of scripts/
+ARTIFACTS = Path(__file__).resolve().parent.parent
 from typing import Dict, List, Sequence, Tuple
 
 import cv2
@@ -16,7 +19,7 @@ import numpy as np
 from evidence_court.meta_rl.price_io import SYMBOL_FILES, load_m1_trailing_calendar_days
 
 DAY = "2026-01-21"
-OUT = Path(__file__).resolve().parent / "day12_method_should"
+OUT = ARTIFACTS / "day12" / "method_should"
 OUT.mkdir(parents=True, exist_ok=True)
 
 # BGR

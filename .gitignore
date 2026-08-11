@@ -1,4 +1,4 @@
-﻿# Python
+# Python
 __pycache__/
 *.py[cod]
 *.class
@@ -25,3 +25,13 @@ desktop.ini
 
 # Session noise
 *.log
+_guide_body.txt
+
+# Browser / Office export junk
+**/*.docx_files/
+**/*.download
+strategies/_scratch/**
+!strategies/_scratch/.gitkeep
+
+# Optional local noise
+strategies/Strategies to replicate in Algo Trading.docx.html

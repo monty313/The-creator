@@ -6,7 +6,7 @@
 → `ADVERSARIAL_ROUNDS_LAW.md` · pinned by `tests/test_adversarial_rounds_law.py` · auto-load `../AGENTS.md`
 
 **Cycle:** Goal unmet → Judge ranks issues biggest→smallest → Court tries #1 → re-measure.  
-→ `ISSUE_DOCKET.md` · `../grok_cli_evidence_court_v2.md` §9
+→ `ISSUE_DOCKET.md` · `../docs/grok_cli_evidence_court_v2.md` §9
 
 **Road:** Trained meta-policy (A14) needs a learnable path — not cliffs.  
 → `ROAD_FOR_THE_POLICY.md`
@@ -61,4 +61,4 @@ Transcript: `cases/COURT_TRANSCRIPT_0001_0002.md`
 - `tests/` — including Mark **NEW** KAG tests for CASE-0002
 - `artifacts/forward100_report.json` — promote artifact
 
-**Full procedure:** `../grok_cli_evidence_court_v2.md` · Mark: `../mark_here/ESQUIRE.md`
+**Full procedure:** `../docs/grok_cli_evidence_court_v2.md` · Mark: `../mark_here/ESQUIRE.md`

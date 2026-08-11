@@ -7,7 +7,7 @@
 
 Companion short sheet: `ADVERSARIAL_ROUNDS.md`  
 **Counsel (A15 permanent):** `COUNSEL_TO_THE_COURT_LAW.md` — Judge must weigh **three opinions** (Creator, Mark, Counsel)  
-Full procedure: `../grok_cli_evidence_court_v2.md` §1, §2 (2a–2b), §3, §4  
+Full procedure: `../docs/grok_cli_evidence_court_v2.md` §1, §2 (2a–2b), §3, §4  
 Mark: `../mark_here/ESQUIRE.md`
 
 ---

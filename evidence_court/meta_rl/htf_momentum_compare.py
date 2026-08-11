@@ -62,7 +62,7 @@ SLOPE_STRONG_MIN = 0.20
 CCI_PERIODS = (10, 30, 100)
 RSI_PERIODS = (5, 15)
 
-DEFAULT_OUT = Path("evidence_court/artifacts/htf_momentum_compare_report.json")
+DEFAULT_OUT = Path("evidence_court/artifacts/reports/htf_momentum_compare_report.json")
 
 
 @dataclass

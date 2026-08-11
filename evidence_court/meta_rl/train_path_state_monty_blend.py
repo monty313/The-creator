@@ -24,10 +24,16 @@ from .edge import build_tf_cache
 from .price_io import SYMBOL_FILES, available_symbols, bars_to_daily, load_m1_trailing_calendar_days
 import numpy as np
 
-DEFAULT_PACK = Path("evidence_court/artifacts/path_state_teachers_monty_blend.json")
-DEFAULT_SHADOW = Path("evidence_court/artifacts/meta_policy_pathstate_monty_blend.npz")
-DEFAULT_SHADOW_JSON = Path("evidence_court/artifacts/meta_policy_pathstate_monty_blend.json")
-DEFAULT_REPORT = Path("evidence_court/artifacts/path_state_monty_blend_train_report.json")
+DEFAULT_PACK = Path("evidence_court/artifacts/teachers/path_state_teachers_monty_blend.json")
+DEFAULT_SHADOW = Path(
+    "evidence_court/artifacts/policies_lab/meta_policy_pathstate_monty_blend.npz"
+)
+DEFAULT_SHADOW_JSON = Path(
+    "evidence_court/artifacts/policies_lab/meta_policy_pathstate_monty_blend.json"
+)
+DEFAULT_REPORT = Path(
+    "evidence_court/artifacts/reports/path_state_monty_blend_train_report.json"
+)
 
 
 def run_pipeline(

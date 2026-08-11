@@ -8,14 +8,17 @@ from __future__ import annotations
 import csv
 from datetime import datetime
 from pathlib import Path
+
+# artifacts/ is parent of scripts/
+ARTIFACTS = Path(__file__).resolve().parent.parent
 from typing import List, Optional, Sequence, Tuple
 
 import cv2
 import numpy as np
 
-ROOT = Path(__file__).resolve().parents[2]
-ART = Path(__file__).resolve().parent
-OUT = ART / "policy_principles_on_charts"
+ROOT = Path(__file__).resolve().parents[3]
+ART = ARTIFACTS
+OUT = ARTIFACTS / "charts" / "policy_principles_on_charts"
 OUT.mkdir(parents=True, exist_ok=True)
 
 # BGR
@@ -30,10 +33,10 @@ MUTED = (160, 160, 170)
 DARK = (0, 0, 0)
 
 TV_SHOTS = {
-    "1m": ART / "tv_xau_tf_1m.png",
-    "15m": ART / "tv_xau_tf_15m.png",
-    "30m": ART / "tv_xau_tf_30m.png",
-    "day12": ART / "tv_day12_chart_view.png",
+    "1m": ARTIFACTS / "charts" / "tv_xau_tf_1m.png",
+    "15m": ARTIFACTS / "charts" / "tv_xau_tf_15m.png",
+    "30m": ARTIFACTS / "charts" / "tv_xau_tf_30m.png",
+    "day12": ARTIFACTS / "day12" / "tv_day12_chart_view.png",
 }
 
 XAU_M1 = Path(
