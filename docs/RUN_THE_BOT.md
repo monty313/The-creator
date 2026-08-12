@@ -42,6 +42,11 @@ python tools/download_dukascopy_m1.py --symbol XAUUSD \
 The server rate-limits aggressively; the script defaults to 2 workers + delay.
 Keep it slow — a ban costs more time than the throttle.
 
+Timestamps default to **EET (MT5 broker time)** — `--tz eet` — matching the
+original MT5 CSV convention. This folds the thin Sunday-evening UTC session
+into Monday, so the eval never sees fake near-empty "Sunday days", and session
+slots (07:00–20:00) line up with how the edge/session code was calibrated.
+
 ---
 
 ## 2) Train once (offline) — Law A14/A29
@@ -92,14 +97,21 @@ pair per day**, runs the multi-slot goal path under the hard risk envelope,
 and verifies the weight fingerprint after every day.
 
 ```bash
-# Fast sensor: 40 days, XAU-only
-python -m evidence_court.meta_rl.cli forward100 --days 40 \
-    --out evidence_court/artifacts/reports/forward40_cloud.json
+# Fast sensor: 40 days, XAU-only, pinned seed (writes report + scoreboard row)
+python tools/run_forward_protocol.py --days 40 --seed 42 --symbols XAUUSD
 
-# North star: 100 days (multi-symbol if EUR/GBP data present)
-python -m evidence_court.meta_rl.cli forward100 --days 100 \
-    --out evidence_court/artifacts/reports/forward100_cloud.json
+# North star: 100 days (multi-symbol once EUR/GBP data present)
+python tools/run_forward_protocol.py --days 100 --seed 42 --symbols XAUUSD
+python tools/run_forward_protocol.py --days 100 --seed 42 --symbols XAUUSD,EURUSD,GBPUSD
+
+# (equivalent raw CLI: python -m evidence_court.meta_rl.cli forward100 --days N --out ...)
 ```
+
+Measured baseline in this environment (champion `meta4275`, real Dukascopy
+XAUUSD M1, out-of-sample Mar–Aug 2026): 40d seeds 42/43/44 → hits 1/0/1,
+**breach 0**, ~23–26 trades/day; 100d seed 42 → hits 1, **breach 0**,
+mean day pnl +0.63%, worst day −2.66% (typed risk never exceeded).
+Re-running the same protocol is byte-identical (deterministic).
 
 Read the report before believing anything:
 

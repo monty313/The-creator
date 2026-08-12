@@ -67,24 +67,33 @@ def fetch_day(sym: str, day: dt.date, *, retries: int = 12) -> bytes:
     return b""
 
 
-def decode_day(raw: bytes, sym: str, day: dt.date) -> list[str]:
+def decode_day(raw: bytes, sym: str, day: dt.date, tz: str = "eet") -> list[str]:
+    """Decode one day file. ``tz='eet'`` converts UTC → MT5 broker time
+    (Europe/Athens): Sunday 22:00 UTC becomes Monday 00:00/01:00 EET, matching
+    the repo's original MT5 CSV convention (no thin Sunday 'days')."""
     if not raw:
         return []
     try:
         blob = lzma.decompress(raw)
     except lzma.LZMAError:
         return []
+    zone = None
+    if tz == "eet":
+        from zoneinfo import ZoneInfo
+
+        zone = ZoneInfo("Europe/Athens")
     point = POINT.get(sym, 100_000.0)
-    date_s = day.strftime("%Y.%m.%d")
+    base = dt.datetime(day.year, day.month, day.day, tzinfo=dt.timezone.utc)
     rows: list[str] = []
     for off in range(0, len(blob) - _REC.size + 1, _REC.size):
         t, o, c, lo, hi, vol = _REC.unpack_from(blob, off)
         if vol <= 0.0 or o <= 0:
             continue
-        hh, rem = divmod(t, 3600)
-        mm, ss = divmod(rem, 60)
+        stamp = base + dt.timedelta(seconds=int(t))
+        if zone is not None:
+            stamp = stamp.astimezone(zone)
         rows.append(
-            f"{date_s}\t{hh:02d}:{mm:02d}:{ss:02d}\t"
+            f"{stamp:%Y.%m.%d}\t{stamp:%H:%M:%S}\t"
             f"{o / point:.5f}\t{hi / point:.5f}\t{lo / point:.5f}\t{c / point:.5f}\t"
             f"{vol:.2f}"
         )
@@ -99,6 +108,7 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--out", required=True)
     ap.add_argument("--workers", type=int, default=2)
     ap.add_argument("--delay", type=float, default=0.25, help="post-request sleep per worker (s)")
+    ap.add_argument("--tz", choices=("utc", "eet"), default="eet", help="output timestamps (eet = MT5 broker time)")
     args = ap.parse_args(argv)
 
     sym = args.symbol.upper()
@@ -116,7 +126,7 @@ def main(argv: list[str] | None = None) -> int:
     from concurrent.futures import ThreadPoolExecutor
 
     def one(d: dt.date) -> list[str]:
-        rows = decode_day(fetch_day(sym, d), sym, d)
+        rows = decode_day(fetch_day(sym, d), sym, d, tz=args.tz)
         if args.delay > 0:
             time.sleep(args.delay)
         return rows
