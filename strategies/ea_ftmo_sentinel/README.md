@@ -5,25 +5,30 @@ decisions" until a full Evidence Court case (A10 + A15).
 
 ## Measured verdict (2026-08-12 — read before anything else)
 
-The strategies were tested on **real downloaded market data** with a
+Everything below was measured on **real downloaded market data** with a
 bar-accurate replica of this EA (see [`VALIDATION.md`](VALIDATION.md)):
 
 - **The protection layer works.** Across every window, symbol and variant:
   worst day close −1.50%, worst intraday float −1.49%, **zero** FTMO daily or
   total breaches. The Day Governor does exactly what it promises.
-- **The entry edge does not.** The corpus win rates replicate (70–76%) but
-  every variant is **net negative after real costs** on 4.5 months of Dukascopy
-  M1 and on the Yahoo May–Aug window (which contains the corpus's own
-  June–July test window). A structured train/test grid over trigger TF,
-  barriers, force, shell and session found **zero** honest survivors.
-- **The corpus reports were not accurate as profit claims.** They measured
-  hit rate without costs on pooled books (the accuracy program), and the
-  CCI 100%-WR result was a 44-trade single-window artifact. This folder's own
-  `00_intuition.md` P2.3/P2.6 predicted exactly this failure mode.
-- Consequences: **do not run this EA on a funded account expecting to pass
-  FTMO, and +2.5%/day is not achievable with this entry layer** (real cadence
-  ~0.2–2 trades/day). What it *is*: a validated FTMO risk harness waiting for
-  a real edge (the lab's A14/A29 meta-trained brain path is the intended one).
+- **The corpus reclaim engines failed** (win rates 70–76% replicate; money is
+  negative after costs — the corpus reports were hit-rate proofs, not profit
+  proofs). They remain selectable for lab use only.
+- **The creative hunt found two survivors** (v3):
+  - **Engine D — Keltner fade** (default): fade beyond EMA20 ± 2·ATR with an
+    H4 trend veto and stretch-scaled lot sizing. Positive on both time splits
+    on real EURUSD (7 months) **and** real GBPUSD M1. European pairs only.
+  - **Engine C — London ORB**: strong and robust on EURUSD (train +6.1%,
+    test +14.4%, 74% of the parameter neighborhood positive) but **failed
+    cross-symbol** — treat as an EURUSD-only second leg.
+- **Measured portfolio** (fade on EURUSD+GBPUSD, ORB on EURUSD, shared
+  governor, approximation labelled in the report): **+49.9% over 7 months,
+  mean day +0.27%, worst day −1.50%, zero breaches; 66% of challenge
+  walk-forward starts pass, median 24 trading days.**
+- Still true and non-negotiable: **"+2.5% every day" and "pass every time"
+  are not physically guaranteeable.** P(day ≥ +2.5%) ≈ 7% on the measured
+  book; the governor banks those days when the market offers them and keeps
+  every other day green-or-small-red. Forward-test on demo before money.
 
 ## What it is
 
@@ -65,16 +70,18 @@ The backtester mirrors the EA bar-for-bar: closed-bar signals, next-open
 entries, real spread+commission, M1 barrier adjudication with the
 conservative same-bar-loss rule, full governor on the M1 equity path.
 
-## Setup (paper/testing only, given the verdict)
+## Setup (demo first — the measured book is 7 months of one regime)
 
-1. Compile `FTMO_Sentinel_EA.mq5` in MetaEditor, attach to M15/M30 charts
-   (M5 measured toxic net of costs).
-2. Defaults = least-bad measured config: Engine A (CCI) + mass gate,
-   base risk 0.5%, ladder cap 1.0%.
-3. Set `InpInitialBalance` and `InpDayResetHour` (server hour of FTMO
+1. Compile `FTMO_Sentinel_EA.mq5` in MetaEditor.
+2. **Keltner fade legs (default mode):** attach to EURUSD M30 and GBPUSD M15
+   charts, same magic number (shared governor). M5 measured toxic — avoid.
+3. **ORB leg (optional):** attach a second instance to EURUSD M15 with
+   `InpEntryMode = MODE_LONDON_ORB` and a **different magic number**;
+   align `InpOrbRangeEndHour` to 07:00 UTC in server time. EURUSD only.
+4. Set `InpInitialBalance` and `InpDayResetHour` (server hour of FTMO
    midnight CE(S)T).
-4. Demo / strategy tester only until a new edge source passes the harness
-   train/test and a full Court case.
+5. Strategy-test each leg (every tick, real spreads), then demo / FTMO free
+   trial. Funded only after the forward test agrees with the measurement.
 
 ## Court status
 

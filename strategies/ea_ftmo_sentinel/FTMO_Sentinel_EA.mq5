@@ -23,20 +23,21 @@
 //|    * challenge manager: stop at +10%, ticket-trades until the    |
 //|      minimum trading days are registered                         |
 //|                                                                  |
-//|  MEASURED VERDICT (2026-08-12, see VALIDATION.md):               |
-//|    * Governor safety VALIDATED on real M1 data: worst day -1.5%,|
-//|      zero FTMO breaches in every window/variant.                 |
-//|    * Corpus reclaim engines (A/B) FAILED validation: WR 70-76%   |
-//|      replicates but all variants NET NEGATIVE after real costs.  |
-//|      Kept selectable for the lab only.                           |
-//|    * Engine C London ORB (default) PASSED train/test validation  |
-//|      on 7 months of real EURUSD M1: train +6.1% (Jan-May), test  |
-//|      +14.4% (Jun-Aug), 130 trades, worst day -1.0%, 74% of the   |
-//|      parameter neighborhood positive on both splits. Still only  |
-//|      one symbol / 7 months - forward-test on demo before money.  |
-//|    * 2.5% EVERY day remains physically unguaranteed; ORB mean    |
-//|      day is +0.12% single-symbol. Run 2-4 symbols and let the    |
-//|      governor bank goal days when the market offers them.        |
+//|  MEASURED VERDICT (2026-08-12, see VALIDATION.md v3):            |
+//|    * Governor safety VALIDATED on real M1: worst day -1.5%,      |
+//|      zero FTMO breaches in every window/symbol/variant.          |
+//|    * Engine D Keltner fade (DEFAULT): cross-symbol validated —   |
+//|      positive on both time splits on real EURUSD (7mo) AND real  |
+//|      GBPUSD M1, strength lot-sizing. European pairs only.        |
+//|    * Engine C London ORB: EURUSD-only evidence (train +6.1%,     |
+//|      test +14.4%, robust neighborhood) — failed GBPUSD/USDJPY.   |
+//|      Attach only on EURUSD as a second leg (own magic number).   |
+//|    * Corpus reclaim engines (A/B): FAILED validation, lab only.  |
+//|    * Measured portfolio (fade EUR+GBP + ORB EUR): +49.9%/7mo,    |
+//|      mean day +0.27%, 0 breaches, 66% of challenge starts pass   |
+//|      (median 24 trading days). NOT "+2.5% every day", NOT "pass  |
+//|      every time" — those remain physically unguaranteeable.      |
+//|      Forward-test on demo before any funded attempt.             |
 //+------------------------------------------------------------------+
 #property copyright "The Creator lab"
 #property version   "1.00"
@@ -66,12 +67,12 @@ input bool     InpBankAtGoal         = true;   // Flatten + stop when daily goal
 input double   InpRatchetTriggerPct  = 0.8;    // Arm the green-day ratchet at +this %
 input double   InpRatchetFloorPct    = 0.20;   // Minimum locked day profit % once armed
 input double   InpRatchetTrailRatio  = 0.60;   // Floor trails this fraction of day peak
-input double   InpLadderFraction     = 0.50;   // House-money ladder: risk += frac * day profit %
-input double   InpMaxRiskPct         = 1.00;   // Risk per trade ceiling % (ladder cap)
+input double   InpLadderFraction     = 0.75;   // House-money ladder: risk += frac * day profit %
+input double   InpMaxRiskPct         = 2.00;   // Risk per trade ceiling % (ladder cap)
 
 //=== Risk ==========================================================
 input group    "=== Risk ==="
-input double   InpRiskPct            = 0.50;   // Base risk per trade (% of initial balance)
+input double   InpRiskPct            = 0.80;   // Base risk per trade (% of initial balance; fade validated at 0.8)
 input double   InpMaxLots            = 10.0;   // Absolute lot cap
 input int      InpMaxTradesPerDay    = 40;     // Trade cadence cap for the day
 input int      InpMaxConsecLosses    = 3;      // Stop the day after this many consecutive losses
@@ -90,9 +91,18 @@ input int      InpFridayFlattenHour  = 21;     // Flatten Friday at this hour
 input string   InpNewsBlackout       = "";     // e.g. "14:25-14:35;15:55-16:05" server time, no entries
 
 //=== Entry mode ====================================================
-enum ENUM_ENTRY_MODE { MODE_LONDON_ORB=0, MODE_CORPUS_RECLAIM=1 };
+enum ENUM_ENTRY_MODE { MODE_LONDON_ORB=0, MODE_CORPUS_RECLAIM=1, MODE_KELTNER_FADE=2 };
 input group    "=== Entry mode ==="
-input ENUM_ENTRY_MODE InpEntryMode  = MODE_LONDON_ORB;  // ORB validated on train/test (VALIDATION.md v3)
+input ENUM_ENTRY_MODE InpEntryMode  = MODE_KELTNER_FADE;  // fade = cross-symbol validated (VALIDATION.md v3)
+
+//=== Engine D: Keltner fade (cross-symbol validated) ===============
+input group    "=== Engine D: Keltner fade ==="
+input int      InpKfEmaPeriod       = 20;      // Channel mid = EMA(this)
+input double   InpKfMult            = 2.0;     // Channel width = mult * ATR(14)
+input double   InpKfTpAtr           = 1.5;     // TP = mult * ATR
+input double   InpKfSlAtr           = 2.0;     // SL = mult * ATR
+input bool     InpKfH4Filter        = true;    // Skip fades against a strong H4 trend
+input bool     InpKfStrengthSizing  = true;    // Risk scales with stretch beyond the band
 
 //=== Engine C: London opening-range breakout (validated) ===========
 input group    "=== Engine C: London ORB ==="
@@ -156,6 +166,7 @@ CTrade   g_trade;
 int      g_hCciLtf=INVALID_HANDLE, g_hCciH1=INVALID_HANDLE, g_hCciH2=INVALID_HANDLE;
 int      g_hRsiMcfLtf=INVALID_HANDLE, g_hRsiMcfH1=INVALID_HANDLE, g_hRsiMcfH2=INVALID_HANDLE;
 int      g_hRsiMark=INVALID_HANDLE, g_hAtr=INVALID_HANDLE;
+int      g_hEmaKf=INVALID_HANDLE, g_hAtrH4=INVALID_HANDLE;
 datetime g_lastBarTime=0;
 datetime g_lastEntryTime=0;
 int      g_lossStreak=0;
@@ -197,10 +208,13 @@ int OnInit()
    g_hRsiMcfH2  = iRSI(_Symbol, InpHTF2,        InpMcfRsiPeriod, PRICE_CLOSE);
    g_hRsiMark   = iRSI(_Symbol, PERIOD_CURRENT, InpMarkRsiPeriod, PRICE_CLOSE);
    g_hAtr       = iATR(_Symbol, PERIOD_CURRENT, InpAtrPeriod);
+   g_hEmaKf     = iMA(_Symbol, PERIOD_CURRENT, InpKfEmaPeriod, 0, MODE_EMA, PRICE_CLOSE);
+   g_hAtrH4     = iATR(_Symbol, PERIOD_H4, 14);
 
    if(g_hCciLtf==INVALID_HANDLE || g_hCciH1==INVALID_HANDLE || g_hCciH2==INVALID_HANDLE ||
       g_hRsiMcfLtf==INVALID_HANDLE || g_hRsiMcfH1==INVALID_HANDLE || g_hRsiMcfH2==INVALID_HANDLE ||
-      g_hRsiMark==INVALID_HANDLE || g_hAtr==INVALID_HANDLE)
+      g_hRsiMark==INVALID_HANDLE || g_hAtr==INVALID_HANDLE ||
+      g_hEmaKf==INVALID_HANDLE || g_hAtrH4==INVALID_HANDLE)
      { Print("FTMO Sentinel: indicator handle failed"); return INIT_FAILED; }
 
    // challenge baseline: input > persisted > current balance
@@ -222,6 +236,7 @@ void OnDeinit(const int reason)
    IndicatorRelease(g_hCciLtf);  IndicatorRelease(g_hCciH1);  IndicatorRelease(g_hCciH2);
    IndicatorRelease(g_hRsiMcfLtf); IndicatorRelease(g_hRsiMcfH1); IndicatorRelease(g_hRsiMcfH2);
    IndicatorRelease(g_hRsiMark); IndicatorRelease(g_hAtr);
+   IndicatorRelease(g_hEmaKf); IndicatorRelease(g_hAtrH4);
 }
 
 //=== position helpers =============================================
@@ -457,6 +472,47 @@ int OrbSignal(double &slDist, double &tpDist)
                             : (dir > 0 ? c1 - rngLo : rngHi - c1);
    tpDist = height*InpOrbTpMult;
    if(slDist < InpOrbMinSlAtr*atrv[0] || tpDist <= 0) return 0;
+   return dir;
+}
+
+// Keltner fade: closed bar beyond EMA +/- mult*ATR, optional H4 trend veto.
+// Returns +1/-1, fills barrier distances and the strength risk multiplier.
+int KeltnerFadeSignal(double &slDist, double &tpDist, double &strengthMult)
+{
+   double ema[], atrv[];
+   ArraySetAsSeries(ema, true);
+   ArraySetAsSeries(atrv, true);
+   if(CopyBuffer(g_hEmaKf, 0, 1, 1, ema) < 1) return 0;
+   if(CopyBuffer(g_hAtr,   0, 1, 1, atrv) < 1 || atrv[0] <= 0) return 0;
+   MqlRates r[];
+   ArraySetAsSeries(r, true);
+   if(CopyRates(_Symbol, PERIOD_CURRENT, 0, 3, r) < 3) return 0;
+
+   double upper = ema[0] + InpKfMult*atrv[0];
+   double lower = ema[0] - InpKfMult*atrv[0];
+   int dir = 0;
+   double stretch = 0.0;
+   if(r[1].close < lower) { dir = 1;  stretch = (lower - r[1].close)/atrv[0]; }
+   if(r[1].close > upper) { dir = -1; stretch = (r[1].close - upper)/atrv[0]; }
+   if(dir == 0) return 0;
+
+   if(InpKfH4Filter)
+   {
+      double c4[], a4[];
+      ArraySetAsSeries(c4, true);
+      ArraySetAsSeries(a4, true);
+      if(CopyClose(_Symbol, PERIOD_H4, 1, 14, c4) < 14) return 0;
+      if(CopyBuffer(g_hAtrH4, 0, 1, 1, a4) < 1 || a4[0] <= 0) return 0;
+      double smaNow = 0, smaPrev = 0;
+      for(int k=0; k<10; ++k) { smaNow += c4[k]; smaPrev += c4[k+3]; }
+      double slope = (smaNow - smaPrev)/10.0;
+      if(dir > 0 && slope < -0.5*a4[0]) return 0;   // no knife-catch in strong H4 downtrend
+      if(dir < 0 && slope >  0.5*a4[0]) return 0;
+   }
+
+   slDist = atrv[0]*InpKfSlAtr;
+   tpDist = atrv[0]*InpKfTpAtr;
+   strengthMult = InpKfStrengthSizing ? MathMin(MathMax(1.0 + stretch, 0.5), 2.0) : 1.0;
    return dir;
 }
 
@@ -791,12 +847,17 @@ void OnTick()
 
    bool concurrence=false;
    int dir = 0;
-   double slDist=0, tpDist=0;
+   double slDist=0, tpDist=0, strengthMult=1.0;
    string tag = "";
    if(InpEntryMode == MODE_LONDON_ORB)
    {
       dir = OrbSignal(slDist, tpDist);
       tag = "ORB";
+   }
+   else if(InpEntryMode == MODE_KELTNER_FADE)
+   {
+      dir = KeltnerFadeSignal(slDist, tpDist, strengthMult);
+      tag = "KFADE";
    }
    else
    {
@@ -808,7 +869,9 @@ void OnTick()
 
    double risk = CurrentRiskPct(InpEntryMode == MODE_LONDON_ORB ? InpOrbRiskPct
                                                                 : InpRiskPct);
+   risk *= strengthMult;                       // fade strength sizing (1.0 otherwise)
    if(concurrence) risk *= InpConcurrenceBoost;
+   risk = MathMin(risk, InpMaxRiskPct);        // ceiling holds after ALL multipliers
    // re-apply the one-loss-cannot-break-the-day cap after any boost
    double dayPL = AccountInfoDouble(ACCOUNT_EQUITY) - g_dayAnchor;
    double remainingPct = (dayPL + g_baseline*InpSoftDailyStopPct/100.0)/g_baseline*100.0;

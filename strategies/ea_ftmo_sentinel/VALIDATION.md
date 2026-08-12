@@ -94,6 +94,73 @@ WR 92% at +0.243R with 20 signals/day; measured reality is WR ~70% at +0.243R
 (≈ breakeven pre-cost, negative post-cost) with ~1–2 signals/day — i.e. the
 sim's scenario C/D, whose outcome is fuse-halt, not pass.
 
+---
+
+# v3 — Creative hunt (2026-08-12, same harness, same honesty)
+
+After the corpus engines failed, a wider structured hunt (`strategy_lab.py`:
+Keltner fade, z-score fade, London ORB, Donchian H1, MA pullback × sizing
+modes flat / one-shot / strength) found two survivors. Selection law stayed
+brutal: positive on BOTH time splits, then cross-symbol replication.
+
+## Survivor 1 — Keltner fade (CROSS-SYMBOL VALIDATED → EA default, Engine D)
+
+Fade a close beyond EMA20 ± 2.0·ATR back toward the mean, skip fades against
+a strong H4 trend, TP 1.5·ATR / SL 2.0·ATR, risk scaled by stretch beyond the
+band ("strength" lot sizing). Corpus lineage: rank-1 family `s11_keltner_reversion`.
+
+| Window | Result |
+|---|---|
+| EURUSD real M1, 7 mo (30min, strength) | train +0.98% / test +8.30% · 153 trades |
+| GBPUSD real M1, Jan–Apr (15min, flat) | +3.86% / +7.18% · 117 trades (positive in 14/16 neighborhood cells) |
+| GBPUSD Yahoo M5, May–Aug | positive both splits (several configs) |
+| USDJPY | mixed → **skip JPY** (fade validated on European pairs only) |
+
+## Survivor 2 — London ORB (EURUSD-ONLY — Engine C, optional)
+
+Overnight range 00–07 UTC; first close beyond the range 07–12 UTC fires;
+SL at range mid; TP 1.25×height; one shot per side per day at 1% risk.
+
+| Window | Result |
+|---|---|
+| EURUSD real M1, 7 mo | train +6.13% / test +14.39% · 130 trades · **74% of 144 neighborhood cells positive both splits** |
+| GBPUSD real M1, Jan–Apr | **negative everywhere → cross-symbol replication FAILED** |
+| USDJPY Yahoo | negative (expected: London-open effect, Tokyo-session pair) |
+
+Status per the corpus's own falsification rule: EURUSD-specific evidence only.
+Run it only on EURUSD, sized as one more leg, not as the core.
+
+**Rejected in the hunt (kept for the record):** regime/weekday filters for ORB
+(improved train, degraded test — textbook overfit), z-score fade (inconsistent
+across splits), MA pullback and Donchian H1 (weak/unstable), corpus reclaim
+engines (v2 verdict unchanged).
+
+## Portfolio estimate (approximation, labelled)
+
+Per-symbol governor day P&L summed, combined day clipped at the account-level
+soft stop (−1.5%). `portfolio_estimate.py`:
+
+| Book | Total (window) | Mean day | Worst day | Breaches | Challenge walk-forward |
+|---|---|---|---|---|---|
+| EURUSD fade alone | +9.3% / 7 mo | +0.05% | −1.50% | 0 | PASS 2%, timeout 94% |
+| GBPUSD fade alone | +11.0% / 3 mo | +0.14% | −1.40% | 0 | (window too short) |
+| EURUSD ORB alone | +20.5% / 7 mo | +0.11% | −1.00% | 0 | PASS 43%, median 27 d |
+| fade EUR+GBP | +24.0% / 7 mo | +0.13% | −1.50% | 0 | PASS 15% |
+| **fade EUR+GBP + EUR ORB** | **+49.9% / 7 mo** | **+0.27%** | **−1.50%** | **0** | **PASS 66%, median 24 d** |
+
+## Honest bottom line after the creative hunt
+
+- There is now a **measured, multi-engine book** that grows ~+0.27%/day on
+  average with zero breaches on 7 months of real data — and it still does
+  **not** guarantee "+2.5% every day" (P(day ≥ +2.5%) ≈ 7%) or "pass every
+  time" (66% of walk-forward starts pass within 45 trading days; the rest
+  time out or fuse-halt safely).
+- GBPUSD real data covers Jan–Apr only (rate-limited download; resume with
+  `fetch_dukascopy.py GBPUSD 2026-04-05 2026-08-07` and re-run the lab).
+- All of this remains one 7-month regime. Forward-test on demo / FTMO free
+  trial before any funded attempt, and per Court law a full A10+A15 case
+  before promote.
+
 ## What would have to change before anyone runs this for money
 
 1. A **new edge source** that is positive on a train/test split net of costs
