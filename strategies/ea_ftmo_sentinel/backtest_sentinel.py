@@ -62,6 +62,7 @@ def rsi_mline(c, n=13):
 @dataclass
 class Config:
     name: str = "default"
+    trigger: str = "5min"        # trigger TF resample rule
     use_engine_cci: bool = True
     use_engine_mcf: bool = True
     require_concurrence: bool = False
@@ -103,7 +104,7 @@ def map_htf(htf_series: pd.Series, target_index) -> pd.Series:
 
 
 def build_signals(m1: pd.DataFrame, cfg: Config):
-    m5 = resample(m1, "5min")
+    m5 = resample(m1, cfg.trigger)
     h1 = resample(m1, "1h")
     h4 = resample(m1, "4h")
 
@@ -429,7 +430,8 @@ def main():
     if m1.index.tz is not None:
         m1.index = m1.index.tz_convert("UTC").tz_localize(None)   # plain UTC timestamps
     print(f"{sym}: {len(m1)} M1 bars {m1.index[0]} -> {m1.index[-1]}\n")
-    spread = {"EURUSD": 0.00007, "GBPUSD": 0.00010, "XAUUSD": 0.20}.get(sym, 0.00010)
+    spread = {"EURUSD": 0.00007, "GBPUSD": 0.00010, "XAUUSD": 0.20,
+              "EURUSD_Y": 0.00007, "GBPUSD_Y": 0.00010}.get(sym, 0.00010)
     blocks = []
     for nm in names:
         cfg = replace(VARIANTS[nm], spread=spread)
