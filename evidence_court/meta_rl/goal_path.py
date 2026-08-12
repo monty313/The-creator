@@ -1427,7 +1427,16 @@ def run_goal_path_day(
                 _eq = 0.85 + 0.15 * min(abs(float(snap.consensus_force or 0.0)), 1.0)
             elif abs(float(getattr(best, "force", 0.0) or 0.0)) >= 0.35:
                 _eq = 0.7
-            if brain_drives and INTELLIGENT_SIZE_UP:
+            if (
+                brain_drives
+                and getattr(policy, "size_head_drives", False)
+                and action.size_risk_percent > 0.05
+            ):
+                # Dynamic-size lab: the policy's trained size head passes its
+                # own size to the fill — no intelligent-size blend override.
+                # Envelope still hard-gates below (would_breach / lot legal).
+                size = float(action.size_risk_percent)
+            elif brain_drives and INTELLIGENT_SIZE_UP:
                 # Monty EO: max(brain, clear-path, intelligent aggressor) under envelope
                 _conf = 0.55
                 if "conf=" in str(action.reason or ""):
