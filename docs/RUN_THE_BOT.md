@@ -108,10 +108,12 @@ python tools/run_forward_protocol.py --days 100 --seed 42 --symbols XAUUSD,EURUS
 ```
 
 Measured baseline in this environment (champion `meta4275`, real Dukascopy
-XAUUSD M1, out-of-sample Mar–Aug 2026): 40d seeds 42/43/44 → hits 1/0/1,
-**breach 0**, ~23–26 trades/day; 100d seed 42 → hits 1, **breach 0**,
-mean day pnl +0.63%, worst day −2.66% (typed risk never exceeded).
-Re-running the same protocol is byte-identical (deterministic).
+M1, out-of-sample Mar–Aug 2026): 40d XAU seeds 42/43/44 → hits 1/0/1,
+**breach 0**, ~23–26 trades/day; 100d XAU seed 42 → hits 1, **breach 0**,
+mean day pnl +0.63%, worst day −2.66% (typed risk never exceeded);
+100d multi-symbol (XAU+EUR+GBP) seed 42 → hits 1, **breach 0**, 58 trades/day,
+A13 band on 70% of days. Re-running the same protocol is byte-identical
+(deterministic).
 
 Read the report before believing anything:
 

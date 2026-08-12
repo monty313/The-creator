@@ -54,11 +54,12 @@ None of that session's state exists here — verified against **all** remote bra
 2. **No king weights.** `meta5465` is a trained binary artifact; its fingerprint cannot be
    reconstructed. Without the real king there is no legal dethrone comparison
    (`hits > king hits · breach 0`).
-3. **No market data.** `meta_rl/price_io.py` hard-codes
-   `C:\Users\user\Fable5_Foundation\MOMENTUM_ONE\the-truth\data\raw` — no M1 CSVs exist in this
-   repo or environment. The 40d sensor (`forward40_random_seed42_XAU_end2026-05-26`) and the
-   100d north-star dual are **unmeasurable** here. Per SEAN loop A–H, no KEEP/DISCARD/install
-   decision is legal without measurement.
+3. ~~**No market data.**~~ **RESOLVED later this same day:** `price_io.py` now resolves
+   `CREATOR_DATA_DIR` env → Windows path → repo `data/raw/`, and
+   `tools/download_dukascopy_m1.py` fetches real M1 candles (EET broker time). Forward duals
+   ARE now measurable in this environment (see `docs/RUN_THE_BOT.md` and ledger event
+   `CLOUD_FORWARD_PROTOCOL_BASELINE`). Blockers 1 and 2 (recipe code, meta5465 king weights)
+   still stand — measured baselines here are on the repo champion **meta4275**.
 
 ## 4) To make this repo the mission SSOT again (push list for Monty, from local)
 
