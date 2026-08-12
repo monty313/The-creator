@@ -42,24 +42,28 @@ URL_TPL = (
 _REC = struct.Struct(">5if")
 
 
-def fetch_day(sym: str, day: dt.date, *, retries: int = 8) -> bytes:
+_UA = {"User-Agent": "Mozilla/5.0 (research; m1-candles)"}
+
+
+def fetch_day(sym: str, day: dt.date, *, retries: int = 12) -> bytes:
     url = URL_TPL.format(sym=sym, y=day.year, m0=day.month - 1, d=day.day)
     for attempt in range(retries):
         try:
-            with urllib.request.urlopen(url, timeout=30) as r:
+            req = urllib.request.Request(url, headers=_UA)
+            with urllib.request.urlopen(req, timeout=30) as r:
                 return r.read()
         except urllib.error.HTTPError as e:
             if e.code == 404:
                 return b""
-            if e.code == 429:
-                time.sleep(min(4.0 * (attempt + 1), 30.0))
-                continue
+            # 429 / 5xx: back off patiently
+            time.sleep(min(5.0 * (attempt + 1), 45.0))
             if attempt == retries - 1:
                 raise
-        except (urllib.error.URLError, TimeoutError):
+        except (urllib.error.URLError, TimeoutError, ConnectionError, OSError):
+            # connection reset / drop: server is throttling — wait it out
+            time.sleep(min(5.0 * (attempt + 1), 45.0))
             if attempt == retries - 1:
                 raise
-        time.sleep(2.0 * (attempt + 1))
     return b""
 
 
@@ -93,7 +97,8 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--start", required=True, help="YYYY-MM-DD (UTC)")
     ap.add_argument("--end", required=True, help="YYYY-MM-DD inclusive (UTC)")
     ap.add_argument("--out", required=True)
-    ap.add_argument("--workers", type=int, default=4)
+    ap.add_argument("--workers", type=int, default=2)
+    ap.add_argument("--delay", type=float, default=0.25, help="post-request sleep per worker (s)")
     args = ap.parse_args(argv)
 
     sym = args.symbol.upper()
@@ -111,7 +116,10 @@ def main(argv: list[str] | None = None) -> int:
     from concurrent.futures import ThreadPoolExecutor
 
     def one(d: dt.date) -> list[str]:
-        return decode_day(fetch_day(sym, d), sym, d)
+        rows = decode_day(fetch_day(sym, d), sym, d)
+        if args.delay > 0:
+            time.sleep(args.delay)
+        return rows
 
     n_days = 0
     n_bars = 0
