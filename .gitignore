@@ -1,37 +1,6 @@
-# Python
+# Market data — reproduce with tools/download_dukascopy_m1.py (see docs/RUN_THE_BOT.md)
+data/raw/
+
 __pycache__/
-*.py[cod]
-*.class
-*.egg-info/
-.pytest_cache/
-.mypy_cache/
+*.pyc
 .venv/
-venv/
-.env
-.env.*
-
-# OS / editor
-.DS_Store
-Thumbs.db
-desktop.ini
-.idea/
-.vscode/
-
-# Local secrets / huge local only
-*.pt
-*.pth
-*.ckpt
-*.h5
-
-# Session noise
-*.log
-_guide_body.txt
-
-# Browser / Office export junk
-**/*.docx_files/
-**/*.download
-strategies/_scratch/**
-!strategies/_scratch/.gitkeep
-
-# Optional local noise
-strategies/Strategies to replicate in Algo Trading.docx.html
