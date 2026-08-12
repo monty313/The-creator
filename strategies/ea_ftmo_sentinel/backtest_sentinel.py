@@ -208,6 +208,7 @@ def run_backtest(m1: pd.DataFrame, cfg: Config):
             day_trades = day_consec = 0
             day_banked = day_halted = False
             streak = 0
+            day_rec()          # register every session day, traded or not
         if pos_until is not None and ts < pos_until:
             continue
         pos_until = None
@@ -419,6 +420,19 @@ VARIANTS = {
     "conc_only":  Config(name="conc_only", require_concurrence=True, require_mark_mass=False),
     "cci_only":   Config(name="cci_only", use_engine_mcf=False, require_mark_mass=False),
     "mcf_only":   Config(name="mcf_only", use_engine_cci=False, require_mark_mass=False),
+    # candidates from the objective grid (A-only, wider payoff, bigger trigger TF)
+    "a15":        Config(name="a15", trigger="15min", use_engine_mcf=False,
+                         require_mark_mass=False, tp_atr=1.2, sl_atr=1.6),
+    "a15w":       Config(name="a15w", trigger="15min", use_engine_mcf=False,
+                         require_mark_mass=False, tp_atr=2.0, sl_atr=1.2),
+    "a30w":       Config(name="a30w", trigger="30min", use_engine_mcf=False,
+                         require_mark_mass=False, tp_atr=2.0, sl_atr=1.2),
+    "a15w_f4":    Config(name="a15w_f4", trigger="15min", use_engine_mcf=False,
+                         require_mark_mass=False, tp_atr=2.0, sl_atr=1.2, cci_force=4.0),
+    "a15w_f6":    Config(name="a15w_f6", trigger="15min", use_engine_mcf=False,
+                         require_mark_mass=False, tp_atr=2.0, sl_atr=1.2, cci_force=6.0),
+    "a15_f4":     Config(name="a15_f4", trigger="15min", use_engine_mcf=False,
+                         require_mark_mass=False, tp_atr=1.2, sl_atr=1.6, cci_force=4.0),
 }
 
 
