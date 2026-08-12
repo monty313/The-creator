@@ -22,6 +22,15 @@
 //|    * total-DD fuse at -6% (FTMO limit -10%) -> permanent halt    |
 //|    * challenge manager: stop at +10%, ticket-trades until the    |
 //|      minimum trading days are registered                         |
+//|                                                                  |
+//|  MEASURED VERDICT (2026-08-12, see VALIDATION.md):               |
+//|    * Governor safety VALIDATED on real M1 data: worst day -1.5%,|
+//|      zero FTMO breaches in every window/variant.                 |
+//|    * Entry edge FAILED validation: WR 70-76% replicates but all |
+//|      variants are NET NEGATIVE after real costs. Do NOT expect   |
+//|      this EA to pass FTMO or earn 2.5%/day as-is. Defaults are   |
+//|      the least-bad measured config (CCI engine + mass gate) at   |
+//|      reduced risk. It needs a new proven edge source first.      |
 //+------------------------------------------------------------------+
 #property copyright "The Creator lab"
 #property version   "1.00"
@@ -51,12 +60,12 @@ input bool     InpBankAtGoal         = true;   // Flatten + stop when daily goal
 input double   InpRatchetTriggerPct  = 0.8;    // Arm the green-day ratchet at +this %
 input double   InpRatchetFloorPct    = 0.20;   // Minimum locked day profit % once armed
 input double   InpRatchetTrailRatio  = 0.60;   // Floor trails this fraction of day peak
-input double   InpLadderFraction     = 0.75;   // House-money ladder: risk += frac * day profit %
-input double   InpMaxRiskPct         = 2.00;   // Risk per trade ceiling % (ladder cap)
+input double   InpLadderFraction     = 0.50;   // House-money ladder: risk += frac * day profit %
+input double   InpMaxRiskPct         = 1.00;   // Risk per trade ceiling % (ladder cap)
 
 //=== Risk ==========================================================
 input group    "=== Risk ==="
-input double   InpRiskPct            = 0.80;   // Base risk per trade (% of initial balance)
+input double   InpRiskPct            = 0.50;   // Base risk per trade (% of initial balance)
 input double   InpMaxLots            = 10.0;   // Absolute lot cap
 input int      InpMaxTradesPerDay    = 40;     // Trade cadence cap for the day
 input int      InpMaxConsecLosses    = 3;      // Stop the day after this many consecutive losses
@@ -82,7 +91,7 @@ input double   InpCciForceThreshold  = 8.0;    // |M| floor on HTF1 (genuine for
 input int      InpLoadLookback       = 8;      // Bars of load before reclaim counts
 
 input group    "=== Engine B: McFlurry RSI eddy (H001) ==="
-input bool     InpUseEngineMcFlurry  = true;
+input bool     InpUseEngineMcFlurry  = false;  // measured worse than Engine A (VALIDATION.md)
 input int      InpMcfRsiPeriod       = 13;
 input double   InpMcfForceThreshold  = 1.5;    // |M| floor on HTF1
 

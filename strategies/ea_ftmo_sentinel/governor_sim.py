@@ -231,6 +231,10 @@ def main() -> None:
     lines.append("- WR inputs are from one EURUSD window (June-July 2026). Re-measure per "
                  "symbol/window before believing the absolute pass-time numbers (corpus law: "
                  "distrust specific pips until they survive new windows).")
+    lines.append("- **2026-08-12 real-data measurement (VALIDATION.md) falsified scenarios "
+                 "A/A3/B:** measured WR is ~70% (not 92%) at ~1-2 signals/day (not 20). "
+                 "Reality matches scenario C/D: the governor protects the account "
+                 "(fuse-halt, zero breaches) but the challenge is NOT passed.")
 
     report = "\n".join(lines) + "\n"
     out = __file__.replace("governor_sim.py", "VALIDATION.md")

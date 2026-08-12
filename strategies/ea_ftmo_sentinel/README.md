@@ -1,107 +1,84 @@
-# FTMO Sentinel EA — corpus geometry + Day Governor
+# FTMO Sentinel EA — validated risk shell, UNVALIDATED edge
 
-**Status: EXPERIMENTAL — not Court law.** Landed by owner (Monty) order; per the
-"Court before major decisions" rule this module is **quarantined as experimental**
-until it goes through a full Evidence Court case (A10 + A15). Do not treat it as
-production policy or as part of the lab bot's brain (A14/A29 path is separate).
+**Status: EXPERIMENTAL — not Court law.** Quarantined per "Court before major
+decisions" until a full Evidence Court case (A10 + A15).
+
+## Measured verdict (2026-08-12 — read before anything else)
+
+The strategies were tested on **real downloaded market data** with a
+bar-accurate replica of this EA (see [`VALIDATION.md`](VALIDATION.md)):
+
+- **The protection layer works.** Across every window, symbol and variant:
+  worst day close −1.50%, worst intraday float −1.49%, **zero** FTMO daily or
+  total breaches. The Day Governor does exactly what it promises.
+- **The entry edge does not.** The corpus win rates replicate (70–76%) but
+  every variant is **net negative after real costs** on 4.5 months of Dukascopy
+  M1 and on the Yahoo May–Aug window (which contains the corpus's own
+  June–July test window). A structured train/test grid over trigger TF,
+  barriers, force, shell and session found **zero** honest survivors.
+- **The corpus reports were not accurate as profit claims.** They measured
+  hit rate without costs on pooled books (the accuracy program), and the
+  CCI 100%-WR result was a 44-trade single-window artifact. This folder's own
+  `00_intuition.md` P2.3/P2.6 predicted exactly this failure mode.
+- Consequences: **do not run this EA on a funded account expecting to pass
+  FTMO, and +2.5%/day is not achievable with this entry layer** (real cadence
+  ~0.2–2 trades/day). What it *is*: a validated FTMO risk harness waiting for
+  a real edge (the lab's A14/A29 meta-trained brain path is the intended one).
 
 ## What it is
 
-A single-file MQL5 Expert Advisor (`FTMO_Sentinel_EA.mq5`) built from the
-**measured winners** of the `strategies/` corpus, wrapped in a **Day Governor**
-whose objective ordering is:
+A single-file MQL5 EA (`FTMO_Sentinel_EA.mq5`): corpus-geometry entries
+(CCI M-line reclaim under dual-HTF force, Mark BB-mass gate, accuracy shell,
+ATR barrier exits) wrapped in a **Day Governor** whose priority order is:
 
 1. never breach an FTMO limit (daily −5%, total −10%),
 2. never let a green day close red,
-3. bank **+2.5% per day** and stop.
+3. bank the daily goal and stop.
 
-## Where every piece comes from (provenance)
-
-| Piece | Source in corpus | Measured evidence |
-|---|---|---|
-| CCI M-line reclaim (Engine A) | `tweaks/mt__cci_gravity_scalp_ftmo.md`, `python_batch/families.py::fam_cci_gravity` | WR 100% (44 trades), MC rank 13/139, bootstrap P(loss)=0% |
-| McFlurry RSI eddy (Engine B) | `sauces/H001_mcflurry_eddy_scalp.md` | WR ~80% (212 trades), MC rank 16/139 |
-| Dual-HTF force + strength | `00_intuition.md` P2.3 (accuracy layer) | 125/125 families lifted past WR 60.4% |
-| Mark mass gate (BB(100,0.5,+2) mid on both HTFs) | `mark_doctrine_refs/RSI_BB_L2L_SKILL.md` | doctrine timing geometry |
-| Session 07–21 / bar confirm / micro structure | `00_intuition.md` filters 1–4 | same accuracy program |
-| First-breath barriers (TP 0.00028 / SL 0.00115 → TP≈0.7·ATR, SL≈2.8·ATR) | CCI upgrade exit tier | barrier geometry, no time-stop thrash |
-| Reclaim-only fire (never enter the dip) | P2.4 failure diagnosis | the change that flipped CCI from losing to winning |
-
-## The Day Governor (the creative part)
+## The Day Governor (the part that survived testing)
 
 | Rail | Setting (default) | FTMO frame |
 |---|---|---|
 | Daily goal bank | flatten + stop at **+2.5%** | consistency objective |
-| Green-day ratchet | armed at +0.8% peak; floor = max(+0.2%, 60% of peak) | a green day cannot close red |
+| Green-day ratchet | armed at +0.8% peak; floor = max(+0.2%, 60% of peak) | green day cannot close red |
 | Soft daily stop | −1.5% → no new trades | FTMO allows −5% |
-| Hard daily stop | −2.0% → flatten everything | 3% of buffer never used |
-| Per-trade risk cap | one loss can never push the day past the soft stop | structural, not hopeful |
-| House-money ladder | risk = 0.8% + 0.75 × (day profit %), capped 2.0% | escalation funded only by banked profit |
-| Loss-streak halving + 3-consecutive-loss day stop | halve risk per loss; stop day at 3 | kills thrash days |
-| Total fuse | **−6% → permanent halt** | FTMO allows −10%; account preserved |
-| Challenge manager | stop at +10% balance; ticket micro-trades until ≥4 trading days registered | pass conditions handled |
-| Day anchor | max(balance, equity) at reset hour | conservative vs FTMO midnight CE(S)T anchor |
+| Hard daily stop | −2.0% → flatten everything | 3% buffer never used |
+| Per-trade risk cap | one loss can never cross the daily budget | structural |
+| House-money ladder | risk = 0.5% + 0.5 × day profit %, cap 1.0% | escalation from banked profit only |
+| Loss-streak halving + 3-loss day stop | halve per loss; stop day at 3 | kills thrash days |
+| Total fuse | **−6% → permanent halt** | account preserved before FTMO −10% |
+| Challenge manager | stop at +10%; ticket micro-trades until ≥4 trading days | pass conditions handled |
 
-All day-state (anchor, halt, bank, trade count) is shared across charts through
-terminal global variables keyed by magic number, so running the Sentinel on
-several symbols keeps **one** account-level governor.
+Day state is shared account-wide via terminal globals (multi-symbol safe;
+flags synced every tick).
 
-## Validation (before believing anything)
+## Test harness (how to re-measure — do this before believing anyone)
 
-`governor_sim.py` mirrors the governor trade-for-trade on the corpus's measured
-trade model (win +0.243R / loss −1R barrier pair, cost 0.05R, win rates from the
-measured books with a 95% Wilson lower bound on the 44/44 CCI book). Results in
-[`VALIDATION.md`](VALIDATION.md). Headlines (20,000 days + 2,000 challenges per
-scenario, seed 42):
+```bash
+python3 fetch_dukascopy.py EURUSD 2026-01-05 2026-08-07   # M1, authoritative (slow: rate-limited)
+python3 fetch_yahoo.py EURUSD                             # M5 60d, quick secondary
+python3 backtest_sentinel.py EURUSD                       # all variants, writes BACKTEST_EURUSD.md
+python3 grid_search.py EURUSD 2026-06-01                  # train/test objective grid
+```
 
-- **FTMO daily/total breach probability: 0.00% in every scenario, including the
-  WR-70% stress case.** Worst simulated day: −1.54%.
-- At the measured edge (WR-LB 0.92, ~20 signals/day): median day **+2.51%**
-  (goal banked on the median day), challenge pass ≈100%, median 8 days.
-- On 3–4 symbols (~40 signals/day): P(goal day) 58%, pass 100%, median 7 days.
-- If the live edge degrades to WR 0.80, the system does **not** pass — it halts
-  itself at the −6% fuse without ever breaching FTMO. That is the honest failure
-  mode: no blown account, ever, at trade-close granularity.
+The backtester mirrors the EA bar-for-bar: closed-bar signals, next-open
+entries, real spread+commission, M1 barrier adjudication with the
+conservative same-bar-loss rule, full governor on the M1 equity path.
 
-## Honest limits (read before running money)
+## Setup (paper/testing only, given the verdict)
 
-- **"Pass every time / +2.5% every day" is not a guarantee physics allows.**
-  What the design guarantees structurally: per-trade risk caps, daily flatten
-  levels far inside FTMO limits, a ratchet that locks green days, and a fuse
-  that ends the attempt long before a breach. The *win* side depends on the
-  entry edge holding out-of-window.
-- The measured WR comes from **one EURUSD window (June–July 2026)**. Corpus law:
-  distrust specific pips until they survive new windows. Forward-test on demo /
-  FTMO free trial first; the governor behaves identically there.
-- Slippage/gap risk: the hard stop is a watchdog on floating equity; a violent
-  gap can slip past any stop. The 3-point buffer (−2% flatten vs −5% limit) and
-  the 0.8–2.0% risk caps are sized so even a 2× slip stays inside FTMO.
-- News: FTMO Swing allows news trading; on normal accounts use
-  `InpNewsBlackout` windows around red-folder events.
-
-## Setup
-
-1. Copy `FTMO_Sentinel_EA.mq5` to `MQL5/Experts/`, compile in MetaEditor.
-2. Attach to **M5** charts (trigger TF = chart TF). Defaults: HTF1 = H1,
-   HTF2 = H4 (the corpus `5m/30m/1h` and `15m/1h/4h` stacks sit between these;
-   sweep in the strategy tester per symbol).
-3. Recommended: 2–4 liquid symbols (e.g. EURUSD, GBPUSD, XAUUSD, US30) — same
-   magic number on all charts so the governor is shared.
-4. Set `InpInitialBalance` to the exact challenge starting balance, and
-   `InpDayResetHour` to the server hour matching FTMO's midnight CE(S)T.
-5. Strategy-test each symbol (every tick, real spreads), then demo/free-trial
-   forward test. Only then a funded attempt.
-
-## Files
-
-| File | Role |
-|---|---|
-| `FTMO_Sentinel_EA.mq5` | The EA (entries + Day Governor + challenge manager) |
-| `governor_sim.py` | Governor Monte Carlo, mirrors EA rules (`python3 governor_sim.py`) |
-| `VALIDATION.md` | Generated measurement report |
+1. Compile `FTMO_Sentinel_EA.mq5` in MetaEditor, attach to M15/M30 charts
+   (M5 measured toxic net of costs).
+2. Defaults = least-bad measured config: Engine A (CCI) + mass gate,
+   base risk 0.5%, ladder cap 1.0%.
+3. Set `InpInitialBalance` and `InpDayResetHour` (server hour of FTMO
+   midnight CE(S)T).
+4. Demo / strategy tester only until a new edge source passes the harness
+   train/test and a full Court case.
 
 ## Court status
 
-Experimental quarantine (this folder). Before any production/promote claim it
-needs: a full A10 adversarial case (Creator/Mark openings + counters), A15
-Counsel opinion, multi-window multi-symbol re-measurement, and a ledger event.
+Experimental quarantine. The measurement here is Summary-Court evidence
+(A33 measurement + issue regeneration); any production/promote claim needs a
+full A10 adversarial case, A15 Counsel opinion, multi-window multi-symbol
+replication, and a ledger event.

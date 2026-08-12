@@ -419,6 +419,7 @@ VARIANTS = {
     "no_mass":    Config(name="no_mass", require_mark_mass=False),
     "conc_only":  Config(name="conc_only", require_concurrence=True, require_mark_mass=False),
     "cci_only":   Config(name="cci_only", use_engine_mcf=False, require_mark_mass=False),
+    "cci_mass":   Config(name="cci_mass", use_engine_mcf=False, require_mark_mass=True),
     "mcf_only":   Config(name="mcf_only", use_engine_cci=False, require_mark_mass=False),
     # candidates from the objective grid (A-only, wider payoff, bigger trigger TF)
     "a15":        Config(name="a15", trigger="15min", use_engine_mcf=False,
