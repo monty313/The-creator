@@ -26,11 +26,17 @@
 //|  MEASURED VERDICT (2026-08-12, see VALIDATION.md):               |
 //|    * Governor safety VALIDATED on real M1 data: worst day -1.5%,|
 //|      zero FTMO breaches in every window/variant.                 |
-//|    * Entry edge FAILED validation: WR 70-76% replicates but all |
-//|      variants are NET NEGATIVE after real costs. Do NOT expect   |
-//|      this EA to pass FTMO or earn 2.5%/day as-is. Defaults are   |
-//|      the least-bad measured config (CCI engine + mass gate) at   |
-//|      reduced risk. It needs a new proven edge source first.      |
+//|    * Corpus reclaim engines (A/B) FAILED validation: WR 70-76%   |
+//|      replicates but all variants NET NEGATIVE after real costs.  |
+//|      Kept selectable for the lab only.                           |
+//|    * Engine C London ORB (default) PASSED train/test validation  |
+//|      on 7 months of real EURUSD M1: train +6.1% (Jan-May), test  |
+//|      +14.4% (Jun-Aug), 130 trades, worst day -1.0%, 74% of the   |
+//|      parameter neighborhood positive on both splits. Still only  |
+//|      one symbol / 7 months - forward-test on demo before money.  |
+//|    * 2.5% EVERY day remains physically unguaranteed; ORB mean    |
+//|      day is +0.12% single-symbol. Run 2-4 symbols and let the    |
+//|      governor bank goal days when the market offers them.        |
 //+------------------------------------------------------------------+
 #property copyright "The Creator lab"
 #property version   "1.00"
@@ -83,7 +89,22 @@ input int      InpFridayLastEntryHour= 19;     // No new trades Friday after thi
 input int      InpFridayFlattenHour  = 21;     // Flatten Friday at this hour
 input string   InpNewsBlackout       = "";     // e.g. "14:25-14:35;15:55-16:05" server time, no entries
 
-//=== Engines =======================================================
+//=== Entry mode ====================================================
+enum ENUM_ENTRY_MODE { MODE_LONDON_ORB=0, MODE_CORPUS_RECLAIM=1 };
+input group    "=== Entry mode ==="
+input ENUM_ENTRY_MODE InpEntryMode  = MODE_LONDON_ORB;  // ORB validated on train/test (VALIDATION.md v3)
+
+//=== Engine C: London opening-range breakout (validated) ===========
+input group    "=== Engine C: London ORB ==="
+input int      InpOrbRangeEndHour    = 7;      // Overnight range = day start .. this hour (server; align to 07 UTC)
+input int      InpOrbEntryUntilHour  = 12;     // Breakouts accepted until this hour
+input double   InpOrbTpMult          = 1.25;   // TP = mult * range height
+input bool     InpOrbStopAtMid       = true;   // SL at range mid (measured better than far side)
+input double   InpOrbMinHeightAtr    = 1.0;    // Range must exceed this * ATR(14)
+input double   InpOrbMinSlAtr        = 0.2;    // Skip if SL distance below this * ATR
+input double   InpOrbRiskPct         = 1.00;   // One-shot risk per trade % (per side per day)
+
+//=== Engines (corpus reclaim mode — NOT validated, kept for lab) ===
 input group    "=== Engine A: CCI gravity reclaim ==="
 input bool     InpUseEngineCCI       = true;
 input int      InpCciPeriod          = 20;
@@ -146,6 +167,8 @@ bool     g_dayHalted=false;       // soft/hard stop hit -> no more trades today
 bool     g_dayBanked=false;       // goal/ratchet banked -> done, green
 int      g_tradesToday=0;
 int      g_consecLossesToday=0;
+bool     g_orbFiredLong=false;    // one shot per side per day
+bool     g_orbFiredShort=false;
 bool     g_permHalt=false;
 bool     g_challengeDone=false;
 int      g_tradingDays=0;
@@ -388,6 +411,55 @@ int Signal(bool &concurrence)
    return dir;
 }
 
+// London ORB: overnight range breakout on the closed trigger bar.
+// Returns +1/-1 and fills slDist/tpDist (price distances); 0 = no fire.
+int OrbSignal(double &slDist, double &tpDist)
+{
+   MqlDateTime now;
+   TimeToStruct(TimeCurrent(), now);
+   if(now.hour < InpOrbRangeEndHour || now.hour >= InpOrbEntryUntilHour) return 0;
+
+   // bars of the current server day
+   MqlDateTime ds = now;
+   ds.hour = 0; ds.min = 0; ds.sec = 0;
+   datetime dayStart = StructToTime(ds);
+   datetime rangeEnd = dayStart + (long)InpOrbRangeEndHour*3600;
+   MqlRates r[];
+   ArraySetAsSeries(r, true);
+   int copied = CopyRates(_Symbol, PERIOD_CURRENT, dayStart, TimeCurrent(), r);
+   if(copied < 5) return 0;
+
+   double rngHi = -DBL_MAX, rngLo = DBL_MAX;
+   int nRange = 0;
+   for(int i = copied-1; i >= 0; --i)          // oldest -> newest
+   {
+      if(r[i].time >= rangeEnd) break;
+      rngHi = MathMax(rngHi, r[i].high);
+      rngLo = MathMin(rngLo, r[i].low);
+      nRange++;
+   }
+   if(nRange < 3 || rngHi <= rngLo) return 0;
+   double height = rngHi - rngLo;
+
+   double atrv[];
+   ArraySetAsSeries(atrv, true);
+   if(CopyBuffer(g_hAtr, 0, 1, 1, atrv) < 1 || atrv[0] <= 0) return 0;
+   if(height < InpOrbMinHeightAtr*atrv[0]) return 0;   // degenerate range
+
+   double mid = 0.5*(rngHi + rngLo);
+   double c1 = r[1].close;                     // last closed bar
+   int dir = 0;
+   if(!g_orbFiredLong  && c1 > rngHi) dir = 1;
+   if(!g_orbFiredShort && c1 < rngLo) dir = -1;
+   if(dir == 0) return 0;
+
+   slDist = InpOrbStopAtMid ? MathAbs(c1 - mid)
+                            : (dir > 0 ? c1 - rngLo : rngHi - c1);
+   tpDist = height*InpOrbTpMult;
+   if(slDist < InpOrbMinSlAtr*atrv[0] || tpDist <= 0) return 0;
+   return dir;
+}
+
 //=== calendar / session ===========================================
 bool InSession()
 {
@@ -425,9 +497,9 @@ bool SpreadOk()
 }
 
 //=== risk sizing ==================================================
-double CurrentRiskPct()
+double CurrentRiskPct(const double basePct)
 {
-   double r = InpRiskPct;
+   double r = basePct;
    if(InpLossStreakHalving && g_lossStreak > 0)
       r /= MathPow(2.0, MathMin(g_lossStreak, 4));
    double dayPL = AccountInfoDouble(ACCOUNT_EQUITY) - g_dayAnchor;
@@ -487,6 +559,8 @@ void RolloverIfNeeded()
    g_consecLossesToday = 0;
    g_lossStreak = 0;
    g_ticketPlacedToday = false;
+   g_orbFiredLong = false;
+   g_orbFiredShort = false;
    PrintFormat("Sentinel new day idx=%I64d anchor=%.2f", d, g_dayAnchor);
 }
 
@@ -600,12 +674,9 @@ void CountTradingDay()
    GVSet(GVKey("LASTTDAY"), (double)g_lastCountedDay);
 }
 
-bool OpenPosition(const int dir, const double riskPct, const string tag)
+// barrier distances for the corpus-reclaim mode (ORB computes its own)
+bool ReclaimBarriers(double &slDist, double &tpDist)
 {
-   MqlTick tick;
-   if(!SymbolInfoTick(_Symbol, tick)) return false;
-
-   double slDist, tpDist;
    if(InpExitMode == EXIT_ATR_BARRIERS)
    {
       double atr[];
@@ -616,10 +687,20 @@ bool OpenPosition(const int dir, const double riskPct, const string tag)
    }
    else
    {
+      MqlTick tick;
+      if(!SymbolInfoTick(_Symbol, tick)) return false;
       double mid = 0.5*(tick.bid + tick.ask);
       slDist = mid*InpSlFraction;
       tpDist = mid*InpTpFraction;
    }
+   return slDist > 0 && tpDist > 0;
+}
+
+bool OpenPosition(const int dir, const double riskPct, const string tag,
+                  const double slDist, const double tpDist)
+{
+   MqlTick tick;
+   if(!SymbolInfoTick(_Symbol, tick)) return false;
    if(slDist <= 0 || tpDist <= 0) return false;
 
    double lots = LotsForRisk(slDist, riskPct);
@@ -709,20 +790,40 @@ void OnTick()
    if(g_lastEntryTime > 0 && TimeCurrent() - g_lastEntryTime < InpCooldownMinutes*60) return;
 
    bool concurrence=false;
-   int dir = Signal(concurrence);
+   int dir = 0;
+   double slDist=0, tpDist=0;
+   string tag = "";
+   if(InpEntryMode == MODE_LONDON_ORB)
+   {
+      dir = OrbSignal(slDist, tpDist);
+      tag = "ORB";
+   }
+   else
+   {
+      dir = Signal(concurrence);
+      if(dir != 0 && !ReclaimBarriers(slDist, tpDist)) dir = 0;
+      tag = concurrence ? "CONC" : (dir>0 ? "L" : "S");
+   }
    if(dir == 0) return;
 
-   double risk = CurrentRiskPct();
+   double risk = CurrentRiskPct(InpEntryMode == MODE_LONDON_ORB ? InpOrbRiskPct
+                                                                : InpRiskPct);
    if(concurrence) risk *= InpConcurrenceBoost;
-   // re-apply the one-loss-cannot-break-the-day cap after the boost
+   // re-apply the one-loss-cannot-break-the-day cap after any boost
    double dayPL = AccountInfoDouble(ACCOUNT_EQUITY) - g_dayAnchor;
    double remainingPct = (dayPL + g_baseline*InpSoftDailyStopPct/100.0)/g_baseline*100.0;
    risk = MathMin(risk, MathMax(remainingPct, 0.0));
    if(risk <= 0.02) return;
 
-   if(OpenPosition(dir, risk, concurrence ? "CONC" : (dir>0 ? "L" : "S")))
-      PrintFormat("Sentinel entry dir=%d risk=%.2f%% conc=%d tradesToday=%d",
-                  dir, risk, concurrence, g_tradesToday);
+   if(OpenPosition(dir, risk, tag, slDist, tpDist))
+   {
+      if(InpEntryMode == MODE_LONDON_ORB)
+      {
+         if(dir > 0) g_orbFiredLong = true; else g_orbFiredShort = true;
+      }
+      PrintFormat("Sentinel entry mode=%d dir=%d risk=%.2f%% tradesToday=%d",
+                  (int)InpEntryMode, dir, risk, g_tradesToday);
+   }
 }
 
 //=== trade result tracking ========================================

@@ -172,8 +172,22 @@ def build_signals(m1: pd.DataFrame, cfg: Config):
     return m5, sig_l, sig_s, conc_l | conc_s, a14, diag
 
 
-def run_backtest(m1: pd.DataFrame, cfg: Config):
-    m5, sig_l, sig_s, conc, a14, diag = build_signals(m1, cfg)
+def run_backtest(m1: pd.DataFrame, cfg: Config, signals=None):
+    """signals: optional (m5, sig_l, sig_s, conc, tp_dist, sl_dist, diag) override.
+
+    tp_dist / sl_dist are per-bar price-distance Series aligned to the trigger
+    frame (indexed like m5); NaN bars are skipped. When None, the built-in
+    corpus engines + ATR barriers are used.
+    """
+    strength_s = None
+    if signals is None:
+        m5, sig_l, sig_s, conc, a14, diag = build_signals(m1, cfg)
+        tp_dist_s = a14 * cfg.tp_atr
+        sl_dist_s = a14 * cfg.sl_atr
+    elif len(signals) == 8:
+        m5, sig_l, sig_s, conc, tp_dist_s, sl_dist_s, strength_s, diag = signals
+    else:
+        m5, sig_l, sig_s, conc, tp_dist_s, sl_dist_s, diag = signals
 
     m1_times = m1.index.values
     m1_high = m1.high.values
@@ -192,7 +206,8 @@ def run_backtest(m1: pd.DataFrame, cfg: Config):
     pos_until = None    # skip M5 bars while a trade is being walked on M1
 
     sigL = sig_l.values; sigS = sig_s.values; concv = conc.values
-    atrv = a14.values
+    tpv = tp_dist_s.values; slv = sl_dist_s.values
+    strv = strength_s.values if strength_s is not None else None
     m5_open = m5.open.values; m5_index = m5.index
 
     def day_rec():
@@ -232,11 +247,13 @@ def run_backtest(m1: pd.DataFrame, cfg: Config):
         long_ = bool(sigL[j]); short_ = bool(sigS[j])
         if not (long_ or short_):
             continue
-        av = atrv[j]
-        if not np.isfinite(av) or av <= 0:
+        tp_dist, sl_dist = tpv[j], slv[j]
+        if not (np.isfinite(tp_dist) and np.isfinite(sl_dist)) or tp_dist <= 0 or sl_dist <= 0:
             continue
 
         risk = cfg.base_risk
+        if strv is not None and np.isfinite(strv[j]):
+            risk *= float(np.clip(strv[j], 0.5, 2.0))   # signal-strength sizing
         if streak > 0:
             risk /= 2 ** min(streak, 4)
         if day_pl > 0:
@@ -251,7 +268,6 @@ def run_backtest(m1: pd.DataFrame, cfg: Config):
         direction = 1 if long_ else -1
         entry_bid = m5_open[i]
         entry = entry_bid + cfg.spread if direction > 0 else entry_bid
-        tp_dist, sl_dist = av * cfg.tp_atr, av * cfg.sl_atr
         if direction > 0:
             tp_level, sl_level = entry + tp_dist, entry - sl_dist
         else:
