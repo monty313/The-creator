@@ -172,12 +172,17 @@ def build_signals(m1: pd.DataFrame, cfg: Config):
     return m5, sig_l, sig_s, conc_l | conc_s, a14, diag
 
 
-def run_backtest(m1: pd.DataFrame, cfg: Config, signals=None):
+def run_backtest(m1: pd.DataFrame, cfg: Config, signals=None, dlog=None):
     """signals: optional (m5, sig_l, sig_s, conc, tp_dist, sl_dist, diag) override.
 
     tp_dist / sl_dist are per-bar price-distance Series aligned to the trigger
     frame (indexed like m5); NaN bars are skipped. When None, the built-in
     corpus engines + ATR barriers are used.
+
+    dlog: optional list; when given, every decision the engine takes on a bar
+    where a signal exists is appended (skip reasons, sizing breakdown, trades
+    with exit causes, governor interventions) — the raw material of the
+    thought map.
     """
     strength_s = None
     if signals is None:
@@ -214,6 +219,10 @@ def run_backtest(m1: pd.DataFrame, cfg: Config, signals=None):
         return daily.setdefault(day, {"pl": 0.0, "trades": 0, "banked": False,
                                       "halted": False, "min_float": 0.0})
 
+    def log(ev, ts_, **kw):
+        if dlog is not None:
+            dlog.append({"event": ev, "ts": ts_, **kw})
+
     for i in range(1, len(m5_index)):
         ts = m5_index[i]
         d = ts.date()
@@ -224,38 +233,58 @@ def run_backtest(m1: pd.DataFrame, cfg: Config, signals=None):
             day_banked = day_halted = False
             streak = 0
             day_rec()          # register every session day, traded or not
+
+        # signal on closed bar i-1 (checked early so skip reasons can be logged)
+        j = i - 1
+        long_ = bool(sigL[j]); short_ = bool(sigS[j])
+        has_sig = long_ or short_
+        sdir = 1 if long_ else (-1 if short_ else 0)
+
         if pos_until is not None and ts < pos_until:
+            if has_sig:
+                log("skip_in_position", ts, dir=sdir)
             continue
         pos_until = None
 
         if day_banked or day_halted:
+            if has_sig:
+                log("skip_day_done", ts, dir=sdir,
+                    why="banked" if day_banked else "halted")
             continue
         hour = ts.hour
         if not (cfg.session[0] <= hour < cfg.session[1]):
+            if has_sig:
+                log("skip_session", ts, dir=sdir, hour=hour)
             continue
         if ts.weekday() == 4 and hour >= 19:      # Friday last-entry
+            if has_sig:
+                log("skip_friday", ts, dir=sdir)
             continue
         if day_trades >= cfg.max_trades_day or day_consec >= cfg.max_consec_losses:
             day_halted = True
             day_rec()["halted"] = True
+            log("gov_day_limits_halt", ts, trades=day_trades, consec=day_consec)
             continue
         if last_entry_ts is not None and (ts - last_entry_ts).total_seconds() < cfg.cooldown_min * 60:
+            if has_sig:
+                log("skip_cooldown", ts, dir=sdir)
             continue
 
-        # signal decided on closed bar i-1, entry at bar i open
-        j = i - 1
-        long_ = bool(sigL[j]); short_ = bool(sigS[j])
-        if not (long_ or short_):
+        if not has_sig:
             continue
         tp_dist, sl_dist = tpv[j], slv[j]
         if not (np.isfinite(tp_dist) and np.isfinite(sl_dist)) or tp_dist <= 0 or sl_dist <= 0:
+            log("skip_bad_barriers", ts, dir=sdir)
             continue
 
-        risk = cfg.base_risk
+        r_base = cfg.base_risk
+        r_strength = 1.0
         if strv is not None and np.isfinite(strv[j]):
-            risk *= float(np.clip(strv[j], 0.5, 2.0))   # signal-strength sizing
+            r_strength = float(np.clip(strv[j], 0.5, 2.0))   # signal-strength sizing
+        risk = r_base * r_strength
         if streak > 0:
             risk /= 2 ** min(streak, 4)
+        r_after_streak = risk
         if day_pl > 0:
             risk += cfg.ladder * day_pl
         risk = min(risk, cfg.max_risk)
@@ -263,6 +292,7 @@ def run_backtest(m1: pd.DataFrame, cfg: Config, signals=None):
             risk *= cfg.conc_boost
         risk = min(risk, max(day_pl + cfg.soft_stop, 0.0))
         if risk <= 0.02:
+            log("skip_risk_floor", ts, dir=sdir, risk=round(risk, 3))
             continue
 
         direction = 1 if long_ else -1
@@ -278,6 +308,8 @@ def run_backtest(m1: pd.DataFrame, cfg: Config, signals=None):
         k0 = np.searchsorted(m1_times, np.datetime64(ts))
         pnl = None
         exit_ts = None
+        exit_px = None
+        cause = None
         rec = day_rec()
         for k in range(k0, len(m1_times)):
             bar_ts = pd.Timestamp(m1_times[k])
@@ -286,6 +318,8 @@ def run_backtest(m1: pd.DataFrame, cfg: Config, signals=None):
                 move = (px - entry) if direction > 0 else (entry - px - cfg.spread)
                 pnl = risk * move / sl_dist
                 exit_ts = pd.Timestamp(m1_times[k - 1]) if k > k0 else bar_ts
+                exit_px = px
+                cause = "day_end"
                 break
             hi, lo, cl = m1_high[k], m1_low[k], m1_close[k]
             if direction > 0:
@@ -297,10 +331,14 @@ def run_backtest(m1: pd.DataFrame, cfg: Config, signals=None):
             if hit_sl:                                     # conservative: SL first
                 pnl = -risk
                 exit_ts = bar_ts
+                exit_px = sl_level
+                cause = "stop_loss"
                 break
             if hit_tp:
                 pnl = risk * tp_dist / sl_dist
                 exit_ts = bar_ts
+                exit_px = tp_level
+                cause = "take_profit"
                 break
             # governor watchdog on floating equity (per-M1-close ~ per tick)
             move = (cl - entry) if direction > 0 else (entry - cl - cfg.spread)
@@ -310,12 +348,16 @@ def run_backtest(m1: pd.DataFrame, cfg: Config, signals=None):
             if f_day <= -cfg.hard_stop:
                 pnl = floating
                 exit_ts = bar_ts
+                exit_px = cl
+                cause = "gov_hard_stop"
                 day_halted = True
                 rec["halted"] = True
                 break
             if f_day >= cfg.goal:
                 pnl = floating
                 exit_ts = bar_ts
+                exit_px = cl
+                cause = "gov_goal_bank"
                 day_banked = True
                 rec["banked"] = True
                 break
@@ -324,6 +366,8 @@ def run_backtest(m1: pd.DataFrame, cfg: Config, signals=None):
                 if f_day <= floor_:
                     pnl = floating
                     exit_ts = bar_ts
+                    exit_px = cl
+                    cause = "gov_ratchet_bank"
                     day_banked = True
                     rec["banked"] = True
                     break
@@ -345,20 +389,30 @@ def run_backtest(m1: pd.DataFrame, cfg: Config, signals=None):
         trades.append({"time": ts, "dir": direction, "risk": risk,
                        "pnl": pnl, "win": pnl > 0, "conc": bool(concv[j]),
                        "exit": exit_ts})
+        log("trade", ts, dir=direction, entry_px=round(entry, 6),
+            exit_ts=exit_ts, exit_px=round(exit_px, 6) if exit_px else None,
+            cause=cause, pnl=round(pnl, 4), risk=round(risk, 3),
+            r_base=r_base, r_strength=round(r_strength, 2),
+            r_after_streak=round(r_after_streak, 3),
+            day_pl_after=round(day_pl, 3))
         pos_until = exit_ts + pd.Timedelta(minutes=1)
 
         # post-close governor checks (mirror EA order)
         if day_pl <= -cfg.soft_stop:
             day_halted = True
             rec["halted"] = True
+            log("gov_soft_halt", ts, day_pl=round(day_pl, 3))
         if day_pl >= cfg.goal:
             day_banked = True
             rec["banked"] = True
+            log("gov_goal_bank_closed", ts, day_pl=round(day_pl, 3))
         elif day_peak >= cfg.ratchet_trigger:
             floor_ = max(cfg.ratchet_floor, day_peak * cfg.ratchet_trail)
             if day_pl <= floor_:
                 day_banked = True
                 rec["banked"] = True
+                log("gov_ratchet_bank_closed", ts, day_pl=round(day_pl, 3),
+                    peak=round(day_peak, 3))
 
     return trades, daily, diag
 
