@@ -130,6 +130,28 @@ same symbol set — otherwise runs are not comparable and "improvement" is noise
 
 ---
 
+## 4b) Thought map — see how the policy thinks (fix deficiencies)
+
+Replay any real day through the production path with an observe-only trace
+(pinned by test: zero behavior change) and get ONE self-contained HTML:
+
+```bash
+# last 10 protocol days (same seed/pairs as the forward test)
+python tools/thought_map.py --days 10 --seed 42 --symbols XAUUSD
+
+# one specific day with a typed pair, or a lab candidate
+python tools/thought_map.py --dates 2026-06-22 --target 5 --risk 3
+python tools/thought_map.py --days 5 --champion evidence_court/artifacts/policies_lab/foo.npz
+```
+
+Open the HTML in any browser. Per day: PnL timeline vs typed target/risk with
+every decision marked; per-slot thought chain (EDGE → SENSES → GOAL/RISK →
+BRAIN probs + size head → SIZE branch → FILL → ledger); and an auto-diagnosed
+**deficiency panel** (brain-wait-on-edge, sight misses, target-never-threatened,
+gave-back-peak, budget-burnt-early, loss clusters, envelope blocks, side
+disagreements) — each card names the training fix and click-highlights its
+evidence rows.
+
 ## 5) Daily driving (deploy shape)
 
 Each trading day:
