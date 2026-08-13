@@ -1392,6 +1392,9 @@ def run_goal_path_day(
             if collect_thought_trace:
                 _act_p, _size_logit, _probs = policy.brain.predict_act(state)
                 dec = {
+                    # exact packed state the brain saw — makes human corrections
+                    # directly trainable (anti F-025: never rebuild fake states)
+                    "state": [round(float(x), 4) for x in np.asarray(state).ravel()],
                     "slot": slot,
                     "symbol": sym,
                     "prime": bool(is_prime_session_slot(slot)),

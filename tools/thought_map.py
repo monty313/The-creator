@@ -243,120 +243,164 @@ HTML_TEMPLATE = r"""<!DOCTYPE html>
 <meta charset="utf-8"/>
 <title>Policy Thought Map</title>
 <style>
-:root{--bg:#0d1117;--panel:#161b22;--line:#30363d;--txt:#c9d1d9;--dim:#8b949e;
---green:#3fb950;--red:#f85149;--amber:#d29922;--purple:#bc8cff;--blue:#58a6ff;}
+:root{--bg:#0a0e14;--panel:#12171f;--panel2:#171d27;--line:#262d38;--txt:#d7dee8;
+--dim:#7d8894;--green:#3fb950;--red:#f85149;--amber:#e3b341;--purple:#bc8cff;
+--blue:#58a6ff;--pink:#ff9bce;--edit:#2ea043;}
 *{box-sizing:border-box}
-body{background:var(--bg);color:var(--txt);font:14px/1.5 -apple-system,Segoe UI,Roboto,sans-serif;margin:0;padding:20px}
-h1{font-size:20px;margin:0 0 4px}
-h2{font-size:15px;margin:18px 0 8px;color:var(--blue)}
-.sub{color:var(--dim);font-size:12px;margin-bottom:14px}
-select{background:var(--panel);color:var(--txt);border:1px solid var(--line);border-radius:6px;padding:6px 10px;font-size:14px}
-.hdr{display:flex;gap:18px;align-items:center;flex-wrap:wrap;margin-bottom:10px}
-.stat{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:8px 14px;text-align:center}
-.stat b{display:block;font-size:17px}
-.stat span{font-size:11px;color:var(--dim)}
-.hit b{color:var(--green)}.miss b{color:var(--amber)}.breach b{color:var(--red)}
-.defs{display:flex;flex-direction:column;gap:8px;margin-bottom:14px}
-.def{background:var(--panel);border:1px solid var(--line);border-left:4px solid var(--amber);border-radius:8px;padding:10px 14px;cursor:pointer}
-.def.active{border-left-color:var(--blue);background:#1c2430}
-.def b{color:var(--amber)}
-.def .fix{color:var(--dim);font-size:12.5px;margin-top:4px}
-.def .fix::before{content:"FIX → ";color:var(--green);font-weight:600}
+body{background:var(--bg);color:var(--txt);margin:0;padding:24px 28px 80px;
+font:14px/1.55 -apple-system,"Segoe UI",Roboto,Inter,sans-serif}
+h1{font-size:22px;margin:0;letter-spacing:.01em}
+h2{font-size:13px;margin:26px 0 10px;color:var(--blue);letter-spacing:.14em;text-transform:uppercase}
+.sub{color:var(--dim);font-size:12.5px;margin:4px 0 18px}
+.num{font-variant-numeric:tabular-nums}
+select{background:var(--panel);color:var(--txt);border:1px solid var(--line);border-radius:8px;padding:8px 12px;font-size:13.5px;min-width:340px}
+button{background:var(--panel2);color:var(--txt);border:1px solid var(--line);border-radius:8px;padding:7px 14px;font-size:12.5px;cursor:pointer}
+button:hover{border-color:var(--blue)}
+button.primary{background:#1f6feb;border-color:#1f6feb;color:#fff;font-weight:600}
+button.primary:hover{background:#388bfd}
+.hdr{display:flex;gap:12px;align-items:stretch;flex-wrap:wrap;margin-bottom:6px}
+.stat{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:10px 16px;text-align:center;min-width:86px}
+.stat b{display:block;font-size:18px}
+.stat span{font-size:10.5px;color:var(--dim);letter-spacing:.06em;text-transform:uppercase}
+.editbar{position:fixed;bottom:0;left:0;right:0;background:#101722ee;border-top:1px solid var(--line);
+backdrop-filter:blur(6px);padding:10px 28px;display:flex;gap:14px;align-items:center;z-index:50;font-size:13px}
+.editbar .cnt{color:var(--edit);font-weight:700}
+.defs{display:grid;grid-template-columns:repeat(auto-fill,minmax(430px,1fr));gap:10px;margin-bottom:6px}
+.def{background:var(--panel);border:1px solid var(--line);border-left:4px solid var(--amber);border-radius:10px;padding:12px 16px;cursor:pointer;transition:background .15s}
+.def:hover{background:var(--panel2)}
+.def.active{border-left-color:var(--blue);background:#182234}
+.def b{color:var(--amber);font-size:13px;letter-spacing:.04em}
+.def .msg{margin-top:3px;font-size:12.5px}
+.def .fix{color:var(--dim);font-size:12px;margin-top:6px;padding-top:6px;border-top:1px dashed var(--line)}
+.def .fix::before{content:"FIX → ";color:var(--green);font-weight:700}
 .ok{border-left-color:var(--green)}.ok b{color:var(--green)}
-svg{background:var(--panel);border:1px solid var(--line);border-radius:8px;width:100%}
-.legend{font-size:12px;color:var(--dim);margin:6px 0 16px;display:flex;gap:16px;flex-wrap:wrap}
-.legend i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:5px}
-table{width:100%;border-collapse:collapse;font-size:12.5px}
-details{background:var(--panel);border:1px solid var(--line);border-radius:8px;margin-bottom:6px;overflow:hidden}
+svg{background:linear-gradient(180deg,var(--panel) 0%,var(--panel2) 100%);border:1px solid var(--line);border-radius:12px;width:100%}
+.legend{font-size:12px;color:var(--dim);margin:8px 0 4px;display:flex;gap:18px;flex-wrap:wrap}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:6px;vertical-align:-1px}
+details{background:var(--panel);border:1px solid var(--line);border-radius:10px;margin-bottom:7px;overflow:hidden}
 details.hl{border-color:var(--blue);box-shadow:0 0 0 1px var(--blue)}
-summary{padding:8px 12px;cursor:pointer;display:grid;grid-template-columns:70px 80px 90px 1fr 110px;gap:10px;align-items:center}
-summary:hover{background:#1c2430}
-.ev{font-weight:600;padding:1px 8px;border-radius:10px;font-size:11px;text-align:center}
-.ev.fired-long{background:#1c3325;color:var(--green)}
+details.edited{border-color:var(--edit);box-shadow:0 0 0 1px var(--edit)}
+summary{padding:9px 14px;cursor:pointer;display:grid;grid-template-columns:64px 74px 108px 1fr 150px 26px;gap:10px;align-items:center;list-style:none}
+summary::-webkit-details-marker{display:none}
+summary:hover{background:var(--panel2)}
+.ev{font-weight:700;padding:2px 9px;border-radius:12px;font-size:10.5px;text-align:center;letter-spacing:.05em}
+.ev.fired-long{background:#16301f;color:var(--green)}
 .ev.fired-short{background:#3a1d20;color:var(--red)}
-.ev.brain_wait{background:#2d2a1f;color:var(--amber)}
-.ev.blocked{background:#33272d;color:#ff9bce}
+.ev.brain_wait{background:#332d1a;color:var(--amber)}
+.ev.blocked{background:#33202b;color:var(--pink)}
 .ev.watch_miss{background:#2a2138;color:var(--purple)}
-.ev.scan,.ev.day_end{background:#21262d;color:var(--dim)}
-.chain{padding:10px 14px;border-top:1px solid var(--line);display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:10px}
-.box{background:#0d1117;border:1px solid var(--line);border-radius:6px;padding:8px 10px;font-size:12px}
-.box h4{margin:0 0 6px;font-size:11px;letter-spacing:.08em;color:var(--blue)}
-.box .kv{display:flex;justify-content:space-between;gap:8px}
+.ev.day_end{background:#1c222b;color:var(--dim)}
+.pencil{color:var(--dim);font-size:14px;text-align:center}
+.pencil.on{color:var(--edit)}
+.chain{padding:12px 16px 4px;border-top:1px solid var(--line);display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px}
+.box{background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:10px 12px;font-size:12px}
+.box h4{margin:0 0 7px;font-size:10px;letter-spacing:.12em;color:var(--blue)}
+.box .kv{display:flex;justify-content:space-between;gap:8px;padding:1px 0}
 .box .kv span:first-child{color:var(--dim)}
-.bar{height:10px;border-radius:3px;background:#21262d;overflow:hidden;display:flex;margin:2px 0 6px}
+.bar{height:12px;border-radius:4px;background:#1c222b;overflow:hidden;display:flex;margin:2px 0 7px}
 .bar i{height:100%}
 .pw{background:#6e7681}.pl{background:var(--green)}.ps{background:var(--red)}
 .mut{color:var(--dim)}
-.out{padding:0 14px 10px;color:var(--dim);font-size:12px}
+.out{padding:2px 16px 12px;color:var(--dim);font-size:12.5px}
+.editrow{margin:0 16px 12px;padding:12px 14px;background:#101a12;border:1px solid #1f4426;border-radius:8px;
+display:flex;gap:14px;align-items:center;flex-wrap:wrap;font-size:12.5px}
+.editrow label{color:var(--dim)}
+.editrow select,.editrow input[type=number]{background:var(--panel2);color:var(--txt);border:1px solid var(--line);border-radius:6px;padding:5px 8px;min-width:0;font-size:12.5px}
+.editrow input[type=number]{width:74px}
+.editrow input[type=text]{background:var(--panel2);color:var(--txt);border:1px solid var(--line);border-radius:6px;padding:5px 8px;flex:1;min-width:160px;font-size:12.5px}
+.editrow .saved{color:var(--edit);font-weight:700}
+.help{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:12px 16px;font-size:12.5px;color:var(--dim);margin-bottom:8px}
+.help b{color:var(--txt)}
+kbd{background:var(--panel2);border:1px solid var(--line);border-radius:4px;padding:0 5px;font-size:11px}
 </style>
 </head>
 <body>
-<h1>Policy Thought Map</h1>
-<div class="sub">every decision the frozen policy made, why, and what to fix — observe-only trace, zero behavior change</div>
+<h1>Policy Thought Map <span style="color:var(--dim);font-weight:400;font-size:14px">— what it thought · what it did · what it should have done</span></h1>
+<div class="sub">observe-only replay of the frozen policy (zero behavior change) · every decision carries its exact packed 176-dim state, so your corrections train the brain directly</div>
+
 <div class="hdr">
   <select id="daysel"></select>
-  <div class="stat" id="s_pnl"><b>—</b><span>day PnL</span></div>
-  <div class="stat" id="s_tgt"><b>—</b><span>typed target</span></div>
-  <div class="stat" id="s_rsk"><b>—</b><span>typed risk</span></div>
-  <div class="stat" id="s_fll"><b>—</b><span>fills</span></div>
+  <div class="stat" id="s_pnl"><b class="num">—</b><span>day PnL</span></div>
+  <div class="stat" id="s_tgt"><b class="num">—</b><span>target</span></div>
+  <div class="stat" id="s_rsk"><b class="num">—</b><span>risk</span></div>
+  <div class="stat" id="s_fll"><b class="num">—</b><span>fills</span></div>
   <div class="stat" id="s_hit"><b>—</b><span>hit</span></div>
-  <div class="stat" id="s_fp" style="max-width:280px"><b style="font-size:11px">—</b><span>weights (frozen)</span></div>
+  <div class="stat" style="max-width:300px"><b id="s_fp" style="font-size:10.5px;word-break:break-all">—</b><span>weights (frozen)</span></div>
 </div>
 
-<h2>Deficiencies — click one to highlight its evidence below</h2>
+<h2>Deficiencies — click a card to highlight its evidence</h2>
 <div class="defs" id="defs"></div>
 
 <h2>Day timeline</h2>
-<svg id="tl" height="260" viewBox="0 0 1200 260" preserveAspectRatio="none"></svg>
+<svg id="tl" height="270" viewBox="0 0 1200 270" preserveAspectRatio="none"></svg>
 <div class="legend">
   <span><i style="background:var(--green)"></i>fired long</span>
   <span><i style="background:var(--red)"></i>fired short</span>
   <span><i style="background:var(--amber)"></i>brain wait on live edge</span>
-  <span><i style="background:#ff9bce"></i>blocked (gate)</span>
-  <span><i style="background:var(--purple)"></i>watch miss (sensors saw, bot flat)</span>
+  <span><i style="background:var(--pink)"></i>blocked (gate)</span>
+  <span><i style="background:var(--purple)"></i>watch miss</span>
   <span><i style="background:var(--blue)"></i>running PnL</span>
-  <span><i style="background:#6e7681"></i>target / −risk lines</span>
+  <span><i style="background:#6e7681"></i>target / −risk</span>
 </div>
 
-<h2>Thought chain — slot by slot</h2>
+<h2>Thought chain — expand a row, then correct it</h2>
+<div class="help">
+<b>Edit what it was supposed to think:</b> expand any decision row → set the correct
+<b>act</b> and <b>size (fraction of remaining risk budget)</b> → <b>save</b>. Corrections persist in this
+browser (localStorage) and export as a teacher JSONL from the bar below. Train them into a lab candidate with:
+<kbd>python tools/teach_from_corrections.py corrections.jsonl</kbd> — then re-measure the same 40d protocol.
+The champion is never overwritten.
+</div>
 <div id="rows"></div>
+
+<div class="editbar">
+  <span>✎ corrections: <span class="cnt" id="ecnt">0</span></span>
+  <button class="primary" id="exp">Export teacher JSONL</button>
+  <button id="clr">Clear all</button>
+  <span class="mut" id="emsg"></span>
+</div>
 
 <script>
 const DAYS = __DATA__;
 const $ = id => document.getElementById(id);
+const LS_KEY = "tm_corrections_v1";
+let corrections = {};
+try{corrections = JSON.parse(localStorage.getItem(LS_KEY)||"{}");}catch(e){corrections={};}
+
 const sel = $("daysel");
 DAYS.forEach((d,i)=>{const o=document.createElement("option");o.value=i;
-o.textContent=`${d.date}  ·  T=${d.target}% R=${d.risk}%  ·  pnl ${d.pnl>=0?"+":""}${d.pnl}%  ·  ${d.hit?"HIT":"miss"}  ·  ${d.deficiencies.length} defects`;
+o.textContent=`${d.date}  ·  T=${d.target}% R=${d.risk}%  ·  pnl ${d.pnl>=0?"+":""}${d.pnl}%  ·  ${d.hit?"HIT":"miss"}  ·  ${d.n_fills} fills · ${d.deficiencies.length} defects`;
 sel.appendChild(o);});
 sel.onchange = ()=>show(+sel.value);
 
 let activeKind = null;
+let CUR = 0;
 
+function key(d,t){return `${d.date}|${t.slot}|${t.symbol||""}|${t.event}`;}
 function toMin(t){const p=t.split(":");return (+p[0])*60+(+p[1]);}
+function updCnt(){$("ecnt").textContent = Object.keys(corrections).length;}
 
 function show(ix){
+  CUR = ix;
   const d = DAYS[ix];
   activeKind = null;
-  $("s_pnl").firstChild.textContent = (d.pnl>=0?"+":"")+d.pnl+"%";
-  $("s_pnl").firstChild.style.color = d.pnl>=0?"var(--green)":"var(--red)";
-  $("s_tgt").firstChild.textContent = d.target+"%";
-  $("s_rsk").firstChild.textContent = d.risk+"%";
-  $("s_fll").firstChild.textContent = d.n_fills;
-  $("s_hit").firstChild.textContent = d.hit?"YES":(d.breach?"BREACH":"no");
-  $("s_hit").firstChild.style.color = d.hit?"var(--green)":(d.breach?"var(--red)":"var(--amber)");
-  $("s_fp").firstChild.textContent = d.fingerprint;
-  drawDefs(d); drawTimeline(d); drawRows(d);
+  const set=(id,v,c)=>{const el=$(id).querySelector("b")||$(id);el.textContent=v;if(c)el.style.color=c;};
+  set("s_pnl",(d.pnl>=0?"+":"")+d.pnl+"%",d.pnl>=0?"var(--green)":"var(--red)");
+  set("s_tgt",d.target+"%");set("s_rsk",d.risk+"%");set("s_fll",d.n_fills);
+  set("s_hit",d.hit?"YES":(d.breach?"BREACH":"no"),d.hit?"var(--green)":(d.breach?"var(--red)":"var(--amber)"));
+  $("s_fp").textContent = d.fingerprint;
+  drawDefs(d); drawTimeline(d); drawRows(d); updCnt();
 }
 
 function drawDefs(d){
   const el = $("defs"); el.innerHTML="";
   if(!d.deficiencies.length){
-    el.innerHTML = '<div class="def ok"><b>No deficiency flags on this day</b><div class="fix">nothing auto-detected — inspect the chain below for subtler issues</div></div>';
+    el.innerHTML = '<div class="def ok"><b>NO FLAGS</b><div class="msg">nothing auto-detected this day</div><div class="fix">inspect the chain below for subtler issues</div></div>';
     return;
   }
   d.deficiencies.forEach(f=>{
     const div=document.createElement("div");div.className="def";
-    div.innerHTML=`<b>${f.kind}</b> — ${f.msg}<div class="fix">${f.fix}</div>`;
+    div.innerHTML=`<b>${f.kind}</b><div class="msg">${f.msg}</div><div class="fix">${f.fix}</div>`;
     div.onclick=()=>{activeKind = activeKind===f.kind?null:f.kind;
       document.querySelectorAll(".def").forEach(x=>x.classList.remove("active"));
       if(activeKind)div.classList.add("active");
@@ -381,7 +425,7 @@ function kindMatches(kind,t){
 }
 
 function drawTimeline(d){
-  const svg=$("tl");const W=1200,H=260,L=46,R=12,T=14,B=26;
+  const svg=$("tl");const W=1200,H=270,L=48,R=12,T=16,B=28;
   const tr=d.trace;
   const tmin=7*60, tmax=20*60+10;
   const x=t=>L+(W-L-R)*(toMin(t)-tmin)/(tmax-tmin);
@@ -390,20 +434,17 @@ function drawTimeline(d){
   let hi=Math.max(d.target*1.08,...fired.map(f=>f.fill.pnl_after),0.5);
   const y=v=>T+(H-T-B)*(1-(v-lo)/(hi-lo));
   let s="";
-  // grid: 0, target, -risk
-  const grid=[[0,"#30363d","0"],[d.target,"#6e7681","target "+d.target+"%"],[-d.risk,"#6e7681","-risk "+d.risk+"%"]];
+  const grid=[[0,"#262d38","0"],[d.target,"#6e7681","target "+d.target+"%"],[-d.risk,"#6e7681","−risk "+d.risk+"%"]];
   grid.forEach(([v,c,lab])=>{
     s+=`<line x1="${L}" x2="${W-R}" y1="${y(v)}" y2="${y(v)}" stroke="${c}" stroke-dasharray="4 4"/>`;
-    s+=`<text x="${L-4}" y="${y(v)+4}" fill="#8b949e" font-size="10" text-anchor="end">${lab}</text>`;});
-  // hour ticks
+    s+=`<text x="${L-5}" y="${y(v)+4}" fill="#7d8894" font-size="10" text-anchor="end">${lab}</text>`;});
   for(let h=7;h<=20;h++){const xx=x(`${String(h).padStart(2,"0")}:00:00`);
-    s+=`<text x="${xx}" y="${H-8}" fill="#8b949e" font-size="10" text-anchor="middle">${h}:00</text>`;}
-  // pnl path
+    s+=`<line x1="${xx}" x2="${xx}" y1="${H-B}" y2="${H-B+4}" stroke="#3a4250"/>`;
+    s+=`<text x="${xx}" y="${H-9}" fill="#7d8894" font-size="10" text-anchor="middle">${h}:00</text>`;}
   let px=L,py=y(0),path=`M ${px} ${py}`;
   fired.forEach(f=>{const xx=x(f.slot),yy=y(f.fill.pnl_after);path+=` L ${xx} ${py=yy}`;px=xx;});
   path+=` L ${W-R} ${py}`;
-  s+=`<path d="${path}" fill="none" stroke="#58a6ff" stroke-width="2"/>`;
-  // markers
+  s+=`<path d="${path}" fill="none" stroke="#58a6ff" stroke-width="2" stroke-linejoin="round"/>`;
   tr.forEach(t=>{
     if(!t.slot)return;const xx=x(t.slot);
     if(t.event==="fired"){
@@ -412,79 +453,147 @@ function drawTimeline(d){
       const c=t.fill.act==="long"?"#3fb950":"#f85149";
       s+=`<circle cx="${xx}" cy="${yy}" r="${r.toFixed(1)}" fill="${c}" fill-opacity="0.85"><title>${t.slot} ${t.symbol} ${t.outcome} (size src ${t.size.source})</title></circle>`;
     }else if(t.event==="brain_wait"){
-      s+=`<rect x="${xx-3}" y="${T}" width="6" height="7" fill="#d29922" fill-opacity="0.9"><title>${t.slot} ${t.symbol} ${t.outcome} probs w${t.brain.probs.wait}/l${t.brain.probs.long}/s${t.brain.probs.short}</title></rect>`;
+      s+=`<rect x="${xx-3}" y="${T}" width="6" height="8" rx="1.5" fill="#e3b341" fill-opacity="0.9"><title>${t.slot} ${t.symbol} ${t.outcome} probs w${t.brain.probs.wait}/l${t.brain.probs.long}/s${t.brain.probs.short}</title></rect>`;
     }else if(t.event.startsWith("blocked")){
-      s+=`<rect x="${xx-3}" y="${T+10}" width="6" height="7" fill="#ff9bce"><title>${t.slot} ${t.symbol||""} ${t.event}: ${t.outcome||""}</title></rect>`;
+      s+=`<rect x="${xx-3}" y="${T+11}" width="6" height="8" rx="1.5" fill="#ff9bce"><title>${t.slot} ${t.symbol||""} ${t.event}: ${t.outcome||""}</title></rect>`;
     }else if(t.event==="watch_miss"){
-      s+=`<rect x="${xx-2}" y="${T+20}" width="4" height="6" fill="#bc8cff"><title>${t.slot} ${t.symbol} watch miss ${t.side} ${t.topology}</title></rect>`;
+      s+=`<rect x="${xx-2}" y="${T+22}" width="4" height="7" rx="1" fill="#bc8cff"><title>${t.slot} ${t.symbol} watch miss ${t.side} ${t.topology}</title></rect>`;
     }});
   svg.innerHTML=s;
 }
 
 function probBar(p){return `<div class="bar"><i class="pw" style="width:${p.wait*100}%"></i><i class="pl" style="width:${p.long*100}%"></i><i class="ps" style="width:${p.short*100}%"></i></div>
-<div class="kv mut"><span>wait ${p.wait}</span><span>long ${p.long}</span><span>short ${p.short}</span></div>`;}
+<div class="kv mut num"><span>wait ${p.wait}</span><span>long ${p.long}</span><span>short ${p.short}</span></div>`;}
+
+function editPanel(d,t){
+  const k = key(d,t);
+  const cur = corrections[k];
+  const defAct = cur?cur.teacher_act:(t.edge?t.edge.act:(t.brain?t.brain.act:"wait"));
+  const defSize = cur?Math.round(cur.teacher_size_frac*100):(t.size&&t.size.frac_of_remaining_before!==undefined?Math.round(t.size.frac_of_remaining_before*100):50);
+  const defNote = cur?(cur.note||""):"";
+  const div=document.createElement("div");div.className="editrow";
+  div.innerHTML=`
+    <span style="color:var(--edit);font-weight:700">✎ supposed to:</span>
+    <label>act</label>
+    <select class="e_act">
+      <option value="wait" ${defAct==="wait"?"selected":""}>wait</option>
+      <option value="long" ${defAct==="long"?"selected":""}>long</option>
+      <option value="short" ${defAct==="short"?"selected":""}>short</option>
+    </select>
+    <label>size (% of remaining budget)</label>
+    <input class="e_size" type="number" min="0" max="98" step="5" value="${defSize}">
+    <label>why</label>
+    <input class="e_note" type="text" placeholder="optional: reason (kept in teacher file)" value="${defNote.replace(/"/g,"&quot;")}">
+    <button class="e_save primary">save</button>
+    <button class="e_del">remove</button>
+    <span class="saved">${cur?"saved ✓":""}</span>`;
+  div.querySelector(".e_save").onclick=(ev)=>{ev.stopPropagation();
+    const act=div.querySelector(".e_act").value;
+    const sz=Math.max(0,Math.min(98,+div.querySelector(".e_size").value||0))/100;
+    corrections[k]={
+      date:d.date, slot:t.slot, symbol:t.symbol||"", event:t.event,
+      teacher_act:act, teacher_size_frac:act==="wait"?0:sz,
+      note:div.querySelector(".e_note").value||"",
+      bot_did:t.brain?t.brain.act:"", edge_said:t.edge?t.edge.act:"",
+      target:d.target, risk:d.risk, weight:1.5,
+      source:"human_thought_map_edit",
+      state:t.state||null};
+    localStorage.setItem(LS_KEY,JSON.stringify(corrections));
+    div.querySelector(".saved").textContent="saved ✓";updCnt();
+    div.closest("details").classList.add("edited");
+    div.closest("details").querySelector(".pencil").classList.add("on");
+    $("emsg").textContent="";};
+  div.querySelector(".e_del").onclick=(ev)=>{ev.stopPropagation();
+    delete corrections[k];localStorage.setItem(LS_KEY,JSON.stringify(corrections));
+    div.querySelector(".saved").textContent="";updCnt();
+    div.closest("details").classList.remove("edited");
+    div.closest("details").querySelector(".pencil").classList.remove("on");};
+  return div;
+}
 
 function drawRows(d){
   const el=$("rows");el.innerHTML="";
   const interesting=d.trace.filter(t=>["fired","brain_wait","blocked_envelope","blocked_conflict","blocked_lot","blocked_window","watch_miss","day_end"].includes(t.event));
   interesting.forEach(t=>{
     const det=document.createElement("details");
+    const k=key(d,t);
+    if(corrections[k])det.classList.add("edited");
     if(activeKind&&kindMatches(activeKind,t))det.classList.add("hl");
-    let evc=t.event, evl=t.event;
+    let evc=t.event, evl=t.event.replace("_"," ");
     if(t.event==="fired"){evc="fired-"+t.fill.act;evl=t.fill.act.toUpperCase()+" "+t.size.final+"%";}
     if(t.event.startsWith("blocked")){evc="blocked";}
     const pnl=t.fill?`${t.fill.pnl>=0?"+":""}${t.fill.pnl}% → day ${t.fill.pnl_after>=0?"+":""}${t.fill.pnl_after}%`:(t.event==="day_end"?`END: ${t.reason}`:"");
     det.innerHTML=`<summary>
-      <span class="mut">${t.slot||""}</span>
+      <span class="mut num">${t.slot||""}</span>
       <span>${t.symbol||""}</span>
       <span class="ev ${evc}">${evl}</span>
       <span class="mut">${t.outcome||t.reason||(t.side?`sensors saw ${t.side} ${t.topology}`:"")}</span>
-      <span>${pnl}</span></summary>`;
+      <span class="num">${pnl}</span>
+      <span class="pencil ${corrections[k]?"on":""}">✎</span></summary>`;
     if(t.brain){
       const chain=document.createElement("div");chain.className="chain";
       chain.innerHTML=`
-      <div class="box"><h4>EDGE (what it saw)</h4>
+      <div class="box"><h4>EDGE — WHAT IT SAW</h4>
         <div class="kv"><span>side</span><b>${t.edge.act}</b></div>
-        <div class="kv"><span>force</span><span>${t.edge.force}</span></div>
+        <div class="kv"><span>force</span><span class="num">${t.edge.force}</span></div>
         <div class="kv"><span>consensus</span><span>${t.edge.consensus}</span></div>
         <div class="kv"><span>topology</span><span>${t.topology}</span></div>
-        <div class="kv"><span>HTF sets agree</span><span>${t.edge.n_htf_active}</span></div>
-        <div class="kv"><span>quality rank</span><span>${t.quality}</span></div></div>
+        <div class="kv"><span>HTF sets agree</span><span class="num">${t.edge.n_htf_active}</span></div>
+        <div class="kv"><span>quality rank</span><span class="num">${t.quality}</span></div></div>
       <div class="box"><h4>SENSES</h4>
         <div class="kv"><span>sight</span><span>${t.senses.sight}</span></div>
         <div class="kv"><span>feel</span><span>${t.senses.feel}</span></div>
         <div class="kv"><span>taste</span><span>${t.senses.taste}</span></div>
         <div class="kv"><span>hearing</span><span>${t.senses.hearing||"—"}</span></div></div>
       <div class="box"><h4>GOAL / RISK CONTEXT</h4>
-        <div class="kv"><span>progress→target</span><span>${(t.ctx.progress*100).toFixed(0)}%</span></div>
-        <div class="kv"><span>day pnl</span><span>${t.ctx.pnl>=0?"+":""}${t.ctx.pnl}%</span></div>
-        <div class="kv"><span>risk left</span><span>${t.ctx.remaining}%</span></div>
-        <div class="kv"><span>fills so far</span><span>${t.ctx.n_fills}</span></div>
+        <div class="kv"><span>progress→target</span><span class="num">${(t.ctx.progress*100).toFixed(0)}%</span></div>
+        <div class="kv"><span>day pnl</span><span class="num">${t.ctx.pnl>=0?"+":""}${t.ctx.pnl}%</span></div>
+        <div class="kv"><span>risk left</span><span class="num">${t.ctx.remaining}%</span></div>
+        <div class="kv"><span>fills so far</span><span class="num">${t.ctx.n_fills}</span></div>
         <div class="kv"><span>wounded</span><span>${t.ctx.wounded}</span></div></div>
-      <div class="box"><h4>BRAIN (what it thought)</h4>
+      <div class="box"><h4>BRAIN — WHAT IT THOUGHT</h4>
         ${probBar(t.brain.probs)}
         <div class="kv"><span>decision</span><b>${t.brain.act}</b></div>
-        <div class="kv"><span>size head σ</span><span>${t.brain.size_sig}</span></div>
-        <div class="kv"><span>size asked</span><span>${t.brain.size_risk_percent}%</span></div>
+        <div class="kv"><span>size head σ</span><span class="num">${t.brain.size_sig}</span></div>
+        <div class="kv"><span>size asked</span><span class="num">${t.brain.size_risk_percent}%</span></div>
         <div class="kv mut" style="margin-top:4px"><span>${t.brain.reason.slice(0,60)}</span></div></div>
-      ${t.size?`<div class="box"><h4>SIZE (what went out)</h4>
-        <div class="kv"><span>final</span><b>${t.size.final??t.size.attempted}%</b></div>
+      ${t.size?`<div class="box"><h4>SIZE — WHAT WENT OUT</h4>
+        <div class="kv"><span>final</span><b class="num">${t.size.final??t.size.attempted}%</b></div>
         <div class="kv"><span>source</span><span>${t.size.source}</span></div>
-        ${t.size.brain_asked!==undefined?`<div class="kv"><span>brain asked</span><span>${t.size.brain_asked}%</span></div>`:""}
-        ${t.size.frac_of_remaining_before!==undefined?`<div class="kv"><span>% of remaining</span><span>${(t.size.frac_of_remaining_before*100).toFixed(0)}%</span></div>`:""}
+        ${t.size.brain_asked!==undefined?`<div class="kv"><span>brain asked</span><span class="num">${t.size.brain_asked}%</span></div>`:""}
+        ${t.size.frac_of_remaining_before!==undefined?`<div class="kv"><span>% of remaining</span><span class="num">${(t.size.frac_of_remaining_before*100).toFixed(0)}%</span></div>`:""}
         ${t.override?`<div class="kv"><span>override</span><span>${t.override}</span></div>`:""}</div>`:""}
-      ${t.fill?`<div class="box"><h4>FILL (what happened)</h4>
-        <div class="kv"><span>result</span><b style="color:${t.fill.pnl>=0?"var(--green)":"var(--red)"}">${t.fill.pnl>=0?"+":""}${t.fill.pnl}%</b></div>
-        <div class="kv"><span>day after</span><span>${t.fill.pnl_after>=0?"+":""}${t.fill.pnl_after}%</span></div>
-        <div class="kv"><span>risk left after</span><span>${t.fill.remaining_after}%</span></div>
-        <div class="kv"><span>held until</span><span>${t.fill.window_end}</span></div></div>`:""}`;
+      ${t.fill?`<div class="box"><h4>FILL — WHAT HAPPENED</h4>
+        <div class="kv"><span>result</span><b class="num" style="color:${t.fill.pnl>=0?"var(--green)":"var(--red)"}">${t.fill.pnl>=0?"+":""}${t.fill.pnl}%</b></div>
+        <div class="kv"><span>day after</span><span class="num">${t.fill.pnl_after>=0?"+":""}${t.fill.pnl_after}%</span></div>
+        <div class="kv"><span>risk left after</span><span class="num">${t.fill.remaining_after}%</span></div>
+        <div class="kv"><span>held until</span><span class="num">${t.fill.window_end}</span></div></div>`:""}`;
       det.appendChild(chain);
+      det.appendChild(editPanel(d,t));
     } else if(t.outcome||t.reason){
       const o=document.createElement("div");o.className="out";o.textContent=t.outcome||t.reason;det.appendChild(o);
     }
     el.appendChild(det);
   });
 }
+
+$("exp").onclick=()=>{
+  const rows=Object.values(corrections);
+  if(!rows.length){$("emsg").textContent="no corrections saved yet — expand a row and save one";return;}
+  const trainable=rows.filter(r=>r.state&&r.state.length);
+  const jsonl=rows.map(r=>JSON.stringify(r)).join("\n")+"\n";
+  const blob=new Blob([jsonl],{type:"application/jsonl"});
+  const a=document.createElement("a");
+  a.href=URL.createObjectURL(blob);
+  a.download="thought_map_corrections.jsonl";
+  a.click();
+  $("emsg").textContent=`exported ${rows.length} corrections (${trainable.length} with packed state = directly trainable)`;
+};
+$("clr").onclick=()=>{
+  if(!confirm("Delete ALL saved corrections in this browser?"))return;
+  corrections={};localStorage.removeItem(LS_KEY);updCnt();show(CUR);
+};
+
 show(0);
 </script>
 </body>

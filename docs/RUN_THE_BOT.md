@@ -152,6 +152,28 @@ gave-back-peak, budget-burnt-early, loss clusters, envelope blocks, side
 disagreements) — each card names the training fix and click-highlights its
 evidence rows.
 
+### Edit what it was supposed to think (human teacher loop)
+
+Every decision row carries the exact packed 176-dim state the brain saw.
+Expand a row → "✎ supposed to:" → set the correct act + size (% of remaining
+budget) + optional note → save. Corrections persist in the browser; the bottom
+bar exports them as a teacher JSONL. Then:
+
+```bash
+# teach a lab candidate from your corrections (champion never overwritten)
+python tools/teach_from_corrections.py thought_map_corrections.jsonl
+# act decisions frozen, size-only variant:
+python tools/teach_from_corrections.py corr.jsonl --size-only
+
+# re-measure the same pinned protocol; install only if hits rise at breach 0
+python tools/run_forward_protocol.py --days 40 --seed 42 --symbols XAUUSD \
+    --champion evidence_court/artifacts/policies_lab/meta_policy_human_corrections.npz
+```
+
+The trainer prints act-agreement before/after so you can see the brain adopt
+your corrections. Because states are the real path pack (never rebuilt),
+this is the anti-F-025 teacher class.
+
 ## 5) Daily driving (deploy shape)
 
 Each trading day:
