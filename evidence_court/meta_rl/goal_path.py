@@ -966,6 +966,7 @@ def run_goal_path_day(
     monty_htf_blend: bool = False,
     method_hold_while_force: bool = False,
     collect_thought_trace: bool = False,
+    pullback_only: bool = False,
 ) -> Tuple[List[LegFill], DailyRiskLedger, Dict[str, Any]]:
     """Multi-slot scalping path. Law A29: brain decides; sensors feed state.
 
@@ -1113,6 +1114,9 @@ def run_goal_path_day(
             if best is None or best.act not in ("long", "short") or not best.htf_agree:
                 continue
             if topology in ("slingshot_load", "collapse", "chop"):
+                continue
+            # Lab flag (Martin Luk test): first-pullback entries only
+            if pullback_only and topology != "pullback_resume":
                 continue
             # --- A29 brain_drives: sensors only; no hard-rule veto soup ---
             if brain_drives:
