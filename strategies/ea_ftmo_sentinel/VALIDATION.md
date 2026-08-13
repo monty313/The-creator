@@ -148,6 +148,28 @@ soft stop (−1.5%). `portfolio_estimate.py`:
 | fade EUR+GBP | +24.0% / 7 mo | +0.13% | −1.50% | 0 | PASS 15% |
 | **fade EUR+GBP + EUR ORB** | **+49.9% / 7 mo** | **+0.27%** | **−1.50%** | **0** | **PASS 66%, median 24 d** |
 
+## Appendix — leverage sweep (why bigger dynamic lots cannot buy 2.5%/day)
+
+Same measured portfolio book, lots scaled, rails widened to the FTMO-legal
+maximum on the top rows:
+
+| Lot mult | Mean day | Worst day | Breach days | Challenge outcomes |
+|---|---|---|---|---|
+| 1× | +0.27% | −1.50% | 0 | PASS 66%, fuse 7%, timeout 27% |
+| 1.5× | +0.26% | −2.25% | 2 | PASS 49%, FAIL_DAILY 12% |
+| 2× | +0.32% | −3.00% | 6 | PASS 47%, FAIL_DAILY 24% |
+| 3× | +0.13% | −4.40% | 25 | PASS 20%, FAIL_DAILY 71% |
+| 4× | +0.16% | −4.40% | 36 | PASS 16%, FAIL_DAILY 77% |
+
+Mean day is nearly flat in leverage, then falls, while breach probability
+explodes: the FTMO rails clip the distribution asymmetrically (scaled losses
+are kept up to the stop; scaled winning streaks are cut short by halts and
+the fuse), and losses cluster in regimes, so leverage amplifies the clusters
+first. Sizing multiplies the stake, never the edge: with ~2.7 trades/day at
+~+0.1R expectancy, a +2.5%/day average needs ~9% risk per trade — one normal
+stop-out would breach the −5% daily limit on the spot. The honest lever for
+more daily EV is **edge density** (more validated uncorrelated legs), not lots.
+
 ## Honest bottom line after the creative hunt
 
 - There is now a **measured, multi-engine book** that grows ~+0.27%/day on
