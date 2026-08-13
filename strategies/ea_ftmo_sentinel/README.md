@@ -70,18 +70,32 @@ The backtester mirrors the EA bar-for-bar: closed-bar signals, next-open
 entries, real spread+commission, M1 barrier adjudication with the
 conservative same-bar-loss rule, full governor on the M1 equity path.
 
-## Setup (demo first — the measured book is 7 months of one regime)
+## Setup — the simple recipe (owner's choice: fade only, no ORB)
 
-1. Compile `FTMO_Sentinel_EA.mq5` in MetaEditor.
-2. **Keltner fade legs (default mode):** attach to EURUSD M30 and GBPUSD M15
-   charts, same magic number (shared governor). M5 measured toxic — avoid.
-3. **ORB leg (optional):** attach a second instance to EURUSD M15 with
-   `InpEntryMode = MODE_LONDON_ORB` and a **different magic number**;
-   align `InpOrbRangeEndHour` to 07:00 UTC in server time. EURUSD only.
-4. Set `InpInitialBalance` and `InpDayResetHour` (server hour of FTMO
+One engine, three charts, one shared governor:
+
+| Chart | TF | Mode | Sizing |
+|---|---|---|---|
+| EURUSD | M30 | Keltner fade (default) | strength (`InpKfStrengthSizing=true`) |
+| GBPUSD | M15 | Keltner fade (default) | flat (`InpKfStrengthSizing=false`) |
+| XAUUSD | M15 | Keltner fade (default) | flat |
+
+1. Compile `FTMO_Sentinel_EA.mq5`, attach to the three charts above with the
+   **same magic number** (that shares the Day Governor across all legs).
+   M5 measured toxic — avoid. US30 measured unfit for the fade — excluded.
+2. Set `InpInitialBalance` and `InpDayResetHour` (server hour of FTMO
    midnight CE(S)T).
-5. Strategy-test each leg (every tick, real spreads), then demo / FTMO free
+3. Strategy-test each leg (every tick, real spreads), then demo / FTMO free
    trial. Funded only after the forward test agrees with the measurement.
+
+Measured fade-only book (`portfolio_estimate.py` variants, VALIDATION.md):
+**+34.6% over the tested history, mean day +0.18–0.25%, worst day −1.50%,
+zero FTMO breaches.** FTMO challenges have no time limit — at this pace the
++10% target arrives in roughly 6–10 trading weeks; only ~4% of walk-forward
+starts ever hit the −6% self-halt fuse, and none breach.
+
+The ORB and corpus-reclaim modes remain in the EA for lab use but are OFF in
+this recipe.
 
 ## Court status
 

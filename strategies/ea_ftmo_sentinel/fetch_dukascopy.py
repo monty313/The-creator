@@ -25,7 +25,7 @@ from pathlib import Path
 import pandas as pd
 
 SCALE = {"EURUSD": 1e5, "GBPUSD": 1e5, "USDJPY": 1e3, "XAUUSD": 1e3, "USDCHF": 1e5,
-         "AUDUSD": 1e5, "USDCAD": 1e5}
+         "AUDUSD": 1e5, "USDCAD": 1e5, "USA30IDXUSD": 1e3, "USATECHIDXUSD": 1e3}
 BASE = "https://datafeed.dukascopy.com/datafeed/{sym}/{y}/{m:02d}/{d:02d}/BID_candles_min_1.bi5"
 ROW = struct.Struct(">iiiiif")
 UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/126.0 Safari/537.36"

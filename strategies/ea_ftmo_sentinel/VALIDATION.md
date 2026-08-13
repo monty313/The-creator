@@ -170,6 +170,23 @@ first. Sizing multiplies the stake, never the edge: with ~2.7 trades/day at
 stop-out would breach the −5% daily limit on the spot. The honest lever for
 more daily EV is **edge density** (more validated uncorrelated legs), not lots.
 
+## Appendix — metals & indices screens (owner direction: fade only, no ORB)
+
+Yahoo futures proxies (Jun 2 – Aug 13), split at Jul 10, matched KC 2.0 /
+TP 1.5·ATR / SL 2.0·ATR config; realistic costs (gold $0.30, Dow 3 pts):
+
+| Instrument | Result |
+|---|---|
+| GC=F (gold, XAUUSD proxy) | **positive both splits** (15min flat +0.17/+6.24; strength +1.79/+3.81) — same config that validated on EURUSD/GBPUSD; Dukascopy XAUUSD M1 download in progress for confirmation |
+| YM=F (Dow, US30 proxy) | negative/marginal across the board — indices trend intraday; the fade is the wrong tool → **US30 excluded** |
+
+Fade-only book (EURUSD 30m strength + GBPUSD 15m flat + gold 15m flat,
+combined days clipped at the account soft stop): **+34.6% total, mean day
++0.18%** (+0.25%/day on the Jun–Aug window where EUR+gold overlap), worst day
+−1.50%, **0 breaches**; 4% of challenge walk-forward starts fuse-halt, none
+breach. FTMO has no challenge time limit, so slow starts finish — they don't
+fail.
+
 ## Honest bottom line after the creative hunt
 
 - There is now a **measured, multi-engine book** that grows ~+0.27%/day on

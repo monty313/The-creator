@@ -19,7 +19,8 @@ UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"
 
 
 def fetch(sym: str) -> pd.DataFrame:
-    url = (f"https://query1.finance.yahoo.com/v8/finance/chart/{sym}=X"
+    ysym = sym if ("=" in sym or "^" in sym) else f"{sym}=X"
+    url = (f"https://query1.finance.yahoo.com/v8/finance/chart/{ysym}"
            f"?interval=5m&range=60d")
     out = subprocess.run(["curl", "-s", "--max-time", "60", "-A", UA, url],
                          capture_output=True, text=True)
