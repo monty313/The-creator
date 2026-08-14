@@ -165,8 +165,14 @@ class MetaBrain:
         lr: float = 0.02,
         reward: float = 1.0,
         teacher_size_frac: Optional[float] = None,
+        size_only: bool = False,
     ) -> float:
-        """One supervised meta step (cross-entropy act + size). Forbidden if frozen."""
+        """One supervised meta step (cross-entropy act + size). Forbidden if frozen.
+
+        ``size_only=True`` updates ONLY the size head (W_size, b_size): trunk and
+        act logits stay byte-identical, so fire/wait behavior provably cannot
+        change (dynamic-size lab recipe; act head frozen per SEAN size-class).
+        """
         if self.frozen_for_inference:
             raise RuntimeError(
                 "NO_RETRAIN_VIOLATION: meta_update forbidden at inference"
@@ -193,6 +199,16 @@ class MetaBrain:
             teacher_size_frac = 0.0 if y == ACT_WAIT else 0.65
         size_err = float(teacher_size_frac) - 1.0 / (1.0 + np.exp(-size_logit))
         d_size = -float(reward) * size_err  # gradient on size_logit via sigmoid residual
+
+        if size_only:
+            lr = float(lr)
+            self.W_size = self.W_size - lr * (h * d_size)
+            self.b_size = float(self.b_size - lr * d_size)
+            np.clip(self.W_size, -8.0, 8.0, out=self.W_size)
+            self.meta_train_steps += 1
+            self.trained = True
+            self._fingerprint = self.weight_fingerprint()
+            return float(size_err * size_err)
 
         # Backprop W2, b2
         dW2 = np.outer(dlogits, h)
