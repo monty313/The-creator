@@ -174,6 +174,26 @@ The trainer prints act-agreement before/after so you can see the brain adopt
 your corrections. Because states are the real path pack (never rebuilt),
 this is the anti-F-025 teacher class.
 
+## 4c) Teacher harness — one lesson per agent, so we don't get lost
+
+Each teacher agent teaches the policy exactly ONE lesson; the harness runs each
+in an isolated lane and judges by the owner bar only:
+
+```bash
+python tools/teacher_harness.py                      # all agents
+python tools/teacher_harness.py --agent size_until_win
+```
+
+Per agent: HARVEST lessons from real path states (traced champion replay on a
+window that precedes the sensor) → TRAIN one candidate from a champion copy →
+MEASURE the pinned 40d sensor → VERDICT (`CANDIDATE_FOR_COURT` / `KEEP_LAB` /
+`DISCARD`) → RESULT.json + one scoreboard (`artifacts/teacher_harness/`) +
+ledger event. Candidates never stack; the champion is never written.
+
+Registered agents: `pullback_first`, `pullback_confluence`, `pullback_prime`
+(one pullback lesson each) and `size_until_win` (size head only: need-based
+fraction that wins the day, taught on real fills, `size_head_drives` on).
+
 ## 5) Daily driving (deploy shape)
 
 Each trading day:
