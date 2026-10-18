@@ -17,6 +17,12 @@ Teaching geometry (not a promote list): [00_intuition.md](00_intuition.md)
 
 ---
 
+> **Reality check (2026-08-12):** a bar-accurate, cost-aware re-test of the top
+> corpus families on real downloaded M1 data did **not** replicate the profit
+> claims below (win rates replicate; net P&L is negative after costs).
+> Measurement + harness: [`ea_ftmo_sentinel/VALIDATION.md`](ea_ftmo_sentinel/VALIDATION.md).
+> Treat the tables below as hit-rate/geometry evidence, not money evidence.
+
 ## Results (current corpus)
 
 | Artifact | What |
