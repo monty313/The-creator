@@ -68,6 +68,9 @@ class MetaPolicy:
     frozen_for_inference: bool = False
     trained: bool = False
     inference_updates: int = 0
+    # Dynamic-size lab mode: size head output drives sizing directly
+    # (fraction of remaining envelope). False = legacy aggression mapping.
+    size_head_drives: bool = False
     _fingerprint: str = field(default="", repr=False)
 
     def __post_init__(self) -> None:
@@ -115,7 +118,9 @@ class MetaPolicy:
             inference_updates=0,
         )
         b._fingerprint = b.weight_fingerprint()
-        return MetaPolicy(brain=b)
+        pol = MetaPolicy(brain=b)
+        pol.size_head_drives = bool(self.size_head_drives)
+        return pol
 
     def weight_fingerprint(self) -> str:
         return self.brain.weight_fingerprint()
@@ -227,23 +232,31 @@ class MetaPolicy:
         # still clamped by envelope in size_position_risk_percent (breach 0).
         sig = 1.0 / (1.0 + np.exp(-size_logit))
         pressure = float(ctx[IDX_GOAL_PRESSURE]) if ctx.size > IDX_GOAL_PRESSURE else 0.5
-        # High pressure / remaining risk → more of budget per leg (legal)
-        aggression = float(
-            np.clip(
-                0.45 + 0.50 * sig + 0.22 * target_norm + 0.25 * pressure * risk_rem,
-                0.25,
-                1.0,
+        if self.size_head_drives:
+            # Dynamic-size lab: the trained size head IS the size — a direct
+            # fraction of remaining budget, hard-clamped by the envelope.
+            budget = float(remaining) - 0.03  # friction reserve
+            cap = min(budget, max_risk * 0.98)
+            size = float(np.clip(sig, 0.05, 0.98)) * max(cap, 0.0)
+            aggression = sig
+        else:
+            # High pressure / remaining risk → more of budget per leg (legal)
+            aggression = float(
+                np.clip(
+                    0.45 + 0.50 * sig + 0.22 * target_norm + 0.25 * pressure * risk_rem,
+                    0.25,
+                    1.0,
+                )
             )
-        )
-        size = size_position_risk_percent(
-            max_daily_risk_percent=max_risk,
-            remaining_budget_percent=remaining,
-            stop_distance_pct=0.35,
-            target_percent=target,
-            aggression=aggression,
-            max_single_fraction=0.98,  # EO: nearly full remaining budget when needed
-            friction_reserve_percent=0.03,
-        )
+            size = size_position_risk_percent(
+                max_daily_risk_percent=max_risk,
+                remaining_budget_percent=remaining,
+                stop_distance_pct=0.35,
+                target_percent=target,
+                aggression=aggression,
+                max_single_fraction=0.98,  # EO: nearly full remaining budget when needed
+                friction_reserve_percent=0.03,
+            )
         if size <= 0:
             return PolicyAction(
                 act="wait",
@@ -281,6 +294,7 @@ class MetaPolicy:
             meta_train_steps=np.array([b.meta_train_steps]),
             trained=np.array([1 if b.trained else 0]),
             format=np.array([2]),  # brain format v2
+            size_head_drives=np.array([1 if self.size_head_drives else 0]),
         )
         meta = {
             "seed": b.seed,
@@ -289,6 +303,7 @@ class MetaPolicy:
             "fingerprint": b.weight_fingerprint(),
             "law": "A29_brain_l2l",
             "format": 2,
+            "size_head_drives": bool(self.size_head_drives),
         }
         path.with_suffix(".json").write_text(json.dumps(meta, indent=2), encoding="utf-8")
         return path
@@ -327,6 +342,8 @@ class MetaPolicy:
         if require_serious and (not brain.trained or brain.meta_train_steps < 500):
             raise RuntimeError(f"Loaded brain not seriously trained: {path}")
         pol = cls(brain=brain)
+        if "size_head_drives" in data:
+            pol.size_head_drives = bool(int(data["size_head_drives"][0]))
         if freeze:
             if brain.trained:
                 pol.freeze_for_inference()

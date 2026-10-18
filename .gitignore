@@ -35,3 +35,6 @@ strategies/_scratch/**
 
 # Optional local noise
 strategies/Strategies to replicate in Algo Trading.docx.html
+
+# Market data — reproduce with tools/download_dukascopy_m1.py (see docs/RUN_THE_BOT.md)
+data/raw/

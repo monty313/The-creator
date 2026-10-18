@@ -1,0 +1,9 @@
+{
+  "seed": 42,
+  "meta_train_steps": 16275,
+  "trained": true,
+  "fingerprint": "42:meta16275:inf0:a436c23799726ea0",
+  "law": "A29_brain_l2l",
+  "format": 2,
+  "size_head_drives": true
+}

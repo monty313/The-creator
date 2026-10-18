@@ -965,6 +965,8 @@ def run_goal_path_day(
     aggressive_capture: bool = False,
     monty_htf_blend: bool = False,
     method_hold_while_force: bool = False,
+    collect_thought_trace: bool = False,
+    pullback_only: bool = False,
 ) -> Tuple[List[LegFill], DailyRiskLedger, Dict[str, Any]]:
     """Multi-slot scalping path. Law A29: brain decides; sensors feed state.
 
@@ -1039,6 +1041,14 @@ def run_goal_path_day(
     l2l_ok = True
     roles_all: List[str] = []
     probed = False
+    # Observe-only thought trace (visual thought map) — never changes behavior
+    trace: List[Dict[str, Any]] = []
+
+    def _tr(event: str, **kw: Any) -> Dict[str, Any]:
+        rec = {"event": event, **kw}
+        if collect_thought_trace:
+            trace.append(rec)
+        return rec
     # C-001 / A28: always-on Opportunity Watch → path meta + curriculum labels
     watch_agent = OpportunityWatchAgent() if watch_enabled else None
     watch_slot_reports: List[Any] = []
@@ -1057,10 +1067,16 @@ def run_goal_path_day(
     for si, slot in enumerate(slot_list):
         if ledger.realized_pnl_percent >= target_percent - 1e-9:
             meta["locked_target"] = True
+            _tr("day_end", slot=slot, reason="target_locked",
+                pnl=float(ledger.realized_pnl_percent))
             break
         if ledger.remaining_risk_budget_percent() <= 0.08:
+            _tr("day_end", slot=slot, reason="risk_budget_exhausted",
+                pnl=float(ledger.realized_pnl_percent),
+                remaining=float(ledger.remaining_risk_budget_percent()))
             break
         if len(fills) >= max_fills:
+            _tr("day_end", slot=slot, reason="max_fills_cap", n_fills=len(fills))
             break
 
         # CASE-0012: hold end depends on topology (set per pick below); placeholder
@@ -1098,6 +1114,9 @@ def run_goal_path_day(
             if best is None or best.act not in ("long", "short") or not best.htf_agree:
                 continue
             if topology in ("slingshot_load", "collapse", "chop"):
+                continue
+            # Lab flag (Martin Luk test): first-pullback entries only
+            if pullback_only and topology != "pullback_resume":
                 continue
             # --- A29 brain_drives: sensors only; no hard-rule veto soup ---
             if brain_drives:
@@ -1182,6 +1201,44 @@ def run_goal_path_day(
         # Symbol → act for fires completed this slot (Watch compares vs opportunities)
         fired_this_slot: Dict[str, str] = {}
 
+        if collect_thought_trace and slot_snaps:
+            qual_by_sym = {c[1]: float(c[0]) for c in candidates}
+            per_sym = []
+            for _sym, _snap in slot_snaps.items():
+                _b = _snap.best
+                _topo = _b.topology if _b else "chop"
+                if _b is None or _b.act not in ("long", "short"):
+                    _why = "no_edge_side"
+                elif not _b.htf_agree:
+                    _why = "htf_disagree"
+                elif _topo in ("slingshot_load", "collapse", "chop"):
+                    _why = f"topology_{_topo}"
+                else:
+                    _why = "candidate"
+                per_sym.append(
+                    {
+                        "symbol": _sym,
+                        "consensus": str(_snap.multi_set_consensus),
+                        "force": round(float(_snap.consensus_force or 0.0), 3),
+                        "edge_act": str(_b.act) if _b else "none",
+                        "edge_force": round(float(getattr(_b, "force", 0.0) or 0.0), 3),
+                        "topology": str(_topo),
+                        "status": _why,
+                        "quality": round(qual_by_sym.get(_sym, 0.0), 2),
+                        "n_pullback": int(_snap.n_pullback),
+                        "n_continuation": int(_snap.n_continuation),
+                    }
+                )
+            _tr(
+                "scan",
+                slot=slot,
+                prime=bool(is_prime_session_slot(slot)),
+                symbols=per_sym,
+                n_candidates=len(candidates),
+                pnl=round(float(ledger.realized_pnl_percent), 3),
+                remaining=round(float(ledger.remaining_risk_budget_percent()), 3),
+            )
+
         if not candidates:
             # Mark: empty slot skip — no pad trades (allows_empty_slot_skip)
             # C-001: still Watch — bot waited while sensors may have seen PB/cont
@@ -1198,7 +1255,18 @@ def run_goal_path_day(
                             bot_symbol=None,
                         )
                     )
-                watch_slot_reports.append(watch_agent.merge_reports(slot_reps))
+                _rep = watch_agent.merge_reports(slot_reps)
+                watch_slot_reports.append(_rep)
+                if collect_thought_trace:
+                    for _c in getattr(_rep, "complaints", None) or []:
+                        _tr(
+                            "watch_miss",
+                            slot=slot,
+                            symbol=str(getattr(_c, "symbol", "") or ""),
+                            side=str(getattr(_c, "side", "") or ""),
+                            topology=str(getattr(_c, "topology", "") or ""),
+                            session_band=str(getattr(_c, "session_band", "") or ""),
+                        )
             continue
         candidates.sort(key=lambda x: -x[0])
         # CASE-0030: dual-sym only when multi-set agrees (best candidate sets tone)
@@ -1324,6 +1392,61 @@ def run_goal_path_day(
             action: PolicyAction = policy.forward(
                 state, ledger=ledger, topology=pol_topo, roles=roles
             )
+            dec: Dict[str, Any] = {}
+            if collect_thought_trace:
+                _act_p, _size_logit, _probs = policy.brain.predict_act(state)
+                dec = {
+                    # exact packed state the brain saw — makes human corrections
+                    # directly trainable (anti F-025: never rebuild fake states)
+                    "state": [round(float(x), 4) for x in np.asarray(state).ravel()],
+                    "slot": slot,
+                    "symbol": sym,
+                    "prime": bool(is_prime_session_slot(slot)),
+                    "quality": round(float(quality), 2),
+                    "topology": str(topology),
+                    "edge": {
+                        "act": str(best.act),
+                        "force": round(float(best.force), 3),
+                        "set_id": int(getattr(best, "set_id", 0) or 0),
+                        "consensus": str(snap.multi_set_consensus),
+                        "n_htf_active": sum(
+                            1 for e in (snap.set_edges or [])
+                            if bool(getattr(e, "htf_agree", False))
+                        ),
+                    },
+                    "senses": {
+                        "sight": str(sense_rep.sight.get("topology_class", "")),
+                        "feel": str(sense_rep.feel.get("max_tension_load_building", "")),
+                        "taste": str(sense_rep.taste.get("edge_quality", "")),
+                        "hearing": str(sense_rep.hearing.get("wait_subtype", "")),
+                    },
+                    "ctx": {
+                        "target": float(target_percent),
+                        "risk": float(max_daily_risk_percent),
+                        "progress": round(float(progress), 3),
+                        "pnl": round(float(ledger.realized_pnl_percent), 3),
+                        "remaining": round(
+                            float(ledger.remaining_risk_budget_percent()), 3
+                        ),
+                        "session_phase": round(float(si / max(len(slot_list) - 1, 1)), 3),
+                        "wounded": bool(wounded),
+                        "n_fills": len(fills),
+                    },
+                    "brain": {
+                        "act": str(action.act),
+                        "probs": {
+                            "wait": round(float(_probs[0]), 3),
+                            "long": round(float(_probs[1]), 3),
+                            "short": round(float(_probs[2]), 3),
+                        },
+                        "size_sig": round(
+                            float(1.0 / (1.0 + np.exp(-_size_logit))), 3
+                        ),
+                        "size_risk_percent": round(float(action.size_risk_percent), 3),
+                        "reason": str(action.reason),
+                        "wait_subtype": str(action.wait_subtype or ""),
+                    },
+                }
             # Brain path: one forward only — no hard nudge oracle (A29)
             if not brain_drives and action.act == "wait":
                 st2 = state.copy()
@@ -1389,11 +1512,21 @@ def run_goal_path_day(
                     }
                 )
             if action.act not in ("long", "short"):
+                if collect_thought_trace:
+                    dec["event"] = "brain_wait"
+                    dec["outcome"] = f"edge wanted {best.act}, brain waited"
+                    trace.append(dec)
                 continue
             # Align with edge side when brain fires opposite (sensor truth)
             if brain_drives and action.act != best.act:
                 # Allow brain side if multi-set not conflict; else take edge side
                 if snap.multi_set_consensus == "conflict":
+                    if collect_thought_trace:
+                        dec["event"] = "blocked_conflict"
+                        dec["outcome"] = (
+                            f"brain {action.act} vs edge {best.act} under conflict"
+                        )
+                        trace.append(dec)
                     continue
                 if snap.multi_set_consensus == "agree_long":
                     action = PolicyAction(
@@ -1427,7 +1560,17 @@ def run_goal_path_day(
                 _eq = 0.85 + 0.15 * min(abs(float(snap.consensus_force or 0.0)), 1.0)
             elif abs(float(getattr(best, "force", 0.0) or 0.0)) >= 0.35:
                 _eq = 0.7
-            if brain_drives and INTELLIGENT_SIZE_UP:
+            if (
+                brain_drives
+                and getattr(policy, "size_head_drives", False)
+                and action.size_risk_percent > 0.05
+            ):
+                # Dynamic-size lab: the policy's trained size head passes its
+                # own size to the fill — no intelligent-size blend override.
+                # Envelope still hard-gates below (would_breach / lot legal).
+                size = float(action.size_risk_percent)
+                _size_src = "size_head_passthrough"
+            elif brain_drives and INTELLIGENT_SIZE_UP:
                 # Monty EO: max(brain, clear-path, intelligent aggressor) under envelope
                 _conf = 0.55
                 if "conf=" in str(action.reason or ""):
@@ -1445,8 +1588,10 @@ def run_goal_path_day(
                     conf=float(_conf),
                 )
                 size = float(size) * production_leg_size_scale(len(fills))
+                _size_src = "intelligent_size_up_blend"
             elif brain_drives and action.size_risk_percent > 0.05:
                 size = float(action.size_risk_percent)
+                _size_src = "brain_direct"
             else:
                 size = goal_path_size_for_clear(
                     ledger=ledger,
@@ -1455,7 +1600,17 @@ def run_goal_path_day(
                     wounded=wounded,
                 )
                 size = float(size) * production_leg_size_scale(len(fills))
+                _size_src = "clear_path_heuristic"
             if size <= 0.05 or ledger.would_breach(size):
+                if collect_thought_trace:
+                    dec["event"] = "blocked_envelope"
+                    dec["size"] = {
+                        "attempted": round(float(size), 3),
+                        "source": _size_src,
+                        "would_breach": bool(ledger.would_breach(size)),
+                    }
+                    dec["outcome"] = "size zero or would breach envelope"
+                    trace.append(dec)
                 continue
             meta["path_geometry"] = (
                 "a29_brain_drives" if brain_drives else "a21_one_sym_full_scale"
@@ -1495,6 +1650,10 @@ def run_goal_path_day(
 
             window = m1_window(m1, date=date, start_time=slot, end_time=end_time_fill)
             if len(window) < 5:
+                if collect_thought_trace:
+                    dec["event"] = "blocked_window"
+                    dec["outcome"] = "not enough M1 bars in fill window"
+                    trace.append(dec)
                 continue
             entry = float(window[0]["open"])
             stop_px = stop_distance_price_from_pct(entry, stop_distance_pct)
@@ -1508,6 +1667,10 @@ def run_goal_path_day(
             )
             size = min(size, float(lot_info["risk_percent_actual"]) or size)
             if size <= 0 or lot_info["lot"] <= 0:
+                if collect_thought_trace:
+                    dec["event"] = "blocked_lot"
+                    dec["outcome"] = "risk-legal lot rounds to zero"
+                    trace.append(dec)
                 continue
 
             side = 1 if best.act == "long" else -1
@@ -1551,6 +1714,40 @@ def run_goal_path_day(
             )
             fired_this_slot[sym] = action_act
             meta["n_slots_fired"] += 1
+            if collect_thought_trace:
+                dec["event"] = "fired"
+                _ov = ""
+                if "|edge_align" in str(action.reason):
+                    _ov = "edge_align_" + str(action.reason).rsplit("edge_align_", 1)[-1][:5]
+                elif "|edge_side" in str(action.reason):
+                    _ov = "edge_side"
+                dec["override"] = _ov
+                dec["size"] = {
+                    "final": round(float(size), 3),
+                    "source": _size_src,
+                    "brain_asked": round(float(action.size_risk_percent), 3),
+                    "frac_of_remaining_before": round(
+                        float(size)
+                        / max(float(size) + ledger.remaining_risk_budget_percent(), 1e-6),
+                        3,
+                    ),
+                    "lot": round(float(lot_info["lot"]), 3),
+                }
+                dec["fill"] = {
+                    "act": str(action_act),
+                    "pnl": round(float(pnl), 3),
+                    "window_end": str(end_time_fill),
+                    "method_hold": bool(method_hold_leg),
+                    "pnl_after": round(float(ledger.realized_pnl_percent), 3),
+                    "remaining_after": round(
+                        float(ledger.remaining_risk_budget_percent()), 3
+                    ),
+                }
+                dec["outcome"] = (
+                    f"{action_act} {size:.2f}% -> pnl {pnl:+.2f}% "
+                    f"(day {ledger.realized_pnl_percent:+.2f}%)"
+                )
+                trace.append(dec)
             # --- Trade Mental Replay: 3 TF × before/during/after (Policy mind) ---
             if want_mental and len(mental_replays) < int(max_mental_replays):
                 try:
@@ -1656,7 +1853,18 @@ def run_goal_path_day(
                         bot_symbol=sym if act is not None else None,
                     )
                 )
-            watch_slot_reports.append(watch_agent.merge_reports(slot_reps))
+            _rep_eos = watch_agent.merge_reports(slot_reps)
+            watch_slot_reports.append(_rep_eos)
+            if collect_thought_trace:
+                for _c in getattr(_rep_eos, "complaints", None) or []:
+                    _tr(
+                        "watch_miss",
+                        slot=slot,
+                        symbol=str(getattr(_c, "symbol", "") or ""),
+                        side=str(getattr(_c, "side", "") or ""),
+                        topology=str(getattr(_c, "topology", "") or ""),
+                        session_band=str(getattr(_c, "session_band", "") or ""),
+                    )
             # Residual harvest: pack *real* path state at Watch miss (anti F-025 rebuild)
             # HTF-active gate: ≥1 official set htf_agree (same as brain-wait teachers)
             if collect_path_state_teachers:
@@ -1799,4 +2007,6 @@ def run_goal_path_day(
     meta["n_mental_replays"] = len(mental_replays)
     meta["collect_mental_replay"] = bool(want_mental)
     meta["mental_replay_grid"] = "3tf_x_3phase"
+    if collect_thought_trace:
+        meta["thought_trace"] = trace
     return fills, ledger, meta
