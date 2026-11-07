@@ -1,63 +1,65 @@
-# The Creator — Evidence Court
+# The-creator
 
-**Owner:** Monty  
-**Mission:** one bot · any target/risk · no retrain after final policy · breach 0 · scalper 8–400/day · senses drive the brain.
+## Project mission
+Build and maintain the The creator project with reliable setup, execution, and delivery workflows.
 
----
+## What this repository currently contains
+Top-level structure:
+- `.gitignore` (file)
+- `.grok` (dir)
+- `00_PATH_LEARNING` (dir)
+- `00_PATH_STATE_TEACHERS` (dir)
+- `Aaron_here` (dir)
+- `AGENTS.md` (file)
+- `docs` (dir)
+- `evidence_court` (dir)
+- `HANDOFF_IRAC.md` (file)
+- `Learning-How_to` (dir)
+- `mark_here` (dir)
+- `README.md` (file)
+- `strategies` (dir)
+- `tools` (dir)
 
-## Folder map (start here)
+Primary languages/tooling detected: Markdown (668), Python (166), YAML (4)
 
-```text
-The Creator/
-├── README.md                 ← you are here
-├── AGENTS.md                 ← auto-loaded Court laws for Grok
-├── docs/                     ← procedure + project docs
-│   ├── grok_cli_evidence_court_v2.md
-│   └── project/
-├── tools/                    ← launch scripts (TradingView CDP, …)
-├── 00_PATH_STATE_TEACHERS/   ← plain-language path-state training
-├── 00_PATH_LEARNING/         ← path-learning road
-├── Aaron_here/               ← Teacher of Learning kit
-├── Learning-How_to/          ← curriculum progress
-├── evidence_court/           ← Court + meta-RL brain (main lab)
-│   ├── BEST_POLICY.md        ← production champion SSOT
-│   ├── arbitration/          ← personified / day12 / dethrone seats
-│   ├── artifacts/            ← outputs (organized — see inside README)
-│   ├── cases/ · ledger/ · meta_rl/ · schedules/ · tests/
-│   └── *.md law files
-├── mark_here/                ← Mark knowledge + ESQUIRE
-└── strategies/               ← strategy geometry library (not production brain)
-    ├── reports/              ← batch test reports
-    └── _scratch/             ← noise / exports
-```
+Likely key implementation files:
+- `README.md`
 
----
+## Quickstart (operator + LLM friendly)
+Use this sequence first, then adapt to repo-specific details.
 
-## Daily commands
+1. Clone and enter repo:
+   ```bash
+   git clone https://github.com/monty313/The-creator.git
+   cd The-creator
+   ```
+2. Setup environment/dependencies:
+   ```bash
+   Inspect dependencies from project files before first run.
+   ```
+3. Run locally:
+   ```bash
+   Run the main entrypoint/script discovered in the repository structure.
+   ```
+4. Validate changes:
+   ```bash
+   Run the repository test command once identified (or add one if missing).
+   ```
 
-| Goal | Command |
-|------|---------|
-| Prove champion | `python -m evidence_court.meta_rl.cli prove 15 2` |
-| Load laws | open `AGENTS.md` + `evidence_court/BEST_POLICY.md` |
-| TradingView CDP | `tools/tradingview/start_tradingview_cdp.bat` |
-| Path teachers (how) | `00_PATH_STATE_TEACHERS/README.md` |
+## Operating intent (CEO-mode guide for future LLMs)
+When continuing this project, optimize for business outcome first:
 
----
+- Preserve or improve strategy quality, reliability, and reproducibility.
+- Prefer small, testable, reversible changes over broad rewrites.
+- Keep docs synchronized with code behavior.
+- Add explicit assumptions, constraints, and success criteria in every major change.
 
-## What stays “hot” (do not bury)
+## Delivery checklist
+- [ ] Environment setup is deterministic.
+- [ ] Primary run path is documented and works.
+- [ ] Validation/test path is documented and works.
+- [ ] Key risks and TODOs are tracked in the handoff file.
 
-| Path | Why |
-|------|-----|
-| `evidence_court/artifacts/meta_policy_champion.npz` | Production brain weights |
-| `evidence_court/BEST_POLICY.md` | Champion identity |
-| `evidence_court/ISSUE_DOCKET.md` | Live blockers |
-| `AGENTS.md` | Session law |
-
-Lab shadows live under `artifacts/policies_lab/`.  
-Reports → `artifacts/reports/`. Day-12 work → `artifacts/day12/`.
-
----
-
-## Full map
-
-See **`docs/FOLDER_MAP.md`**.
+## Branch and release notes
+- Default branch: `main`
+- Keep PRs focused and attach proof-of-run or proof-of-test for behavior changes.
