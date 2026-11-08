@@ -1,0 +1,30 @@
+{
+  "agent": "pullback_prime",
+  "lesson": "Fire London/NY prime-session pullbacks (A28 weighting)",
+  "mode": "act_size",
+  "n_lessons": 523,
+  "train": {
+    "agreement_before": {
+      "act_agreement": 1.0,
+      "size_mae": 0.242
+    },
+    "agreement_after": {
+      "act_agreement": 1.0,
+      "size_mae": 0.012
+    },
+    "fingerprint_after": "42:meta7413:inf0:8723b2f0eb0164f8",
+    "saved": "/workspace/evidence_court/artifacts/policies_lab/teacher_agents/meta_policy_teacher_pullback_prime.npz"
+  },
+  "measure": {
+    "hits": 1,
+    "breach": 0,
+    "no_retrain": true,
+    "mean_pnl": 0.3412,
+    "mean_trades": 25.93,
+    "a13_frac": 0.55,
+    "n_zero": 18,
+    "window": "2026-06-17..2026-08-11",
+    "fingerprint": "42:meta7413:inf0:8723b2f0eb0164f8"
+  },
+  "verdict": "KEEP_LAB"
+}

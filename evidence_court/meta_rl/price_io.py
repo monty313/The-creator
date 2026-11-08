@@ -1,10 +1,25 @@
 """Price I/O: M1 MT5 CSV load with optional date window (multi-symbol)."""
 from __future__ import annotations
 
+import os
 from pathlib import Path
 from typing import Dict, List, Optional, Sequence, Tuple
 
-_RAW = Path(r"C:\Users\user\Fable5_Foundation\MOMENTUM_ONE\the-truth\data\raw")
+_WINDOWS_RAW = Path(r"C:\Users\user\Fable5_Foundation\MOMENTUM_ONE\the-truth\data\raw")
+_REPO_RAW = Path(__file__).resolve().parents[2] / "data" / "raw"
+
+
+def _resolve_raw_dir() -> Path:
+    """Data dir resolution: env var > local Windows path > repo-relative data/raw."""
+    env = os.environ.get("CREATOR_DATA_DIR", "").strip()
+    if env:
+        return Path(env)
+    if _WINDOWS_RAW.exists():
+        return _WINDOWS_RAW
+    return _REPO_RAW
+
+
+_RAW = _resolve_raw_dir()
 
 SYMBOL_FILES: Dict[str, Path] = {
     "XAUUSD": _RAW / "XAUUSD_M1_full.csv",
@@ -15,7 +30,9 @@ SYMBOL_FILES: Dict[str, Path] = {
 
 # Fallback if full missing
 if not SYMBOL_FILES["XAUUSD"].exists():
-    SYMBOL_FILES["XAUUSD"] = _RAW / "XAUUSD_curriculum_2026.csv"
+    _alt = _RAW / "XAUUSD_curriculum_2026.csv"
+    if _alt.exists():
+        SYMBOL_FILES["XAUUSD"] = _alt
 
 _M1_CACHE: Dict[str, Tuple[float, List[dict]]] = {}
 
